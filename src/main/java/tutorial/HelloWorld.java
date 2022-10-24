@@ -13,7 +13,7 @@ public class HelloWorld {
             return "tutorial.HelloWorld";
         }
         if (decide % 3 == 0) {
-            return "Hello2";
+            return "Hello23";
         }
         if (decide % 5 == 0) {
             return "World";

@@ -1,5 +1,5 @@
 package testFolder;
 
 public class testCode {
-    int num = 77;
+    int num = 777;
 }

@@ -1,4 +1,4 @@
 package testFolder;
 
-public class testCode {
+public class qqtestCode {
 }

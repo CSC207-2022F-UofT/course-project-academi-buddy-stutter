@@ -1,4 +1,5 @@
 package testFolder;
 
-public class qqtestCode {
+public class testCode {
+    int num = 567;
 }

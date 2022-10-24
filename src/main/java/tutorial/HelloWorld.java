@@ -13,10 +13,10 @@ public class HelloWorld {
             return "tutorial.HelloWorld";
         }
         if (decide % 3 == 0) {
-            return "Hello2";
+            return "Hello";
         }
         if (decide % 5 == 0) {
-            return "wwwww";
+            return "World";
         }
         return String.valueOf(decide);
 

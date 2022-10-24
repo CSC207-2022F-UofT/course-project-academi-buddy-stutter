@@ -16,7 +16,7 @@ public class HelloWorld {
             return "Hello2";
         }
         if (decide % 5 == 0) {
-            return "W";
+            return "wwwww";
         }
         return String.valueOf(decide);
 

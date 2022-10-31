@@ -1,5 +1,6 @@
 package Users;
 
+// Tabs for tabs of interests in students
 public class Tabs {
     String name;
     Boolean value;

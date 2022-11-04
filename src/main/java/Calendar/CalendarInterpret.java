@@ -1,9 +1,48 @@
+package Calendar;
+
 import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
 
-public class Import {
-/* Reading from uploaded calendar and converting into information to store into database. Download calendar from acorn */
+public class CalendarInterpret {
+/* Reading from uploaded calendar and converting into information to store into database.
+Download calendar from acorn */
+
+
+     /*
+    GetCourse_to_time: returns Mapping of a student's courses to the courses times
+    param: calendar_raw
+    return: Mapping<String,String>
+     */
+
+   /* public  Map<String, String> GetCourse_to_time(String calendar_raw){
+
+        VEvent courses = GetCourses(calendar_raw);
+
+        ICalendar ical = Biweekly.parse(calendar_raw).first();
+
+        VEvent event = ical.getEvents().get(0);
+
+
+
+        return courses_to_time;
+    } */
+
+    /*
+    GetCourses: returns VEvent of student's courses
+    param: calendar_raw
+    return: VEvent
+     */
+
+    public VEvent GetCourses(String calendar_raw){
+        ICalendar ical = Biweekly.parse(calendar_raw).first();
+
+        VEvent event = ical.getEvents().get(0);
+
+        return event;
+    }
+
+
 
     public String getSummary(String calendar) {
 
@@ -28,10 +67,11 @@ public class Import {
         String summary = event.getSummary().getValue();
 
         ical.getEvents();
-        event.getDescription();
+        event.getSummary();
 
 
         return summary;
-    }
 
+
+}
 }

@@ -11,6 +11,10 @@ repositories {
 }
 
 dependencies {
+    implementation 'net.sf.biweekly:biweekly:0.6.6'
+    implementation 'junit:junit:4.13.2'
+    implementation 'net.clojars.kah0ona:clj-icalendar:0.3.1'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
     implementation 'com.google.firebase:firebase-admin:9.1.0'
     implementation 'net.sf.biweekly:biweekly:0.6.6'
     implementation 'junit:junit:4.13.2'

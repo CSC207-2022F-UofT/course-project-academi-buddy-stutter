@@ -7,6 +7,7 @@ public class Student {
     private String student_password;
     String student_info;
     ArrayList<Tabs> tabs_of_interests;
+    //ArrayList<Course> enrolled_courses;
 
     //init
     public Student(String SID, String sPass, String info){

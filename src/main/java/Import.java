@@ -35,7 +35,7 @@ public class Import {
     public static List<List<String>> getSummary(String calendar) {
         /*  return a list of courses with their info.
                   0               1               2               3                 4              5
-            ["Course code", "Sessions.Session type", "Sessions.Session number", "Course name", "day of the week", "year"]
+            ["Course code", "Session type", "Session number", "Course name", "day of the week", "year"]
             [CSC207H1, LEC, 0301, Software Design, Tue, 2022]
          */
 

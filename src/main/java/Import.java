@@ -82,7 +82,7 @@ public class Import {
     public static List<List<String>> getSummary(String calendar) {
         /*  return a list of courses with their info.
                   0               1               2               3                 4              5
-            ["Course code", "Session type", "Session number", "Course name", "day of the week", "year"]
+            ["Course code", "Sessions.Session type", "Sessions.Session number", "Course name", "day of the week", "year"]
             [CSC207H1, LEC, 0301, Software Design, Tue, 2022]
          */
 
@@ -93,8 +93,8 @@ public class Import {
         for(VEvent event: ical.getEvents()){
             List<String> courseInfo = new ArrayList<String>();
             courseInfo.add(event.getSummary().getValue().substring(0,8)); //Course Code
-            courseInfo.add(event.getSummary().getValue().substring(9,12)); //Session Type
-            courseInfo.add(event.getSummary().getValue().substring(12,16)); //Session number
+            courseInfo.add(event.getSummary().getValue().substring(9,12)); //Sessions.Session Type
+            courseInfo.add(event.getSummary().getValue().substring(12,16)); //Sessions.Session number
             courseInfo.add(event.getDescription().getValue().split("\n")[0]); //Course name
             courseInfo.add(event.getDateStart().getValue().toString().substring(0,3)); // day of the week
             courseInfo.add(event.getDateStart().getValue().toString().substring(24,28)); // year

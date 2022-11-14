@@ -22,15 +22,8 @@ public class FirebaseCollection{
     private Map<String, Object> data;
     private DocumentReference docRef;
     private Firestore db;
-
     public FirebaseCollection(String collectionName) throws IOException{
         this.collectionName = collectionName;
-        FileInputStream serviceAccount = new FileInputStream(serviceAccountFile);
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setProjectId(projectID)
-                .build();
-        FirebaseApp.initializeApp(options);
         db = FirestoreClient.getFirestore();
     }
     public List<QueryDocumentSnapshot> getDocumentList(){

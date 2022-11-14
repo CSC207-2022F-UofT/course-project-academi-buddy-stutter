@@ -1,6 +1,6 @@
 package Firebase;
 
-public class courseDatabase {
+public class courseDatabas {
     public boolean addCourse(){
 
     }

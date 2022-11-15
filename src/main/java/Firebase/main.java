@@ -1,5 +1,7 @@
 package Firebase;
 
+import Sessions.Course;
+import Users.Student;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -25,11 +27,18 @@ public class main {
     }
     public static void main(String[] args) throws IOException{
         initializeFirebase();
-        FirebaseCollection fb = new FirebaseCollection("courses");
-        fb.addEntry("CSC207", "Week", "Mon");
-        fb.addEntry("CSC209", "Week", "Tue");
-        FirebaseCollection us = new FirebaseCollection("users");
-        us.addEntry("SX", "Name", "Anon");
+        courseDatabase cb = new courseDatabase();
+        List<String> CSCInfo = Import.getSummary(Import.readCalendar("coursesCalendar.ics")).get(0);
+        Course CSC = new Course(CSCInfo.get(0), CSCInfo.get(1), CSCInfo.get(2), CSCInfo.get(3), CSCInfo.get(4), CSCInfo.get(5), CSCInfo.get(6));
+        Student s1 = new Student("123", "password", "s1", "none");
+        Student s2 = new Student("124", "password", "s2", "none");
+        CSC.addStudent(s1);
+        CSC.addStudent(s2);
+        cb.addCourse(CSC);
+        cb.removeStudent(CSC, s1);
+        String a = CSC.getEnrolledStudents().toString();
+
+
 
     }
 

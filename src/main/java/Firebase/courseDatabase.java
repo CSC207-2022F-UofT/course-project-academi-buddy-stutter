@@ -2,10 +2,13 @@ package Firebase;
 import Sessions.Course;
 import Users.Student;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import org.checkerframework.checker.units.qual.C;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class courseDatabase {
     private FirebaseCollection db;
@@ -59,6 +62,22 @@ public class courseDatabase {
         return false;
     }
 
-
-
+    public Course getCourse(String courseCode){
+        if(!this.getCourseCodeList().contains(courseCode)){
+            return null;
+        }
+        Map<String, Object> courseDetail = db.getEntry(courseCode);
+        Course course = new Course(courseCode, (String) courseDetail.get("session type"),
+                (String) courseDetail.get("session number"), (String) courseDetail.get("session name"),
+                (String) courseDetail.get("day of week"), (String) courseDetail.get("start time"),
+                (String) courseDetail.get("year"));
+        String sidString = (String) courseDetail.get("enrolled students id");
+        List<String> sid = Arrays.asList(sidString.substring(1, sidString.length() - 1).split(", "));
+        ArrayList<Student> enrolledStudents = new ArrayList<>();
+        for(String userID: sid){
+            //TODO enrolledStudents.add(userDatabase.getUser(userID));
+        }
+        course.setEnrolledStudents(enrolledStudents);
+        return course;
+    }
 }

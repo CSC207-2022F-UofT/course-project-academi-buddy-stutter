@@ -36,7 +36,7 @@ public class main {
         CSC.addStudent(s2);
         cb.addCourse(CSC);
         cb.removeStudent(CSC, s1);
-        String a = CSC.getEnrolledStudents().toString();
+        cb.getCourse("CSC207H1");
 
 
 

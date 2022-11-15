@@ -42,6 +42,8 @@ public class Course{
     public void setDayOfWeek(String day_of_week){this.day_of_week = day_of_week;}
     public void setStartTime(String start_time){this.start_time = start_time;}
     public void setYear(String year){this.year = year;}
+
+    public void setEnrolledStudents(ArrayList<Student> studentList){this.enrolled_students = studentList};
     public boolean isEnrolled(Student student){
         if(enrolled_students.contains(student)){
             return true;

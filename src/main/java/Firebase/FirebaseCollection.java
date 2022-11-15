@@ -72,6 +72,16 @@ public class FirebaseCollection{
         }
     }
 
+    public Map<String, Object> getEntry(String documentName){
+        HashMap<String, Object> entry = new HashMap<>();
+        List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
+        for (QueryDocumentSnapshot document : currentDocuments) {
+            if(document.getId().equals(documentName)){
+                return document.getData();
+            }
+        }
+        return entry;
+    }
 
 
 }

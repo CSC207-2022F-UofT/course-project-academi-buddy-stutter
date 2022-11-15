@@ -81,7 +81,18 @@ public class UserDatabase {
             Admin retrievedUser = new Admin(userID, uPass, fullName, info);
             return retrievedUser;
         }
+    }
 
+    public ArrayList<Course> getCommonSession(Student self, Student target){
+        ArrayList<Course> commonSessions = new ArrayList<>();
+        ArrayList<Course> selfEnrolledCourses = self.getEnrolledCourses();
+        ArrayList<Course> targetEnrolledCourses = target.getEnrolledCourses();
+        for(Course c: selfEnrolledCourses){
+            if(targetEnrolledCourses.contains(c)){
+                commonSessions.add(c);
+            }
+        }
+        return commonSessions;
     }
 
 

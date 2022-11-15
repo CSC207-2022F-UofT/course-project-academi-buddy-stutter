@@ -1,3 +1,5 @@
+package Firebase;
+
 import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
@@ -9,7 +11,7 @@ import java.sql.Time;
 import java.util.*;
 
 public class Import {
-/* Reading from uploaded calendar and converting into information to store into database. Download calendar from acorn */
+    /* Reading from uploaded calendar and converting into information to store into database. Download calendar from acorn */
 
     private int student_id;
 

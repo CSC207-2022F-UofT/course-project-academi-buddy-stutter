@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseCollection{
@@ -41,48 +42,34 @@ public class FirebaseCollection{
         }
         return null;
     }
-    public boolean addEntry(String documentName, String key, String value) throws IOException{
+
+    public boolean addEntry(String documentName, String key, Object value) throws IOException{
         List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
         DocumentReference docRef = db.collection(collectionName).document(documentName);
         Map<String, Object> data = new HashMap<>();
-        if(!currentDocuments.contains(documentName)){
-            data.put(key, value);
-            ApiFuture<WriteResult> result = docRef.set(data);
-            try{
-                System.out.println("Update time : " + result.get().getUpdateTime());
-                return true;
-            }
-            catch (InterruptedException e){
-                System.out.println("Write failed: InterruptedException");
-                return false;
-            }
-            catch (ExecutionException e2){
-                System.out.println("Write failed: ExecutionException");
-                return false;
-            }
-        }
         for (QueryDocumentSnapshot document : currentDocuments) {
             System.out.println(document.getId());
-            System.out.println(document.getData());
-            if(document.getId() == documentName){
-                data = document.getData();
-                data.put(key,value);
-                ApiFuture<WriteResult> result = docRef.set(data);
-                try{
-                    System.out.println("Update time : " + result.get().getUpdateTime());
-                    return true;
+            if(document.getId().equals(documentName)){
+                Map<String, Object> currentData = document.getData();
+                for(String k: currentData.keySet()){
+                    data.put(k, currentData.get(k));
                 }
-                catch (InterruptedException e){
-                    System.out.println("Write failed: InterruptedException");
-                    return false;
-                }
-                catch (ExecutionException e2){
-                    System.out.println("Write failed: ExecutionException");
-                    return false;
-                }
+                data.put(key, value);
             }
         }
-        return false;
+        ApiFuture<WriteResult> result = docRef.set(data);
+        try{
+            System.out.println("Update time : " + result.get().getUpdateTime());
+            return true;
+        }
+        catch (InterruptedException e){
+            System.out.println("Write failed: InterruptedException");
+            return false;
+        }
+        catch (ExecutionException e2){
+            System.out.println("Write failed: ExecutionException");
+            return false;
+        }
     }
 
 

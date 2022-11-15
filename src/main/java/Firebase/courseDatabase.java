@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class courseDatabase {
-    private static FirebaseCollection db;
+    private FirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
     public courseDatabase() throws IOException {
         db = new FirebaseCollection("courses");
@@ -42,6 +42,7 @@ public class courseDatabase {
 
     public boolean addStudent(Course course, Student student) throws IOException {
         boolean added = course.addStudent(student);
+        student.addCourse(course);
         if(added){
             db.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
             return true;
@@ -51,6 +52,7 @@ public class courseDatabase {
 
     public boolean removeStudent(Course course, Student student) throws IOException {
         boolean removed = course.removeStudent(student);
+        student.removeCourse(course);
         if(removed){
             db.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
             return true;
@@ -79,4 +81,5 @@ public class courseDatabase {
         course.setEnrolledStudents(enrolledStudents);
         return course;
     }
+
 }

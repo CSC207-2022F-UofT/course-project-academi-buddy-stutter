@@ -4,7 +4,6 @@ import Users.Student;
 import Users.Admin;
 import Users.User;
 import Sessions.Course;
-import Firebase.courseDatabase;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 import java.io.IOException;
@@ -13,12 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class userDatabase {
+public class UserDatabase {
 
     private FirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
 
-    public userDatabase() throws IOException {
+    public UserDatabase() throws IOException {
          this.db = new FirebaseCollection("courses");
     }
 
@@ -71,7 +70,7 @@ public class userDatabase {
             List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
             ArrayList<Course> courseList = new ArrayList<>();
             for(String courseCode: courseCodes){
-                courseDatabase courseDB = new courseDatabase();
+                CourseDatabase courseDB = new CourseDatabase();
                 courseList.add(courseDB.getCourse(this, courseCode));
             }
 

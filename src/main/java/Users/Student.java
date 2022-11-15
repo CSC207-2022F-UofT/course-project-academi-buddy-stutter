@@ -18,6 +18,8 @@ public class Student extends User{
 
     public ArrayList<Tabs> getTabs_of_interests() {return tabs_of_interests;}
 
+    public ArrayList<Course> getEnrolledCourses() {return enrolled_courses;}
+
     public ArrayList<String> getEnrolled_courseCodes() {
         ArrayList<String> courseCodes = new ArrayList<>();
         for(int i = 0; i < enrolled_courses.size(); i++){

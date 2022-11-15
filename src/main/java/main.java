@@ -35,6 +35,8 @@ public class main {
         cb.addCourse(CSC);
         cb.removeStudent(CSC, s1);
         cb.getCourse(ub, "CSC207H1");
+        Integer i = Integer.valueOf(1);
+        System.out.println(i+1);
 
         LoginFrame loginFrame = new LoginFrame();
 

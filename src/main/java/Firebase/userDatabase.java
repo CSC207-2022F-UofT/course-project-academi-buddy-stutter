@@ -72,7 +72,7 @@ public class userDatabase {
             ArrayList<Course> courseList = new ArrayList<>();
             for(String courseCode: courseCodes){
                 courseDatabase courseDB = new courseDatabase();
-                courseList.add(courseDB.getCourse(courseCode));
+                courseList.add(courseDB.getCourse(this, courseCode));
             }
 
             Student retrievedUser = new Student(userID, uPass, fullName, info);

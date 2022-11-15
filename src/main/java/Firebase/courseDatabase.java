@@ -1,6 +1,7 @@
 package Firebase;
 import Sessions.Course;
 import Users.Student;
+import Users.User;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import org.checkerframework.checker.units.qual.C;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class courseDatabase {
-    private FirebaseCollection db;
+    private static FirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
     public courseDatabase() throws IOException {
         db = new FirebaseCollection("courses");
@@ -29,11 +30,6 @@ public class courseDatabase {
     }
     public boolean addCourse(Course course) throws IOException {
         String courseCode = course.getCourseCode();
-        /*
-        if(this.getCourseCodeList().contains(courseCode)){
-            return false;
-        }
-        */
         db.addEntry(courseCode, "session type", course.getCourseType());
         db.addEntry(courseCode, "session number", course.getSessionNumber());
         db.addEntry(courseCode, "session name", course.getCourseName());
@@ -62,7 +58,7 @@ public class courseDatabase {
         return false;
     }
 
-    public Course getCourse(String courseCode){
+    public Course getCourse(userDatabase ud, String courseCode) throws IOException {
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }
@@ -71,11 +67,14 @@ public class courseDatabase {
                 (String) courseDetail.get("session number"), (String) courseDetail.get("session name"),
                 (String) courseDetail.get("day of week"), (String) courseDetail.get("start time"),
                 (String) courseDetail.get("year"));
-        String sidString = (String) courseDetail.get("enrolled students id");
+        String sidString = courseDetail.get("enrolled students id").toString();
         List<String> sid = Arrays.asList(sidString.substring(1, sidString.length() - 1).split(", "));
         ArrayList<Student> enrolledStudents = new ArrayList<>();
         for(String userID: sid){
-            //TODO enrolledStudents.add(userDatabase.getUserByID(userID));
+            User u = ud.getUserByID(userID);
+            if(u instanceof Student){
+                enrolledStudents.add((Student) ud.getUserByID(userID));
+            }
         }
         course.setEnrolledStudents(enrolledStudents);
         return course;

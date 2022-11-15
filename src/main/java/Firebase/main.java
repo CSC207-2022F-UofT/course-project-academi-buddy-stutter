@@ -28,6 +28,7 @@ public class main {
     public static void main(String[] args) throws IOException{
         initializeFirebase();
         courseDatabase cb = new courseDatabase();
+        userDatabase ub = new userDatabase();
         List<String> CSCInfo = Import.getSummary(Import.readCalendar("coursesCalendar.ics")).get(0);
         Course CSC = new Course(CSCInfo.get(0), CSCInfo.get(1), CSCInfo.get(2), CSCInfo.get(3), CSCInfo.get(4), CSCInfo.get(5), CSCInfo.get(6));
         Student s1 = new Student("123", "password", "s1", "none");
@@ -36,7 +37,7 @@ public class main {
         CSC.addStudent(s2);
         cb.addCourse(CSC);
         cb.removeStudent(CSC, s1);
-        cb.getCourse("CSC207H1");
+        cb.getCourse(ub, "CSC207H1");
 
 
 

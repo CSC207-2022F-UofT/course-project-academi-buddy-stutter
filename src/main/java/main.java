@@ -1,5 +1,6 @@
-package Firebase;
-
+import Firebase.Import;
+import Firebase.courseDatabase;
+import Firebase.userDatabase;
 import Sessions.Course;
 import Users.Student;
 import com.google.api.core.ApiFuture;

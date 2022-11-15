@@ -75,7 +75,7 @@ public class courseDatabase {
         List<String> sid = Arrays.asList(sidString.substring(1, sidString.length() - 1).split(", "));
         ArrayList<Student> enrolledStudents = new ArrayList<>();
         for(String userID: sid){
-            //TODO enrolledStudents.add(userDatabase.getUser(userID));
+            //TODO enrolledStudents.add(userDatabase.getUserByID(userID));
         }
         course.setEnrolledStudents(enrolledStudents);
         return course;

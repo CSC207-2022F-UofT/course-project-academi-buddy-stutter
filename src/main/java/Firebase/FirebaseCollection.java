@@ -83,5 +83,23 @@ public class FirebaseCollection{
         return entry;
     }
 
+    public boolean removeEntry(String documentName) throws IOException{
+        DocumentReference docRef = db.collection(collectionName).document(documentName);
+
+        ApiFuture<WriteResult> result = docRef.delete();
+        try{
+            System.out.println("Update time : " + result.get().getUpdateTime());
+            return true;
+        }
+        catch (InterruptedException e){
+            System.out.println("Write failed: InterruptedException");
+            return false;
+        }
+        catch (ExecutionException e2){
+            System.out.println("Write failed: ExecutionException");
+            return false;
+        }
+    }
+
 
 }

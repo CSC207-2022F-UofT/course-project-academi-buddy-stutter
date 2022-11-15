@@ -3,7 +3,6 @@ import Sessions.Course;
 import Users.Student;
 import Users.User;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
-import org.checkerframework.checker.units.qual.C;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,10 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class courseDatabase {
+public class CourseDatabase {
     private FirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public courseDatabase() throws IOException {
+    public CourseDatabase() throws IOException {
         db = new FirebaseCollection("courses");
     }
     public void updateDocuments(){
@@ -60,7 +59,7 @@ public class courseDatabase {
         return false;
     }
 
-    public Course getCourse(userDatabase ud, String courseCode) throws IOException {
+    public Course getCourse(UserDatabase ud, String courseCode) throws IOException {
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }

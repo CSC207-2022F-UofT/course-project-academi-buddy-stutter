@@ -43,24 +43,20 @@ public class Student extends User{
         this.tabs_of_interests.get(index).value = value;
     }
 
-    //@TODO update database for these methods
-    /*
+
     public boolean addCourse(Course course){
         if(enrolled_courses.contains(course)){
             return false;
         }
         enrolled_courses.add(course);
-        course.addStudent(this);
         return true;
     }
 
     public boolean removeCourse(Course course){
         if(enrolled_courses.contains(course)){
             enrolled_courses.remove(course);
-            course.removeStudent(this);
             return true;
         }
         return false;
     }
-    */
 }

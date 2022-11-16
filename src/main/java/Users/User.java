@@ -12,6 +12,12 @@ public class User {
     String user_info;
 
     //init
+    public User(){
+        this.user_id = null;
+        this.user_password = null;
+        this.full_name = null;
+        this.user_info = null;
+    }
     public User(String UID, String UPass, String full_name, String info){
         this.user_id = UID;
         this.user_password = UPass;

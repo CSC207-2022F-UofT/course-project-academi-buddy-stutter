@@ -1,8 +1,7 @@
-package Firebase;
+package Database;
 
 import Sessions.Course;
 import Users.Student;
-import Users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,9 +27,7 @@ public class Matcher {
         for(Course course: enrolledCourse){
             try {
                 ArrayList<Student> studentsEnrolled = cb.getCourse(ub, course.getCourseCode()).getEnrolledStudents();
-                for(Student s: studentsEnrolled){
-                    sameSessionStudents.add(s);
-                }
+                sameSessionStudents.addAll(studentsEnrolled);
             } catch (IOException e) {
                 System.out.println("Matcher.java getSameSessionList error probably related to cb.getCourse()");
                 throw new RuntimeException(e);
@@ -63,13 +60,26 @@ public class Matcher {
         /*
             return an arraylist of student that are enrolled in "numOfCommon" same sessions as "student".
          */
-        ArrayList<Student> sameSessionStudentsByNum = new ArrayList<>();
+        ArrayList<Student> sameSessionStuByNum = new ArrayList<>();
         HashMap<Student, Integer> potentialStudents = getSameSessionMap(student);
         for(Student s: potentialStudents.keySet()){
             if(potentialStudents.get(s) == Integer.valueOf(numOfCommon)){
-                sameSessionStudentsByNum.add(s);
+                sameSessionStuByNum.add(s);
             }
         }
-        return sameSessionStudentsByNum;
+        return sameSessionStuByNum;
     }
+
+    public ArrayList<Student> getTopSameSessionStudents(Student student, int numOfCommon, int topNum){
+        /*
+            return an arraylist of the top "topNum" of students that are enrolled in "numOfCommon" same sessions as "student".
+         */
+        ArrayList<Student> topSameSessionStu = getSameSessionStudents(student, numOfCommon);
+        if(topNum < topSameSessionStu.size()){
+            topSameSessionStu = (ArrayList<Student>) topSameSessionStu.subList(0, topNum);
+        }
+        return topSameSessionStu;
+    }
+
+    //TODO in Stage2: getSameTagStudents(); getTopSameTagStudents();
 }

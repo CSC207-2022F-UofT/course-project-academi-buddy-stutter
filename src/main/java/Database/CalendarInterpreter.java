@@ -1,4 +1,4 @@
-package Firebase;
+package Database;
 
 import biweekly.Biweekly;
 import biweekly.ICalendar;
@@ -7,13 +7,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.*;
 
-public class Import {
-    /* Reading from uploaded calendar and converting into information to store into database. Download calendar from acorn */
-
-    private int student_id;
+public class CalendarInterpreter {
+    /*
+    Reading from uploaded calendar and converting into information to store into database.
+    Download calendar from acorn
+    */
 
     public static String readCalendar(String fileName){
         try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
@@ -31,20 +31,24 @@ public class Import {
             throw new RuntimeException(e);
         }
     }
-    //example calendar. to be deleted
+
+
+
+    //TODO example calendar. to be deleted
     public static void main(String[] args) {
         System.out.println(getSummary(readCalendar("coursesCalendar.ics")));
     }
+
+
+
     public static List<List<String>> getSummary(String calendar) {
         /*  return a list of courses with their info.
                   0               1               2               3                 4                 5         6
             ["Course code", "Session type", "Session number", "Course name", "day of the week", "start time", "year"]
             [CSC207H1, LEC, 0301, Software Design, Tue, 15:00, 2022]
          */
-
         List<ICalendar> icalList = Biweekly.parse(calendar).all();
         ICalendar ical = icalList.get(0);
-        int eventSize = ical.getEvents().size();
         List<List<String>> summary = new ArrayList<>();
         for(VEvent event: ical.getEvents()){
             List<String> courseInfo = new ArrayList<String>();
@@ -57,7 +61,6 @@ public class Import {
             courseInfo.add(event.getDateStart().getValue().toString().substring(24,28)); // year
             summary.add(courseInfo);
         }
-
         return summary;
     }
 

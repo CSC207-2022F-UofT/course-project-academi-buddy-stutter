@@ -5,20 +5,15 @@ import com.google.cloud.firestore.*;
 
 import com.google.firebase.cloud.FirestoreClient;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseCollection{
-    private String projectID = "group-106-project";
-    private String serviceAccountFile = "service-account-file.json";
     private String collectionName;
-    private Map<String, Object> data;
-    private DocumentReference docRef;
     private Firestore db;
-    public FirebaseCollection(String collectionName) throws IOException{
+    public FirebaseCollection(String collectionName){
         this.collectionName = collectionName;
         db = FirestoreClient.getFirestore();
     }
@@ -26,8 +21,7 @@ public class FirebaseCollection{
         ApiFuture<QuerySnapshot> query = db.collection(collectionName).get();
         try{
             QuerySnapshot querySnapshot = query.get();
-            List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-            return documents;
+            return querySnapshot.getDocuments();
         }
         catch (InterruptedException e){
             System.out.println("InterruptionException");
@@ -38,7 +32,7 @@ public class FirebaseCollection{
         return null;
     }
 
-    public boolean addEntry(String documentName, String key, Object value) throws IOException{
+    public boolean addEntry(String documentName, String key, Object value){
         List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
         DocumentReference docRef = db.collection(collectionName).document(documentName);
         Map<String, Object> data = new HashMap<>();
@@ -53,18 +47,7 @@ public class FirebaseCollection{
             }
         }
         ApiFuture<WriteResult> result = docRef.set(data);
-        try{
-            System.out.println("Update time : " + result.get().getUpdateTime());
-            return true;
-        }
-        catch (InterruptedException e){
-            System.out.println("Write failed: InterruptedException");
-            return false;
-        }
-        catch (ExecutionException e2){
-            System.out.println("Write failed: ExecutionException");
-            return false;
-        }
+        return printUpdateResult(result);
     }
 
     public Map<String, Object> getEntry(String documentName){
@@ -78,10 +61,14 @@ public class FirebaseCollection{
         return entry;
     }
 
-    public boolean removeEntry(String documentName) throws IOException{
+    public boolean removeEntry(String documentName){
         DocumentReference docRef = db.collection(collectionName).document(documentName);
 
         ApiFuture<WriteResult> result = docRef.delete();
+        return printUpdateResult(result);
+    }
+
+    private boolean printUpdateResult(ApiFuture<WriteResult> result) {
         try{
             System.out.println("Update time : " + result.get().getUpdateTime());
             return true;

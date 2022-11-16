@@ -49,7 +49,7 @@ public class Matcher {
                 potentialStudents.replace(s, rank, rank + 1);
             }
             else {
-                rank = Integer.valueOf(1);
+                rank = 1;
                 potentialStudents.put(s, rank);
             }
         }
@@ -63,7 +63,7 @@ public class Matcher {
         ArrayList<Student> sameSessionStuByNum = new ArrayList<>();
         HashMap<Student, Integer> potentialStudents = getSameSessionMap(student);
         for(Student s: potentialStudents.keySet()){
-            if(potentialStudents.get(s) == Integer.valueOf(numOfCommon)){
+            if(potentialStudents.get(s).equals(numOfCommon)){
                 sameSessionStuByNum.add(s);
             }
         }

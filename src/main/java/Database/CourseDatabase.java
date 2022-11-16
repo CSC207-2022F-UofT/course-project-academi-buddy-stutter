@@ -13,7 +13,7 @@ import java.util.Map;
 public class CourseDatabase {
     private FirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase() throws IOException {
+    public CourseDatabase(){
         db = new FirebaseCollection("courses");
     }
     public void updateDocuments(){

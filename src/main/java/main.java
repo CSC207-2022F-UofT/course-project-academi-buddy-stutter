@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class main {
-    public static void initializeFirebase() throws FileNotFoundException, IOException {
+    public static void initializeFirebase() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("service-account-file.json");
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))

@@ -17,7 +17,7 @@ public class UserDatabase {
     private FirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
 
-    public UserDatabase() throws IOException {
+    public UserDatabase(){
          this.db = new FirebaseCollection("courses");
     }
 
@@ -33,7 +33,7 @@ public class UserDatabase {
         }
         return userIDList;
     }
-    public boolean addUser(User user) throws IOException{
+    public boolean addUser(User user){
         if(exist(user)){
             return false;
         }
@@ -68,7 +68,7 @@ public class UserDatabase {
         return true;
     }
 
-    public boolean removeUser(User user) throws IOException{
+    public boolean removeUser(User user){
         return db.removeEntry(user.getUser_id());
     }
 
@@ -78,23 +78,27 @@ public class UserDatabase {
         String uPass = (String) userData.get("account password");
         String fullName = (String) userData.get("full name");
         String info = (String) userData.get("student info");
-        if(type == "student"){
-            //parsing ArrayList from String.
-            String courseCodesString = (String) userData.get("enrolled courses");
-            List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
-            ArrayList<Course> courseList = new ArrayList<>();
-            for(String courseCode: courseCodes){
-                CourseDatabase courseDB = new CourseDatabase();
-                courseList.add(courseDB.getCourse(this, courseCode));
+        try{
+            if(type.equals("student")){
+                //parsing ArrayList from String.
+                String courseCodesString = (String) userData.get("enrolled courses");
+                List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
+                ArrayList<Course> courseList = new ArrayList<>();
+                for(String courseCode: courseCodes){
+                    CourseDatabase courseDB = new CourseDatabase();
+                    courseList.add(courseDB.getCourse(this, courseCode));
+                }
+                Student retrievedUser = new Student(userID, uPass, fullName, info);
+                retrievedUser.setEnrolled_courses(courseList);
+                return retrievedUser;
+            }else if (type.equals("admin")){
+                return new Admin(userID, uPass, fullName, info);
             }
-            Student retrievedUser = new Student(userID, uPass, fullName, info);
-            retrievedUser.setEnrolled_courses(courseList);
-            return retrievedUser;
-        }else if (type == "admin"){
-            Admin retrievedUser = new Admin(userID, uPass, fullName, info);
-            return retrievedUser;
+            return new User(userID, uPass, fullName, info);
+        }catch (NullPointerException e){
+            System.out.println("null type");
         }
-        return new User(userID, uPass, fullName, info);
+        return null;
     }
 
     public ArrayList<Course> getCommonSession(Student self, Student target) throws IOException {

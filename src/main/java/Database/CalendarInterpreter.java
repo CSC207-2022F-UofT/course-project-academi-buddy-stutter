@@ -5,7 +5,6 @@ import biweekly.ICalendar;
 import biweekly.component.VEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -25,9 +24,7 @@ public class CalendarInterpreter {
                 line = reader.readLine();
             }
             return builder.toString();
-        } catch (FileNotFoundException e){
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (IOException e){
             throw new RuntimeException(e);
         }
     }
@@ -51,7 +48,7 @@ public class CalendarInterpreter {
         ICalendar ical = icalList.get(0);
         List<List<String>> summary = new ArrayList<>();
         for(VEvent event: ical.getEvents()){
-            List<String> courseInfo = new ArrayList<String>();
+            List<String> courseInfo = new ArrayList<>();
             courseInfo.add(event.getSummary().getValue().substring(0,8)); //Course Code
             courseInfo.add(event.getSummary().getValue().substring(9,12)); //Sessions.Session Type
             courseInfo.add(event.getSummary().getValue().substring(12,16)); //Sessions.Session number

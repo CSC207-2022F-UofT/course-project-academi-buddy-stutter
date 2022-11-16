@@ -34,7 +34,7 @@ public class UserDatabase {
         return userIDList;
     }
     public boolean addUser(User user) throws IOException{
-        if(ifUserExist(user)){
+        if(exist(user)){
             return false;
         }
         String userID = user.GetUserID();
@@ -45,7 +45,7 @@ public class UserDatabase {
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
-        if(ifUserExist(student)){
+        if(exist(student)){
             return false;
         }
         String studentID = student.GetUserID();
@@ -59,7 +59,7 @@ public class UserDatabase {
     }
 
     public boolean addAdminUser(Admin admin) throws IOException {
-        if(ifUserExist(admin)){
+        if(exist(admin)){
             return false;
         }
         String adminID = admin.GetUserID();
@@ -112,7 +112,7 @@ public class UserDatabase {
         return commonSessions;
     }
 
-    public boolean ifUserExist(User user){
+    public boolean exist(User user){
         return db.getDocumentList().contains(user.getUser_id());
     }
 

@@ -1,4 +1,4 @@
-package Firebase;
+package Database;
 
 import Users.Student;
 import Users.Admin;
@@ -33,24 +33,38 @@ public class UserDatabase {
         }
         return userIDList;
     }
-
+    public boolean addUser(User user) throws IOException{
+        if(ifUserExist(user)){
+            return false;
+        }
+        String userID = user.GetUserID();
+        db.addEntry(userID, "account type", "user");
+        db.addEntry(userID, "account password", user.GetUserPassword());
+        db.addEntry(userID, "full name", user.getFull_name());
+        db.addEntry(userID, "student info", user.GetUserInfo());
+        return true;
+    }
     public boolean addStudentUser(Student student) throws IOException{
+        if(ifUserExist(student)){
+            return false;
+        }
         String studentID = student.GetUserID();
+        addUser(student);
         db.addEntry(studentID, "account type", "student");
-        db.addEntry(studentID, "account password", student.GetUserPassword());
-        db.addEntry(studentID, "full name", student.getFull_name());
-        db.addEntry(studentID, "student info", student.GetUserInfo());
-//        db.addEntry(studentID, "tabs", student.getTabs_of_interests());
+        //following data are stored as arraylists. Use toString().
+        db.addEntry(studentID, "labels", student.getLabels().toString());
         db.addEntry(studentID, "enrolled courses", student.getEnrolled_courseCodes().toString());
+        db.addEntry(studentID, "tags of interests", student.getTabs_of_interests().toString());
         return true;
     }
 
     public boolean addAdminUser(Admin admin) throws IOException {
+        if(ifUserExist(admin)){
+            return false;
+        }
         String adminID = admin.GetUserID();
+        addUser(admin);
         db.addEntry(adminID, "account type", "admin");
-        db.addEntry(adminID, "account password", admin.GetUserPassword());
-        db.addEntry(adminID, "full name", admin.getFull_name());
-        db.addEntry(adminID, "student info", admin.GetUserInfo());
         return true;
     }
 
@@ -64,8 +78,8 @@ public class UserDatabase {
         String uPass = (String) userData.get("account password");
         String fullName = (String) userData.get("full name");
         String info = (String) userData.get("student info");
-
         if(type == "student"){
+            //parsing ArrayList from String.
             String courseCodesString = (String) userData.get("enrolled courses");
             List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
             ArrayList<Course> courseList = new ArrayList<>();
@@ -73,26 +87,33 @@ public class UserDatabase {
                 CourseDatabase courseDB = new CourseDatabase();
                 courseList.add(courseDB.getCourse(this, courseCode));
             }
-
             Student retrievedUser = new Student(userID, uPass, fullName, info);
             retrievedUser.setEnrolled_courses(courseList);
             return retrievedUser;
-        }else{
+        }else if (type == "admin"){
             Admin retrievedUser = new Admin(userID, uPass, fullName, info);
             return retrievedUser;
         }
+        return new User(userID, uPass, fullName, info);
     }
 
-    public ArrayList<Course> getCommonSession(Student self, Student target){
+    public ArrayList<Course> getCommonSession(Student self, Student target) throws IOException {
         ArrayList<Course> commonSessions = new ArrayList<>();
-        ArrayList<Course> selfEnrolledCourses = self.getEnrolledCourses();
-        ArrayList<Course> targetEnrolledCourses = target.getEnrolledCourses();
+        //accessing from database instead of directly from student class.
+        Student s = (Student) getUserByID(self.getUser_id());
+        Student t = (Student) getUserByID(target.getUser_id());
+        ArrayList<Course> selfEnrolledCourses = s.getEnrolledCourses();
+        ArrayList<Course> targetEnrolledCourses = t.getEnrolledCourses();
         for(Course c: selfEnrolledCourses){
             if(targetEnrolledCourses.contains(c)){
                 commonSessions.add(c);
             }
         }
         return commonSessions;
+    }
+
+    public boolean ifUserExist(User user){
+        return db.getDocumentList().contains(user.getUser_id());
     }
 
 

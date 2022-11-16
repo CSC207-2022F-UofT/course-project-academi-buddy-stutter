@@ -1,4 +1,4 @@
-package Firebase;
+package Database;
 import Sessions.Course;
 import Users.Student;
 import Users.User;

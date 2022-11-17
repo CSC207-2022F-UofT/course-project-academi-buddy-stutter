@@ -5,6 +5,8 @@ import java.util.*;
 
 public class User {
     String user_id;
+
+
     String full_name;
     private String user_password;
     String user_info;
@@ -41,7 +43,7 @@ public class User {
    param: none
    return: String
     */
-    private String GetUserPassword(){
+    public String GetUserPassword(){
         return this.user_password;
     }
 
@@ -71,5 +73,12 @@ public class User {
     private void SetUserPassword(String pass){
         this.user_password = pass;
     }
+
+    public String getUser_id() {return user_id;}
+
+    public String getFull_name() {return full_name;}
+
+    public String getUser_info() {return user_info;}
+
 
 }

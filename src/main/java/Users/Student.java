@@ -1,75 +1,38 @@
 package Users;
+import Sessions.*;
 import java.sql.Array;
 import java.util.*;
 
-public class Student {
-    String student_id;
-    private String student_password;
-    String student_info;
-    ArrayList<Tabs> tabs_of_interests;
+public class Student extends User{
+    private ArrayList<Tabs> tabs_of_interests;
+
+    public void setTabs_of_interests(ArrayList<Tabs> tabs_of_interests) {
+        this.tabs_of_interests = tabs_of_interests;
+    }
+
+    public void setEnrolled_courses(ArrayList<Course> enrolled_courses) {
+        this.enrolled_courses = enrolled_courses;
+    }
+
+    private ArrayList<Course> enrolled_courses;
+
+    public ArrayList<Tabs> getTabs_of_interests() {return tabs_of_interests;}
+
+    public ArrayList<String> getEnrolled_courseCodes() {
+        ArrayList<String> courseCodes = new ArrayList<>();
+        for(int i = 0; i < enrolled_courses.size(); i++){
+            courseCodes.add(enrolled_courses.get(i).getCourseCode());
+        }
+
+        return courseCodes;
+    }
 
     //init
-    public Student(String SID, String sPass, String info){
-        this.student_id = SID;
-        this.student_password = sPass;
-        this.student_info = info;
+    public Student(String UID, String UPass, String full_name, String info){
+        super(UID, UPass, full_name, info);
         this.tabs_of_interests = new ArrayList<>();
+        this.enrolled_courses = new ArrayList<>();
     }
-
-    /*
-    GetStudentID: returns student id
-    param: none
-    return: String
-     */
-    public String GetStudentID(){
-        return this.student_id;
-    }
-
-    /*
-    GetStudentInfo: returns student info
-    param: none
-    return: String
-     */
-    public String GetStudentInfo(){
-        return this.student_info;
-    }
-
-    /*
-   GetStudentPassword: Get student password
-   param: none
-   return: String
-    */
-    private String GetStudentPassword(){
-       return this.student_password;
-    }
-
-    /*
-    SetStudentInfo: sets new student info
-    param: String
-    return: none
-     */
-    public void SetStudentInfo(String info){
-        this.student_info = info;
-    }
-
-    /*
-    SetStudentID: sets new student ID
-    param: String
-    return: none
-     */
-    public void SetStudentID(String ID){
-        this.student_id = ID;
-    }
-
-    /*
-    SetStudentPassword: sets new student password
-    param: String
-    return: none
-     */
-    private void SetStudentPassword(String pass){
-        this.student_password = pass;
-    }
-
 
     /*
     UpdateStudentTOI: updates the student's tabs of interest given the index of the tab required for change
@@ -80,4 +43,20 @@ public class Student {
         this.tabs_of_interests.get(index).value = value;
     }
 
+
+    public boolean addCourse(Course course){
+        if(enrolled_courses.contains(course)){
+            return false;
+        }
+        enrolled_courses.add(course);
+        return true;
+    }
+
+    public boolean removeCourse(Course course){
+        if(enrolled_courses.contains(course)){
+            enrolled_courses.remove(course);
+            return true;
+        }
+        return false;
+    }
 }

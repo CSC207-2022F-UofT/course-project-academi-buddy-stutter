@@ -101,6 +101,7 @@ public class UserDatabase {
         return null;
     }
 
+//    this method should be in matcher? not database! for clean architecture?
     public ArrayList<Course> getCommonSession(Student self, Student target) throws IOException {
         ArrayList<Course> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.

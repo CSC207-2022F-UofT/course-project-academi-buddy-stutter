@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class FirebaseCollection implements FirebaseInterface {
+public class FirebaseCollection implements DatabaseInterface {
     private String collectionName;
     private Firestore db;
     public FirebaseCollection(){

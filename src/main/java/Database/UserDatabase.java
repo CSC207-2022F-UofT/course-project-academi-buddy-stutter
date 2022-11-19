@@ -14,10 +14,10 @@ import java.util.Map;
 
 public class UserDatabase {
 
-    private FirebaseInterface fi;
+    private DatabaseInterface fi;
     private List<QueryDocumentSnapshot> currentDocuments;
 
-    public UserDatabase(FirebaseInterface ub){
+    public UserDatabase(DatabaseInterface ub){
         this.fi = ub;
         fi.initialize("users");
     }

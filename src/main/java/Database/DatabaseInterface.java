@@ -5,7 +5,7 @@ import com.google.cloud.firestore.*;
 import java.util.List;
 import java.util.Map;
 
-public interface FirebaseInterface {
+public interface DatabaseInterface {
     String collectionName = null;
     Firestore db = null;
     void initialize(String collectionName);

@@ -18,15 +18,15 @@ public class Matcher {
     }
 
     private ArrayList<Student> getSameSessionList(Student student){
-        /*
-            Helper method, stay private.
-            returns list of students that has same session as "student". Duplicates expected.
+        /**
+         * Helper method, stay private.
+         * @return a list of students that has same session as "student". Duplicates expected.
          */
         ArrayList<Student> sameSessionStudents = new ArrayList<>();
         ArrayList<Course> enrolledCourse = student.getEnrolledCourses();
         for(Course course: enrolledCourse){
             try {
-                ArrayList<Student> studentsEnrolled = cb.getCourse(ub, course.getCourseCode()).getEnrolledStudents();
+                ArrayList<Student> studentsEnrolled = cb.getCourse(course.getCourseCode()).getEnrolledStudents();
                 sameSessionStudents.addAll(studentsEnrolled);
             } catch (IOException e) {
                 System.out.println("Matcher.java getSameSessionList error probably related to cb.getCourse()");
@@ -37,8 +37,8 @@ public class Matcher {
     }
 
     private HashMap<Student, Integer> getSameSessionMap(Student student){
-        /*
-            Helper method, stay private.
+        /**
+         * Helper method, stay private.
          */
         ArrayList<Student> sameSessionStudents = getSameSessionList(student);
         HashMap<Student, Integer> potentialStudents = new HashMap<>();
@@ -57,8 +57,10 @@ public class Matcher {
     }
 
     public ArrayList<Student> getSameSessionStudents(Student student, int numOfCommon){
-        /*
-            return an arraylist of student that are enrolled in "numOfCommon" same sessions as "student".
+        /**
+         * get an arraylist of student that are enrolled in "numOfCommon" same sessions as "student".
+         * @param numOfCommon number of common sessions
+         * @return an arraylist of student
          */
         ArrayList<Student> sameSessionStuByNum = new ArrayList<>();
         HashMap<Student, Integer> potentialStudents = getSameSessionMap(student);
@@ -71,8 +73,11 @@ public class Matcher {
     }
 
     public ArrayList<Student> getTopSameSessionStudents(Student student, int numOfCommon, int topNum){
-        /*
-            return an arraylist of the top "topNum" of students that are enrolled in "numOfCommon" same sessions as "student".
+        /**
+         * get an arraylist of the top "topNum" of students that are enrolled in "numOfCommon" same sessions as "student".
+         * @param numOfCommon number of common sessions
+         * @param topNum number of student of the returned arraylist.
+         * @return an arraylist of student
          */
         ArrayList<Student> topSameSessionStu = getSameSessionStudents(student, numOfCommon);
         if(topNum < topSameSessionStu.size()){

@@ -24,8 +24,8 @@ public class main {
         initializeFirebase();
         FirebaseCollection cbc = new FirebaseCollection();
         FirebaseCollection ubc = new FirebaseCollection();
-        CourseDatabase cb = new CourseDatabase(cbc);
         UserDatabase ub = new UserDatabase(ubc);
+        CourseDatabase cb = new CourseDatabase(cbc, ub);
 
 
         //test
@@ -37,7 +37,7 @@ public class main {
         CSC.addStudent(s2);
         cb.addCourse(CSC);
         cb.removeStudent(CSC, s1);
-        cb.getCourse(ub, "CSC300H1");
+        cb.getCourse("CSC300H1");
         ub.addUser(s1);
         Integer i = Integer.valueOf(1);
         System.out.println(i+1);

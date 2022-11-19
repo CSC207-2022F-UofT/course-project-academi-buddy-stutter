@@ -12,15 +12,24 @@ import java.util.Map;
 
 public class CourseDatabase{
     private DatabaseInterface fi;
+    private UserDatabase ud;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase(DatabaseInterface cb){
+    public CourseDatabase(DatabaseInterface cb, UserDatabase ud){
         this.fi = cb;
         this.fi.initialize("courses");
+        this.ud = ud;
     }
     public void updateDocuments(){
+        /**
+         * update document list.
+         */
         currentDocuments = fi.getDocumentList();
     }
     public ArrayList<String> getCourseCodeList(){
+        /**
+         * get a list of course code that is currently documented in the database.
+         * @return an Arraylist of course code.
+         */
         ArrayList<String> courseCodeList = new ArrayList<>();
         updateDocuments();
         for(QueryDocumentSnapshot course: currentDocuments){
@@ -28,7 +37,10 @@ public class CourseDatabase{
         }
         return courseCodeList;
     }
-    public boolean addCourse(Course course) throws IOException {
+    public void addCourse(Course course) throws IOException {
+        /**
+         * add a course to the database. Note that this will overwrite any course of the same course code in database.
+         */
         String courseCode = course.getCourseCode();
         fi.addEntry(courseCode, "session type", course.getCourseType());
         fi.addEntry(courseCode, "session number", course.getSessionNumber());
@@ -36,31 +48,40 @@ public class CourseDatabase{
         fi.addEntry(courseCode, "day of week", course.getDayOfWeek());
         fi.addEntry(courseCode, "start time", course.getStartTime());
         fi.addEntry(courseCode, "year", course.getYear());
-        fi.addEntry(courseCode, "enrolled students id", course.getEnrolledID().toString());
-        return true;
     }
 
     public boolean addStudent(Course course, Student student) throws IOException {
+        /**
+         * add a student to a course. It also updates in user database as well.
+         */
         boolean added = course.addStudent(student);
         student.addCourse(course);
         if(added){
             fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;
     }
 
     public boolean removeStudent(Course course, Student student) throws IOException {
+        /**
+         * remove a student to a course. It also updates in user database as well.
+         */
         boolean removed = course.removeStudent(student);
         student.removeCourse(course);
         if(removed){
             fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;
     }
 
-    public Course getCourse(UserDatabase ud, String courseCode) throws IOException {
+    public Course getCourse(String courseCode) throws IOException {
+        /**
+         * get a course by course code.
+         */
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }

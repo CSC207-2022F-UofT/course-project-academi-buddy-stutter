@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CourseDatabase{
-    private FirebaseInterface fi;
+    private DatabaseInterface fi;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase(FirebaseInterface cb){
+    public CourseDatabase(DatabaseInterface cb){
         this.fi = cb;
         this.fi.initialize("courses");
     }

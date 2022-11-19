@@ -10,11 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class CourseDatabase {
-    private FirebaseCollection db;
+public class CourseDatabase{
+    private iFirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase(){
-        db = new FirebaseCollection("courses");
+    public CourseDatabase(iFirebaseCollection cb){
+        this.db = cb;
+        this.db.initialize("course");
     }
     public void updateDocuments(){
         currentDocuments = db.getDocumentList();

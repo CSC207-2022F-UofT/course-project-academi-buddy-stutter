@@ -14,11 +14,12 @@ import java.util.Map;
 
 public class UserDatabase {
 
-    private FirebaseCollection db;
+    private iFirebaseCollection db;
     private List<QueryDocumentSnapshot> currentDocuments;
 
-    public UserDatabase(){
-         this.db = new FirebaseCollection("courses");
+    public UserDatabase(iFirebaseCollection ub){
+        this.db = ub;
+        db.initialize("users");
     }
 
     public void updateDocuments(){
@@ -85,7 +86,7 @@ public class UserDatabase {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<Course> courseList = new ArrayList<>();
                 for(String courseCode: courseCodes){
-                    CourseDatabase courseDB = new CourseDatabase();
+                    CourseDatabase courseDB = new CourseDatabase(db);
                     courseList.add(courseDB.getCourse(this, courseCode));
                 }
                 Student retrievedUser = new Student(userID, uPass, fullName, info);

@@ -10,12 +10,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class FirebaseCollection{
+public class FirebaseCollection implements iFirebaseCollection {
     private String collectionName;
     private Firestore db;
-    public FirebaseCollection(String collectionName){
-        this.collectionName = collectionName;
+    public FirebaseCollection(){
+        this.collectionName = "temp";
         db = FirestoreClient.getFirestore();
+    }
+
+    public void initialize(String collectionName){
+        this.collectionName = collectionName;
     }
     public List<QueryDocumentSnapshot> getDocumentList(){
         ApiFuture<QuerySnapshot> query = db.collection(collectionName).get();

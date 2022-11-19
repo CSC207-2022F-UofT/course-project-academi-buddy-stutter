@@ -14,16 +14,16 @@ import java.util.Map;
 
 public class UserDatabase {
 
-    private iFirebaseCollection db;
+    private FirebaseInterface fi;
     private List<QueryDocumentSnapshot> currentDocuments;
 
-    public UserDatabase(iFirebaseCollection ub){
-        this.db = ub;
-        db.initialize("users");
+    public UserDatabase(FirebaseInterface ub){
+        this.fi = ub;
+        fi.initialize("users");
     }
 
     public void updateDocuments(){
-        currentDocuments = db.getDocumentList();
+        currentDocuments = fi.getDocumentList();
     }
 
     public ArrayList<String> getUserIDList(){
@@ -39,10 +39,10 @@ public class UserDatabase {
             return false;
         }
         String userID = user.GetUserID();
-        db.addEntry(userID, "account type", "user");
-        db.addEntry(userID, "account password", user.GetUserPassword());
-        db.addEntry(userID, "full name", user.getFull_name());
-        db.addEntry(userID, "student info", user.GetUserInfo());
+        fi.addEntry(userID, "account type", "user");
+        fi.addEntry(userID, "account password", user.GetUserPassword());
+        fi.addEntry(userID, "full name", user.getFull_name());
+        fi.addEntry(userID, "student info", user.GetUserInfo());
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -51,11 +51,11 @@ public class UserDatabase {
         }
         String studentID = student.GetUserID();
         addUser(student);
-        db.addEntry(studentID, "account type", "student");
+        fi.addEntry(studentID, "account type", "student");
         //following data are stored as arraylists. Use toString().
-        db.addEntry(studentID, "labels", student.getLabels().toString());
-        db.addEntry(studentID, "enrolled courses", student.getEnrolled_courseCodes().toString());
-        db.addEntry(studentID, "tags of interests", student.getTabs_of_interests().toString());
+        fi.addEntry(studentID, "labels", student.getLabels().toString());
+        fi.addEntry(studentID, "enrolled courses", student.getEnrolled_courseCodes().toString());
+        fi.addEntry(studentID, "tags of interests", student.getTabs_of_interests().toString());
         return true;
     }
 
@@ -65,16 +65,16 @@ public class UserDatabase {
         }
         String adminID = admin.GetUserID();
         addUser(admin);
-        db.addEntry(adminID, "account type", "admin");
+        fi.addEntry(adminID, "account type", "admin");
         return true;
     }
 
     public boolean removeUser(User user){
-        return db.removeEntry(user.getUser_id());
+        return fi.removeEntry(user.getUser_id());
     }
 
     public User getUserByID(String userID) throws IOException{
-        Map<String, Object> userData = db.getEntry(userID);
+        Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
         String uPass = (String) userData.get("account password");
         String fullName = (String) userData.get("full name");
@@ -86,7 +86,7 @@ public class UserDatabase {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<Course> courseList = new ArrayList<>();
                 for(String courseCode: courseCodes){
-                    CourseDatabase courseDB = new CourseDatabase(db);
+                    CourseDatabase courseDB = new CourseDatabase(fi);
                     courseList.add(courseDB.getCourse(this, courseCode));
                 }
                 Student retrievedUser = new Student(userID, uPass, fullName, info);
@@ -119,7 +119,7 @@ public class UserDatabase {
     }
 
     public boolean exist(User user){
-        return db.getDocumentList().contains(user.getUser_id());
+        return fi.getDocumentList().contains(user.getUser_id());
     }
 
 

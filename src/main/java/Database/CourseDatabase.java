@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 public class CourseDatabase{
-    private iFirebaseCollection db;
+    private FirebaseInterface fi;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase(iFirebaseCollection cb){
-        this.db = cb;
-        this.db.initialize("course");
+    public CourseDatabase(FirebaseInterface cb){
+        this.fi = cb;
+        this.fi.initialize("courses");
     }
     public void updateDocuments(){
-        currentDocuments = db.getDocumentList();
+        currentDocuments = fi.getDocumentList();
     }
     public ArrayList<String> getCourseCodeList(){
         ArrayList<String> courseCodeList = new ArrayList<>();
@@ -30,13 +30,13 @@ public class CourseDatabase{
     }
     public boolean addCourse(Course course) throws IOException {
         String courseCode = course.getCourseCode();
-        db.addEntry(courseCode, "session type", course.getCourseType());
-        db.addEntry(courseCode, "session number", course.getSessionNumber());
-        db.addEntry(courseCode, "session name", course.getCourseName());
-        db.addEntry(courseCode, "day of week", course.getDayOfWeek());
-        db.addEntry(courseCode, "start time", course.getStartTime());
-        db.addEntry(courseCode, "year", course.getYear());
-        db.addEntry(courseCode, "enrolled students id", course.getEnrolledID().toString());
+        fi.addEntry(courseCode, "session type", course.getCourseType());
+        fi.addEntry(courseCode, "session number", course.getSessionNumber());
+        fi.addEntry(courseCode, "session name", course.getCourseName());
+        fi.addEntry(courseCode, "day of week", course.getDayOfWeek());
+        fi.addEntry(courseCode, "start time", course.getStartTime());
+        fi.addEntry(courseCode, "year", course.getYear());
+        fi.addEntry(courseCode, "enrolled students id", course.getEnrolledID().toString());
         return true;
     }
 
@@ -44,7 +44,7 @@ public class CourseDatabase{
         boolean added = course.addStudent(student);
         student.addCourse(course);
         if(added){
-            db.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
             return true;
         }
         return false;
@@ -54,7 +54,7 @@ public class CourseDatabase{
         boolean removed = course.removeStudent(student);
         student.removeCourse(course);
         if(removed){
-            db.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
             return true;
         }
         return false;
@@ -64,7 +64,7 @@ public class CourseDatabase{
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }
-        Map<String, Object> courseDetail = db.getEntry(courseCode);
+        Map<String, Object> courseDetail = fi.getEntry(courseCode);
         Course course = new Course(courseCode, (String) courseDetail.get("session type"),
                 (String) courseDetail.get("session number"), (String) courseDetail.get("session name"),
                 (String) courseDetail.get("day of week"), (String) courseDetail.get("start time"),

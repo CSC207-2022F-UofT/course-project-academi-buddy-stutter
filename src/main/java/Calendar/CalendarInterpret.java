@@ -1,5 +1,6 @@
 package Calendar;
 
+import Sessions.Course;
 import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
@@ -42,24 +43,35 @@ Download calendar from acorn */
 
 
     /*
-    getCourses: returns courses as an Arraylist given the calendar information as a String
+    getCourses: returns courses as an Arraylist given the courses information as Course objects
     param: calendar_raw as String
     return: Arraylist containing courses a student is taking.
     */
-    public ArrayList<String> getCourses(String calendar_raw) {
+    public ArrayList<Course> getCourses(String calendar_raw) {
 
         ICalendar ical = Biweekly.parse(calendar_raw).first();
 
-        ArrayList<String> courses = new ArrayList<String>();
+
+        ArrayList<Course> courses = new ArrayList<Course>();
 
         int length = ical.getEvents().size();
 
         for(int i = 0; i < length; i++){
             VEvent event = ical.getEvents().get(i);
-            String course = event.getSummary().getValue();
 
-            if (!(courses.contains(course))){
-                courses.add(course);
+            String course_code = event.getSummary().getValue().substring(0,8);
+            String sess_type = event.getSummary().getValue().substring(9,12);
+            String sess_number = event.getSummary().getValue().substring(12,16);
+            String course_name = event.getDescription().getValue().split("\n")[0];
+            String day_of_week = event.getDateStart().getValue().toString().substring(0,3);
+            String start = event.getDateStart().getValue().toString().substring(11,16);
+            String end = event.getDateStart().getValue().toString().substring(24,28);
+
+            Course course1 = new Course(course_code, sess_type, sess_number, course_name, day_of_week, start, end);
+
+
+            if (!(courses.contains(course1))){
+                courses.add(course1);
              }
         }
 

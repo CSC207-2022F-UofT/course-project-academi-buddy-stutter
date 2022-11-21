@@ -1,6 +1,10 @@
 package tutorial;
 
 import Calendar.CalendarInterpret;
+import Sessions.Course;
+import biweekly.Biweekly;
+import biweekly.ICalendar;
+import biweekly.component.VEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -31,30 +35,41 @@ class CalendarInterpretTest {
                 e.printStackTrace();
             }
 
+            ICalendar ical = Biweekly.parse(ex_file).first();
 
-           ArrayList<String> expected = new ArrayList<String>();
-            expected.add("CSC207H1 LEC0201");
-            expected.add("CSC207H1 TUT0401");
-            expected.add("CSC236H1 LEC0401");
-            expected.add("CSC236H1 TUT0401");
-            expected.add("CSC258H1 LEC0201");
-            expected.add("ETH201H1 LEC0101");
-            expected.add("PDC220H1 LEC5101");
-            expected.add("STA237H1 LEC0101");
-            expected.add("STA237H1 TUT0101");
-            expected.add("CSC209H1 LEC0201");
-            expected.add("CSC209H1 TUT0201");
-            expected.add("CSC263H1 LEC5101");
-            expected.add("CSC263H1 TUT0104");
-            expected.add("HPS110H1 LEC0101");
-            expected.add("HPS110H1 TUT0801");
-            expected.add("PDC221H1 LEC5101");
-            expected.add("PSY260H1 LEC0101");
-            expected.add("STA238H1 LEC0101");
-            expected.add("STA238H1 TUT0104");
+            VEvent event = ical.getEvents().get(0);
+
+            String course_code = event.getSummary().getValue().substring(0,8);
+            String sess_type = event.getSummary().getValue().substring(9,12);
+            String sess_number = event.getSummary().getValue().substring(12,16);
+            String course_name = event.getDescription().getValue().split("\n")[0];
+            String day_of_week = event.getDateStart().getValue().toString().substring(0,3);
+            String start = event.getDateStart().getValue().toString().substring(11,16);
 
             CalendarInterpret ci = new CalendarInterpret();
-            Assertions.assertEquals(expected, ci.getCourses(ex_file));
+
+            ArrayList<Course> actual = ci.getCourses(ex_file);
+            int x = actual.size();
+
+
+            for (int i = 0; i < x; i++){
+             String c_code = actual.get(i).getCourseCode();
+             String s_type = actual.get(i).getCourseType();
+             String s_num = actual.get(i).getSessionNumber();
+             String c_name = actual.get(i).getCourseName();
+             String d_o_w = actual.get(i).getDayOfWeek();
+             String s = actual.get(i).getStartTime();
+
+             System.out.println(c_code + " " +s_type +" "+s_num+" "+c_name +" " + d_o_w+" "+s);
+
+            }
+
+            Assertions.assertEquals(course_code, actual.get(0).getCourseCode());
+            Assertions.assertEquals(sess_type, actual.get(0).getCourseType());
+            Assertions.assertEquals(sess_number, actual.get(0).getSessionNumber());
+            Assertions.assertEquals(course_name, actual.get(0).getCourseName());
+            Assertions.assertEquals(day_of_week, actual.get(0).getDayOfWeek());
+            Assertions.assertEquals(start, actual.get(0).getStartTime());
 
         }
 
@@ -75,7 +90,6 @@ class CalendarInterpretTest {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
 
         String expected = ex_file;
 

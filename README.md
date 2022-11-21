@@ -21,7 +21,7 @@ It also contains workflow documents that give instructions on how to manage your
 * [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
 
 ## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
+Database.CalendarInterpreter this project into your Intellij editor. It should automatically recognise this as a gradle repository.
 The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
 
 You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.

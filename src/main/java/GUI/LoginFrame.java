@@ -25,19 +25,19 @@ public class LoginFrame extends JFrame implements ActionListener {
     JButton loginBTN = new JButton("LOGIN");
     JButton registerBTN = new JButton("REGISTER");
     JTextField userIDText = new JTextField("Enter your user ID here:");
-    JTextField passwordText = new JTextField("Enter your password here:");
+    // JTextField passwordText = new JTextField("Enter your password here:");
+    JPasswordField passwordText = new JPasswordField();
     JTextField emailText = new JTextField("Enter your Email here:");
     String[] userType = {"Administer", "Student"};
     JComboBox<String> userCheckBox = new JComboBox<>(userType);
 
-    LoginFrame(){
+    public LoginFrame(){
         this.setTitle("Login Frame"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
-        this.setVisible(true);
 
         // places objects inside frame
         // buttons
@@ -62,7 +62,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         emailText.setBounds(110, 125, 200, 20);
 
         // combobox
-        userCheckBox.setBounds(110, 50, 100, 20); // set combobox position
+        userCheckBox.setBounds(110, 50, 200, 25); // set combobox position
         userCheckBox.setEditable(false);
 
         // adds objects to the frame
@@ -77,6 +77,8 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.add(userCheckBox);
         this.add(emailLabel);
         this.add(emailText);
+
+        this.setVisible(true); // set frame to visible
     }
 
     @Override

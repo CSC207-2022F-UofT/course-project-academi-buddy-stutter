@@ -1,6 +1,7 @@
 import Firebase.Import;
 import Firebase.CourseDatabase;
 import Firebase.UserDatabase;
+import GUI.LoginFrame;
 import Sessions.Course;
 import Users.Student;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -35,6 +36,7 @@ public class main {
         cb.removeStudent(CSC, s1);
         cb.getCourse(ub, "CSC207H1");
 
+        LoginFrame loginFrame = new LoginFrame();
 
 
     }

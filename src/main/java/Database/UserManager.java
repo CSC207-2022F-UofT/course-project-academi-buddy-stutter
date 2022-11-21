@@ -12,12 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class UserDatabase {
+public class UserManager {
 
     private DatabaseInterface fi;
     private List<QueryDocumentSnapshot> currentDocuments;
 
-    public UserDatabase(DatabaseInterface ub){
+    public UserManager(DatabaseInterface ub){
         this.fi = ub;
         fi.initialize("users");
     }
@@ -104,7 +104,7 @@ public class UserDatabase {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<Course> courseList = new ArrayList<>();
                 for(String courseCode: courseCodes){
-                    CourseDatabase courseDB = new CourseDatabase(fi, this);
+                    CourseManager courseDB = new CourseManager(fi, this);
                     courseList.add(courseDB.getCourse(courseCode));
                 }
                 Student retrievedUser = new Student(userID, uPass, fullName, info);

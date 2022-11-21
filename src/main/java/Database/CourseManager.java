@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class CourseDatabase{
+public class CourseManager {
     private DatabaseInterface fi;
-    private UserDatabase ud;
+    private UserManager ud;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase(DatabaseInterface cb, UserDatabase ud){
+    public CourseManager(DatabaseInterface cb, UserManager ud){
         this.fi = cb;
         this.fi.initialize("courses");
         this.ud = ud;

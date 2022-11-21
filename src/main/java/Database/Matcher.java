@@ -9,10 +9,10 @@ import java.util.HashMap;
 
 public class Matcher {
 
-    private CourseDatabase cb;
-    private UserDatabase ub;
+    private CourseManager cb;
+    private UserManager ub;
 
-    public Matcher(CourseDatabase courseDatabase, UserDatabase userDatabase){
+    public Matcher(CourseManager courseDatabase, UserManager userDatabase){
         this.cb = courseDatabase;
         this.ub = userDatabase;
     }

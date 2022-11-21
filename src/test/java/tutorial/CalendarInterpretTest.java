@@ -17,7 +17,7 @@ class CalendarInterpretTest {
             String ex_file = "";
 
             try {
-                File TestCalendar = new File("TestCalendar");
+                File TestCalendar = new File("src/test/java/tutorial/TestCalendar");
                 Scanner myReader = new Scanner(TestCalendar);
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
@@ -29,10 +29,8 @@ class CalendarInterpretTest {
                 e.printStackTrace();
             }
 
-
             CalendarInterpret ci = new CalendarInterpret();
             Assertions.assertEquals("Team Meeting", ci.getSummary(ex_file));
-
 
         }
 }

@@ -1,4 +1,4 @@
-package Firebase;
+package Database;
 import Sessions.Course;
 import Users.Student;
 import Users.User;
@@ -10,16 +10,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class CourseDatabase {
-    private FirebaseCollection db;
+public class CourseManager {
+    private DatabaseInterface fi;
+    private UserManager ud;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public CourseDatabase() throws IOException {
-        db = new FirebaseCollection("courses");
+    public CourseManager(DatabaseInterface cb, UserManager ud){
+        this.fi = cb;
+        this.fi.initialize("courses");
+        this.ud = ud;
     }
     public void updateDocuments(){
-        currentDocuments = db.getDocumentList();
+        /**
+         * update document list.
+         */
+        currentDocuments = fi.getDocumentList();
     }
     public ArrayList<String> getCourseCodeList(){
+        /**
+         * get a list of course code that is currently documented in the database.
+         * @return an Arraylist of course code.
+         */
         ArrayList<String> courseCodeList = new ArrayList<>();
         updateDocuments();
         for(QueryDocumentSnapshot course: currentDocuments){
@@ -27,43 +37,55 @@ public class CourseDatabase {
         }
         return courseCodeList;
     }
-    public boolean addCourse(Course course) throws IOException {
+    public void addCourse(Course course) throws IOException {
+        /**
+         * add a course to the database. Note that this will overwrite any course of the same course code in database.
+         */
         String courseCode = course.getCourseCode();
-        db.addEntry(courseCode, "session type", course.getCourseType());
-        db.addEntry(courseCode, "session number", course.getSessionNumber());
-        db.addEntry(courseCode, "session name", course.getCourseName());
-        db.addEntry(courseCode, "day of week", course.getDayOfWeek());
-        db.addEntry(courseCode, "start time", course.getStartTime());
-        db.addEntry(courseCode, "year", course.getYear());
-        db.addEntry(courseCode, "enrolled students id", course.getEnrolledID().toString());
-        return true;
+        fi.addEntry(courseCode, "session type", course.getCourseType());
+        fi.addEntry(courseCode, "session number", course.getSessionNumber());
+        fi.addEntry(courseCode, "session name", course.getCourseName());
+        fi.addEntry(courseCode, "day of week", course.getDayOfWeek());
+        fi.addEntry(courseCode, "start time", course.getStartTime());
+        fi.addEntry(courseCode, "year", course.getYear());
     }
 
     public boolean addStudent(Course course, Student student) throws IOException {
+        /**
+         * add a student to a course. It also updates in user database as well.
+         */
         boolean added = course.addStudent(student);
-        student.addCourse(course);
         if(added){
-            db.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            student.addCourse(course);
+            fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;
     }
 
     public boolean removeStudent(Course course, Student student) throws IOException {
+        /**
+         * remove a student to a course. It also updates in user database as well.
+         */
         boolean removed = course.removeStudent(student);
-        student.removeCourse(course);
         if(removed){
-            db.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            student.removeCourse(course);
+            fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;
     }
 
-    public Course getCourse(UserDatabase ud, String courseCode) throws IOException {
+    public Course getCourse(String courseCode) throws IOException {
+        /**
+         * get a course by course code.
+         */
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }
-        Map<String, Object> courseDetail = db.getEntry(courseCode);
+        Map<String, Object> courseDetail = fi.getEntry(courseCode);
         Course course = new Course(courseCode, (String) courseDetail.get("session type"),
                 (String) courseDetail.get("session number"), (String) courseDetail.get("session name"),
                 (String) courseDetail.get("day of week"), (String) courseDetail.get("start time"),

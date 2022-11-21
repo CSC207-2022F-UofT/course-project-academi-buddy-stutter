@@ -55,8 +55,8 @@ public class CourseManager {
          * add a student to a course. It also updates in user database as well.
          */
         boolean added = course.addStudent(student);
-        student.addCourse(course);
         if(added){
+            student.addCourse(course);
             fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
             ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
@@ -69,8 +69,8 @@ public class CourseManager {
          * remove a student to a course. It also updates in user database as well.
          */
         boolean removed = course.removeStudent(student);
-        student.removeCourse(course);
         if(removed){
+            student.removeCourse(course);
             fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
             ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;

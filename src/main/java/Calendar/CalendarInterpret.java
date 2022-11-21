@@ -4,74 +4,66 @@ import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class CalendarInterpret {
 /* Reading from uploaded calendar and converting into information to store into database.
 Download calendar from acorn */
 
 
-     /*
-    GetCourse_to_time: returns Mapping of a student's courses to the courses times
-    param: calendar_raw
-    return: Mapping<String,String>
-     */
+    /*
+    readCalendar: returns String containing file information that can be understood by the Biweekly library
+    param: file_name as String
+    return: calendar_raw as String
+    */
+    public String readCalendar(String file_name) {
 
-   /* public  Map<String, String> GetCourse_to_time(String calendar_raw){
+        String calendar_raw = "";
 
-        VEvent courses = GetCourses(calendar_raw);
+        try {
+            File TestCalendar = new File( "src/test/java/tutorial/"+ file_name);
+            Scanner myReader = new Scanner(TestCalendar);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                calendar_raw = calendar_raw + (data+'\n');
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
-
-        VEvent event = ical.getEvents().get(0);
-
+        return calendar_raw;
+        }
 
 
-        return courses_to_time;
-    } */
 
     /*
-    GetCourses: returns VEvent of student's courses
-    param: calendar_raw
-    return: VEvent
-     */
+    getCourses: returns courses as an Arraylist given the calendar information as a String
+    param: calendar_raw as String
+    return: Arraylist containing courses a student is taking.
+    */
+    public ArrayList<String> getCourses(String calendar_raw) {
 
-    public VEvent GetCourses(String calendar_raw){
         ICalendar ical = Biweekly.parse(calendar_raw).first();
 
-        VEvent event = ical.getEvents().get(0);
+        ArrayList<String> courses = new ArrayList<String>();
 
-        return event;
-    }
+        int length = ical.getEvents().size();
 
+        for(int i = 0; i < length; i++){
+            VEvent event = ical.getEvents().get(i);
+            String course = event.getSummary().getValue();
 
+            if (!(courses.contains(course))){
+                courses.add(course);
+             }
+        }
 
-    public String getSummary(String calendar) {
-
-        String w =
-                "BEGIN:VCALENDAR\r\n" +
-                        "VERSION:2.0\r\n" +
-                        "PRODID:-//Microsoft Corporation//Outlook 14.0 MIMEDIR//EN\r\n" +
-                        "BEGIN:VEVENT\r\n" +
-                        "UID:0123\r\n" +
-                        "DTSTAMP:20130601T080000Z\r\n" +
-                        "SUMMARY;LANGUAGE=en-us:Team Meeting\r\n" +
-                        "DTSTART:20130610T120000Z\r\n" +
-                        "DURATION:PT1H\r\n" +
-                        "RRULE:FREQ=WEEKLY;INTERVAL=2\r\n" +
-                        "END:VEVENT\r\n" +
-                        "END:VCALENDAR\r\n";
-
-        ICalendar ical = Biweekly.parse(w).first();
-
-        VEvent event = ical.getEvents().get(0);
-
-        String summary = event.getSummary().getValue();
-
-        ical.getEvents();
-        event.getSummary();
-
-
-        return summary;
-
+        return courses;
 
 }
 }

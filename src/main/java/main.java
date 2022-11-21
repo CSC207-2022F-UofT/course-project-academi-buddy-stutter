@@ -24,8 +24,8 @@ public class main {
         initializeFirebase();
         FirebaseCollection cbc = new FirebaseCollection();
         FirebaseCollection ubc = new FirebaseCollection();
-        UserDatabase ub = new UserDatabase(ubc);
-        CourseDatabase cb = new CourseDatabase(cbc, ub);
+        UserManager ub = new UserManager(ubc);
+        CourseManager cb = new CourseManager(cbc, ub);
 
 
         //test

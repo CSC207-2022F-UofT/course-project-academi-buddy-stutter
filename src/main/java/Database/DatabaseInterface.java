@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface DatabaseInterface {
-    String collectionName = null;
-    Firestore db = null;
     void initialize(String collectionName);
 
     List<QueryDocumentSnapshot> getDocumentList();

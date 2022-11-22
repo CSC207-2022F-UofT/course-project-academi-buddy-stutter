@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 
 import com.google.firebase.cloud.FirestoreClient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 public class FirebaseCollection implements DatabaseInterface {
     private String collectionName;
     private Firestore db;
+    private List<QueryDocumentSnapshot> currentDocuments;
     public FirebaseCollection(){
         this.collectionName = "temp";
         db = FirestoreClient.getFirestore();
@@ -36,6 +38,21 @@ public class FirebaseCollection implements DatabaseInterface {
         return null;
     }
 
+    public void updateDocuments(){
+        /**
+         * update document list.
+         */
+        currentDocuments = getDocumentList();
+    }
+
+    public ArrayList<String> getDocumentStringList(){
+        ArrayList<String> documentList = new ArrayList<>();
+        updateDocuments();
+        for(QueryDocumentSnapshot document: currentDocuments){
+            documentList.add(document.getId());
+        }
+        return documentList;
+    }
     public boolean addEntry(String documentName, String key, Object value){
         List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
         DocumentReference docRef = db.collection(collectionName).document(documentName);

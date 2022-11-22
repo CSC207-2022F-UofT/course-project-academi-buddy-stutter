@@ -13,29 +13,17 @@ import java.util.Map;
 public class CourseManager {
     private DatabaseInterface fi;
     private UserManager ud;
-    private List<QueryDocumentSnapshot> currentDocuments;
     public CourseManager(DatabaseInterface cb, UserManager ud){
         this.fi = cb;
         this.fi.initialize("courses");
         this.ud = ud;
-    }
-    public void updateDocuments(){
-        /**
-         * update document list.
-         */
-        currentDocuments = fi.getDocumentList();
     }
     public ArrayList<String> getCourseCodeList(){
         /**
          * get a list of course code that is currently documented in the database.
          * @return an Arraylist of course code.
          */
-        ArrayList<String> courseCodeList = new ArrayList<>();
-        updateDocuments();
-        for(QueryDocumentSnapshot course: currentDocuments){
-            courseCodeList.add(course.getId());
-        }
-        return courseCodeList;
+        return fi.getDocumentStringList();
     }
     public void addCourse(Course course) throws IOException {
         /**

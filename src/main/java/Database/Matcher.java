@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Matcher {
+public class Matcher{
 
     private CourseManager cb;
     private UserManager ub;

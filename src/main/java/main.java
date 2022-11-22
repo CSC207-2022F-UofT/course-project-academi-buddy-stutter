@@ -44,7 +44,7 @@ public class main {
         System.out.println(i+1);
 
         LoginFrame loginFrame = new LoginFrame();
-
+        
     }
 
 }

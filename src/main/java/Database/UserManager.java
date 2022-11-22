@@ -22,17 +22,9 @@ public class UserManager {
         fi.initialize("users");
     }
 
-    public void updateDocuments(){
-        currentDocuments = fi.getDocumentList();
-    }
 
     public ArrayList<String> getUserIDList(){
-        ArrayList<String> userIDList = new ArrayList<>();
-        updateDocuments();
-        for(QueryDocumentSnapshot user:currentDocuments){
-            userIDList.add(user.getId());
-        }
-        return userIDList;
+        return fi.getDocumentStringList();
     }
     public boolean addUser(User user){
         /**

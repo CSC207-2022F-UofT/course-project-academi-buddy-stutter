@@ -2,6 +2,7 @@ package Database;
 
 import com.google.cloud.firestore.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,10 @@ public interface DatabaseInterface {
     Map<String, Object> getEntry(String documentName);
 
     boolean removeEntry(String documentName);
+
+    void updateDocuments();
+
+    ArrayList<String> getDocumentStringList();
 
 
 }

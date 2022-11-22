@@ -1,8 +1,6 @@
 package Database;
 
-import Users.Student;
-import Users.Admin;
-import Users.User;
+import Users.*;
 import Sessions.Course;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 
@@ -91,6 +89,7 @@ public class UserManager {
         String info = (String) userData.get("student info");
         try{
             if(type.equals("student")){
+                Student retrievedUser = new Student(userID, uPass, fullName, info);
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
@@ -99,8 +98,21 @@ public class UserManager {
                     CourseManager courseDB = new CourseManager(fi, this);
                     courseList.add(courseDB.getCourse(courseCode));
                 }
-                Student retrievedUser = new Student(userID, uPass, fullName, info);
                 retrievedUser.setEnrolled_courses(courseList);
+                //
+                String labelsString = (String) userData.get("labels");
+                List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
+                for(String l: labels){
+                    Label label = new Label(l);
+                    retrievedUser.updateLabel(label, true);
+                }
+                //
+                String tagString = (String) userData.get("tags of interests");
+                List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
+                for(String t: tags){
+                    InterestTag tag = new InterestTag(t);
+                    retrievedUser.updateStudentTOI(tag, true);
+                }
                 return retrievedUser;
             }else if (type.equals("admin")){
                 return new Admin(userID, uPass, fullName, info);

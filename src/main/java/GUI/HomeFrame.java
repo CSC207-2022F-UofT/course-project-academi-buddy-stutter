@@ -9,7 +9,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     JLabel findLabel = new JLabel("Click to Find Your Study Buddies!");
     JButton fileBTN = new JButton("FILE");
     JButton findBTN = new JButton("FIND");
-    JButton returnBTN = new JButton("Return to Login Screen");
+    JButton returnBTN = new JButton("Return to LoginManager Screen");
     JTextArea nameList = new JTextArea();
 
     HomeFrame(){
@@ -52,7 +52,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnBTN){
             this.dispose();
-            LoginFrame loginFrame = new LoginFrame();
+//            LoginFrame loginFrame = new LoginFrame();
         }
     }
 }

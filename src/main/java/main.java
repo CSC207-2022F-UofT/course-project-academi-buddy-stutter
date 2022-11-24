@@ -1,5 +1,6 @@
 import Database.*;
 import GUI.LoginFrame;
+import GUI.UIController;
 import Sessions.Course;
 import Users.Student;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -43,8 +44,12 @@ public class main {
         Integer i = Integer.valueOf(1);
         System.out.println(i+1);
 
-        LoginFrame loginFrame = new LoginFrame();
-        
+
+        UIController uiController = new UIController(cb, ub);
+        LoginFrame loginFrame = new LoginFrame(uiController);
+
+
+
     }
 
 }

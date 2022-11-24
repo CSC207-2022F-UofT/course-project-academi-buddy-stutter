@@ -79,6 +79,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.add(registerBTN);
         this.add(userLabel);
         this.add(passwordLabel);
+
+
+
         this.add(programTitle);
         this.add(userIDText);
         this.add(passwordText);

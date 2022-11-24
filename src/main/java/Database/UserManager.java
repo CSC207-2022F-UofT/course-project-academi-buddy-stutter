@@ -2,7 +2,6 @@ package Database;
 
 import Users.*;
 import Sessions.Course;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.Map;
 public class UserManager {
 
     private DatabaseInterface fi;
-    private List<QueryDocumentSnapshot> currentDocuments;
 
     public UserManager(DatabaseInterface ub){
         this.fi = ub;

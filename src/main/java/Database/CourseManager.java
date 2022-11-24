@@ -29,7 +29,7 @@ public class CourseManager {
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
          */
-        String courseCode = course.getCourseCode();
+        String courseCode = course.getCourseCode() + course.getCourseType();
         fi.addEntry(courseCode, "session type", course.getCourseType());
         fi.addEntry(courseCode, "session number", course.getSessionNumber());
         fi.addEntry(courseCode, "session name", course.getCourseName());

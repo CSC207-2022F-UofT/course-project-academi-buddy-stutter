@@ -151,6 +151,12 @@ public class UserManager {
     }
 
 
+    public boolean existByID(String ID){
+        /**
+         * @return whether a user exists in the database.
+         */
+        return fi.getDocumentStringList().contains(ID);
+    }
 
 
 

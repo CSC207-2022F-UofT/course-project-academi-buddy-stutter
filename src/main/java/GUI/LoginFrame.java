@@ -1,22 +1,26 @@
 package GUI;
 
 /*
-This class is to generate a Login UI for the user to log in or register an account.
+This class is to generate a LoginManager UI for the user to log in or register an account.
 The user can select their user type from the combobox that contains two options: {Administer, Student}.
 The user need to enter their user ID, which is the UTORID
 The user need to enter their account password to login or register
 The user need to enter their email for other people to contact them, when you are recommended as a study partner to
 someone else, they can contact you by email.
-There are two buttons at the bottom, one called "Login" and the other called "Register", both buttons will bring the
+There are two buttons at the bottom, one called "LoginManager" and the other called "Register", both buttons will bring the
 user to the home page once the user has successfully registered or login (correct user ID and password are entered).
  */
+
+import com.sun.tools.jconsole.JConsoleContext;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class LoginFrame extends JFrame implements ActionListener {
+
     JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
     JLabel userLabel = new JLabel("USER ID:");
     JLabel passwordLabel = new JLabel("Password:");
@@ -31,13 +35,18 @@ public class LoginFrame extends JFrame implements ActionListener {
     String[] userType = {"Administer", "Student"};
     JComboBox<String> userCheckBox = new JComboBox<>(userType);
 
-    public LoginFrame(){
-        this.setTitle("Login Frame"); // sets frame's title
+    UIController uiController;
+
+    public LoginFrame(UIController uiController){
+        this.uiController = uiController;
+
+        this.setTitle("LoginManager Frame"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
+
 
         // places objects inside frame
         // buttons
@@ -81,8 +90,29 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.setVisible(true); // set frame to visible
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == loginBTN){
+            try {
+
+                String id = userIDText.getText();
+                String password = new String(passwordText.getPassword());
+
+
+                if(this.uiController.attemptLogin(id, password)){
+                    this.dispose();
+                    HomeFrame homeFrame = new HomeFrame();
+                }else{
+                    System.out.println("wrong password!");
+                }
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
 
     }
 }

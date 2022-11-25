@@ -23,12 +23,14 @@ public class CourseManager {
          * get a list of course code that is currently documented in the database.
          * @return an Arraylist of course code.
          */
+        fi.initialize("courses");
         return fi.getDocumentStringList();
     }
     public void addCourse(Course course) throws IOException {
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
          */
+        fi.initialize("courses");
         String courseCode = course.getCourseCode() + course.getCourseType();
         fi.addEntry(courseCode, "session type", course.getCourseType());
         fi.addEntry(courseCode, "session number", course.getSessionNumber());
@@ -42,6 +44,7 @@ public class CourseManager {
         /**
          * add a student to a course. It also updates in user database as well.
          */
+        fi.initialize("courses");
         boolean added = course.addStudent(student);
         if(added){
             student.addCourse(course);
@@ -56,6 +59,7 @@ public class CourseManager {
         /**
          * remove a student to a course. It also updates in user database as well.
          */
+        fi.initialize("courses");
         boolean removed = course.removeStudent(student);
         if(removed){
             student.removeCourse(course);
@@ -70,6 +74,7 @@ public class CourseManager {
         /**
          * get a course by course code.
          */
+        fi.initialize("courses");
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }

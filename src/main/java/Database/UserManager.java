@@ -20,6 +20,7 @@ public class UserManager {
 
 
     public ArrayList<String> getUserIDList(){
+        fi.initialize("users");
         return fi.getDocumentStringList();
     }
     public boolean addUser(User user){
@@ -27,6 +28,7 @@ public class UserManager {
          * add a user to the database.
          * @return whether a user is added. If returned false, then the user already exists.
          */
+        fi.initialize("users");
         if(exist(user)){
             return false;
         }
@@ -42,6 +44,7 @@ public class UserManager {
          * add a student user to the database.
          * @return whether a student user is added. If returned false, then the student user already exists.
          */
+        fi.initialize("users");
         if(exist(student)){
             return false;
         }
@@ -60,6 +63,7 @@ public class UserManager {
          * add an admin user to the database.
          * @return whether an admin user is added. If returned false, then the admin user already exists.
          */
+        fi.initialize("users");
         if(exist(admin)){
             return false;
         }
@@ -73,6 +77,7 @@ public class UserManager {
         /**
          * remove a user from database.
          */
+        fi.initialize("users");
         return fi.removeEntry(user.getUser_id());
     }
 
@@ -80,6 +85,7 @@ public class UserManager {
         /**
          * get a user by userid.
          */
+        fi.initialize("users");
         Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
         String uPass = (String) userData.get("account password");
@@ -87,6 +93,7 @@ public class UserManager {
         String info = (String) userData.get("student info");
         try{
             if(type.equals("student")){
+                System.out.println("reached"+userID);
                 Student retrievedUser = new Student(userID, uPass, fullName, info);
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
@@ -117,7 +124,7 @@ public class UserManager {
             }
             return new User(userID, uPass, fullName, info);
         }catch (NullPointerException e){
-            System.out.println("null type");
+            System.out.println(userID + "userManager: null type");
         }
         return null;
     }
@@ -127,6 +134,7 @@ public class UserManager {
         /**
          * get a list of common session between two users.
          */
+        fi.initialize("users");
         ArrayList<Course> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
         Student s = (Student) getUserByID(self.getUser_id());
@@ -145,6 +153,7 @@ public class UserManager {
         /**
          * @return whether a user exists in the database.
          */
+        fi.initialize("users");
         return fi.getDocumentList().contains(user.getUser_id());
     }
 
@@ -153,6 +162,7 @@ public class UserManager {
         /**
          * @return whether a user exists in the database.
          */
+        fi.initialize("users");
         return fi.getDocumentStringList().contains(ID);
     }
 

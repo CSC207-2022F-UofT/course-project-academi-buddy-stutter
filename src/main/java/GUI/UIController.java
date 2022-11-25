@@ -15,6 +15,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UIController{
@@ -49,7 +51,15 @@ public class UIController{
     }
 
     public DefaultListModel<String> getNameList(){
-        return (DefaultListModel<String>) tagMatchManager.getStudentName(self);
+        List<String> nameList = new ArrayList<>();
+        for(String s: tagMatchManager.getStudentName(self)){
+            nameList.add(s);
+        }
+        DefaultListModel<String> nameModel = new DefaultListModel<>();
+        for (String s: nameList){
+            nameModel.addElement(s);
+        }
+        return nameModel;
     }
 
     public void setSelectedtag(String selected){

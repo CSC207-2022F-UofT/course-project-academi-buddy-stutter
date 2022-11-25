@@ -73,7 +73,10 @@ public class FirebaseCollection implements DatabaseInterface {
 
     public Map<String, Object> getEntry(String documentName){
         HashMap<String, Object> entry = new HashMap<>();
-        List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
+        List<QueryDocumentSnapshot> currentDocuments = new ArrayList<>();
+        for (QueryDocumentSnapshot q: this.getDocumentList()){
+            currentDocuments.add(q);
+        }
         for (QueryDocumentSnapshot document : currentDocuments) {
             if(document.getId().equals(documentName)){
                 return document.getData();

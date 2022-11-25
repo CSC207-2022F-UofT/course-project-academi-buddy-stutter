@@ -21,25 +21,40 @@ public class TagManager {
     }
 
     public ArrayList<String> getTagNameList(){
+        fi.initialize("tags");
         return fi.getDocumentStringList();
     }
 
     public void addTag(InterestTag tag) throws IOException {
+        fi.initialize("tags");
         String tagName = tag.getName();
         fi.addEntry(tagName, "students", new ArrayList<>().toString());
     }
 
-    public List<String> getStudentList(InterestTag tag){
+    public ArrayList<String> getStudentList(InterestTag tag){
+        fi.initialize("tags");
         String tagName = tag.getName();
         Map<String, Object> tagEntry= fi.getEntry(tagName);
         String stuString = (String) tagEntry.get("students");
-        List<String> students = Arrays.asList(stuString.substring(1, stuString.length() - 1).split(", "));
+        if(stuString == null){
+            System.out.println(tag.getName() + "return");
+            return new ArrayList<>();
+        }
+        List<String> studentList = Arrays.asList(stuString.substring(1, stuString.length() - 1).split(", "));
+        ArrayList<String> students = new ArrayList<>();
+        for(String s: studentList){
+            students.add(s);
+        }
         return students;
     }
 
     public void addStudent(InterestTag tag, Student student) throws IOException {
-        List<String> students = getStudentList(tag);
-        if(!students.contains(student)){
+        fi.initialize("tags");
+        ArrayList<String> students = new ArrayList<>();
+        for(String s: getStudentList(tag)){
+            students.add(s);
+        }
+        if(!students.contains(student.getUser_id())){
             students.add(student.GetUserID());
             student.updateStudentTOI(tag, true);
             ud.addStudentUser(student);
@@ -48,6 +63,7 @@ public class TagManager {
     }
 
     public void removeStudent(InterestTag tag, Student student) throws IOException {
+        fi.initialize("tags");
         List<String> students = getStudentList(tag);
         if(students.contains(student)){
             students.remove(student.GetUserID());

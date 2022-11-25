@@ -64,6 +64,10 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         //list
         matchedList.setBounds(200, 75, 400, 450);
 
+        uiController.setSelectedtag((String) tagCheckBox.getSelectedItem());
+        matchedStu = uiController.getNameList();
+        matchedList.setModel(matchedStu);
+
         // adds objects to the frame
         this.add(backBTN);
         this.add(profileBTN);

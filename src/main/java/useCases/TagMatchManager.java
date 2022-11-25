@@ -16,7 +16,6 @@ public class TagMatchManager extends UseCase{
 
     private InterestTag selectedTag;
     private TagManager tagManager;
-    private ArrayList<Student> matchedStudents;
 
 
     public TagMatchManager(CourseManager courseDatabase, UserManager userDatabase, TagManager tagManager) {
@@ -27,32 +26,29 @@ public class TagMatchManager extends UseCase{
     public void setSelectedTag(String selected){
         InterestTag selectedTag = new InterestTag(selected);
         this.selectedTag = selectedTag;
-        match();
     }
 
-    public void match(){
+    public ArrayList<Student> match(){
         List<String> idList = tagManager.getStudentList(selectedTag);
+        System.out.println(idList);
         ArrayList<Student> matchedStudents = new ArrayList<>();
         for(String id: idList){
-            Student student = null;
+            Student student;
             try {
-                student = (Student) this.ub.getUserByID(id);
+                student = (Student) ub.getUserByID(id);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             matchedStudents.add(student);
         }
-        this.matchedStudents = matchedStudents;
-    }
-
-    public ArrayList<Student> getStudents(){
         return matchedStudents;
     }
 
     public List<String> getStudentName(User self){
         List<String> nameList = new ArrayList<>();
-        for(Student s: matchedStudents){
-            if(!s.getUser_id().equals(self.getUser_id())) {
+        ArrayList<Student> students = match();
+        for(Student s: students){
+            if(s.getUser_id() != null && !s.getUser_id().equals(self.getUser_id())) {
                 nameList.add(s.getFull_name());
             }
         }
@@ -60,7 +56,7 @@ public class TagMatchManager extends UseCase{
     }
 
     public Student getStudentByIndex(int index){
-        return matchedStudents.get(index);
+        return match().get(index);
     }
 
 

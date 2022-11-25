@@ -28,7 +28,8 @@ public class TagManager {
     public void addTag(InterestTag tag) throws IOException {
         fi.initialize("tags");
         String tagName = tag.getName();
-        fi.addEntry(tagName, "students", new ArrayList<>().toString());
+        ArrayList<String> strList = new ArrayList<>();
+        fi.addEntry(tagName, "students", strList.toString());
     }
 
     public ArrayList<String> getStudentList(InterestTag tag){
@@ -37,7 +38,6 @@ public class TagManager {
         Map<String, Object> tagEntry= fi.getEntry(tagName);
         String stuString = (String) tagEntry.get("students");
         if(stuString == null){
-            System.out.println(tag.getName() + "return");
             return new ArrayList<>();
         }
         List<String> studentList = Arrays.asList(stuString.substring(1, stuString.length() - 1).split(", "));
@@ -64,11 +64,15 @@ public class TagManager {
 
     public void removeStudent(InterestTag tag, Student student) throws IOException {
         fi.initialize("tags");
-        List<String> students = getStudentList(tag);
-        if(students.contains(student)){
+        ArrayList<String> students = new ArrayList<>();
+        for(String s: getStudentList(tag)){
+            students.add(s);
+        }
+        if(students.contains(student.getUser_id())){
             students.remove(student.GetUserID());
             student.updateStudentTOI(tag, false);
             ud.addStudentUser(student);
+            fi.initialize("tags");
             fi.addEntry(tag.getName(), "students", students.toString());
         }
     }

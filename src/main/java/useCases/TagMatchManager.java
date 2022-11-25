@@ -30,7 +30,6 @@ public class TagMatchManager extends UseCase{
 
     public ArrayList<Student> match(){
         List<String> idList = tagManager.getStudentList(selectedTag);
-        System.out.println(idList);
         ArrayList<Student> matchedStudents = new ArrayList<>();
         for(String id: idList){
             Student student;

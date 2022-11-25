@@ -54,7 +54,11 @@ public class UserManager {
         //following data are stored as arraylists. Use toString().
         fi.addEntry(studentID, "labels", student.getLabels().toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolled_courseCodes().toString());
-        fi.addEntry(studentID, "tags of interests", student.getTabs_of_interests().toString());
+        ArrayList<String> tagList = new ArrayList<>();
+        for(InterestTag i: student.getTabs_of_interests()){
+            tagList.add(i.getName());
+        }
+        fi.addEntry(studentID, "tags of interests", tagList.toString());
         return true;
     }
 

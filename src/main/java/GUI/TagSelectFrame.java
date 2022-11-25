@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class TagSelectFrame extends JFrame implements ActionListener{
 
 
-    JLabel listLabel = new JLabel("Matched Students:");
     JLabel tagSelectLabel = new JLabel("Select Tag:");
 
     ArrayList<JCheckBox> boxList = new ArrayList<>();
@@ -117,7 +116,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
             for (JCheckBox box: boxList){
-                uiController.updateStudentTag(box.getName(), box.isSelected());
+                uiController.updateStudentTag(box.getText(), box.isSelected());
             }
         }
         else if(e.getSource() == backBTN){

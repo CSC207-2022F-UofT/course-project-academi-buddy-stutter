@@ -9,6 +9,7 @@ import Users.Student;
 import Users.User;
 import useCases.LoginManager;
 import useCases.TagMatchManager;
+import useCases.TagSelectManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ public class UIController{
     private TagManager tb;
 
     private TagMatchManager tagMatchManager;
+    private TagSelectManager tagSelectManager;
 
     public UIController(User self, CourseManager courseDatabase, UserManager userDatabase, TagManager tb){
         this.self = self;
@@ -36,6 +38,7 @@ public class UIController{
         // UseCases
         this.loginManager = new LoginManager(courseDatabase, userDatabase);
         this.tagMatchManager = new TagMatchManager(courseDatabase, userDatabase, tb);
+        this.tagSelectManager = new TagSelectManager(courseDatabase, userDatabase, tb);
 
     }
 
@@ -58,37 +61,11 @@ public class UIController{
     }
 
     public boolean getStudentTagState(String tagName){
-        InterestTag tag = new InterestTag(tagName);
-        return ((Student) self).isTagSelected(tag);
+        return tagSelectManager.getStudentTagState((Student) self, tagName);
     }
 
     public void updateStudentTag(String tagName, boolean selected){
-        InterestTag tag = new InterestTag(tagName);
-        if(!tb.getTagNameList().contains(tagName)) {
-            try {
-                tb.addTag(tag);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        if(selected){
-            try {
-                tb.addStudent(tag, (Student) self);
-                ((Student) self).updateStudentTOI(tag, true);
-                ub.addStudentUser((Student) self);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
-            try {
-                tb.removeStudent(tag, (Student) self);
-                ((Student) self).updateStudentTOI(tag, false);
-                ub.addStudentUser((Student) self);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        tagSelectManager.updateStudentTag((Student) self, tagName, selected);
     }
 
 

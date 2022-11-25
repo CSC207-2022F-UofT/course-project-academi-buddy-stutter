@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProfileFrame extends JFrame implements ActionListener {
+public class ProfileRegFrame extends JFrame implements ActionListener {
     // creating labels
     JLabel proTitleLabel = new JLabel("Profile");
     JLabel nameLabel = new JLabel("Full Name:");
@@ -20,7 +20,7 @@ public class ProfileFrame extends JFrame implements ActionListener {
     JTextArea infoText = new JTextArea();
     JButton completeBTN = new JButton("Complete Profile");
 
-    public ProfileFrame(){
+    public ProfileRegFrame(){
         // setting up labels
         proTitleLabel.setBounds(140, 0, 300, 30);
         proTitleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));

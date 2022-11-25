@@ -21,6 +21,8 @@ import java.util.List;
 
 public class UIController{
 
+    //TODO: make UIController as parent class. Create seperate UIControl for each Frame, e.g. LoginUIControl, etc.
+
     private User self;
     private CourseManager cb;
     private UserManager ub;
@@ -50,6 +52,8 @@ public class UIController{
 
     }
 
+    //TagMatchFrame
+
     public DefaultListModel<String> getNameList(){
         List<String> nameList = new ArrayList<>();
         for(String s: tagMatchManager.getStudentName(self)){
@@ -61,6 +65,8 @@ public class UIController{
         }
         return nameModel;
     }
+
+    //TagSelectFrame
 
     public void setSelectedtag(String selected){
         tagMatchManager.setSelectedTag(selected);

@@ -1,8 +1,4 @@
 import Database.*;
-import GUI.ComRegFrame;
-import GUI.FileUploadFrame;
-import GUI.LoginFrame;
-import GUI.ProfileFrame;
 import Sessions.Course;
 import Users.Student;
 import com.google.auth.oauth2.GoogleCredentials;

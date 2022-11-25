@@ -12,7 +12,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     JButton returnBTN = new JButton("Return to LoginManager Screen");
     JTextArea nameList = new JTextArea();
 
-    HomeFrame(){
+    public HomeFrame(){
         // setting up labels
         fileLabel.setBounds(10, 10, 125, 20);
         findLabel.setBounds(10, 35, 210, 20);

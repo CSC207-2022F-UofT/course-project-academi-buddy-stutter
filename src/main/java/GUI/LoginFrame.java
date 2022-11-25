@@ -24,16 +24,11 @@ public class LoginFrame extends JFrame implements ActionListener {
     JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
     JLabel userLabel = new JLabel("USER ID:");
     JLabel passwordLabel = new JLabel("Password:");
-    JLabel emailLabel = new JLabel("Email:");
-    JLabel userTypeLabel = new JLabel("User Type:");
     JButton loginBTN = new JButton("LOGIN");
     JButton registerBTN = new JButton("REGISTER");
     JTextField userIDText = new JTextField("Enter your user ID here:");
     // JTextField passwordText = new JTextField("Enter your password here:");
     JPasswordField passwordText = new JPasswordField();
-    JTextField emailText = new JTextField("Enter your Email here:");
-    String[] userType = {"Administer", "Student"};
-    JComboBox<String> userCheckBox = new JComboBox<>(userType);
 
     UIController uiController;
 
@@ -58,21 +53,16 @@ public class LoginFrame extends JFrame implements ActionListener {
         registerBTN.setFocusable(false);
 
         // labels
-        userTypeLabel.setBounds(10,50,100,20);
         userLabel.setBounds(10,75,100,20);
         passwordLabel.setBounds(10,100,100,20);
-        emailLabel.setBounds(10, 125, 100, 20);
         programTitle.setBounds(60, 0, 300, 50);
         programTitle.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 
         // textfields
         userIDText.setBounds(110, 75, 200, 20);
         passwordText.setBounds(110, 100, 200, 20);
-        emailText.setBounds(110, 125, 200, 20);
 
         // combobox
-        userCheckBox.setBounds(110, 50, 200, 25); // set combobox position
-        userCheckBox.setEditable(false);
 
         // adds objects to the frame
         this.add(loginBTN);
@@ -82,10 +72,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.add(programTitle);
         this.add(userIDText);
         this.add(passwordText);
-        this.add(userTypeLabel);
-        this.add(userCheckBox);
-        this.add(emailLabel);
-        this.add(emailText);
 
         this.setVisible(true); // set frame to visible
     }

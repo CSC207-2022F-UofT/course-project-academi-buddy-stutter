@@ -55,7 +55,8 @@ public class FirebaseCollection implements DatabaseInterface {
     }
     public boolean addEntry(String documentName, String key, Object value){
         List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
-        DocumentReference docRef = db.collection(collectionName).document(documentName);
+        DocumentReference docRef;
+        docRef = db.collection(collectionName).document(documentName);
         Map<String, Object> data = new HashMap<>();
         for (QueryDocumentSnapshot document : currentDocuments) {
             System.out.println(document.getId());

@@ -20,7 +20,7 @@ public class TagSelectManager extends UseCase {
         this.tb= tagManager;
     }
 
-    public boolean getStudentTagState(Student self,String tagName){
+    public boolean getStudentTagState(Student self, String tagName){
         InterestTag tag = new InterestTag(tagName);
         return (self.isTagSelected(tag));
     }
@@ -36,6 +36,7 @@ public class TagSelectManager extends UseCase {
         }
         if(selected){
             try {
+                System.out.println("selected");
                 tb.addStudent(tag, self);
                 self.updateStudentTOI(tag, true);
                 ub.addStudentUser(self);
@@ -45,6 +46,7 @@ public class TagSelectManager extends UseCase {
         }
         else {
             try {
+                System.out.println("unselected");
                 tb.removeStudent(tag, self);
                 self.updateStudentTOI(tag, false);
                 ub.addStudentUser(self);

@@ -1,6 +1,8 @@
 import Database.*;
+import GUI.ComRegFrame;
+import GUI.FileUploadFrame;
 import GUI.LoginFrame;
-import GUI.UIController;
+import GUI.ProfileFrame;
 import Sessions.Course;
 import Users.Student;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -23,6 +25,7 @@ public class main {
     }
     public static void main(String[] args) throws IOException{
         //essential for database classes
+
         initializeFirebase();
         FirebaseCollection cbc = new FirebaseCollection();
         FirebaseCollection ubc = new FirebaseCollection();
@@ -43,13 +46,6 @@ public class main {
         ub.addUser(s1);
         Integer i = Integer.valueOf(1);
         System.out.println(i+1);
-
-
-        UIController uiController = new UIController(cb, ub);
-        LoginFrame loginFrame = new LoginFrame(uiController);
-
-
-
     }
 
 }

@@ -32,6 +32,7 @@ public class TagMatchManager extends UseCase{
         List<String> idList = tagManager.getStudentList(selectedTag);
         ArrayList<Student> matchedStudents = new ArrayList<>();
         for(String id: idList){
+            System.out.println(id);
             Student student;
             try {
                 student = (Student) ub.getUserByID(id);
@@ -46,6 +47,9 @@ public class TagMatchManager extends UseCase{
     public List<String> getStudentName(User self){
         List<String> nameList = new ArrayList<>();
         ArrayList<Student> students = match();
+        if(students.contains(null)){
+            return nameList;
+        }
         for(Student s: students){
             if(s.getUser_id() != null && !s.getUser_id().equals(self.getUser_id())) {
                 nameList.add(s.getFull_name());

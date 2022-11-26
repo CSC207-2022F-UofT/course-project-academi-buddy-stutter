@@ -25,6 +25,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
     JButton cancelBTN = new JButton("Cancel");
 
     UIController uiController;
+    UIOperator uiOperator = new UIOperator();
     public RegisterFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -85,9 +86,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
                 if(this.uiController.attemptRegister(fullName, id, password, confirm)){
                     this.dispose();
-                    LoginFrame loginFrame = new LoginFrame(this.uiController);
-                }else{
-                    System.out.println("register failed!");
+                    this.uiOperator.toLogin(this.uiController);
                 }
 
             } catch (IOException ex) {
@@ -97,7 +96,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
         if (e.getSource() == cancelBTN){
             this.dispose();
-            LoginFrame loginFrame = new LoginFrame(this.uiController);
+            this.uiOperator.toLogin(this.uiController);
         }
 
     }

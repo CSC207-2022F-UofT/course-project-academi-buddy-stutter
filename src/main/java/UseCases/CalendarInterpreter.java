@@ -1,77 +1,81 @@
 package UseCases;
 
+import Entities.Course;
 import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CalendarInterpreter {
 /* Reading from uploaded calendar and converting into information to store into database.
 Download calendar from acorn */
 
 
-     /*
-    GetCourse_to_time: returns Mapping of a student's courses to the courses times
-    param: calendar_raw
-    return: Mapping<String,String>
-     */
-
-   /* public  Map<String, String> GetCourse_to_time(String calendar_raw){
-
-        VEvent courses = GetCourses(calendar_raw);
-
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
-
-        VEvent event = ical.getEvents().get(0);
-
-
-
-        return courses_to_time;
-    } */
-
     /*
-    GetCourses: returns VEvent of student's courses
-    param: calendar_raw
-    return: VEvent
-     */
+    readCalendar: returns String containing file information that can be understood by the Biweekly library
+    param: file_name as String
+    return: calendar_raw as String
+    */
+    public String readCalendar(String file_name) {
 
-    public VEvent GetCourses(String calendar_raw){
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
+        String calendar_raw = "";
 
-        VEvent event = ical.getEvents().get(0);
+        try {
+            File TestCalendar = new File( "src/test/java/tutorial/"+ file_name);
+            Scanner myReader = new Scanner(TestCalendar);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                calendar_raw = calendar_raw + (data+'\n');
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
-        return event;
+        return calendar_raw;
     }
 
 
 
-    public String getSummary(String calendar) {
+    /*
+    getCourses: returns courses as an Arraylist given the courses information as Course objects
+    param: calendar_raw as String
+    return: Arraylist containing courses a student is taking.
+    */
+    public ArrayList<Course> getCourses(String calendar_raw) {
 
-        String w =
-                "BEGIN:VCALENDAR\r\n" +
-                        "VERSION:2.0\r\n" +
-                        "PRODID:-//Microsoft Corporation//Outlook 14.0 MIMEDIR//EN\r\n" +
-                        "BEGIN:VEVENT\r\n" +
-                        "UID:0123\r\n" +
-                        "DTSTAMP:20130601T080000Z\r\n" +
-                        "SUMMARY;LANGUAGE=en-us:Team Meeting\r\n" +
-                        "DTSTART:20130610T120000Z\r\n" +
-                        "DURATION:PT1H\r\n" +
-                        "RRULE:FREQ=WEEKLY;INTERVAL=2\r\n" +
-                        "END:VEVENT\r\n" +
-                        "END:VCALENDAR\r\n";
-
-        ICalendar ical = Biweekly.parse(w).first();
-
-        VEvent event = ical.getEvents().get(0);
-
-        String summary = event.getSummary().getValue();
-
-        ical.getEvents();
-        event.getSummary();
+        ICalendar ical = Biweekly.parse(calendar_raw).first();
 
 
-        return summary;
+        ArrayList<Course> courses = new ArrayList<Course>();
+
+        int length = ical.getEvents().size();
+
+        for(int i = 0; i < length; i++){
+            VEvent event = ical.getEvents().get(i);
+
+            String course_code = event.getSummary().getValue().substring(0,8);
+            String sess_type = event.getSummary().getValue().substring(9,12);
+            String sess_number = event.getSummary().getValue().substring(12,16);
+            String course_name = event.getDescription().getValue().split("\n")[0];
+            String day_of_week = event.getDateStart().getValue().toString().substring(0,3);
+            String start = event.getDateStart().getValue().toString().substring(11,16);
+            String end = event.getDateStart().getValue().toString().substring(24,28);
+
+            Course course1 = new Course(course_code, sess_type, sess_number, course_name, day_of_week, start, end);
 
 
-}
+            if (!(courses.contains(course1))){
+                courses.add(course1);
+            }
+        }
+
+        return courses;
+
+    }
 }

@@ -38,15 +38,14 @@ public class Student extends User{
         this.enrolled_courses = new ArrayList<>();
     }
 
-    /*
-    UpdateStudentTOI: updates the student's tabs of interest given the index of the tab required for change
-    param: index
-    return: none
-
-    private void updateStudentTOI(int index, Boolean value){
-        this.tags_of_interests.get(index).value = value;
+    public void updateStudentTOI(InterestTag tag, boolean selected){
+        if(selected && !(tags_of_interests.contains(tag))){
+            tags_of_interests.add(tag);
+        } else if (!selected && tags_of_interests.contains(tag)) {
+            tags_of_interests.remove(tag);
+        }
     }
-     */
+
     public void updateLabel(Label label, boolean selected){
         if(selected && !(labels.contains(label))){
             labels.add(label);
@@ -75,4 +74,5 @@ public class Student extends User{
     public boolean isLabelSelected(Label label){
         return labels.contains(label);
     }
+    public boolean isTagSelected(InterestTag tag){return tags_of_interests.contains(tag);}
 }

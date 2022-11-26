@@ -4,9 +4,11 @@ package Users;
 // to see others who have the same tag selected.
 //e.g. Classical Music, Sci-fi novels, Video Games, etc.
 public class InterestTag {
-    String name;
+    private String name;
 
     public InterestTag(String n){
         this.name = n;
     }
+
+    public String getName(){return name;}
 }

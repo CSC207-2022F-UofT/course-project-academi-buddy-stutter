@@ -13,35 +13,25 @@ import java.util.Map;
 public class CourseManager {
     private DatabaseInterface fi;
     private UserManager ud;
-    private List<QueryDocumentSnapshot> currentDocuments;
     public CourseManager(DatabaseInterface cb, UserManager ud){
         this.fi = cb;
         this.fi.initialize("courses");
         this.ud = ud;
-    }
-    public void updateDocuments(){
-        /**
-         * update document list.
-         */
-        currentDocuments = fi.getDocumentList();
     }
     public ArrayList<String> getCourseCodeList(){
         /**
          * get a list of course code that is currently documented in the database.
          * @return an Arraylist of course code.
          */
-        ArrayList<String> courseCodeList = new ArrayList<>();
-        updateDocuments();
-        for(QueryDocumentSnapshot course: currentDocuments){
-            courseCodeList.add(course.getId());
-        }
-        return courseCodeList;
+        fi.initialize("courses");
+        return fi.getDocumentStringList();
     }
     public void addCourse(Course course) throws IOException {
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
          */
-        String courseCode = course.getCourseCode();
+        fi.initialize("courses");
+        String courseCode = course.getCourseCode() + course.getCourseType();
         fi.addEntry(courseCode, "session type", course.getCourseType());
         fi.addEntry(courseCode, "session number", course.getSessionNumber());
         fi.addEntry(courseCode, "session name", course.getCourseName());
@@ -54,6 +44,7 @@ public class CourseManager {
         /**
          * add a student to a course. It also updates in user database as well.
          */
+        fi.initialize("courses");
         boolean added = course.addStudent(student);
         if(added){
             student.addCourse(course);
@@ -68,6 +59,7 @@ public class CourseManager {
         /**
          * remove a student to a course. It also updates in user database as well.
          */
+        fi.initialize("courses");
         boolean removed = course.removeStudent(student);
         if(removed){
             student.removeCourse(course);
@@ -82,6 +74,7 @@ public class CourseManager {
         /**
          * get a course by course code.
          */
+        fi.initialize("courses");
         if(!this.getCourseCodeList().contains(courseCode)){
             return null;
         }

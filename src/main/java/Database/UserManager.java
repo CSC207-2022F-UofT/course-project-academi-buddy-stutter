@@ -1,10 +1,7 @@
 package Database;
 
-import Users.Student;
-import Users.Admin;
-import Users.User;
+import Users.*;
 import Sessions.Course;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,30 +12,23 @@ import java.util.Map;
 public class UserManager {
 
     private DatabaseInterface fi;
-    private List<QueryDocumentSnapshot> currentDocuments;
 
     public UserManager(DatabaseInterface ub){
         this.fi = ub;
         fi.initialize("users");
     }
 
-    public void updateDocuments(){
-        currentDocuments = fi.getDocumentList();
-    }
 
     public ArrayList<String> getUserIDList(){
-        ArrayList<String> userIDList = new ArrayList<>();
-        updateDocuments();
-        for(QueryDocumentSnapshot user:currentDocuments){
-            userIDList.add(user.getId());
-        }
-        return userIDList;
+        fi.initialize("users");
+        return fi.getDocumentStringList();
     }
     public boolean addUser(User user){
         /**
          * add a user to the database.
          * @return whether a user is added. If returned false, then the user already exists.
          */
+        fi.initialize("users");
         if(exist(user)){
             return false;
         }
@@ -54,6 +44,7 @@ public class UserManager {
          * add a student user to the database.
          * @return whether a student user is added. If returned false, then the student user already exists.
          */
+        fi.initialize("users");
         if(exist(student)){
             return false;
         }
@@ -63,7 +54,11 @@ public class UserManager {
         //following data are stored as arraylists. Use toString().
         fi.addEntry(studentID, "labels", student.getLabels().toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolled_courseCodes().toString());
-        fi.addEntry(studentID, "tags of interests", student.getTabs_of_interests().toString());
+        ArrayList<String> tagList = new ArrayList<>();
+        for(InterestTag i: student.getTabs_of_interests()){
+            tagList.add(i.getName());
+        }
+        fi.addEntry(studentID, "tags of interests", tagList.toString());
         return true;
     }
 
@@ -72,6 +67,7 @@ public class UserManager {
          * add an admin user to the database.
          * @return whether an admin user is added. If returned false, then the admin user already exists.
          */
+        fi.initialize("users");
         if(exist(admin)){
             return false;
         }
@@ -85,6 +81,7 @@ public class UserManager {
         /**
          * remove a user from database.
          */
+        fi.initialize("users");
         return fi.removeEntry(user.getUser_id());
     }
 
@@ -92,6 +89,7 @@ public class UserManager {
         /**
          * get a user by userid.
          */
+        fi.initialize("users");
         Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
         String uPass = (String) userData.get("account password");
@@ -99,6 +97,8 @@ public class UserManager {
         String info = (String) userData.get("student info");
         try{
             if(type.equals("student")){
+                System.out.println("reached"+userID);
+                Student retrievedUser = new Student(userID, uPass, fullName, info);
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
@@ -107,15 +107,28 @@ public class UserManager {
                     CourseManager courseDB = new CourseManager(fi, this);
                     courseList.add(courseDB.getCourse(courseCode));
                 }
-                Student retrievedUser = new Student(userID, uPass, fullName, info);
                 retrievedUser.setEnrolled_courses(courseList);
+                //
+                String labelsString = (String) userData.get("labels");
+                List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
+                for(String l: labels){
+                    Label label = new Label(l);
+                    retrievedUser.updateLabel(label, true);
+                }
+                //
+                String tagString = (String) userData.get("tags of interests");
+                List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
+                for(String t: tags){
+                    InterestTag tag = new InterestTag(t);
+                    retrievedUser.updateStudentTOI(tag, true);
+                }
                 return retrievedUser;
             }else if (type.equals("admin")){
                 return new Admin(userID, uPass, fullName, info);
             }
             return new User(userID, uPass, fullName, info);
         }catch (NullPointerException e){
-            System.out.println("null type");
+            System.out.println(userID + "userManager: null type");
         }
         return null;
     }
@@ -125,6 +138,7 @@ public class UserManager {
         /**
          * get a list of common session between two users.
          */
+        fi.initialize("users");
         ArrayList<Course> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
         Student s = (Student) getUserByID(self.getUser_id());
@@ -143,10 +157,18 @@ public class UserManager {
         /**
          * @return whether a user exists in the database.
          */
+        fi.initialize("users");
         return fi.getDocumentList().contains(user.getUser_id());
     }
 
 
+    public boolean existByID(String ID){
+        /**
+         * @return whether a user exists in the database.
+         */
+        fi.initialize("users");
+        return fi.getDocumentStringList().contains(ID);
+    }
 
 
 

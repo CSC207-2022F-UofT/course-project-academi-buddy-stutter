@@ -1,9 +1,13 @@
 import Database.*;
 import Sessions.Course;
 import Users.Student;
+import GUI.*;
+import clojure.lang.IFn;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import org.checkerframework.checker.guieffect.qual.UI;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,11 +25,15 @@ public class main {
     }
     public static void main(String[] args) throws IOException{
         //essential for database classes
+
         initializeFirebase();
         FirebaseCollection cbc = new FirebaseCollection();
         FirebaseCollection ubc = new FirebaseCollection();
+        FirebaseCollection tbc = new FirebaseCollection();
+
         UserManager ub = new UserManager(ubc);
         CourseManager cb = new CourseManager(cbc, ub);
+        TagManager tb = new TagManager(tbc, ub);
 
 
         //test
@@ -41,6 +49,11 @@ public class main {
         ub.addUser(s1);
         Integer i = Integer.valueOf(1);
         System.out.println(i+1);
+
+
+        // intialize UI Controller
+        UIController uiController = new UIController(null, cb, ub);
+        uiController.toLogin();
 
 
 

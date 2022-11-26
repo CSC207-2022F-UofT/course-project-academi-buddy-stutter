@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 
 import com.google.firebase.cloud.FirestoreClient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 public class FirebaseCollection implements DatabaseInterface {
     private String collectionName;
     private Firestore db;
+    private List<QueryDocumentSnapshot> currentDocuments;
     public FirebaseCollection(){
         this.collectionName = "temp";
         db = FirestoreClient.getFirestore();
@@ -36,9 +38,25 @@ public class FirebaseCollection implements DatabaseInterface {
         return null;
     }
 
+    public void updateDocuments(){
+        /**
+         * update document list.
+         */
+        currentDocuments = getDocumentList();
+    }
+
+    public ArrayList<String> getDocumentStringList(){
+        ArrayList<String> documentList = new ArrayList<>();
+        updateDocuments();
+        for(QueryDocumentSnapshot document: currentDocuments){
+            documentList.add(document.getId());
+        }
+        return documentList;
+    }
     public boolean addEntry(String documentName, String key, Object value){
         List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
-        DocumentReference docRef = db.collection(collectionName).document(documentName);
+        DocumentReference docRef;
+        docRef = db.collection(collectionName).document(documentName);
         Map<String, Object> data = new HashMap<>();
         for (QueryDocumentSnapshot document : currentDocuments) {
             System.out.println(document.getId());
@@ -56,7 +74,10 @@ public class FirebaseCollection implements DatabaseInterface {
 
     public Map<String, Object> getEntry(String documentName){
         HashMap<String, Object> entry = new HashMap<>();
-        List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
+        List<QueryDocumentSnapshot> currentDocuments = new ArrayList<>();
+        for (QueryDocumentSnapshot q: this.getDocumentList()){
+            currentDocuments.add(q);
+        }
         for (QueryDocumentSnapshot document : currentDocuments) {
             if(document.getId().equals(documentName)){
                 return document.getData();

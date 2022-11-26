@@ -4,7 +4,7 @@ import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
 
-public class CalendarInterpret {
+public class CalendarInterpreter {
 /* Reading from uploaded calendar and converting into information to store into database.
 Download calendar from acorn */
 

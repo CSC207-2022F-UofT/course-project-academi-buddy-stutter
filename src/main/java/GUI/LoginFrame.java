@@ -92,7 +92,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
                 if(this.uiController.attemptLogin(id, password)){
                     this.dispose();
-                    HomeFrame homeFrame = new HomeFrame();
+                    HomeFrame homeFrame = new HomeFrame(this.uiController);
                 }else{
                     System.out.println("wrong password!");
                 }
@@ -100,6 +100,11 @@ public class LoginFrame extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+        }
+
+        if (e.getSource() == registerBTN){
+            this.dispose();
+            RegisterFrame registerFrame = new RegisterFrame(this.uiController);
         }
 
 

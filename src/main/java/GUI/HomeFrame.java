@@ -12,7 +12,11 @@ public class HomeFrame extends JFrame implements ActionListener {
     JButton returnBTN = new JButton("Return to LoginManager Screen");
     JTextArea nameList = new JTextArea();
 
-    public HomeFrame(){
+    UIController uiController;
+
+    public HomeFrame(UIController uiController){
+        this.uiController = uiController;
+
         // setting up labels
         fileLabel.setBounds(10, 10, 125, 20);
         findLabel.setBounds(10, 35, 210, 20);
@@ -52,7 +56,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnBTN){
             this.dispose();
-//            LoginFrame loginFrame = new LoginFrame();
+            LoginFrame loginFrame = new LoginFrame(this.uiController);
         }
     }
 }

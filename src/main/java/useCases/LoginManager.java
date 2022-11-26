@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class LoginManager extends UseCase{
 
-    User activeUser;
+    User activeUser = null;
 
     public LoginManager(CourseManager courseDatabase, UserManager userDatabase){
         super(courseDatabase, userDatabase);
@@ -28,6 +28,10 @@ public class LoginManager extends UseCase{
             this.activeUser = this.ub.getUserByID(id);
             return this.activeUser.GetUserPassword().equals(password);
         }
+    }
+
+    public User getActiveUser(){
+        return activeUser;
     }
 
 }

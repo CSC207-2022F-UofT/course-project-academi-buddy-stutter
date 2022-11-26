@@ -1,10 +1,12 @@
 import Database.*;
+import GUI.HomeFrame;
 import GUI.LoginFrame;
 import Sessions.Course;
 import Users.Student;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import org.slf4j.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class main {
 
 
         //test
+        /*
         List<String> CSCInfo = CalendarInterpreter.getSummary(CalendarInterpreter.readCalendar("coursesCalendar.ics")).get(0);
         Course CSC = new Course(CSCInfo.get(0), CSCInfo.get(1), CSCInfo.get(2), CSCInfo.get(3), CSCInfo.get(4), CSCInfo.get(5), CSCInfo.get(6));
         Student s1 = new Student("789", "password", "s1", "none");
@@ -42,8 +45,9 @@ public class main {
         ub.addUser(s1);
         Integer i = Integer.valueOf(1);
         System.out.println(i+1);
-
-        LoginFrame loginFrame = new LoginFrame();
+         */
+        //LoginFrame loginFrame = new LoginFrame();
+        HomeFrame homeFrame = new HomeFrame();
 
     }
 

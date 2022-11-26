@@ -5,8 +5,8 @@ import Database.UserManager;
 
 public class UseCase {
 
-    public CourseManager cb;
-    public UserManager ub;
+    protected CourseManager cb;
+    protected UserManager ub;
 
     public UseCase(CourseManager courseDatabase, UserManager userDatabase){
         this.cb = courseDatabase;

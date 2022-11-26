@@ -52,8 +52,9 @@ public class main {
 
 
         // intialize UI Controller
-        UIController uiController = new UIController(null, cb, ub, tb);
-        LoginFrame loginFrame = new LoginFrame(uiController);
+        UIController uiController = new UIController(null, cb, ub);
+        UIOperator uiOperator = new UIOperator();
+        uiOperator.toLogin();
 
 
 

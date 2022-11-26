@@ -27,11 +27,11 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
     JList<String> matchedList = new JList<>(matchedStu);
 
-    UIController uiController;
+    TagMatchUIControl tagMatchUIControl;
 
 
-    public TagMatchFrame(UIController uiController){
-        this.uiController = uiController;
+    public TagMatchFrame(TagMatchUIControl tagMatchUIControl){
+        this.tagMatchUIControl = tagMatchUIControl;
 
         this.setTitle("Match by Tag"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
@@ -64,8 +64,8 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         //list
         matchedList.setBounds(200, 75, 400, 450);
 
-        uiController.setSelectedtag((String) tagCheckBox.getSelectedItem());
-        matchedStu = uiController.getNameList();
+        tagMatchUIControl.setSelectedtag((String) tagCheckBox.getSelectedItem());
+        matchedStu = tagMatchUIControl.getNameList();
         matchedList.setModel(matchedStu);
 
         // adds objects to the frame
@@ -89,11 +89,18 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         if(e.getSource() == profileBTN){
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
-                String selectedID = uiController.getSelectedIndex(matchedList.getSelectedIndex());
+                String selectedID = tagMatchUIControl.getSelectedIndex(matchedList.getSelectedIndex());
                 //TODO: go to profile page
             }
         }
-        else if(e.getSource() == backBTN){
+        else
+
+
+
+
+
+
+            if(e.getSource() == backBTN){
             //TODO: go to home page
         }
 
@@ -101,8 +108,8 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        uiController.setSelectedtag((String) tagCheckBox.getSelectedItem());
-        matchedStu = uiController.getNameList();
+        tagMatchUIControl.setSelectedtag((String) tagCheckBox.getSelectedItem());
+        matchedStu = tagMatchUIControl.getNameList();
         matchedList.setModel(matchedStu);
     }
 }

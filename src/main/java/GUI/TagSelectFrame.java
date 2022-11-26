@@ -38,9 +38,11 @@ public class TagSelectFrame extends JFrame implements ActionListener{
 
     UIController uiController;
 
+    TagSelectUIControl tagSelectUIControl;
 
-    public TagSelectFrame(UIController uiController){
-        this.uiController = uiController;
+
+    public TagSelectFrame(TagSelectUIControl tagSelectUIControl){
+        this.tagSelectUIControl = tagSelectUIControl;
 
         this.setTitle("Interest Tag Selection"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
@@ -79,7 +81,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         boxList.add(gameCB);
         boxList.add(photoCB);
         for(JCheckBox box: boxList){
-            box.setSelected(uiController.getStudentTagState(box.getName()));
+            box.setSelected(tagSelectUIControl.getStudentTagState(box.getName()));
         }
 
         // labels
@@ -116,7 +118,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
             for (JCheckBox box: boxList){
-                uiController.updateStudentTag(box.getText(), box.isSelected());
+                tagSelectUIControl.updateStudentTag(box.getText(), box.isSelected());
             }
         }
         else if(e.getSource() == backBTN){

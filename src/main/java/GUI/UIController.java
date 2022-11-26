@@ -91,5 +91,17 @@ public class UIController{
         tagSelectManager.updateStudentTag((Student) self, tagName, selected);
     }
 
+    public void toLogin(){
+        LoginFrame loginFrame = new LoginFrame(this);
+        this.unloadUser();
+    }
+
+    public void toHome(){
+        HomeFrame HomeFrame = new HomeFrame(this);
+    }
+
+    public void toRegister(){
+        RegisterFrame registerFrame = new RegisterFrame(this);
+    }
 
 }

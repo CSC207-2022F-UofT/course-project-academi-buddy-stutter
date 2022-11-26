@@ -60,6 +60,12 @@ public class HomeFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource() == logoutBTN){
+            this.dispose();
+            this.uiController.unloadUser();
+            this.uiController.toLogin();
+        }
+
     }
 }
 

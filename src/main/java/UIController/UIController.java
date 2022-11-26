@@ -25,6 +25,23 @@ public class UIController{
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
+
+    public LoginUIControl getLoginUIControl() {
+        return loginUIControl;
+    }
+
+    public RegisterUIControl getRegisterUIControl() {
+        return registerUIControl;
+    }
+
+    public TagMatchUIControl getTagMatchUIControl() {
+        return tagMatchUIControl;
+    }
+
+    public TagSelectUIControl getTagSelectUIControl() {
+        return tagSelectUIControl;
+    }
+
     protected TagMatchUIControl tagMatchUIControl;
     protected TagSelectUIControl tagSelectUIControl;
 
@@ -65,6 +82,10 @@ public class UIController{
 
     public void toHome(){
         HomeFrame HomeFrame = new HomeFrame(this);
+    }
+
+    public void toMatch(){
+        MatchFrame matchFrame = new MatchFrame(this);
     }
 
     public void toRegister(){

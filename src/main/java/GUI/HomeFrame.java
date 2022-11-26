@@ -1,5 +1,7 @@
 package GUI;
 
+import UIController.UIController;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -104,6 +106,18 @@ public class HomeFrame extends JFrame implements ActionListener {
 
 
         }
+
+        if (e.getSource() == logoutBTN) {
+            this.dispose();
+            uiController.unloadUser();
+            uiController.toRegister();
+        }
+
+        if (e.getSource() == findStudyBuddyBTN) {
+            this.dispose();
+            uiController.toMatch();
+        }
+
     }
 }
 

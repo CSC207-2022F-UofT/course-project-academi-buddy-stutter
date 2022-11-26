@@ -1,4 +1,5 @@
 package tutorial;
+import Database.CalendarAPI;
 import UseCases.CalendarInterpreter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,9 +29,9 @@ class CalendarInterpretTest {
                 e.printStackTrace();
             }
 
-
-            CalendarInterpreter ci = new CalendarInterpreter();
-            Assertions.assertEquals("Team Meeting", ci.getSummary(ex_file));
+            CalendarAPI capi = new CalendarAPI();
+            CalendarInterpreter ci = new CalendarInterpreter(capi);
+            Assertions.assertEquals("Team Meeting", capi.getSummary(ex_file, 0));
 
 
         }

@@ -1,9 +1,7 @@
 package UseCases;
 
+import Database.CalenderInterface;
 import Entities.Course;
-import biweekly.Biweekly;
-import biweekly.ICalendar;
-import biweekly.component.VEvent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,6 +18,11 @@ Download calendar from acorn */
     param: file_name as String
     return: calendar_raw as String
     */
+    CalenderInterface ci;
+
+    public CalendarInterpreter(CalenderInterface ci){
+        this.ci = ci;
+    }
     public String readCalendar(String file_name) {
 
         String calendar_raw = "";
@@ -36,7 +39,6 @@ Download calendar from acorn */
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
         return calendar_raw;
     }
 
@@ -48,33 +50,16 @@ Download calendar from acorn */
     return: Arraylist containing courses a student is taking.
     */
     public ArrayList<Course> getCourses(String calendar_raw) {
-
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
-
-
-        ArrayList<Course> courses = new ArrayList<Course>();
-
-        int length = ical.getEvents().size();
-
+        ArrayList<Course> courses = new ArrayList<>();
+        int length = ci.getLength(calendar_raw);
         for(int i = 0; i < length; i++){
-            VEvent event = ical.getEvents().get(i);
-
-            String course_code = event.getSummary().getValue().substring(0,8);
-            String sess_type = event.getSummary().getValue().substring(9,12);
-            String sess_number = event.getSummary().getValue().substring(12,16);
-            String course_name = event.getDescription().getValue().split("\n")[0];
-            String day_of_week = event.getDateStart().getValue().toString().substring(0,3);
-            String start = event.getDateStart().getValue().toString().substring(11,16);
-            String end = event.getDateStart().getValue().toString().substring(24,28);
-
-            Course course1 = new Course(course_code, sess_type, sess_number, course_name, day_of_week, start, end);
-
-
+            ArrayList<String>  info = ci.getCourseInfo(calendar_raw, i);
+            Course course1 = new Course(info.get(0), info.get(1), info.get(2), info.get(3),
+                    info.get(4), info.get(5), info.get(6));
             if (!(courses.contains(course1))){
                 courses.add(course1);
             }
         }
-
         return courses;
 
     }

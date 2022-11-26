@@ -1,7 +1,9 @@
 import Database.*;
+import Entities.Course;
 import GUI.TagMatchFrame;
 import UIController.UIController;
 import Entities.Student;
+import UseCases.CalendarInterpreter;
 import UseCases.CourseManager;
 import UseCases.TagManager;
 import UseCases.UserManager;
@@ -11,6 +13,7 @@ import com.google.firebase.FirebaseOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class main {
 
@@ -33,11 +36,17 @@ public class main {
         CourseManager cb = new CourseManager(cbc, ub);
         TagManager tb = new TagManager(tbc, ub);
 
-        Student student = new Student("12345", "qwerty", "John Doe", "A test subject");
-        Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
-        UIController uiController = new UIController(student, cb, ub, tb);
-        //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
-        TagMatchFrame tm = new TagMatchFrame(uiController);
+        CalendarAPI capi = new CalendarAPI();
+        CalendarInterpreter ci = new CalendarInterpreter(capi);
+        ArrayList<Course> courses = ci.getCourses(ci.readCalendar("TestCalendar"));
+        for(int i = 0; i < courses.size(); i++){
+            System.out.println(courses.get(i).getCourseCode());
+            System.out.println(courses.get(i).getCourseName());
+            System.out.println(courses.get(i).getCourseType());
+            System.out.println(courses.get(i).getYear());
+            System.out.println(courses.get(i).getSessionNumber());
+            System.out.println(courses.get(i).getDayOfWeek());
+        }
 
     }
 

@@ -1,10 +1,14 @@
 package GUI;
 
+import UIController.UIController;
+import org.checkerframework.checker.guieffect.qual.UI;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MatchFrame extends JFrame implements ActionListener {
+
     JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
     JLabel selectLabel = new JLabel("Select Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
@@ -15,7 +19,10 @@ public class MatchFrame extends JFrame implements ActionListener {
 
     JButton returnBTN = new JButton("BACK");
     JButton findBTN = new JButton("FIND");
-    public MatchFrame() {
+
+    UIController uiController;
+    public MatchFrame(UIController uiController) {
+        this.uiController = uiController;
         // setting up labels:
         numCommonLabel.setBounds(10, 10, 270, 20);
         // selectLabel.setBounds(10, 35, 100, 20);

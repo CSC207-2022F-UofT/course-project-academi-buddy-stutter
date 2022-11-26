@@ -85,7 +85,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
                 String confirm = new String(confirmText.getPassword());
 
 
-                if(this.uiController.registerUIControl.attemptRegister(fullName, id, password, confirm)){
+                if(this.uiController.getRegisterUIControl().attemptRegister(fullName, id, password, confirm)){
                     this.dispose();
                     this.uiController.toLogin();
                 }

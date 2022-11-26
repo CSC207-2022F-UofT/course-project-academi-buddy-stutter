@@ -90,7 +90,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                 String password = new String(passwordText.getPassword());
 
 
-                if(this.uiController.loginUIControl.attemptLogin(id, password)){
+                if(this.uiController.getLoginUIControl().attemptLogin(id, password)){
                     this.dispose();
                     this.uiController.updateUser();
                     this.uiController.toHome();

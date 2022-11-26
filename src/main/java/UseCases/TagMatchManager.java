@@ -1,13 +1,9 @@
-package useCases;
+package UseCases;
 
-import Database.CourseManager;
-import Database.TagManager;
-import Database.UserManager;
-import Users.InterestTag;
-import Users.Student;
-import Users.User;
+import Entities.InterestTag;
+import Entities.Student;
+import Entities.User;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

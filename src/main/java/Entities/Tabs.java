@@ -1,4 +1,4 @@
-package Users;
+package Entities;
 
 public class Tabs {
     String name;

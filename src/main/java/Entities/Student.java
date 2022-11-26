@@ -1,5 +1,4 @@
-package Users;
-import Sessions.*;
+package Entities;
 import java.util.*;
 
 public class Student extends User{

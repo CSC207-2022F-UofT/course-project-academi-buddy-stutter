@@ -1,8 +1,8 @@
-package Database;
-import Sessions.Course;
-import Users.Student;
-import Users.User;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
+package UseCases;
+import Database.DatabaseInterface;
+import Entities.Course;
+import Entities.Student;
+import Entities.User;
 
 import java.io.IOException;
 import java.util.ArrayList;

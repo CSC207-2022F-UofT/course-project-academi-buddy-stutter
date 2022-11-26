@@ -1,19 +1,16 @@
 import Database.*;
-import GUI.LoginFrame;
 import GUI.TagMatchFrame;
-import GUI.TagSelectFrame;
-import GUI.UIController;
-import Sessions.Course;
-import Users.InterestTag;
-import Users.Student;
+import UIController.UIController;
+import Entities.Student;
+import UseCases.CourseManager;
+import UseCases.TagManager;
+import UseCases.UserManager;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class main {
 

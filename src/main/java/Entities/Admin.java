@@ -1,4 +1,4 @@
-package Users;
+package Entities;
 
 public class Admin extends User{
 

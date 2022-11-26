@@ -1,8 +1,8 @@
-package GUI;
+package UIController;
 
-import Database.CourseManager;
-import Database.UserManager;
-import useCases.RegisterManager;
+import UseCases.CourseManager;
+import UseCases.UserManager;
+import UseCases.RegisterManager;
 
 import java.io.IOException;
 

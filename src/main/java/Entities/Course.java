@@ -1,10 +1,8 @@
-package Sessions;
+package Entities;
 
-import Users.Student;
+import Entities.Student;
 
-import java.sql.Time;
 import java.util.*;
-import java.time.*;
 
 public class Course{
     private String course_code;

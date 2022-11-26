@@ -1,6 +1,5 @@
 package tutorial;
-
-import Calendar.CalendarInterpret;
+import UseCases.CalendarInterpret;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

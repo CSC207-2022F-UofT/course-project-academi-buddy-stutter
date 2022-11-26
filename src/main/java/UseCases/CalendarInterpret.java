@@ -1,4 +1,4 @@
-package Calendar;
+package UseCases;
 
 import biweekly.Biweekly;
 import biweekly.ICalendar;

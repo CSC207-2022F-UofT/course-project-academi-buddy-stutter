@@ -97,7 +97,6 @@ public class UserManager {
         String info = (String) userData.get("student info");
         try{
             if(type.equals("student")){
-                System.out.println("reached"+userID);
                 Student retrievedUser = new Student(userID, uPass, fullName, info);
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");

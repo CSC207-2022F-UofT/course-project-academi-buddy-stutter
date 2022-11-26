@@ -1,5 +1,5 @@
 package tutorial;
-import UseCases.CalendarInterpret;
+import UseCases.CalendarInterpreter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ class CalendarInterpretTest {
             }
 
 
-            CalendarInterpret ci = new CalendarInterpret();
+            CalendarInterpreter ci = new CalendarInterpreter();
             Assertions.assertEquals("Team Meeting", ci.getSummary(ex_file));
 
 

@@ -31,9 +31,11 @@ public class LoginFrame extends JFrame implements ActionListener {
     JPasswordField passwordText = new JPasswordField();
 
     LoginUIControl loginUIControl;
-    UIOperator uiOperator = new UIOperator();
+    UIController uiController;
 
-    public LoginFrame(LoginUIControl loginUIControl){
+
+    public LoginFrame(UIController uiController, LoginUIControl loginUIControl){
+        this.uiController = uiController;
         this.loginUIControl = loginUIControl;
 
         this.setTitle("LoginManager Frame"); // sets frame's title
@@ -93,7 +95,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
                 if(this.loginUIControl.attemptLogin(id, password)){
                     this.dispose();
-                    this.uiOperator.toHome(this.loginUIControl);
+                    this.uiController.toHome(this.loginUIControl);
                 }
 
             } catch (IOException ex) {
@@ -103,7 +105,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         if (e.getSource() == registerBTN){
             this.dispose();
-            this.uiOperator.toRegister(this.loginUIControl);
+            this.uiController.toRegister(this.loginUIControl);
         }
 
 

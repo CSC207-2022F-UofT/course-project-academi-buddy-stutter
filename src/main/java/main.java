@@ -53,8 +53,7 @@ public class main {
 
         // intialize UI Controller
         UIController uiController = new UIController(null, cb, ub);
-        UIOperator uiOperator = new UIOperator();
-        uiOperator.toLogin();
+        uiController.toLogin();
 
 
 

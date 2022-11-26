@@ -25,9 +25,10 @@ public class RegisterFrame extends JFrame implements ActionListener {
     JButton cancelBTN = new JButton("Cancel");
 
     UIController uiController;
-    UIOperator uiOperator = new UIOperator();
-    public RegisterFrame(UIController uiController){
+    RegisterUIControl registerUIControl;
+    public RegisterFrame(UIController uiController, RegisterUIControl registerUIControl){
         this.uiController = uiController;
+        this.registerUIControl = registerUIControl;
 
         // setting up Labels
         regTitleLabel.setBounds(120, 0, 300, 30);
@@ -84,9 +85,9 @@ public class RegisterFrame extends JFrame implements ActionListener {
                 String confirm = new String(confirmText.getPassword());
 
 
-                if(this.uiController.attemptRegister(fullName, id, password, confirm)){
+                if(this.registerUIControl.attemptRegister(fullName, id, password, confirm)){
                     this.dispose();
-                    this.uiOperator.toLogin(this.uiController);
+                    this.uiController.toLogin();
                 }
 
             } catch (IOException ex) {
@@ -96,7 +97,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
 
         if (e.getSource() == cancelBTN){
             this.dispose();
-            this.uiOperator.toLogin(this.uiController);
+            this.uiController.toLogin();
         }
 
     }

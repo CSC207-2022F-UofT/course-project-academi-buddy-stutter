@@ -51,7 +51,7 @@ public class UIController{
 
     public void toLogin(){
         this.loginUIControl = new LoginUIControl(null, cb, ub);
-        LoginFrame loginFrame = new LoginFrame(loginUIControl);
+        LoginFrame loginFrame = new LoginFrame(this, loginUIControl);
         loginUIControl.unloadUser();
     }
 

@@ -13,7 +13,6 @@ public class HomeFrame extends JFrame implements ActionListener {
     JTextArea nameList = new JTextArea();
 
     UIController uiController;
-    UIOperator uiOperator = new UIOperator();
 
     public HomeFrame(UIController uiController){
         this.uiController = uiController;
@@ -57,7 +56,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnBTN){
             this.dispose();
-            this.uiOperator.toLogin(this.uiController);
+            this.uiController.toLogin();
         }
     }
 }

@@ -57,6 +57,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         if (e.getSource() == returnBTN){
             this.dispose();
             LoginFrame loginFrame = new LoginFrame(this.uiController);
+            this.uiController.unloadUser();
         }
     }
 }

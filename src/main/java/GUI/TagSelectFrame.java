@@ -72,7 +72,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         boxList.add(gameCB);
         boxList.add(photoCB);
         for(JCheckBox box: boxList){
-            box.setSelected(uiController.tagSelectUIControl.getStudentTagState(box.getName()));
+            box.setSelected(uiController.getTagSelectUIControl().getStudentTagState(box.getName()));
         }
 
         // labels
@@ -109,7 +109,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
             for (JCheckBox box: boxList){
-                uiController.tagSelectUIControl.updateStudentTag(box.getText(), box.isSelected());
+                uiController.getTagSelectUIControl().updateStudentTag(box.getText(), box.isSelected());
             }
         }
         else if(e.getSource() == backBTN){

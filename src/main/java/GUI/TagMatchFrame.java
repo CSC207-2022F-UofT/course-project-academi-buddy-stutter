@@ -59,8 +59,8 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         //list
         matchedList.setBounds(200, 75, 400, 450);
 
-        uiController.tagMatchUIControl.setSelectedtag((String) tagCheckBox.getSelectedItem());
-        matchedStu = uiController.tagMatchUIControl.getNameList();
+        uiController.getTagMatchUIControl().setSelectedtag((String) tagCheckBox.getSelectedItem());
+        matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
 
         // adds objects to the frame
@@ -84,7 +84,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         if(e.getSource() == profileBTN){
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
-                String selectedID = uiController.tagMatchUIControl.getSelectedIndex(matchedList.getSelectedIndex());
+                String selectedID = uiController.getTagMatchUIControl().getSelectedIndex(matchedList.getSelectedIndex());
                 //TODO: go to profile page
             }
         }
@@ -96,8 +96,8 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        uiController.tagMatchUIControl.setSelectedtag((String) tagCheckBox.getSelectedItem());
-        matchedStu = uiController.tagMatchUIControl.getNameList();
+        uiController.getTagMatchUIControl().setSelectedtag((String) tagCheckBox.getSelectedItem());
+        matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
     }
 }

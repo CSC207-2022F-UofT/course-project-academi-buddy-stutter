@@ -39,29 +39,29 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(800, 600);
+        this.setSize(330, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
 
         // places objects inside frame
         // buttons
-        backBTN.setBounds(650, 530, 100, 20);
+        backBTN.setBounds(170, 150, 100, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        applyBTN.setBounds(350, 350, 100, 20);
+        applyBTN.setBounds(50, 150, 100, 20);
         applyBTN.addActionListener(this);
         applyBTN.setFocusable(false);
 
         //checkbox
-        adventureCB.setBounds(200, 150, 100,50);
-        musicCB.setBounds(200, 200, 100, 50);
-        catCB.setBounds(200, 250, 100, 50);
-        outdoorCB.setBounds(350, 150, 100, 50);
-        bookCB.setBounds(350, 200, 100, 50);
-        movieCB.setBounds(350, 250, 100, 50);
-        beerCB.setBounds(500, 150, 100, 50);
-        gameCB.setBounds(500, 200, 150, 50);
-        photoCB.setBounds(500, 250, 150, 50);
+        adventureCB.setBounds(10, 20, 100,50);
+        musicCB.setBounds(10, 50, 100, 50);
+        catCB.setBounds(10, 80, 100, 50);
+        outdoorCB.setBounds(110, 20, 100, 50);
+        bookCB.setBounds(110, 50, 100, 50);
+        movieCB.setBounds(110, 80, 100, 50);
+        beerCB.setBounds(210, 20, 100, 50);
+        gameCB.setBounds(210, 50, 150, 50);
+        photoCB.setBounds(210, 80, 150, 50);
         boxList.add(adventureCB);
         boxList.add(musicCB);
         boxList.add(catCB);
@@ -76,7 +76,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         }
 
         // labels
-        tagSelectLabel.setBounds(100,100,100,20);
+        tagSelectLabel.setBounds(10,10,100,20);
 
         // textfields
 

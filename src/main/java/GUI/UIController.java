@@ -23,13 +23,12 @@ public class UIController{
     private User self;
     private CourseManager cb;
     private UserManager ub;
-    private RegisterManager registerManager;
     private TagManager tb;
-
     private TagMatchManager tagMatchManager;
     private TagSelectManager tagSelectManager;
 
     protected LoginUIControl loginUIControl;
+    protected RegisterUIControl registerUIControl;
 
     public UIController(User self, CourseManager courseDatabase, UserManager userDatabase, TagManager tb){
         this.self = self;
@@ -40,11 +39,12 @@ public class UIController{
 
         // UseCases
 
-        this.registerManager = new RegisterManager(courseDatabase, userDatabase);
+
         this.tagMatchManager = new TagMatchManager(courseDatabase, userDatabase, tb);
         this.tagSelectManager = new TagSelectManager(courseDatabase, userDatabase, tb);
 
         this.loginUIControl = new LoginUIControl(courseDatabase, userDatabase);
+        this.registerUIControl = new RegisterUIControl(courseDatabase, userDatabase);
 
 
     }
@@ -58,11 +58,6 @@ public class UIController{
     }
 
 
-    public boolean attemptRegister(String fullName, String id, String password, String confirm) throws IOException {
-
-        return registerManager.register(fullName, id, password, confirm);
-
-    }
 
     //TagMatchFrame
 

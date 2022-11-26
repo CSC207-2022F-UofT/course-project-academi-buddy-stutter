@@ -21,30 +21,36 @@ public class UIController{
     //TODO: make UIController as parent class. Create seperate UIControl for each Frame, e.g. LoginUIControl, etc.
 
     private User self;
-    private CourseManager cb;
-    private UserManager ub;
-    private TagManager tb;
+    private CourseManager courseManager;
+    private UserManager userManager;
+    private RegisterManager registerManager;
+    private TagManager tagManager;
+
     private TagMatchManager tagMatchManager;
     private TagSelectManager tagSelectManager;
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
+    protected TagMatchUIControl tagMatchUIControl;
+    protected TagSelectUIControl tagSelectUIControl;
 
-    public UIController(User self, CourseManager courseDatabase, UserManager userDatabase, TagManager tb){
+    public UIController(User self, CourseManager courseManager, UserManager userManager, TagManager tagManager){
         this.self = self;
-        this.cb = courseDatabase;
-        this.ub = userDatabase;
-        this.tb = tb;
+        this.courseManager = courseManager;
+        this.userManager = userManager;
+        this.tagManager = tagManager;
 
 
         // UseCases
 
 
-        this.tagMatchManager = new TagMatchManager(courseDatabase, userDatabase, tb);
-        this.tagSelectManager = new TagSelectManager(courseDatabase, userDatabase, tb);
+        this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
+        this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
 
-        this.loginUIControl = new LoginUIControl(courseDatabase, userDatabase);
-        this.registerUIControl = new RegisterUIControl(courseDatabase, userDatabase);
+        this.loginUIControl = new LoginUIControl(courseManager, userManager);
+        this.registerUIControl = new RegisterUIControl(courseManager, userManager);
+        this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
+        this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
 
 
     }
@@ -53,43 +59,10 @@ public class UIController{
         this.self = this.loginUIControl.getUser();
     }
 
-    public void unloadUser(){
+    public void unloadUser() {
         this.self = null;
     }
 
-
-
-    //TagMatchFrame
-
-    public DefaultListModel<String> getNameList(){
-        List<String> nameList = new ArrayList<>();
-        for(String s: tagMatchManager.getStudentName(self)){
-            nameList.add(s);
-        }
-        DefaultListModel<String> nameModel = new DefaultListModel<>();
-        for (String s: nameList){
-            nameModel.addElement(s);
-        }
-        return nameModel;
-    }
-
-    //TagSelectFrame
-
-    public void setSelectedtag(String selected){
-        tagMatchManager.setSelectedTag(selected);
-    }
-
-    public String getSelectedIndex(int index){
-        return tagMatchManager.getStudentByIndex(index).getUser_id();
-    }
-
-    public boolean getStudentTagState(String tagName){
-        return tagSelectManager.getStudentTagState((Student) self, tagName);
-    }
-
-    public void updateStudentTag(String tagName, boolean selected){
-        tagSelectManager.updateStudentTag((Student) self, tagName, selected);
-    }
 
     public void toLogin(){
         LoginFrame loginFrame = new LoginFrame(this);
@@ -102,6 +75,14 @@ public class UIController{
 
     public void toRegister(){
         RegisterFrame registerFrame = new RegisterFrame(this);
+    }
+
+    public void toTagMatch(){
+        TagMatchFrame tagMatchFrame = new TagMatchFrame(this);
+    }
+
+    public void toTagSelect(){
+        TagSelectFrame tagSelectFrame = new TagSelectFrame(this);
     }
 
 }

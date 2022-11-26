@@ -1,10 +1,8 @@
 package GUI;
 
 import Database.CourseManager;
-import Database.FirebaseCollection;
 import Database.TagManager;
 import Database.UserManager;
-import Users.InterestTag;
 import Users.Student;
 import Users.User;
 import useCases.LoginManager;
@@ -13,8 +11,6 @@ import useCases.TagMatchManager;
 import useCases.TagSelectManager;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +23,13 @@ public class UIController{
     private User self;
     private CourseManager cb;
     private UserManager ub;
-    private LoginManager loginManager;
     private RegisterManager registerManager;
     private TagManager tb;
 
     private TagMatchManager tagMatchManager;
     private TagSelectManager tagSelectManager;
+
+    protected LoginUIControl loginUIControl;
 
     public UIController(User self, CourseManager courseDatabase, UserManager userDatabase, TagManager tb){
         this.self = self;
@@ -42,31 +39,24 @@ public class UIController{
 
 
         // UseCases
-        this.loginManager = new LoginManager(courseDatabase, userDatabase);
+
         this.registerManager = new RegisterManager(courseDatabase, userDatabase);
         this.tagMatchManager = new TagMatchManager(courseDatabase, userDatabase, tb);
         this.tagSelectManager = new TagSelectManager(courseDatabase, userDatabase, tb);
 
+        this.loginUIControl = new LoginUIControl(courseDatabase, userDatabase);
+
+
     }
 
-    private void loadUser(User user){
-        this.self = user;
+    public void updateUser(){
+        this.self = this.loginUIControl.getUser();
     }
 
     public void unloadUser(){
         this.self = null;
     }
 
-
-    public boolean attemptLogin(String id, String password) throws IOException {
-
-        boolean loggedIn =  loginManager.login(id, password);
-        if(loggedIn){
-            loadUser(loginManager.getActiveUser());
-        }
-
-        return loggedIn;
-    }
 
     public boolean attemptRegister(String fullName, String id, String password, String confirm) throws IOException {
 

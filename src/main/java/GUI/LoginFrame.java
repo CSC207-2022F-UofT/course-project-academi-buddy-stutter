@@ -11,7 +11,7 @@ There are two buttons at the bottom, one called "LoginManager" and the other cal
 user to the home page once the user has successfully registered or login (correct user ID and password are entered).
  */
 
-import com.sun.tools.jconsole.JConsoleContext;
+import UIController.UIController;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,4 @@
-package useCases;
-
-import Database.CourseManager;
-import Database.UserManager;
+package UseCases;
 
 public class UseCase {
 

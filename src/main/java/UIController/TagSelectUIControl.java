@@ -1,11 +1,11 @@
-package GUI;
+package UIController;
 
-import Database.CourseManager;
-import Database.TagManager;
-import Database.UserManager;
-import Users.Student;
-import Users.User;
-import useCases.TagSelectManager;
+import UseCases.CourseManager;
+import UseCases.TagManager;
+import UseCases.UserManager;
+import Entities.Student;
+import Entities.User;
+import UseCases.TagSelectManager;
 
 public class TagSelectUIControl {
     private TagSelectManager tagSelectManager;

@@ -1,8 +1,8 @@
-package Database;
+package UseCases;
 
-import Sessions.Course;
-import Users.InterestTag;
-import Users.Student;
+import Database.DatabaseInterface;
+import Entities.InterestTag;
+import Entities.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;

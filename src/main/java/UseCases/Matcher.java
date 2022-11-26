@@ -1,7 +1,7 @@
-package Database;
+package UseCases;
 
-import Sessions.Course;
-import Users.Student;
+import Entities.Course;
+import Entities.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;

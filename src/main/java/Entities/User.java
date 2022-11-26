@@ -1,7 +1,4 @@
-package Users;
-import Sessions.*;
-import java.sql.Array;
-import java.util.*;
+package Entities;
 
 public class User {
     String user_id;

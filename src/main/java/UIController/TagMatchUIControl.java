@@ -1,10 +1,10 @@
-package GUI;
+package UIController;
 
-import Database.CourseManager;
-import Database.TagManager;
-import Database.UserManager;
-import Users.User;
-import useCases.TagMatchManager;
+import UseCases.CourseManager;
+import UseCases.TagManager;
+import UseCases.UserManager;
+import Entities.User;
+import UseCases.TagMatchManager;
 
 import javax.swing.*;
 import java.util.ArrayList;

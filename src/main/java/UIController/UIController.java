@@ -1,19 +1,13 @@
-package GUI;
+package UIController;
 
-import Database.CourseManager;
-import Database.TagManager;
-import Database.UserManager;
-import Users.Student;
-import Users.User;
-import useCases.LoginManager;
-import useCases.RegisterManager;
-import useCases.TagMatchManager;
-import useCases.TagSelectManager;
-
-import javax.swing.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import UseCases.CourseManager;
+import UseCases.TagManager;
+import UseCases.UserManager;
+import Entities.User;
+import GUI.*;
+import UseCases.RegisterManager;
+import UseCases.TagMatchManager;
+import UseCases.TagSelectManager;
 
 
 public class UIController{

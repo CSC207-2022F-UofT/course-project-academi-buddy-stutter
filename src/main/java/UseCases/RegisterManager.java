@@ -1,9 +1,6 @@
-package useCases;
+package UseCases;
 
-import Users.Student;
-
-import Database.CourseManager;
-import Database.UserManager;
+import Entities.Student;
 
 import java.io.IOException;
 

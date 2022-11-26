@@ -15,7 +15,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     JLabel tagSelectLabel = new JLabel("Select Tag:");
     JButton backBTN = new JButton("Back");
 
-    JButton profileBTN = new JButton("Go to Profile");
+    JButton profileBTN = new JButton("Profile");
     String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
     JComboBox<String> tagCheckBox = new JComboBox<>(tagType);
 
@@ -32,32 +32,32 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(800, 600);
+        this.setSize(410, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
 
         // places objects inside frame
         // buttons
-        backBTN.setBounds(650, 530, 100, 20);
+        backBTN.setBounds(350, 160, 50, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        profileBTN.setBounds(625, 75, 150, 20);
+        profileBTN.setBounds(350, 130, 50, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
 
         // labels
-        tagSelectLabel.setBounds(20,30,100,20);
-        listLabel.setBounds(20,70,150,20);
+        tagSelectLabel.setBounds(10,10,100,20);
+        listLabel.setBounds(10,35,120,20);
 
         // textfields
 
         // combobox
-        tagCheckBox.setBounds(110, 30, 150, 25); // set combobox position
+        tagCheckBox.setBounds(110, 10, 120, 25); // set combobox position
         tagCheckBox.setEditable(false);
         tagCheckBox.addItemListener(this);
 
         //list
-        matchedList.setBounds(200, 75, 400, 450);
+        matchedList.setBounds(135, 35, 200, 150);
 
         uiController.getTagMatchUIControl().setSelectedtag((String) tagCheckBox.getSelectedItem());
         matchedStu = uiController.getTagMatchUIControl().getNameList();

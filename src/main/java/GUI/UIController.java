@@ -8,6 +8,7 @@ import Users.InterestTag;
 import Users.Student;
 import Users.User;
 import useCases.LoginManager;
+import useCases.RegisterManager;
 import useCases.TagMatchManager;
 import useCases.TagSelectManager;
 
@@ -27,6 +28,7 @@ public class UIController{
     private CourseManager cb;
     private UserManager ub;
     private LoginManager loginManager;
+    private RegisterManager registerManager;
     private TagManager tb;
 
     private TagMatchManager tagMatchManager;
@@ -41,14 +43,34 @@ public class UIController{
 
         // UseCases
         this.loginManager = new LoginManager(courseDatabase, userDatabase);
+        this.registerManager = new RegisterManager(courseDatabase, userDatabase);
         this.tagMatchManager = new TagMatchManager(courseDatabase, userDatabase, tb);
         this.tagSelectManager = new TagSelectManager(courseDatabase, userDatabase, tb);
 
     }
 
+    private void loadUser(User user){
+        this.self = user;
+    }
+
+    public void unloadUser(){
+        this.self = null;
+    }
+
+
     public boolean attemptLogin(String id, String password) throws IOException {
 
-        return loginManager.login(id, password);
+        boolean loggedIn =  loginManager.login(id, password);
+        if(loggedIn){
+            loadUser(loginManager.getActiveUser());
+        }
+
+        return loggedIn;
+    }
+
+    public boolean attemptRegister(String fullName, String id, String password, String confirm) throws IOException {
+
+        return registerManager.register(fullName, id, password, confirm);
 
     }
 

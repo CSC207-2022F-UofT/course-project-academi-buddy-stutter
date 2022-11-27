@@ -1,5 +1,11 @@
 import Database.*;
 import Entities.Course;
+import Entities.Student;
+import GUI.LabelSelectFrame;
+import GUI.ProfileFrame;
+import GUI.TagMatchFrame;
+import GUI.TagSelectFrame;
+import UIController.UIController;
 import UseCases.CalendarInterpreter;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
@@ -33,18 +39,11 @@ public class main {
         CourseDataManager cb = new CourseDataManager(cbc, ub);
         TagDataManager tb = new TagDataManager(tbc, ub);
 
-        CalendarAPI capi = new CalendarAPI();
-        CalendarInterpreter ci = new CalendarInterpreter(capi);
-        ArrayList<Course> courses = ci.getCourses(ci.readCalendar("TestCalendar"));
-        for(int i = 0; i < courses.size(); i++){
-            System.out.println(courses.get(i).getCourseCode());
-            System.out.println(courses.get(i).getCourseName());
-            System.out.println(courses.get(i).getCourseType());
-            System.out.println(courses.get(i).getYear());
-            System.out.println(courses.get(i).getSessionNumber());
-            System.out.println(courses.get(i).getDayOfWeek());
-        }
 
+        Student student = new Student("67890", "pass", "John Doe3", "A test subject");
+        UIController uic = new UIController(student, cb, ub, tb);
+        //TagSelectFrame tsf = new TagSelectFrame(uic);
+        LabelSelectFrame lbs = new LabelSelectFrame(uic);
     }
 
 }

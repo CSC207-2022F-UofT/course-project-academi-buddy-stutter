@@ -25,6 +25,7 @@ public class UIController{
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
+    private LabelSelectUIControl labelSelectUIControl;
 
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
@@ -41,6 +42,8 @@ public class UIController{
     public TagSelectUIControl getTagSelectUIControl() {
         return tagSelectUIControl;
     }
+
+    public LabelSelectUIControl getLabelSelectUIControl() {return labelSelectUIControl;}
 
     protected TagMatchUIControl tagMatchUIControl;
     protected TagSelectUIControl tagSelectUIControl;
@@ -62,6 +65,7 @@ public class UIController{
         this.registerUIControl = new RegisterUIControl(courseManager, userManager);
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
+        this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
 
 
     }

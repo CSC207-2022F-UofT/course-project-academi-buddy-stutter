@@ -72,7 +72,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         boxList.add(gameCB);
         boxList.add(photoCB);
         for(JCheckBox box: boxList){
-            box.setSelected(uiController.getTagSelectUIControl().getStudentTagState(box.getName()));
+            box.setSelected(uiController.getTagSelectUIControl().getStudentTagState(box.getText()));
         }
 
         // labels

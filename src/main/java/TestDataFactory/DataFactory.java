@@ -1,3 +1,5 @@
+package TestDataFactory;
+
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;

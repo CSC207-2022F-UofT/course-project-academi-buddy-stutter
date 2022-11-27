@@ -1,3 +1,5 @@
+package TestDataFactory;
+
 import Entities.Course;
 import Entities.Student;
 import UseCases.CourseDataManager;
@@ -5,7 +7,6 @@ import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class CourseDataFactory extends DataFactory{
     public CourseDataFactory(CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){

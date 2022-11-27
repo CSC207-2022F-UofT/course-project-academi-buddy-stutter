@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class UserManager {
+public class UserDataManager {
 
     private DatabaseInterface fi;
 
-    public UserManager(DatabaseInterface ub){
+    public UserDataManager(DatabaseInterface ub){
         this.fi = ub;
         fi.initialize("users");
     }
@@ -104,7 +104,7 @@ public class UserManager {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<Course> courseList = new ArrayList<>();
                 for(String courseCode: courseCodes){
-                    CourseManager courseDB = new CourseManager(fi, this);
+                    CourseDataManager courseDB = new CourseDataManager(fi, this);
                     courseList.add(courseDB.getCourse(courseCode));
                 }
                 retrievedUser.setEnrolled_courses(courseList);

@@ -2,10 +2,10 @@ package UseCases;
 
 public class UseCase {
 
-    public CourseManager cb;
-    public UserManager ub;
+    public CourseDataManager cb;
+    public UserDataManager ub;
 
-    public UseCase(CourseManager courseDatabase, UserManager userDatabase){
+    public UseCase(CourseDataManager courseDatabase, UserDataManager userDatabase){
         this.cb = courseDatabase;
         this.ub = userDatabase;
     }

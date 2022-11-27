@@ -1,12 +1,9 @@
 import Database.*;
 import Entities.Course;
-import GUI.TagMatchFrame;
-import UIController.UIController;
-import Entities.Student;
 import UseCases.CalendarInterpreter;
-import UseCases.CourseManager;
-import UseCases.TagManager;
-import UseCases.UserManager;
+import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
+import UseCases.UserDataManager;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -32,9 +29,9 @@ public class main {
         FirebaseCollection cbc = new FirebaseCollection();
         FirebaseCollection ubc = new FirebaseCollection();
         FirebaseCollection tbc = new FirebaseCollection();
-        UserManager ub = new UserManager(ubc);
-        CourseManager cb = new CourseManager(cbc, ub);
-        TagManager tb = new TagManager(tbc, ub);
+        UserDataManager ub = new UserDataManager(ubc);
+        CourseDataManager cb = new CourseDataManager(cbc, ub);
+        TagDataManager tb = new TagDataManager(tbc, ub);
 
         CalendarAPI capi = new CalendarAPI();
         CalendarInterpreter ci = new CalendarInterpreter(capi);

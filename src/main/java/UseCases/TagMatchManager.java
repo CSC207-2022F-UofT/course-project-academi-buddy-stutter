@@ -11,10 +11,10 @@ import java.util.List;
 public class TagMatchManager extends UseCase{
 
     private InterestTag selectedTag;
-    private TagManager tagManager;
+    private TagDataManager tagManager;
 
 
-    public TagMatchManager(CourseManager courseDatabase, UserManager userDatabase, TagManager tagManager) {
+    public TagMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
         super(courseDatabase, userDatabase);
         this.tagManager = tagManager;
     }

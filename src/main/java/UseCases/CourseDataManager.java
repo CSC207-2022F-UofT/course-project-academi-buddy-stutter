@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class CourseManager {
+public class CourseDataManager {
     private DatabaseInterface fi;
-    private UserManager ud;
-    public CourseManager(DatabaseInterface cb, UserManager ud){
+    private UserDataManager ud;
+    public CourseDataManager(DatabaseInterface cb, UserDataManager ud){
         this.fi = cb;
         this.fi.initialize("courses");
         this.ud = ud;

@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class TagManager {
+public class TagDataManager {
     private DatabaseInterface fi;
-    private UserManager ud;
+    private UserDataManager ud;
 
-    public TagManager(DatabaseInterface tb, UserManager ud){
+    public TagDataManager(DatabaseInterface tb, UserDataManager ud){
         this.fi = tb;
         this.fi.initialize("tags");
         this.ud = ud;

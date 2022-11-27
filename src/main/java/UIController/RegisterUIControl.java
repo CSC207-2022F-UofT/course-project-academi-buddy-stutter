@@ -1,7 +1,7 @@
 package UIController;
 
-import UseCases.CourseManager;
-import UseCases.UserManager;
+import UseCases.CourseDataManager;
+import UseCases.UserDataManager;
 import UseCases.RegisterManager;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.io.IOException;
 public class RegisterUIControl {
     private RegisterManager registerManager;
 
-    public RegisterUIControl(CourseManager courseDatabase, UserManager userDatabase) {
+    public RegisterUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase) {
         this.registerManager = new RegisterManager(courseDatabase, userDatabase);
     }
 

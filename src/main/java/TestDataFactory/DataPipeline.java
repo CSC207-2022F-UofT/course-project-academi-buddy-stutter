@@ -1,3 +1,5 @@
+package TestDataFactory;
+
 import Entities.Course;
 import Entities.InterestTag;
 import Entities.Label;
@@ -6,7 +8,6 @@ import External.FirebaseAPI;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
-import clojure.lang.IFn;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;

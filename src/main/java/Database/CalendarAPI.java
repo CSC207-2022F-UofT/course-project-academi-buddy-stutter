@@ -6,7 +6,7 @@ import biweekly.component.VEvent;
 import biweekly.property.Summary;
 import java.util.ArrayList;
 
-public class CalendarAPI implements CalenderInterface{
+public class CalendarAPI implements CalendarInterface {
 
     public int getLength(String calendar_raw){
         ICalendar ical = Biweekly.parse(calendar_raw).first();

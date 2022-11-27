@@ -5,11 +5,11 @@ import Entities.User;
 import java.io.IOException;
 
 
-public class LoginManager extends UseCase{
+public class LoginUIManager extends UseCase{
 
     User activeUser = null;
 
-    public LoginManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
+    public LoginUIManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
         super(courseDatabase, userDatabase);
     }
 

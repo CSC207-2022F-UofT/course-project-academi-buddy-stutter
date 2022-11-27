@@ -1,19 +1,19 @@
 package UIController;
 
 import UseCases.CourseDataManager;
+import UseCases.LoginUIManager;
 import UseCases.UserDataManager;
 import Entities.User;
-import UseCases.LoginManager;
 
 import java.io.IOException;
 
 public class LoginUIControl{
 
-    private LoginManager loginManager;
+    private LoginUIManager loginManager;
     public User self;
     public LoginUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase){
 
-        this.loginManager = new LoginManager(courseDatabase, userDatabase);
+        this.loginManager = new LoginUIManager(courseDatabase, userDatabase);
     }
 
     public boolean attemptLogin(String id, String password) throws IOException {

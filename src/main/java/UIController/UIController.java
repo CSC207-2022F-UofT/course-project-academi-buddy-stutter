@@ -5,9 +5,9 @@ import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import Entities.User;
 import GUI.*;
-import UseCases.RegisterManager;
-import UseCases.TagMatchManager;
-import UseCases.TagSelectManager;
+import UseCases.RegisterUIManager;
+import UseCases.TagMatchUIManager;
+import UseCases.TagSelectUIManager;
 
 
 public class UIController{
@@ -17,11 +17,11 @@ public class UIController{
     private User self;
     private CourseDataManager courseManager;
     private UserDataManager userManager;
-    private RegisterManager registerManager;
+    private RegisterUIManager registerManager;
     private TagDataManager tagManager;
 
-    private TagMatchManager tagMatchManager;
-    private TagSelectManager tagSelectManager;
+    private TagMatchUIManager tagMatchManager;
+    private TagSelectUIManager tagSelectManager;
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
@@ -55,8 +55,8 @@ public class UIController{
         // UseCases
 
 
-        this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
-        this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
+        this.tagMatchManager = new TagMatchUIManager(courseManager, userManager, tagManager);
+        this.tagSelectManager = new TagSelectUIManager(courseManager, userManager, tagManager);
 
         this.loginUIControl = new LoginUIControl(courseManager, userManager);
         this.registerUIControl = new RegisterUIControl(courseManager, userManager);

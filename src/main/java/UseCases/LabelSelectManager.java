@@ -13,6 +13,7 @@ public class LabelSelectManager extends UseCase{
 
     public boolean getStudentLabelState(Student self, String labelName){
         Label label = new Label(labelName);
+        System.out.println(self.getLabels());
         return (self.isLabelSelected(label));
     }
 

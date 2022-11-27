@@ -5,13 +5,13 @@ import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import Entities.Student;
 import Entities.User;
-import UseCases.TagSelectManager;
+import UseCases.TagSelectUIManager;
 
 public class TagSelectUIControl {
-    private TagSelectManager tagSelectManager;
+    private TagSelectUIManager tagSelectManager;
     private User self;
     public TagSelectUIControl(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
-        this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
+        this.tagSelectManager = new TagSelectUIManager(courseManager, userManager, tagManager);
         this.self = self;
     }
 

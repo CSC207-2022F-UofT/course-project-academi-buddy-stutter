@@ -8,13 +8,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagMatchManager extends UseCase{
+public class TagMatchUIManager extends UseCase{
 
     private InterestTag selectedTag;
     private TagDataManager tagManager;
 
 
-    public TagMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
+    public TagMatchUIManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
         super(courseDatabase, userDatabase);
         this.tagManager = tagManager;
     }

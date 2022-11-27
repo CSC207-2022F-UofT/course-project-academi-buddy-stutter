@@ -33,6 +33,8 @@ public class UIController{
     private ProfileUIControl profileUIControl;
     private ProfileDisplayUIControl profileDisplayUIControl;
 
+    private HomeUIControl homeUIControl;
+
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
     }
@@ -55,8 +57,12 @@ public class UIController{
 
     public ProfileDisplayUIControl getProfileDisplayUIControl(){return profileDisplayUIControl;}
 
+    public HomeUIControl getHomeUIControl(){return homeUIControl;}
+
     protected TagMatchUIControl tagMatchUIControl;
     protected TagSelectUIControl tagSelectUIControl;
+
+
 
     public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = user;
@@ -72,6 +78,7 @@ public class UIController{
         this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
         this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
 
+
         this.loginUIControl = new LoginUIControl(courseManager, userManager);
         this.registerUIControl = new RegisterUIControl(courseManager, userManager);
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
@@ -79,6 +86,7 @@ public class UIController{
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
         this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
         this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
+        this.homeUIControl = new HomeUIControl(courseManager,userManager);
 
 
     }

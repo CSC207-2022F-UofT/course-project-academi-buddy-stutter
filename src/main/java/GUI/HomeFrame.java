@@ -77,23 +77,9 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Select File
         if (e.getSource() == uploadBTN) {
-            JFileChooser fileChooser = new JFileChooser();
-
-            //ics calender filter
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("coursesCalendar", "ics");
-            fileChooser.setFileFilter(filter);
-
-            //current file path
-            File currentFile = new File("coursesCalendar.ics");
-
-            //selected file path
-            int response = fileChooser.showSaveDialog(null);
-            if (response == JFileChooser.APPROVE_OPTION) {
-                File filePath = new File(fileChooser.getSelectedFile().getAbsolutePath());
-
-                //copying selected file to current file path
+            if (uiController.getHomeUIControl().upload()) {
                 try {
-                    Files.copy(filePath.toPath(), currentFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    uiController.getHomeUIControl().copyFileToPath();
                     completedLabel.setForeground(Color.green);
                     completedLabel.setText("Uploaded!");
                     this.add(findStudyBuddyBTN);

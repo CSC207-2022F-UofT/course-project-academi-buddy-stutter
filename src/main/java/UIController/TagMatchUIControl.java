@@ -4,20 +4,20 @@ import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import Entities.User;
-import UseCases.TagMatchUIManager;
+import UseCases.TagMatchManager;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TagMatchUIControl{
-    private TagMatchUIManager tagMatchManager;
+    private TagMatchManager tagMatchManager;
     private User self;
     private TagDataManager tagManager;
 
     public TagMatchUIControl(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = self;
-        this.tagMatchManager = new TagMatchUIManager(courseManager, userManager, tagManager);
+        this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
     }
 
     public DefaultListModel<String> getNameList(){

@@ -1,17 +1,12 @@
 package GUI;
-import Users.Student;
-import com.sun.tools.jconsole.JConsoleContext;
-import useCases.TagMatchManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 
 public class TagMatchFrame extends JFrame implements ActionListener, ItemListener {
 
@@ -22,7 +17,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     JButton profileBTN = new JButton("Profile");
     String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
-    JComboBox<String> tagCheckBox = new JComboBox<>(tagType);
+    JComboBox<String> tagComboBox = new JComboBox<>(tagType);
 
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
     JList<String> matchedList = new JList<>(matchedStu);
@@ -43,12 +38,13 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
         // places objects inside frame
         // buttons
-        backBTN.setBounds(350, 160, 50, 20);
+        backBTN.setBounds(350, 165, 50, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        profileBTN.setBounds(350, 130, 50, 20);
+        profileBTN.setBounds(350, 35, 50, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
+        profileBTN.setEnabled(false);
 
         // labels
         tagSelectLabel.setBounds(10,10,100,20);
@@ -57,16 +53,25 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         // textfields
 
         // combobox
-        tagCheckBox.setBounds(110, 10, 120, 25); // set combobox position
-        tagCheckBox.setEditable(false);
-        tagCheckBox.addItemListener(this);
+        tagComboBox.setBounds(130, 10, 120, 25); // set combobox position
+        tagComboBox.setEditable(false);
+        tagComboBox.addItemListener(this);
 
         //list
         matchedList.setBounds(135, 35, 200, 150);
 
-        uiController.setSelectedtag((String) tagCheckBox.getSelectedItem());
+        uiController.setSelectedtag((String) tagComboBox.getSelectedItem());
         matchedStu = uiController.getNameList();
         matchedList.setModel(matchedStu);
+        matchedList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(matchedList.isSelectionEmpty()){
+                    profileBTN.setEnabled(false);
+                }
+                profileBTN.setEnabled(true);
+            }
+        });
 
         // adds objects to the frame
         this.add(backBTN);
@@ -77,7 +82,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
 
         this.add(tagSelectLabel);
-        this.add(tagCheckBox);
+        this.add(tagComboBox);
         this.add(matchedList);
 
         this.setVisible(true); // set frame to visible
@@ -101,8 +106,9 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        uiController.setSelectedtag((String) tagCheckBox.getSelectedItem());
+        uiController.setSelectedtag((String) tagComboBox.getSelectedItem());
         matchedStu = uiController.getNameList();
         matchedList.setModel(matchedStu);
+        profileBTN.setEnabled(false);
     }
 }

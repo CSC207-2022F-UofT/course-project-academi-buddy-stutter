@@ -1,6 +1,6 @@
 package UseCases;
 
-import Database.CalenderInterface;
+import Database.CalendarInterface;
 import Entities.Course;
 
 import java.io.File;
@@ -18,9 +18,9 @@ Download calendar from acorn */
     param: file_name as String
     return: calendar_raw as String
     */
-    CalenderInterface ci;
+    CalendarInterface ci;
 
-    public CalendarInterpreter(CalenderInterface ci){
+    public CalendarInterpreter(CalendarInterface ci){
         this.ci = ci;
     }
     public String readCalendar(String file_name) {

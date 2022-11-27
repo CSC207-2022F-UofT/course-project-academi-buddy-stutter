@@ -41,7 +41,7 @@ public class main {
         //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
         //TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
-        ProfileFrame pf = new ProfileFrame(uiController);
+        HomeFrame pf = new HomeFrame(uiController);
 
     }
 

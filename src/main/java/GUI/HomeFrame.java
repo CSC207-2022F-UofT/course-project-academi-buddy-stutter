@@ -16,12 +16,12 @@ public class HomeFrame extends JFrame implements ActionListener {
     JLabel statusLabel = new JLabel("Status:");
     JLabel completedLabel = new JLabel("");
     JButton logoutBTN = new JButton("LOG OUT");
-    JButton changePasswordBTN = new JButton("Change Password");
+    //JButton changePasswordBTN = new JButton("Change Password");
     JButton findStudyBuddyBTN = new JButton("Find Study Buddy");
-    JButton findInsBuddyBTN = new JButton("Find Interest Buddy");
-    JButton statusBTN = new JButton("Status Labels");
-    JButton insTagBTN = new JButton("Interest Tags");
-    JButton profileBTN = new JButton("Profile");
+    //JButton findInsBuddyBTN = new JButton("Find Interest Buddy");
+    //JButton statusBTN = new JButton("Status Labels");
+    //JButton insTagBTN = new JButton("Interest Tags");
+    //JButton profileBTN = new JButton("Profile");
     JButton uploadBTN = new JButton("Upload Courses");
 
     UIController uiController;
@@ -40,15 +40,15 @@ public class HomeFrame extends JFrame implements ActionListener {
         // setting up buttons
         logoutBTN.setBounds(250, 170, 80, 20);
         logoutBTN.addActionListener(this);
-        changePasswordBTN.setBounds(200, 50, 130, 20);
-        changePasswordBTN.addActionListener(this);
+        //changePasswordBTN.setBounds(200, 50, 130, 20);
+        //changePasswordBTN.addActionListener(this);
         uploadBTN.setBounds(80, 60, 110, 20);
         uploadBTN.addActionListener(this);
         findStudyBuddyBTN.setBounds(100, 120, 130, 20);
-        findInsBuddyBTN.setBounds(180, 90, 150, 20);
-        statusBTN.setBounds(10, 115, 130, 20);
-        insTagBTN.setBounds(180, 115, 150, 20);
-        profileBTN.setBounds(280, 170, 50, 20);
+        //findInsBuddyBTN.setBounds(180, 90, 150, 20);
+        //statusBTN.setBounds(10, 115, 130, 20);
+        //insTagBTN.setBounds(180, 115, 150, 20);
+        //profileBTN.setBounds(280, 170, 50, 20);
 
 
         // adding elements to frame

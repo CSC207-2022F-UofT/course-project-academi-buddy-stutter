@@ -1,7 +1,7 @@
 package GUI;
-import Users.Student;
+import Entities.Student;
 import com.sun.tools.jconsole.JConsoleContext;
-import useCases.TagMatchManager;
+import UseCases.TagMatchManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import UIController.UIController;
 
 public class TagMatchFrame extends JFrame implements ActionListener, ItemListener {
 
@@ -65,9 +66,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         //list
         matchedList.setBounds(135, 35, 200, 150);
 
-        uiController.setSelectedtag((String) tagComboBox.getSelectedItem());
-        matchedStu = uiController.getNameList();
-        uiController.getTagMatchUIControl().setSelectedtag((String) tagCheckBox.getSelectedItem());
+        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
         matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
         matchedList.addListSelectionListener(new ListSelectionListener() {
@@ -113,8 +112,8 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        uiController.setSelectedtag((String) tagComboBox.getSelectedItem());
-        matchedStu = uiController.getNameList();
+        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
+        matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
         profileBTN.setEnabled(false);
     }

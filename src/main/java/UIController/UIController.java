@@ -1,5 +1,6 @@
 package UIController;
 
+import Entities.Student;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
@@ -8,6 +9,8 @@ import GUI.*;
 import UseCases.RegisterManager;
 import UseCases.TagMatchManager;
 import UseCases.TagSelectManager;
+
+import java.io.IOException;
 
 
 public class UIController{
@@ -48,11 +51,12 @@ public class UIController{
     protected TagMatchUIControl tagMatchUIControl;
     protected TagSelectUIControl tagSelectUIControl;
 
-    public UIController(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
-        this.self = self;
+    public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
+        this.self = user;
         this.courseManager = courseManager;
         this.userManager = userManager;
         this.tagManager = tagManager;
+        updateSelf();
 
 
         // UseCases
@@ -69,7 +73,13 @@ public class UIController{
 
 
     }
-
+    public void updateSelf(){
+        try {
+            this.self = userManager.getUserByID(self.getUserID());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void updateUser(){
         this.self = this.loginUIControl.getUser();
     }

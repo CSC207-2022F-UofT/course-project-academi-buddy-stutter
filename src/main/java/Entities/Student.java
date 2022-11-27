@@ -90,7 +90,7 @@ public class Student extends User{
         for(Label l: labels){
             labelNames.add(l.getName());
         }
-        return labels.contains(label);
+        return labelNames.contains(label.getName());
     }
     public boolean isTagSelected(InterestTag tag){
         ArrayList<String> tagNames = new ArrayList<>();

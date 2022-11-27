@@ -1,9 +1,12 @@
 package GUI;
-import Users.Student;
+import UIController.UIController;
+import Entities.Student;
 import com.sun.tools.jconsole.JConsoleContext;
-import useCases.TagMatchManager;
+import UseCases.TagMatchManager;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
@@ -14,7 +17,7 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TagSelectFrame extends JFrame implements ActionListener{
+public class TagSelectFrame extends JFrame implements ActionListener, ChangeListener {
 
 
     JLabel tagSelectLabel = new JLabel("Select Tag:");
@@ -37,8 +40,7 @@ public class TagSelectFrame extends JFrame implements ActionListener{
     String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
 
     UIController uiController;
-    boolean initialized = false;
-    ArrayList<Boolean> initialState = new ArrayList<Boolean>();
+    private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
 
     public TagSelectFrame(UIController uiController){
         this.uiController = uiController;
@@ -81,9 +83,8 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         boxList.add(gameCB);
         boxList.add(photoCB);
         for(JCheckBox box: boxList){
-            box.setSelected(uiController.getStudentTagState(box.getText()));
-            initialState.add(uiController.getStudentTagState(box.getText()));
             box.setSelected(uiController.getTagSelectUIControl().getStudentTagState(box.getText()));
+            initialState.add(uiController.getTagSelectUIControl().getStudentTagState(box.getText()));
         }
         adventureCB.addChangeListener(this);
         musicCB.addChangeListener(this);
@@ -128,9 +129,13 @@ public class TagSelectFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
+            ArrayList<Boolean> newState = new ArrayList<>();
             for (JCheckBox box: boxList){
                 uiController.getTagSelectUIControl().updateStudentTag(box.getText(), box.isSelected());
+                newState.add(box.isSelected());
             }
+            initialState = newState;
+            applyBTN.setEnabled(false);
         }
         else if(e.getSource() == backBTN){
             //TODO: go to home page
@@ -150,4 +155,5 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         applyBTN.setEnabled(enable);
 
     }
+
 }

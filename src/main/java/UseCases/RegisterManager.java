@@ -4,9 +4,9 @@ import Entities.Student;
 
 import java.io.IOException;
 
-public class RegisterUIManager extends UseCase{
+public class RegisterManager extends UseCase{
 
-    public RegisterUIManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
+    public RegisterManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
         super(courseDatabase, userDatabase);
     }
 

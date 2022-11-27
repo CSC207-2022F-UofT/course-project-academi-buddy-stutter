@@ -5,10 +5,10 @@ import Entities.Student;
 
 import java.io.IOException;
 
-public class TagSelectUIManager extends UseCase {
+public class TagSelectManager extends UseCase {
     private TagDataManager tb;
 
-    public TagSelectUIManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
+    public TagSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
         super(courseDatabase, userDatabase);
         this.tb= tagManager;
     }

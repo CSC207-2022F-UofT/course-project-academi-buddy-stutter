@@ -22,6 +22,9 @@ public class Student extends User{
 
     public ArrayList<String> getEnrolledCourseCodes() {
         ArrayList<String> courseCodes = new ArrayList<>();
+        if(enrolled_courses.contains(null)){
+            return new ArrayList<>();
+        }
         for(int i = 0; i < enrolled_courses.size(); i++){
             courseCodes.add(enrolled_courses.get(i).getCourseCode());
         }
@@ -38,18 +41,30 @@ public class Student extends User{
     }
 
     public void updateStudentTOI(InterestTag tag, boolean selected){
-        if(selected && !(tags_of_interests.contains(tag))){
+        if(selected && !(isTagSelected(tag))){
             tags_of_interests.add(tag);
-        } else if (!selected && tags_of_interests.contains(tag)) {
-            tags_of_interests.remove(tag);
+        } else if (!selected && (isTagSelected(tag))) {
+            ArrayList<InterestTag> newTags = new ArrayList<>();
+            for (InterestTag t: tags_of_interests){
+                if(!tag.getName().equals(t.getName())){
+                    newTags.add(t);
+                }
+                this.tags_of_interests = newTags;
+            }
         }
     }
 
     public void updateLabel(Label label, boolean selected){
-        if(selected && !(labels.contains(label))){
+        if(selected && !(isLabelSelected(label))){
             labels.add(label);
-        } else if (!selected && labels.contains(label)) {
-            labels.remove(label);
+        } else if (!selected && isLabelSelected(label)) {
+            ArrayList<Label> newLabels = new ArrayList<>();
+            for (Label l: labels){
+                if(!label.getName().equals(l.getName())){
+                    newLabels.add(l);
+                }
+                this.labels = newLabels;
+            }
         }
     }
 
@@ -71,7 +86,16 @@ public class Student extends User{
     }
 
     public boolean isLabelSelected(Label label){
+        ArrayList<String> labelNames = new ArrayList<>();
+        for(Label l: labels){
+            labelNames.add(l.getName());
+        }
         return labels.contains(label);
     }
-    public boolean isTagSelected(InterestTag tag){return tags_of_interests.contains(tag);}
+    public boolean isTagSelected(InterestTag tag){
+        ArrayList<String> tagNames = new ArrayList<>();
+        for(InterestTag t: tags_of_interests){
+            tagNames.add(t.getName());
+        }
+        return tagNames.contains(tag.getName());}
 }

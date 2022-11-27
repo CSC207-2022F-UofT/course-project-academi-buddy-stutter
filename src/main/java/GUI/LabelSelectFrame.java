@@ -32,23 +32,23 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(800, 600);
+        this.setSize(340, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         // places objects inside frame
         // buttons
-        backBTN.setBounds(650, 530, 100, 20);
+        backBTN.setBounds(260, 170, 70, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        applyBTN.setBounds(350, 350, 100, 20);
+        applyBTN.setBounds(115, 130, 100, 20);
         applyBTN.addActionListener(this);
         applyBTN.setFocusable(false);
         applyBTN.setEnabled(false);
 
         //checkbox
-        meetCB.setBounds(200, 150, 250,50);
-        collaborateCB.setBounds(200, 200, 250, 50);
-        discussCB.setBounds(200, 250, 250, 50);
+        meetCB.setBounds(80, 20, 250,50);
+        collaborateCB.setBounds(80, 50, 250, 50);
+        discussCB.setBounds(80, 80, 250, 50);
         boxList.add(meetCB);
         boxList.add(collaborateCB);
         boxList.add(discussCB);
@@ -62,7 +62,7 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
         discussCB.addChangeListener(this);
 
         // labels
-        LabelSelectLabel.setBounds(100,100,100,20);
+        LabelSelectLabel.setBounds(10,10,100,20);
 
         // adds objects to the frame
         this.add(backBTN);

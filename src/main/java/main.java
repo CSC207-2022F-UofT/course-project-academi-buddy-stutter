@@ -1,7 +1,9 @@
 import Entities.Student;
+import External.BiweeklyAPI;
 import External.FirebaseAPI;
 import GUI.*;
 import UIController.UIController;
+import UseCases.CalendarInterpreter;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
@@ -41,7 +43,11 @@ public class main {
         //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
         //TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
-        ProfileFrame pf = new ProfileFrame(uiController);
+        //ProfileFrame pf = new ProfileFrame(uiController);
+        BiweeklyAPI bi = new BiweeklyAPI();
+        CalendarInterpreter ci = new CalendarInterpreter(bi);
+        //System.out.println(bi.getLength("coursesCalendar.ics"));
+        System.out.println(ci.getCourses(ci.readCalendar("coursesCalendar.ics")).get(0).getCourseType());
 
     }
 

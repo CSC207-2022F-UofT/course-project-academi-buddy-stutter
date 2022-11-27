@@ -22,13 +22,11 @@ public class CourseDataFactory extends DataFactory{
         return course;
     }
 
-    public void addStudent(Course course, ArrayList<Student> students){
-        for(Student student: students){
-            try {
-                courseDataManager.addStudent(course, student);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+    public void addStudent(Course course, Student student){
+        try {
+            courseDataManager.addStudent(course, student);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

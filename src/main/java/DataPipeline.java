@@ -83,6 +83,6 @@ public class DataPipeline {
 
         Student s1 = userDataFactory.createStudent("567789", "qwerty", "John Doeeeee", "Random", "rtyui@l.com", t1, l1);
         Course c1 = courseDataFactory.createCourse("CSC800", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
-        c1.addStudent(s1);
+        courseDataFactory.addStudent(c1, s1);
     }
 }

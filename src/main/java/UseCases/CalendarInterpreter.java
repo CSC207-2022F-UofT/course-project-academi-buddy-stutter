@@ -3,8 +3,7 @@ package UseCases;
 import Gateways.CalendarInterface;
 import Entities.Course;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,23 +22,20 @@ Download calendar from acorn */
     public CalendarInterpreter(CalendarInterface ci){
         this.ci = ci;
     }
-    public String readCalendar(String file_name) {
+    public String readCalendar(String fileName) {
 
-        String calendar_raw = "";
-
-        try {
-            File TestCalendar = new File( "src/test/java/tutorial/"+ file_name);
-            Scanner myReader = new Scanner(TestCalendar);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                calendar_raw = calendar_raw + (data+'\n');
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            StringBuilder builder = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                builder.append(line);
+                builder.append(System.lineSeparator());
+                line = reader.readLine();
             }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            return builder.toString();
+        } catch (IOException e){
+            throw new RuntimeException(e);
         }
-        return calendar_raw;
     }
 
 

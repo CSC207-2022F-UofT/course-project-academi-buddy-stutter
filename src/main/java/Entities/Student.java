@@ -32,7 +32,7 @@ public class Student extends User{
             return new ArrayList<>();
         }
         for(int i = 0; i < enrolled_courses.size(); i++){
-            courseCodes.add(enrolled_courses.get(i).getCourseCode());
+            courseCodes.add(enrolled_courses.get(i).getCourseCode() + enrolled_courses.get(i).getCourseType());
         }
 
         return courseCodes;

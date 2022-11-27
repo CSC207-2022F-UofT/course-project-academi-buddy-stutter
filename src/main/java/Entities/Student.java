@@ -5,6 +5,8 @@ public class Student extends User{
     private ArrayList<InterestTag> tags_of_interests;
     private ArrayList<Label> labels;
 
+    private String email;
+
     public void setTabs_of_interests(ArrayList<InterestTag> tags_of_interests) {
         this.tags_of_interests = tags_of_interests;
     }
@@ -12,6 +14,10 @@ public class Student extends User{
     public void setEnrolledCourses(ArrayList<Course> enrolled_courses) {
         this.enrolled_courses = enrolled_courses;
     }
+
+    public void setEmail(String email){this.email = email;}
+
+    public String getEmail(){return email;}
 
     private ArrayList<Course> enrolled_courses;
 

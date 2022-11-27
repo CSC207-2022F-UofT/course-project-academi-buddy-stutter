@@ -1,8 +1,6 @@
 import Entities.Student;
 import External.FirebaseAPI;
-import GUI.LabelSelectFrame;
-import GUI.TagMatchFrame;
-import GUI.TagSelectFrame;
+import GUI.*;
 import UIController.UIController;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
@@ -42,7 +40,8 @@ public class main {
         UIController uiController = new UIController(student, cb, ub, tb);
         //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
         //TagMatchFrame tm = new TagMatchFrame(uiController);
-        LabelSelectFrame lb = new LabelSelectFrame(uiController);
+        //LabelSelectFrame lb = new LabelSelectFrame(uiController);
+        ProfileFrame pf = new ProfileFrame(uiController);
 
     }
 

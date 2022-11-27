@@ -1,6 +1,6 @@
 package UseCases;
 
-import Database.DatabaseInterface;
+import Gateways.DatabaseInterface;
 import Entities.*;
 import Entities.Course;
 
@@ -33,11 +33,11 @@ public class UserDataManager {
         if(exist(user)){
             return false;
         }
-        String userID = user.GetUserID();
+        String userID = user.getUserID();
         fi.addEntry(userID, "account type", "user");
-        fi.addEntry(userID, "account password", user.GetUserPassword());
-        fi.addEntry(userID, "full name", user.getFull_name());
-        fi.addEntry(userID, "student info", user.GetUserInfo());
+        fi.addEntry(userID, "account password", user.getUserPassword());
+        fi.addEntry(userID, "full name", user.getFullName());
+        fi.addEntry(userID, "student info", user.getUserInfo());
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -49,7 +49,7 @@ public class UserDataManager {
         if(exist(student)){
             return false;
         }
-        String studentID = student.GetUserID();
+        String studentID = student.getUserID();
         addUser(student);
         fi.addEntry(studentID, "account type", "student");
         //following data are stored as arraylists. Use toString().
@@ -58,9 +58,9 @@ public class UserDataManager {
             labelList.add(i.getName());
         }
         fi.addEntry(studentID, "labels", labelList.toString());
-        fi.addEntry(studentID, "enrolled courses", student.getEnrolled_courseCodes().toString());
+        fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
         ArrayList<String> tagList = new ArrayList<>();
-        for(InterestTag i: student.getTabs_of_interests()){
+        for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
         }
         fi.addEntry(studentID, "tags of interests", tagList.toString());
@@ -76,7 +76,7 @@ public class UserDataManager {
         if(exist(admin)){
             return false;
         }
-        String adminID = admin.GetUserID();
+        String adminID = admin.getUserID();
         addUser(admin);
         fi.addEntry(adminID, "account type", "admin");
         return true;
@@ -87,7 +87,7 @@ public class UserDataManager {
          * remove a user from database.
          */
         fi.initialize("users");
-        return fi.removeEntry(user.getUser_id());
+        return fi.removeEntry(user.getUserID());
     }
 
     public User getUserByID(String userID) throws IOException{
@@ -111,7 +111,7 @@ public class UserDataManager {
                     CourseDataManager courseDB = new CourseDataManager(fi, this);
                     courseList.add(courseDB.getCourse(courseCode));
                 }
-                retrievedUser.setEnrolled_courses(courseList);
+                retrievedUser.setEnrolledCourses(courseList);
                 //
                 String labelsString = (String) userData.get("labels");
                 List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
@@ -145,8 +145,8 @@ public class UserDataManager {
         fi.initialize("users");
         ArrayList<Course> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
-        Student s = (Student) getUserByID(self.getUser_id());
-        Student t = (Student) getUserByID(target.getUser_id());
+        Student s = (Student) getUserByID(self.getUserID());
+        Student t = (Student) getUserByID(target.getUserID());
         ArrayList<Course> selfEnrolledCourses = s.getEnrolledCourses();
         ArrayList<Course> targetEnrolledCourses = t.getEnrolledCourses();
         for(Course c: selfEnrolledCourses){
@@ -162,7 +162,7 @@ public class UserDataManager {
          * @return whether a user exists in the database.
          */
         fi.initialize("users");
-        return fi.getDocumentList().contains(user.getUser_id());
+        return fi.getDocumentList().contains(user.getUserID());
     }
 
 

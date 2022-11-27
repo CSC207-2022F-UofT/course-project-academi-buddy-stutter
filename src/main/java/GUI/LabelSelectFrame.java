@@ -50,7 +50,7 @@ public class LabelSelectFrame extends JFrame implements ActionListener{
         boxList.add(discussCB);
         for(JCheckBox box: boxList){
             System.out.println(box.getText());
-            box.setSelected(uiController.getLabelSelectUIControl().getStudentLabelState(box.getText()));
+             box.setSelected(uiController.getLabelSelectUIControl().getStudentLabelState(box.getText()));
         }
 
         // labels

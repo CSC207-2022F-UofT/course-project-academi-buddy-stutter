@@ -9,18 +9,18 @@ public class Student extends User{
         this.tags_of_interests = tags_of_interests;
     }
 
-    public void setEnrolled_courses(ArrayList<Course> enrolled_courses) {
+    public void setEnrolledCourses(ArrayList<Course> enrolled_courses) {
         this.enrolled_courses = enrolled_courses;
     }
 
     private ArrayList<Course> enrolled_courses;
 
-    public ArrayList<InterestTag> getTabs_of_interests() {return tags_of_interests;}
+    public ArrayList<InterestTag> getTags() {return tags_of_interests;}
     public ArrayList<Label> getLabels() {return labels;}
 
     public ArrayList<Course> getEnrolledCourses() {return enrolled_courses;}
 
-    public ArrayList<String> getEnrolled_courseCodes() {
+    public ArrayList<String> getEnrolledCourseCodes() {
         ArrayList<String> courseCodes = new ArrayList<>();
         for(int i = 0; i < enrolled_courses.size(); i++){
             courseCodes.add(enrolled_courses.get(i).getCourseCode());

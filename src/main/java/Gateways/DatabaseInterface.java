@@ -1,4 +1,4 @@
-package Database;
+package Gateways;
 
 import com.google.cloud.firestore.*;
 

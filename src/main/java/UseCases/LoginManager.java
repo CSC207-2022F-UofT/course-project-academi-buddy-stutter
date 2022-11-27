@@ -24,7 +24,7 @@ public class LoginManager extends UseCase{
             return false;
         }else {
             this.activeUser = this.ub.getUserByID(id);
-            return this.activeUser.GetUserPassword().equals(password);
+            return this.activeUser.getUserPassword().equals(password);
         }
     }
 

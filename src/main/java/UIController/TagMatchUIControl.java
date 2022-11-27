@@ -39,6 +39,6 @@ public class TagMatchUIControl{
     }
 
     public String getSelectedIndex(int index){
-        return tagMatchManager.getStudentByIndex(index).getUser_id();
+        return tagMatchManager.getStudentByIndex(index).getUserID();
     }
 }

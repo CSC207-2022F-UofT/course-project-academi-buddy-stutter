@@ -1,5 +1,5 @@
 package UseCases;
-import Database.DatabaseInterface;
+import Gateways.DatabaseInterface;
 import Entities.Course;
 import Entities.Student;
 import Entities.User;

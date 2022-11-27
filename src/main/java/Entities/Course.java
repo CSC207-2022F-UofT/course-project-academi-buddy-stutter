@@ -72,7 +72,7 @@ public class Course{
     public ArrayList<String> getEnrolledID(){
         ArrayList<String> IDList = new ArrayList<>();
         for(Student s: enrolled_students){
-            IDList.add(s.GetUserID());
+            IDList.add(s.getUserID());
         }
         return IDList;
     }

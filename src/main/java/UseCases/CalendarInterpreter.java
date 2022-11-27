@@ -1,6 +1,6 @@
 package UseCases;
 
-import Database.CalendarInterface;
+import Gateways.CalendarInterface;
 import Entities.Course;
 
 import java.io.File;

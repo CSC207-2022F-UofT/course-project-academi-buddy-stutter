@@ -1,5 +1,6 @@
-package Database;
+package External;
 
+import Gateways.DatabaseInterface;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 
@@ -11,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class FirebaseCollection implements DatabaseInterface {
+public class FirebaseAPI implements DatabaseInterface {
     private String collectionName;
     private Firestore db;
     private List<QueryDocumentSnapshot> currentDocuments;
-    public FirebaseCollection(){
+    public FirebaseAPI(){
         this.collectionName = "temp";
         db = FirestoreClient.getFirestore();
     }

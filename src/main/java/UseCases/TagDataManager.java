@@ -1,6 +1,6 @@
 package UseCases;
 
-import Database.DatabaseInterface;
+import Gateways.DatabaseInterface;
 import Entities.InterestTag;
 import Entities.Student;
 
@@ -54,8 +54,8 @@ public class TagDataManager {
         for(String s: getStudentList(tag)){
             students.add(s);
         }
-        if(!students.contains(student.getUser_id())){
-            students.add(student.GetUserID());
+        if(!students.contains(student.getUserID())){
+            students.add(student.getUserID());
             student.updateStudentTOI(tag, true);
             ud.addStudentUser(student);
             fi.addEntry(tag.getName(), "students", students.toString());
@@ -68,8 +68,8 @@ public class TagDataManager {
         for(String s: getStudentList(tag)){
             students.add(s);
         }
-        if(students.contains(student.getUser_id())){
-            students.remove(student.GetUserID());
+        if(students.contains(student.getUserID())){
+            students.remove(student.getUserID());
             student.updateStudentTOI(tag, false);
             ud.addStudentUser(student);
             fi.initialize("tags");

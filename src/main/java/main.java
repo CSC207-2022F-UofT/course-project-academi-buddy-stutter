@@ -1,12 +1,7 @@
-import Database.*;
-import Entities.Course;
 import Entities.Student;
+import External.FirebaseAPI;
 import GUI.LabelSelectFrame;
-import GUI.ProfileFrame;
-import GUI.TagMatchFrame;
-import GUI.TagSelectFrame;
 import UIController.UIController;
-import UseCases.CalendarInterpreter;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
@@ -16,7 +11,6 @@ import com.google.firebase.FirebaseOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class main {
 
@@ -32,9 +26,9 @@ public class main {
         //essential for database classes
 
         initializeFirebase();
-        FirebaseCollection cbc = new FirebaseCollection();
-        FirebaseCollection ubc = new FirebaseCollection();
-        FirebaseCollection tbc = new FirebaseCollection();
+        FirebaseAPI cbc = new FirebaseAPI();
+        FirebaseAPI ubc = new FirebaseAPI();
+        FirebaseAPI tbc = new FirebaseAPI();
         UserDataManager ub = new UserDataManager(ubc);
         CourseDataManager cb = new CourseDataManager(cbc, ub);
         TagDataManager tb = new TagDataManager(tbc, ub);

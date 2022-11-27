@@ -47,8 +47,8 @@ public class TagMatchManager extends UseCase{
             return nameList;
         }
         for(Student s: students){
-            if(s.getUser_id() != null && !s.getUser_id().equals(self.getUser_id())) {
-                nameList.add(s.getFull_name());
+            if(s.getUserID() != null && !s.getUserID().equals(self.getUserID())) {
+                nameList.add(s.getFullName());
             }
         }
         return nameList;

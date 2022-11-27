@@ -1,5 +1,5 @@
 package tutorial;
-import Database.CalendarAPI;
+import External.BiweeklyAPI;
 import UseCases.CalendarInterpreter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class CalendarInterpretTest {
                 e.printStackTrace();
             }
 
-            CalendarAPI capi = new CalendarAPI();
+            BiweeklyAPI capi = new BiweeklyAPI();
             CalendarInterpreter ci = new CalendarInterpreter(capi);
             Assertions.assertEquals("Team Meeting", capi.getSummary(ex_file, 0));
 

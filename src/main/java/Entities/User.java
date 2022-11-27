@@ -28,25 +28,27 @@ public class User {
     param: none
     return: String
      */
-    public String GetUserID(){
+    public String getUserID(){
         return this.user_id;
     }
 
+    public String getFullName() {return full_name;}
+
     /*
-    GetUserInfo: returns User info
+    getUserInfo: returns User info
     param: none
     return: String
      */
-    public String GetUserInfo(){
+    public String getUserInfo(){
         return this.user_info;
     }
 
     /*
-   GetUserPassword: Get user password
+   getUserPassword: Get user password
    param: none
    return: String
     */
-    public String GetUserPassword(){
+    public String getUserPassword(){
         return this.user_password;
     }
 
@@ -55,7 +57,7 @@ public class User {
     param: String
     return: none
      */
-    public void SetUserInfo(String info){
+    public void setUserInfo(String info){
         this.user_info = info;
     }
 
@@ -64,7 +66,7 @@ public class User {
     param: String
     return: none
      */
-    public void SetUserID(String ID){
+    public void setUserID(String ID){
         this.user_id = ID;
     }
 
@@ -73,15 +75,11 @@ public class User {
     param: String
     return: none
      */
-    private void SetUserPassword(String pass){
+    private void setUserPassword(String pass){
         this.user_password = pass;
     }
 
-    public String getUser_id() {return user_id;}
 
-    public String getFull_name() {return full_name;}
-
-    public String getUser_info() {return user_info;}
 
 
 }

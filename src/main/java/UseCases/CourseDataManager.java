@@ -48,7 +48,7 @@ public class CourseDataManager {
         boolean added = course.addStudent(student);
         if(added){
             student.addCourse(course);
-            fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledID());
             ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
         }
@@ -63,7 +63,7 @@ public class CourseDataManager {
         boolean removed = course.removeStudent(student);
         if(removed){
             student.removeCourse(course);
-            fi.addEntry(course.getCourseCode(), "enrolled students id", course.getEnrolledID());
+            fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledID());
             ud.addStudentUser(student);//update student's enrolled course in userdatabase.
             return true;
         }

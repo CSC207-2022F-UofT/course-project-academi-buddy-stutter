@@ -6,27 +6,32 @@ import biweekly.ICalendar;
 import biweekly.component.VEvent;
 import biweekly.property.Summary;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BiweeklyAPI implements CalendarInterface {
 
-    public int getLength(String calendar_raw){
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
+    public int getLength(String calendar){
+        List<ICalendar> icalList = Biweekly.parse(calendar).all();
+        System.out.println(icalList.size());
+        ICalendar ical = icalList.get(0);
         if(ical == null){
             return 0;
         }
         return ical.getEvents().size();
     }
 
-    public Summary getSummary(String calendar_raw, int num){
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
+    public Summary getSummary(String calendar, int num){
+        List<ICalendar> icalList = Biweekly.parse(calendar).all();
+        ICalendar ical = icalList.get(0);
         VEvent event = ical.getEvents().get(num);
         return event.getSummary();
     }
-    public ArrayList<String> getCourseInfo(String calendar_raw, int num) {
+    public ArrayList<String> getCourseInfo(String calendar, int num) {
         ArrayList<String> courseInfo = new ArrayList<>();
-        ICalendar ical = Biweekly.parse(calendar_raw).first();
+        List<ICalendar> icalList = Biweekly.parse(calendar).all();
+        ICalendar ical = icalList.get(0);
         VEvent event = ical.getEvents().get(num);
-        Summary summary = getSummary(calendar_raw, num);
+        Summary summary = getSummary(calendar, num);
         String course_code = summary.getValue().substring(0,8);
         String sess_type = summary.getValue().substring(9,12);
         String sess_number = summary.getValue().substring(12,16);

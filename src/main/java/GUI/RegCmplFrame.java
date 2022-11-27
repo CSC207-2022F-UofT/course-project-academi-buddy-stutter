@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ComRegFrame extends JFrame implements ActionListener {
+public class RegCmplFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Your Registration is Complete!");
     JButton returnBTN = new JButton("Return to Login Page");
-    public ComRegFrame(){
+    public RegCmplFrame(){
         // setting labels
         titleLabel.setBounds(30, 20, 300, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));

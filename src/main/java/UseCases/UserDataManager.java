@@ -52,6 +52,7 @@ public class UserDataManager {
         String studentID = student.getUserID();
         addUser(student);
         fi.addEntry(studentID, "account type", "student");
+        fi.addEntry(studentID, "email", student.getEmail());
         //following data are stored as arraylists. Use toString().
         ArrayList<String> labelList = new ArrayList<>();
         for(Label i: student.getLabels()){
@@ -103,6 +104,8 @@ public class UserDataManager {
         try{
             if(type.equals("student")){
                 Student retrievedUser = new Student(userID, uPass, fullName, info);
+                String email = (String) userData.get("email");
+                retrievedUser.setEmail(email);
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));

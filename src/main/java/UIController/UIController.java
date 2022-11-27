@@ -30,6 +30,9 @@ public class UIController{
     protected RegisterUIControl registerUIControl;
     private LabelSelectUIControl labelSelectUIControl;
 
+    private ProfileUIControl profileUIControl;
+    private ProfileDisplayUIControl profileDisplayUIControl;
+
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
     }
@@ -47,6 +50,10 @@ public class UIController{
     }
 
     public LabelSelectUIControl getLabelSelectUIControl() {return labelSelectUIControl;}
+
+    public ProfileUIControl getProfileUIControl(){return profileUIControl;}
+
+    public ProfileDisplayUIControl getProfileDisplayUIControl(){return profileDisplayUIControl;}
 
     protected TagMatchUIControl tagMatchUIControl;
     protected TagSelectUIControl tagSelectUIControl;
@@ -70,6 +77,8 @@ public class UIController{
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
+        this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
+        this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
 
 
     }
@@ -113,5 +122,7 @@ public class UIController{
     public void toTagSelect(){
         TagSelectFrame tagSelectFrame = new TagSelectFrame(this);
     }
+
+    public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 
 }

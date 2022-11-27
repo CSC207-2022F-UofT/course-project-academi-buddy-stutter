@@ -85,7 +85,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
                 String selectedID = uiController.getTagMatchUIControl().getSelectedIndex(matchedList.getSelectedIndex());
-                //TODO: go to profile page
+                uiController.toProfileDisplay(selectedID);
             }
         }
         else if(e.getSource() == backBTN){

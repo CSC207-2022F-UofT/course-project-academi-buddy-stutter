@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class RegisterManager extends UseCase{
 
-    public RegisterManager(CourseManager courseDatabase, UserManager userDatabase){
+    public RegisterManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
         super(courseDatabase, userDatabase);
     }
 

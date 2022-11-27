@@ -1,8 +1,8 @@
 package UIController;
 
-import UseCases.CourseManager;
-import UseCases.TagManager;
-import UseCases.UserManager;
+import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
+import UseCases.UserDataManager;
 import Entities.User;
 import GUI.*;
 import UseCases.RegisterManager;
@@ -15,10 +15,10 @@ public class UIController{
     //TODO: make UIController as parent class. Create seperate UIControl for each Frame, e.g. LoginUIControl, etc.
 
     private User self;
-    private CourseManager courseManager;
-    private UserManager userManager;
+    private CourseDataManager courseManager;
+    private UserDataManager userManager;
     private RegisterManager registerManager;
-    private TagManager tagManager;
+    private TagDataManager tagManager;
 
     private TagMatchManager tagMatchManager;
     private TagSelectManager tagSelectManager;
@@ -45,7 +45,7 @@ public class UIController{
     protected TagMatchUIControl tagMatchUIControl;
     protected TagSelectUIControl tagSelectUIControl;
 
-    public UIController(User self, CourseManager courseManager, UserManager userManager, TagManager tagManager){
+    public UIController(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = self;
         this.courseManager = courseManager;
         this.userManager = userManager;

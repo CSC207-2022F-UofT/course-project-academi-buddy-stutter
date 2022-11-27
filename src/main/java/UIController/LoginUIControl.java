@@ -1,7 +1,7 @@
 package UIController;
 
-import UseCases.CourseManager;
-import UseCases.UserManager;
+import UseCases.CourseDataManager;
+import UseCases.UserDataManager;
 import Entities.User;
 import UseCases.LoginManager;
 
@@ -11,7 +11,7 @@ public class LoginUIControl{
 
     private LoginManager loginManager;
     public User self;
-    public LoginUIControl(CourseManager courseDatabase, UserManager userDatabase){
+    public LoginUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase){
 
         this.loginManager = new LoginManager(courseDatabase, userDatabase);
     }

@@ -1,9 +1,12 @@
 package GUI;
 import Users.Student;
 import com.sun.tools.jconsole.JConsoleContext;
+import org.checkerframework.checker.units.qual.A;
 import useCases.TagMatchManager;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
@@ -14,7 +17,7 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TagSelectFrame extends JFrame implements ActionListener{
+public class TagSelectFrame extends JFrame implements ActionListener, ChangeListener {
 
 
     JLabel tagSelectLabel = new JLabel("Select Tag:");
@@ -37,7 +40,8 @@ public class TagSelectFrame extends JFrame implements ActionListener{
     String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
 
     UIController uiController;
-
+    boolean initialized = false;
+    ArrayList<Boolean> initialState = new ArrayList<Boolean>();
 
     public TagSelectFrame(UIController uiController){
         this.uiController = uiController;
@@ -58,17 +62,18 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         applyBTN.setBounds(50, 150, 100, 20);
         applyBTN.addActionListener(this);
         applyBTN.setFocusable(false);
+        applyBTN.setEnabled(false);
 
         //checkbox
-        adventureCB.setBounds(10, 20, 100,50);
-        musicCB.setBounds(10, 50, 100, 50);
-        catCB.setBounds(10, 80, 100, 50);
-        outdoorCB.setBounds(110, 20, 100, 50);
-        bookCB.setBounds(110, 50, 100, 50);
-        movieCB.setBounds(110, 80, 100, 50);
-        beerCB.setBounds(210, 20, 100, 50);
-        gameCB.setBounds(210, 50, 150, 50);
-        photoCB.setBounds(210, 80, 150, 50);
+        adventureCB.setBounds(10, 30, 100,50);
+        musicCB.setBounds(10, 60, 100, 50);
+        catCB.setBounds(10, 90, 100, 50);
+        outdoorCB.setBounds(110, 30, 100, 50);
+        bookCB.setBounds(110, 60, 100, 50);
+        movieCB.setBounds(110, 90, 100, 50);
+        beerCB.setBounds(210, 30, 100, 50);
+        gameCB.setBounds(210, 60, 150, 50);
+        photoCB.setBounds(210, 90, 150, 50);
         boxList.add(adventureCB);
         boxList.add(musicCB);
         boxList.add(catCB);
@@ -79,8 +84,18 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         boxList.add(gameCB);
         boxList.add(photoCB);
         for(JCheckBox box: boxList){
-            box.setSelected(uiController.getStudentTagState(box.getName()));
+            box.setSelected(uiController.getStudentTagState(box.getText()));
+            initialState.add(uiController.getStudentTagState(box.getText()));
         }
+        adventureCB.addChangeListener(this);
+        musicCB.addChangeListener(this);
+        catCB.addChangeListener(this);
+        outdoorCB.addChangeListener(this);
+        bookCB.addChangeListener(this);
+        movieCB.addChangeListener(this);
+        beerCB.addChangeListener(this);
+        gameCB.addChangeListener(this);
+        photoCB.addChangeListener(this);
 
         // labels
         tagSelectLabel.setBounds(10,10,100,20);
@@ -122,5 +137,19 @@ public class TagSelectFrame extends JFrame implements ActionListener{
         else if(e.getSource() == backBTN){
             //TODO: go to home page
         }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        int count = 0;
+        boolean enable = false;
+        for(JCheckBox box: boxList){
+            if(initialState.get(count) != box.isSelected()){
+                enable = true;
+            }
+            count += 1;
+        }
+        applyBTN.setEnabled(enable);
+
     }
 }

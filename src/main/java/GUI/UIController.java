@@ -71,11 +71,20 @@ public class UIController{
     }
 
     public boolean getStudentTagState(String tagName){
+        updateSelf();
         return tagSelectManager.getStudentTagState((Student) self, tagName);
     }
 
     public void updateStudentTag(String tagName, boolean selected){
         tagSelectManager.updateStudentTag((Student) self, tagName, selected);
+    }
+
+    private void updateSelf(){
+        try {
+            this.self = ub.getUserByID(self.getUser_id());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

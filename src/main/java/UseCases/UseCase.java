@@ -2,8 +2,8 @@ package UseCases;
 
 public class UseCase {
 
-    public CourseDataManager cb;
-    public UserDataManager ub;
+    protected CourseDataManager cb;
+    protected UserDataManager ub;
 
 
     public UseCase(CourseDataManager courseDatabase, UserDataManager userDatabase){

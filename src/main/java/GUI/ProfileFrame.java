@@ -10,7 +10,7 @@ public class ProfileFrame extends JFrame implements ActionListener {
     JLabel classLabel = new JLabel("Enrolled Courses:");
     JLabel infoLabel = new JLabel("About:");
 
-    ProfileFrame(){
+    public ProfileFrame(){
         // Labels
         nameLabel.setBounds(10, 10, 10, 20);
         emailLabel.setBounds(10, 35, 100, 20);

@@ -81,8 +81,20 @@ public class DataPipeline {
         l4.add(labelLibrary.get(2));
         List<InterestTag> l5 = new ArrayList<>();
 
-        Student s1 = userDataFactory.createStudent("567789", "qwerty", "John Doeeeee", "Random", "rtyui@l.com", t1, l1);
+        // Student s1 = userDataFactory.createStudent("567789", "qwerty", "John Doeeeee", "Random", "rtyui@l.com", t1, l1);
         Course c1 = courseDataFactory.createCourse("CSC800", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
-        courseDataFactory.addStudent(c1, s1);
+        // courseDataFactory.addStudent(c1, s1);
+
+        // sample student objects
+        Student s1 = userDataFactory.createStudent("63267",	"qwerty",	"Ash Cooper",	"Meet",	"ac63@gmail.com",	t1,	l1);
+        Student s2 = userDataFactory.createStudent("72053",	"asdfgh",	"Sin Piper",	"Meet",	"sp72@mail.com",	t5,	l2);
+        Student s3 = userDataFactory.createStudent("34592",	"zxcvbn",	"Ur Retared",	"Meet",	"ur48@sg.com",	t2,	l3);
+        Student s4 = userDataFactory.createStudent("60383",	"poiuyt",	"Im SB",	"Meet",	"abc@mail.com",	t3,	l4);
+        Student s5 = userDataFactory.createStudent("22779",	"lkjnmh",	"Iphone Charger",	"Collborate",	"70as@gmail.com",	t1,	l4);
+        Student s6 = userDataFactory.createStudent("70078",	"ryfhvb",	"Water Bottle",	"Collborate",	"125ed@mail.com",	t5,	l2);
+        Student s7 = userDataFactory.createStudent("13533",	"wsxchi",	"Computer case",	"Collborate",	"cc123@gmail.com",	t2,	l2);
+        Student s8 = userDataFactory.createStudent("12611",	"pwmfns",	"Cell Phone",	"Discuss",	"998su@gmail.com",	t4,	l1);
+        Student s9 = userDataFactory.createStudent("88927",	"xcvjsn",	"bubble tea",	"Discuss",	"asdfwwww@gmail.com",	t1,	l1);
+        Student s10 = userDataFactory.createStudent("59407",	"asokgt",	"air pods",	"Discuss",	"asdf2ss2sdfd@mail.com",	t2,	l4);
     }
 }

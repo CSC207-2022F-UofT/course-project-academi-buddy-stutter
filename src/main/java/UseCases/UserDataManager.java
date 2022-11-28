@@ -109,11 +109,8 @@ public class UserDataManager {
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
-                ArrayList<Course> courseList = new ArrayList<>();
-                for(String courseCode: courseCodes){
-                    CourseDataManager courseDB = new CourseDataManager(fi, this);
-                    courseList.add(courseDB.getCourse(courseCode));
-                }
+                ArrayList<String> courseList = new ArrayList<>();
+                courseList.addAll(courseCodes);
                 retrievedUser.setEnrolledCourses(courseList);
                 //
                 String labelsString = (String) userData.get("labels");
@@ -141,18 +138,18 @@ public class UserDataManager {
     }
 
 //    this method should be in matcher? not database! for clean architecture?
-    public ArrayList<Course> getCommonSession(Student self, Student target) throws IOException {
+    public ArrayList<String> getCommonSessionCode(Student self, Student target) throws IOException {
         /**
          * get a list of common session between two users.
          */
         fi.initialize("users");
-        ArrayList<Course> commonSessions = new ArrayList<>();
+        ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
         Student s = (Student) getUserByID(self.getUserID());
         Student t = (Student) getUserByID(target.getUserID());
-        ArrayList<Course> selfEnrolledCourses = s.getEnrolledCourses();
-        ArrayList<Course> targetEnrolledCourses = t.getEnrolledCourses();
-        for(Course c: selfEnrolledCourses){
+        ArrayList<String> selfEnrolledCourses = s.getEnrolledCourseCodes();
+        ArrayList<String> targetEnrolledCourses = t.getEnrolledCourseCodes();
+        for(String c: selfEnrolledCourses){
             if(targetEnrolledCourses.contains(c)){
                 commonSessions.add(c);
             }

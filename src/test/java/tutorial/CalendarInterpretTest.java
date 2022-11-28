@@ -1,4 +1,6 @@
 package tutorial;
+import External.BiweeklyAPI;
+import UseCases.CalendarInterpreter;
 
 //import Calendar.CalendarInterpret;
 import org.junit.jupiter.api.Assertions;
@@ -29,12 +31,13 @@ class CalendarInterpretTest {
                 e.printStackTrace();
             }
 
-
-            CalendarInterpret ci = new CalendarInterpret();
-            Assertions.assertEquals("Team Meeting", ci.getSummary(ex_file));
+            BiweeklyAPI capi = new BiweeklyAPI();
+            CalendarInterpreter ci = new CalendarInterpreter(capi);
+            Assertions.assertEquals("Team Meeting", capi.getSummary(ex_file, 0));
 
              */
 
 
         }
+
 }

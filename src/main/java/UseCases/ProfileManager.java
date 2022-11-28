@@ -51,7 +51,7 @@ public class ProfileManager extends UseCase{
             for(String course: coursesList){
                 courseString.append(course);
                 courseString.append(": ");
-                courseString.append(course);
+                courseString.append(cb.getCourse(course).getCourseName());
                 courseString.append("\n");
             }
             return courseString.toString();

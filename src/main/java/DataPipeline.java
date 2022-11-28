@@ -82,7 +82,7 @@ public class DataPipeline {
         List<InterestTag> l5 = new ArrayList<>();
 
         // Student s1 = userDataFactory.createStudent("567789", "qwerty", "John Doeeeee", "Random", "rtyui@l.com", t1, l1);
-        Course c1 = courseDataFactory.createCourse("CSC800", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
+        // Course c1 = courseDataFactory.createCourse("CSC800", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
         // courseDataFactory.addStudent(c1, s1);
 
         // sample student objects
@@ -96,5 +96,33 @@ public class DataPipeline {
         Student s8 = userDataFactory.createStudent("12611",	"pwmfns",	"Cell Phone",	"Discuss",	"998su@gmail.com",	t4,	l1);
         Student s9 = userDataFactory.createStudent("88927",	"xcvjsn",	"bubble tea",	"Discuss",	"asdfwwww@gmail.com",	t1,	l1);
         Student s10 = userDataFactory.createStudent("59407",	"asokgt",	"air pods",	"Discuss",	"asdf2ss2sdfd@mail.com",	t2,	l4);
+
+        // sample course objects
+        Course c1 = courseDataFactory.createCourse("CSC207",	"LEC",	"0101",	"Software Design",	"Mon",	"0900",	"2022");
+        Course c2 = courseDataFactory.createCourse("MAT235",	"LEC",	"0401",	"Multi Calculus",	"Tue",	"1000",	"2022");
+        Course c3 = courseDataFactory.createCourse("CSC236",	"LEC",	"0301",	"Computer Theory",	"Wed",	"1200",	"2022");
+        Course c4 = courseDataFactory.createCourse("MAT223",	"LEC",	"0201",	"Linear Algebra",	"Thu",	"1400",	"2022");
+        Course c5 = courseDataFactory.createCourse("STA237",	"LEC",	"0501",	"Statistics",	"Fri",	"1600",	"2022");
+        Course c6 = courseDataFactory.createCourse("STA238",	"LEC",	"0101",	"More Statistics",	"Mon",	"1300",	"2022");
+        Course c7 = courseDataFactory.createCourse("CSC263",	"LEC",	"0201",	"More Theory",	"Tue",	"1100",	"2022");
+        Course c8 = courseDataFactory.createCourse("CSC209",	"LEC",	"0301",	"More SD",	"Thu",	"1200",	"2022");
+        Course c9 = courseDataFactory.createCourse("AST101",	"LEC",	"0201",	"Astronomy",	"Fri",	"1300",	"2022");
+        Course c10 = courseDataFactory.createCourse("MAT137",	"LEC",	"0501",	"Calculus",	"Tue",	"1400",	"2022");
+
+        // adding students to course
+
+        // course c1 has 5 students
+        courseDataFactory.addStudent(c1, s1);
+        courseDataFactory.addStudent(c1, s2);
+        courseDataFactory.addStudent(c1, s3);
+        courseDataFactory.addStudent(c1, s4);
+        courseDataFactory.addStudent(c1, s5);
+
+        // course c2 has 5 exact same student as c1
+        courseDataFactory.addStudent(c2, s1);
+        courseDataFactory.addStudent(c2, s2);
+        courseDataFactory.addStudent(c2, s3);
+        courseDataFactory.addStudent(c2, s4);
+        courseDataFactory.addStudent(c2, s5);
     }
 }

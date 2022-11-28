@@ -23,11 +23,15 @@ public class CourseMatchManager {
      */
     private ArrayList<Student> getSameSessionList(Student student){
         ArrayList<Student> sameSessionStudents = new ArrayList<>();
-        ArrayList<Course> enrolledCourse = student.getEnrolledCourses();
-        for(Course course: enrolledCourse){
+        ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
+        for(String course: enrolledCourse){
             try {
-                ArrayList<Student> studentsEnrolled = cb.getCourse(course.getCourseCode()).getEnrolledStudents();
-                sameSessionStudents.addAll(studentsEnrolled);
+                ArrayList<String> studentIDs = cb.getCourse(course).getEnrolledStudentID();
+                ArrayList<Student> students = new ArrayList<>();
+                for (String s: studentIDs){
+                    students.add((Student) ub.getUserByID(s));
+                }
+                sameSessionStudents.addAll(students);
             } catch (IOException e) {
                 System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getCourse()");
                 throw new RuntimeException(e);

@@ -43,15 +43,15 @@ public class ProfileManager extends UseCase{
     public String getCourseString(String userID){
         try {
             User user = this.ub.getUserByID(userID);
-            ArrayList<Course> coursesList = ((Student) user).getEnrolledCourses();
+            ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
             StringBuilder courseString = new StringBuilder();
             if(coursesList.contains(null)){
                 return courseString.toString();
             }
-            for(Course course: coursesList){
-                courseString.append(course.getCourseCode());
+            for(String course: coursesList){
+                courseString.append(course);
                 courseString.append(": ");
-                courseString.append(course.getCourseName());
+                courseString.append(course);
                 courseString.append("\n");
             }
             return courseString.toString();

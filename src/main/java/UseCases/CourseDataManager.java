@@ -85,14 +85,9 @@ public class CourseDataManager {
                 (String) courseDetail.get("year"));
         String sidString = courseDetail.get("enrolled students id").toString();
         List<String> sid = Arrays.asList(sidString.substring(1, sidString.length() - 1).split(", "));
-        ArrayList<Student> enrolledStudents = new ArrayList<>();
-        for(String userID: sid){
-            User u = ud.getUserByID(userID);
-            if(u instanceof Student){
-                enrolledStudents.add((Student) ud.getUserByID(userID));
-            }
-        }
-        course.setEnrolledStudents(enrolledStudents);
+        ArrayList<String> studentIDList = new ArrayList<>();
+        studentIDList.addAll(sid);
+        course.setEnrolledStudents(studentIDList);
         return course;
     }
 

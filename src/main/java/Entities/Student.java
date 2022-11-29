@@ -7,6 +7,8 @@ public class Student extends User{
 
     private String email;
 
+    public ArrayList<User> friend_list;
+
     public void setTabs_of_interests(ArrayList<InterestTag> tags_of_interests) {
         this.tags_of_interests = tags_of_interests;
     }
@@ -34,12 +36,19 @@ public class Student extends User{
         return courseCodes;
     }
 
+    public ArrayList<User> getFriendList() {
+        ArrayList<User> friendList = new ArrayList<>();
+        friendList.addAll(this.friend_list);
+        return friendList;
+    }
+
     //init
     public Student(String UID, String UPass, String full_name, String info){
         super(UID, UPass, full_name, info);
         this.tags_of_interests = new ArrayList<>();
         this.labels = new ArrayList<>();
         this.enrolled_course_codes = new ArrayList<>();
+        this.friend_list = new ArrayList<>();
     }
 
     public void updateStudentTOI(InterestTag tag, boolean selected){

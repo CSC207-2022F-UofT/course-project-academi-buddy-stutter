@@ -100,7 +100,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         if(e.getSource() == profileBTN){
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
-                String selectedID = uiController.getTagMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+                String selectedID = uiController.getTagMatchUIControl().getSelectedIndex(matchedList.getSelectedIndex());
                 uiController.toProfileDisplay(selectedID);
             }
         }

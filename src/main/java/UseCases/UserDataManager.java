@@ -55,8 +55,8 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
-//        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
-//        fi.addEntry(studentID, "friend list request", student.getFriendListRequest().toString());
+        //fi.addEntry(studentID, "friend list", student.getFriendList());
+        //fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
@@ -64,11 +64,6 @@ public class UserDataManager {
         fi.addEntry(studentID, "tags of interests", tagList.toString());
         return true;
     }
-
-//    public void updateFriendList(Student student) {
-//        String studentID = student.getUserID();
-//        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
-//    }
 
     public void updateStudentCourses(Student student){
         String studentID = student.getUserID();
@@ -88,12 +83,12 @@ public class UserDataManager {
         return true;
     }
 
-    public boolean removeUser(String userID){
+    public boolean removeUser(User user){
         /**
          * remove a user from database.
          */
         fi.initialize("users");
-        return fi.removeEntry(userID);
+        return fi.removeEntry(user.getUserID());
     }
 
     public User getUserByID(String userID) throws IOException{
@@ -191,6 +186,52 @@ public class UserDataManager {
          */
         if (userID == "") {
             return null;
+        }
+        return null;
+    }
+
+    public List<User> getFriendListByUserID(String userID) {
+        /**
+         * get a user by userid.
+         */
+        fi.initialize("users");
+        Map<String, Object> userData = fi.getEntry(userID);
+        String type = (String) userData.get("account type");
+        String uPass = (String) userData.get("account password");
+        String fullName = (String) userData.get("full name");
+        String info = (String) userData.get("student info");
+        try{
+            if(type.equals("student")){
+                Student retrievedUser = new Student(userID, uPass, fullName, info);
+                String email = (String) userData.get("email");
+                retrievedUser.setEmail(email);
+                //parsing ArrayList from String.
+                String courseCodesString = (String) userData.get("enrolled courses");
+                List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
+                ArrayList<String> courseList = new ArrayList<>();
+                courseList.addAll(courseCodes);
+                retrievedUser.setEnrolledCourses(courseList);
+                //
+                String labelsString = (String) userData.get("labels");
+                List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
+                for(String l: labels){
+                    Label label = new Label(l);
+                    retrievedUser.updateLabel(label, true);
+                }
+                //
+                String tagString = (String) userData.get("tags of interests");
+                List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
+                for(String t: tags) {
+                    InterestTag tag = new InterestTag(t);
+                    retrievedUser.updateStudentTOI(tag, true);
+                }
+                return retrievedUser;
+            }else if (type.equals("admin")){
+                return new Admin(userID, uPass, fullName, info);
+            }
+            return new User(userID, uPass, fullName, info);
+        }catch (NullPointerException e){
+            System.out.println(userID + "userManager: null type");
         }
         return null;
     }

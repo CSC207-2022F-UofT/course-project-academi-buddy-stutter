@@ -1,5 +1,4 @@
 package Entities;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Student extends User{
@@ -7,6 +6,8 @@ public class Student extends User{
     private ArrayList<Label> labels;
 
     private String email;
+
+    public ArrayList<User> friend_list;
 
     private ArrayList<Student> friend_list;
     private ArrayList<Student> friend_request_list;
@@ -60,6 +61,7 @@ public class Student extends User{
         this.enrolled_course_codes = new ArrayList<>();
         this.friend_list = new ArrayList<>();
         this.friend_request_list = new ArrayList<>();
+        this.friend_list = new ArrayList<>();
     }
 
     public void updateStudentTOI(InterestTag tag, boolean selected){

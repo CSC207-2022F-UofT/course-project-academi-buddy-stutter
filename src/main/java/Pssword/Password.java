@@ -7,6 +7,6 @@ public abstract class Password {
     public void setPassword(String password) {
         passwordValue = password;
     }
-    publiv void createPassword() {return passwordValue;}
+    public String createPassword() {return passwordValue;}
 
 }

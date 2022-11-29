@@ -59,4 +59,8 @@ public class ProfileManager extends UseCase{
             throw new RuntimeException(e);
         }
     }
+
+    public boolean sendFriendRequest(String userID, String viewerUserID) {
+        return true;
+    }
 }

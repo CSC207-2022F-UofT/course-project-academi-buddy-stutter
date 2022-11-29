@@ -44,7 +44,7 @@ public class main {
 //        TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
         //ProfileFrame pf = new ProfileFrame(uiController);
-        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789");
+        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789", "23456");
     }
 
 }

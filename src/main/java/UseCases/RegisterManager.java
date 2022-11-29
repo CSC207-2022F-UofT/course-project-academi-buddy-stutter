@@ -4,6 +4,7 @@ import Entities.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterManager extends UseCase{
 
@@ -25,7 +26,7 @@ public class RegisterManager extends UseCase{
             return false;
         }else {
             StrengthChecker strengthChecker = new StrengthChecker();
-            ArrayList<String> warnings;
+            List<String> warnings;
             warnings = strengthChecker.checkStrength(password);
             if (warnings.size() != 0) {
                 return false;

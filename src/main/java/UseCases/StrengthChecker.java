@@ -1,13 +1,14 @@
 package UseCases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StrengthChecker {
     public StrengthChecker() {
     }
 
-    public ArrayList<String> checkStrength(String password) {
-        ArrayList<String> warnings = new ArrayList<>();
+    public List<String> checkStrength(String password) {
+        List<String> warnings = new ArrayList<String>();
 
         // Check if password contains empty spaces;
         if (password.matches("(\\s)*")) {

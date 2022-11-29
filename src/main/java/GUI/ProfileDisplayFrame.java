@@ -24,10 +24,12 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     JButton addFriendBTN = new JButton("Add Friend");
 
     String userID;
+    String viewerUserID;
 
-    public ProfileDisplayFrame(UIController uiController, String userID){
+    public ProfileDisplayFrame(UIController uiController, String userID, String viewerUserID){
         this.uiController = uiController;
         this.userID = userID;
+        this.viewerUserID = viewerUserID;
         // Labels
         nameLabel.setBounds(10, 10, 100, 20);
         emailLabel.setBounds(10, 35, 100, 20);
@@ -84,7 +86,11 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
             this.dispose();
         }
         if (e.getSource() == addFriendBTN) {
-            JOptionPane.showMessageDialog(this, "Friend Request Sent");
+            if (uiController.getProfileDisplayUIControl().sendFriendRequest(this.userID, this.viewerUserID)) {
+                JOptionPane.showMessageDialog(this, "Friend Request Sent");
+            } else {
+                JOptionPane.showMessageDialog(this, "Friend Request Failed to Send");
+            }
         }
     }
 }

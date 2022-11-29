@@ -1,4 +1,5 @@
 package Entities;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Student extends User{
@@ -7,7 +8,11 @@ public class Student extends User{
 
     private String email;
 
-    public ArrayList<User> friend_list;
+    private ArrayList<Student> friend_list;
+
+    public void setFriend_list(ArrayList<Student> friend_list_to_add) {
+        this.friend_list = friend_list_to_add;
+    }
 
     public void setTabs_of_interests(ArrayList<InterestTag> tags_of_interests) {
         this.tags_of_interests = tags_of_interests;
@@ -36,8 +41,8 @@ public class Student extends User{
         return courseCodes;
     }
 
-    public ArrayList<User> getFriendList() {
-        ArrayList<User> friendList = new ArrayList<>();
+    public ArrayList<Student> getFriendList() {
+        ArrayList<Student> friendList = new ArrayList<>();
         friendList.addAll(this.friend_list);
         return friendList;
     }

@@ -55,8 +55,8 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
-        //fi.addEntry(studentID, "friend list", student.getFriendList());
-        //fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
+//        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
+//        fi.addEntry(studentID, "friend list request", student.getFriendListRequest().toString());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
@@ -64,6 +64,11 @@ public class UserDataManager {
         fi.addEntry(studentID, "tags of interests", tagList.toString());
         return true;
     }
+
+//    public void updateFriendList(Student student) {
+//        String studentID = student.getUserID();
+//        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
+//    }
 
     public void updateStudentCourses(Student student){
         String studentID = student.getUserID();

@@ -9,12 +9,6 @@ public class Student extends User{
     private String email;
 
     private ArrayList<Student> friend_list;
-
-    public void setFriend_list(ArrayList<Student> friend_list_to_add) {
-        this.friend_list = friend_list_to_add;
-    }
-
-    private ArrayList<Student> friend_list;
     private ArrayList<Student> friend_request_list;
 
     public void setFriend_list(ArrayList<Student> friend_list_to_add) {
@@ -54,18 +48,12 @@ public class Student extends User{
         return friendList;
     }
 
-    public ArrayList<Student> getFriendListRequest() {
-        return this.friend_request_list;
-    }
-
     //init
     public Student(String UID, String UPass, String full_name, String info){
         super(UID, UPass, full_name, info);
         this.tags_of_interests = new ArrayList<>();
         this.labels = new ArrayList<>();
         this.enrolled_course_codes = new ArrayList<>();
-        this.friend_list = new ArrayList<>();
-        this.friend_request_list = new ArrayList<>();
         this.friend_list = new ArrayList<>();
     }
 

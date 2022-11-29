@@ -9,6 +9,7 @@ public class Student extends User{
     private String email;
 
     private ArrayList<Student> friend_list;
+    private ArrayList<Student> friend_request_list;
 
     public void setFriend_list(ArrayList<Student> friend_list_to_add) {
         this.friend_list = friend_list_to_add;
@@ -47,6 +48,10 @@ public class Student extends User{
         return friendList;
     }
 
+    public ArrayList<Student> getFriendListRequest() {
+        return this.friend_request_list;
+    }
+
     //init
     public Student(String UID, String UPass, String full_name, String info){
         super(UID, UPass, full_name, info);
@@ -54,6 +59,7 @@ public class Student extends User{
         this.labels = new ArrayList<>();
         this.enrolled_course_codes = new ArrayList<>();
         this.friend_list = new ArrayList<>();
+        this.friend_request_list = new ArrayList<>();
     }
 
     public void updateStudentTOI(InterestTag tag, boolean selected){
@@ -82,6 +88,23 @@ public class Student extends User{
                 this.labels = newLabels;
             }
         }
+    }
+
+    public void addFriend(Student student) {
+        /*
+        Add stduent to this user's friend list if this user received request from this student
+         */
+        if (this.friend_request_list.contains(student)) {
+            this.friend_request_list.remove(student);
+            this.friend_list.add(student);
+        }
+    }
+
+    public void receiveFriendRequest(Student student) {
+        this.friend_request_list.add(student);
+    }
+    public void sendFriendRequest(Student student) {
+        student.receiveFriendRequest(this);
     }
 
 

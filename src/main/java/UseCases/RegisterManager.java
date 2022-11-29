@@ -3,6 +3,7 @@ package UseCases;
 import Entities.Student;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class RegisterManager extends UseCase{
 
@@ -23,6 +24,12 @@ public class RegisterManager extends UseCase{
         if(userAlreadyExists(id)){
             return false;
         }else {
+            StrengthChecker strengthChecker = new StrengthChecker();
+            ArrayList<String> warnings;
+            warnings = strengthChecker.checkStrength(password);
+            if (warnings.size() != 0) {
+                return false;
+            }
             if(passwordConfirmation(password, confirm)){
                 Student newStudent = new Student(id, password, fullName, "");
                 ub.addStudentUser(newStudent);
@@ -31,5 +38,5 @@ public class RegisterManager extends UseCase{
         }
         return false;
     }
-
 }
+

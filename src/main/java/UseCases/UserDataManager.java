@@ -174,48 +174,12 @@ public class UserDataManager {
         return fi.getDocumentStringList().contains(ID);
     }
 
-    public List<User> getFriendListByUserID(String userID) {
+    public ArrayList<User> getFriendListByUserID(String userID) {
         /**
          * get a user by userid.
          */
-        fi.initialize("users");
-        Map<String, Object> userData = fi.getEntry(userID);
-        String type = (String) userData.get("account type");
-        String uPass = (String) userData.get("account password");
-        String fullName = (String) userData.get("full name");
-        String info = (String) userData.get("student info");
-        try{
-            if(type.equals("student")){
-                Student retrievedUser = new Student(userID, uPass, fullName, info);
-                String email = (String) userData.get("email");
-                retrievedUser.setEmail(email);
-                //parsing ArrayList from String.
-                String courseCodesString = (String) userData.get("enrolled courses");
-                List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
-                ArrayList<String> courseList = new ArrayList<>();
-                courseList.addAll(courseCodes);
-                retrievedUser.setEnrolledCourses(courseList);
-                //
-                String labelsString = (String) userData.get("labels");
-                List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
-                for(String l: labels){
-                    Label label = new Label(l);
-                    retrievedUser.updateLabel(label, true);
-                }
-                //
-                String tagString = (String) userData.get("tags of interests");
-                List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
-                for(String t: tags) {
-                    InterestTag tag = new InterestTag(t);
-                    retrievedUser.updateStudentTOI(tag, true);
-                }
-                return retrievedUser;
-            }else if (type.equals("admin")){
-                return new Admin(userID, uPass, fullName, info);
-            }
-            return new User(userID, uPass, fullName, info);
-        }catch (NullPointerException e){
-            System.out.println(userID + "userManager: null type");
+        if (userID == "") {
+            return null;
         }
         return null;
     }

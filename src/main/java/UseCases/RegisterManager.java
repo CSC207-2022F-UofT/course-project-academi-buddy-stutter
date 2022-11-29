@@ -31,5 +31,4 @@ public class RegisterManager extends UseCase{
         }
         return false;
     }
-
 }

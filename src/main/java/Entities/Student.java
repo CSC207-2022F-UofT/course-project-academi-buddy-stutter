@@ -1,4 +1,5 @@
 package Entities;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Student extends User{
@@ -7,7 +8,11 @@ public class Student extends User{
 
     private String email;
 
-    public ArrayList<User> friend_list;
+    private ArrayList<Student> friend_list;
+
+    public void setFriend_list(ArrayList<Student> friend_list_to_add) {
+        this.friend_list = friend_list_to_add;
+    }
 
     private ArrayList<Student> friend_list;
     private ArrayList<Student> friend_request_list;

@@ -38,6 +38,7 @@ public class UserDataManager {
         fi.addEntry(userID, "account password", user.getUserPassword());
         fi.addEntry(userID, "full name", user.getFullName());
         fi.addEntry(userID, "student info", user.getUserInfo());
+
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -60,6 +61,8 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
+        fi.addEntry(studentID, "friend list", student.getFriendList());
+        fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());

@@ -49,7 +49,7 @@ public class CourseDataManager {
         if(added){
             student.addCourse(course);
             fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledID());
-            ud.addStudentUser(student);//update student's enrolled course in userdatabase.
+            ud.updateStudentCourses(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;
@@ -64,7 +64,7 @@ public class CourseDataManager {
         if(removed){
             student.removeCourse(course);
             fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledID());
-            ud.addStudentUser(student);//update student's enrolled course in userdatabase.
+            ud.updateStudentCourses(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;

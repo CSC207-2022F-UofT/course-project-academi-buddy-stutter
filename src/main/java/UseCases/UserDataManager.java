@@ -30,9 +30,6 @@ public class UserDataManager {
          * @return whether a user is added. If returned false, then the user already exists.
          */
         fi.initialize("users");
-        if(exist(user)){
-            return false;
-        }
         String userID = user.getUserID();
         fi.addEntry(userID, "account type", "user");
         fi.addEntry(userID, "account password", user.getUserPassword());
@@ -47,9 +44,6 @@ public class UserDataManager {
          * @return whether a student user is added. If returned false, then the student user already exists.
          */
         fi.initialize("users");
-        if(exist(student)){
-            return false;
-        }
         String studentID = student.getUserID();
         addUser(student);
         fi.addEntry(studentID, "account type", "student");
@@ -61,8 +55,8 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
-        fi.addEntry(studentID, "friend list", student.getFriendList());
-        fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
+        //fi.addEntry(studentID, "friend list", student.getFriendList());
+        //fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
@@ -71,15 +65,18 @@ public class UserDataManager {
         return true;
     }
 
+    public void updateStudentCourses(Student student){
+        String studentID = student.getUserID();
+        fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
+    }
+
+
     public boolean addAdminUser(Admin admin) throws IOException {
         /**
          * add an admin user to the database.
          * @return whether an admin user is added. If returned false, then the admin user already exists.
          */
         fi.initialize("users");
-        if(exist(admin)){
-            return false;
-        }
         String adminID = admin.getUserID();
         addUser(admin);
         fi.addEntry(adminID, "account type", "admin");

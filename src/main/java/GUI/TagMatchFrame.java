@@ -1,17 +1,13 @@
 package GUI;
-import Entities.Student;
-import com.sun.tools.jconsole.JConsoleContext;
-import UseCases.TagMatchManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
+
 import UIController.UIController;
 
 public class TagMatchFrame extends JFrame implements ActionListener, ItemListener {
@@ -98,9 +94,11 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == profileBTN){
+            System.out.println(matchedList.getSelectedIndex() + matchedList.getSelectedValue());
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
-                String selectedID = uiController.getTagMatchUIControl().getSelectedIndex(matchedList.getSelectedIndex());
+                String selectedID = uiController.getTagMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+                System.out.println(selectedName + selectedID);
                 uiController.toProfileDisplay(selectedID);
             }
         }

@@ -4,6 +4,7 @@ import Entities.Student;
 import Entities.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FriendListManager extends UseCase{
@@ -11,10 +12,10 @@ public class FriendListManager extends UseCase{
         super(courseDatabase, userDatabase);
     }
 
-    public List<User> getFriendList(String userID) {
+    public ArrayList<Student> getFriendList(String userID) {
         try {
-            Student user = (Student) this.ub.getUserByID(userID);
-            return user.getFriendList();
+            Student friend = (Student) this.ub.getUserByID(userID);
+            return friend.getFriendList();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

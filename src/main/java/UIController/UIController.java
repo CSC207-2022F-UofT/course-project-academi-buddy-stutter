@@ -125,7 +125,8 @@ public class UIController{
         TagSelectFrame tagSelectFrame = new TagSelectFrame(this);
     }
 
-    public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
+    public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(
+            this, userID, self.getUserID());}
 
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 }

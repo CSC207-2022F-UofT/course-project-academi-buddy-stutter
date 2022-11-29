@@ -20,4 +20,8 @@ public class ProfileDisplayUIControl {
     public String getInfo(String userID){
         return profileManager.getUserInfo(userID);
     }
+
+    public boolean sendFriendRequest(String userID, String viewerUserID) {
+        return profileManager.sendFriendRequest(userID, viewerUserID);
+    }
 }

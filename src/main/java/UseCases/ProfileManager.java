@@ -3,8 +3,10 @@ package UseCases;
 import Entities.Course;
 import Entities.Student;
 import Entities.User;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProfileManager extends UseCase{
@@ -59,8 +61,34 @@ public class ProfileManager extends UseCase{
             throw new RuntimeException(e);
         }
     }
+//
+//    public ArrayList<String> getFriendList(String userID) {
+//        try {
+//            User user = this.ub.getUserByID(userID);
+//            ArrayList<Student> friendList = ((Student) user).getFriendList();
+//            ArrayList<String> friendListString = new ArrayList<>();
+//            if (friendList.contains(null)) {
+//                return friendListString;
+//            }
+//            for (Student friend: friendList) {
+//                friendListString.add(friend.getFullName());
+//            }
+//            return friendListString;
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
-    public boolean sendFriendRequest(String userID, String viewerUserID) {
-        return true;
-    }
+//    public boolean sendFriendRequest(String userID, String viewerUserID) {
+//        try {
+//            User viewerUser = this.ub.getUserByID(viewerUserID);
+//            User receiveRequestUser = this.ub.getUserByID(userID);
+//            ((Student) viewerUser).sendFriendRequest((Student )receiveRequestUser);
+//            return true;
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
 }

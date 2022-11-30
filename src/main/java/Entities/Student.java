@@ -90,16 +90,24 @@ public class Student extends User{
         }
     }
 
-    public void addFriend(Student student) {
+    private void addFriend(Student student) {
         /*
         Add stduent to this user's friend list if this user received request from this student
          */
+        this.friend_list.add(student);
+    }
+
+    public void acceptFriendRequest(Student student) {
         if (this.friend_request_list.contains(student)) {
             this.friend_request_list.remove(student);
-            this.friend_list.add(student);
+            this.addFriend(student);
+            student.sendAcceptedRequest(this);
         }
     }
 
+    public void sendAcceptedRequest(Student student) {
+        this.addFriend(student);
+    }
     public void receiveFriendRequest(Student student) {
         this.friend_request_list.add(student);
     }

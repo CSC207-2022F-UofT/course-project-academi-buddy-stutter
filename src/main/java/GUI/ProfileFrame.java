@@ -1,10 +1,12 @@
 package GUI;
 
+import Entities.Student;
 import UIController.UIController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ProfileFrame extends JFrame implements ActionListener {
     JLabel nameLabel = new JLabel("Name:");
@@ -19,9 +21,11 @@ public class ProfileFrame extends JFrame implements ActionListener {
     // creating textarea
     JTextArea infoText = new JTextArea();
     JTextArea courseText = new JTextArea();
+
     UIController uiController;
 
     JButton backBTN = new JButton("Back");
+    JButton closeBTN = new JButton("Close");
 
     public ProfileFrame(UIController uiController){
         this.uiController = uiController;
@@ -35,6 +39,8 @@ public class ProfileFrame extends JFrame implements ActionListener {
         emailText.setBounds(130, 35, 200, 20);
         courseText.setBounds(130, 60, 200, 100);
         infoText.setBounds(130, 180, 200, 40);
+
+
         courseText.setEditable(false);
         nameText.setEditable(false);
         emailText.setEditable(false);
@@ -48,6 +54,10 @@ public class ProfileFrame extends JFrame implements ActionListener {
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
 
+        closeBTN.setBounds(200, 200, 200, 40);
+        closeBTN.addActionListener(this);
+        closeBTN.setFocusable(false);
+
         // adding elements to frame
         this.add(nameLabel);
         this.add(emailLabel);
@@ -60,6 +70,7 @@ public class ProfileFrame extends JFrame implements ActionListener {
         this.add(infoText);
 
         this.add(backBTN);
+        this.add(closeBTN);
 
 
         this.setTitle("File Upload Frame"); // sets frame's title
@@ -78,6 +89,8 @@ public class ProfileFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == closeBTN){
+            this.dispose();
+        }
     }
 }

@@ -40,11 +40,12 @@ public class main {
         Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
         Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
         UIController uiController = new UIController(student, cb, ub, tb);
-        //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
+//        TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
 //        TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
-        //ProfileFrame pf = new ProfileFrame(uiController);
-        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789", "23456");
+//        ProfileFrame pf = new ProfileFrame(uiController);
+//        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789", "23456");
+        FriendListFrame flf = new FriendListFrame(uiController);
     }
 
 }

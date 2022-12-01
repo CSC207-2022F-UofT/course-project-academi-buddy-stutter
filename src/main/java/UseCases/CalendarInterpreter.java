@@ -45,7 +45,8 @@ Download calendar from acorn */
     param: calendar_raw as String
     return: Arraylist containing courses a student is taking.
     */
-    public ArrayList<Course> getCourses(String calendar_raw) {
+    public ArrayList<Course> getCourses(String calendar) {
+        String calendar_raw = readCalendar(calendar);
         ArrayList<Course> courses = new ArrayList<>();
         int length = ci.getLength(calendar_raw);
         for(int i = 0; i < length; i++){

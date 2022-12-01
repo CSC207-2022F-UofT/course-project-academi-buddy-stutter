@@ -86,7 +86,7 @@ public class UIController{
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
         this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
         this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
-        this.homeUIControl = new HomeUIControl(courseManager,userManager);
+        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
 
 
     }

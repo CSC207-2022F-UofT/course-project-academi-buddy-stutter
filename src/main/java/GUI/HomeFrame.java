@@ -83,6 +83,7 @@ public class HomeFrame extends JFrame implements ActionListener {
                     completedLabel.setForeground(Color.green);
                     completedLabel.setText("Uploaded!");
                     this.add(findStudyBuddyBTN);
+                    uiController.getHomeUIControl().updateDatabase();
                 } catch (Exception ex) {
                     completedLabel.setForeground(Color.red);
                     completedLabel.setText("Error!");

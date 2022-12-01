@@ -1,7 +1,9 @@
 package UIController;
 
+import Entities.Student;
+import Entities.User;
+import External.BiweeklyAPI;
 import External.JavaxAPI;
-import Gateways.UploaderInterface;
 import UseCases.CourseDataManager;
 import UseCases.UserDataManager;
 import UseCases.UploadManager;
@@ -14,16 +16,22 @@ public class HomeUIControl {
 
 
     private UploadManager uploadManager;
+    private Student self;
 
-    public HomeUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase){
-
+    public HomeUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
+        this.self = (Student) self;
         JavaxAPI javaxAPI = new JavaxAPI();
-        this.uploadManager = new UploadManager(courseDatabase, userDatabase, javaxAPI);
+        BiweeklyAPI biweeklyAPI = new BiweeklyAPI();
+        this.uploadManager = new UploadManager(courseDatabase, userDatabase, javaxAPI, biweeklyAPI);
 
     }
 
     public boolean upload(){
         return this.uploadManager.upload();
+    }
+
+    public void updateDatabase() throws IOException {
+        this.uploadManager.updateDatabase(this.self);
     }
 
     public void copyFileToPath() throws IOException {

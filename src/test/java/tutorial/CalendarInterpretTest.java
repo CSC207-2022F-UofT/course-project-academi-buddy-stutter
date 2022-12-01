@@ -1,8 +1,6 @@
 package tutorial;
 import External.BiweeklyAPI;
 import UseCases.CalendarInterpreter;
-
-//import Calendar.CalendarInterpret;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +37,4 @@ class CalendarInterpretTest {
 
 
         }
-
 }

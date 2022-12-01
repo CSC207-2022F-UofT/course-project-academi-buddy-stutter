@@ -1,12 +1,10 @@
 package GUI;
 
-import Entities.Student;
 import UIController.UIController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ProfileFrame extends JFrame implements ActionListener {
     JLabel nameLabel = new JLabel("Name:");
@@ -20,12 +18,12 @@ public class ProfileFrame extends JFrame implements ActionListener {
 
     // creating textarea
     JTextArea infoText = new JTextArea();
-    JTextArea courseText = new JTextArea();
 
+    JTextArea courseText = new JTextArea(10, 10);
+    JScrollPane courseTextScoll = new JScrollPane(courseText);
     UIController uiController;
 
     JButton backBTN = new JButton("Back");
-    JButton closeBTN = new JButton("Close");
 
     public ProfileFrame(UIController uiController){
         this.uiController = uiController;
@@ -37,10 +35,8 @@ public class ProfileFrame extends JFrame implements ActionListener {
 
         nameText.setBounds(130, 10, 200, 20);
         emailText.setBounds(130, 35, 200, 20);
-        courseText.setBounds(130, 60, 200, 100);
+        courseTextScoll.setBounds(130,65, 200, 110);
         infoText.setBounds(130, 180, 200, 40);
-
-
         courseText.setEditable(false);
         nameText.setEditable(false);
         emailText.setEditable(false);
@@ -49,14 +45,14 @@ public class ProfileFrame extends JFrame implements ActionListener {
         emailText.setText(uiController.getProfileUIControl().getEmail());
         courseText.setText(uiController.getProfileUIControl().getCourse());
         infoText.setText(uiController.getProfileUIControl().getInfo());
+        courseTextScoll.setViewportView(courseText);
+        courseTextScoll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        courseTextScoll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
 
         backBTN.setBounds(345, 230, 80, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-
-        closeBTN.setBounds(200, 200, 200, 40);
-        closeBTN.addActionListener(this);
-        closeBTN.setFocusable(false);
 
         // adding elements to frame
         this.add(nameLabel);
@@ -64,13 +60,15 @@ public class ProfileFrame extends JFrame implements ActionListener {
         this.add(classLabel);
         this.add(infoLabel);
 
+
         this.add(nameText);
         this.add(emailText);
-        this.add(courseText);
         this.add(infoText);
 
+        this.getContentPane().add(courseTextScoll);
+
         this.add(backBTN);
-        this.add(closeBTN);
+
 
 
         this.setTitle("File Upload Frame"); // sets frame's title
@@ -89,8 +87,6 @@ public class ProfileFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == closeBTN){
-            this.dispose();
-        }
+
     }
 }

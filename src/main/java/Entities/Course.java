@@ -73,7 +73,7 @@ public class Course{
         return false;
     }
 
-    public ArrayList<String> getEnrolledID(){
+    public ArrayList<String> getEnrolledIDList(){
         ArrayList<String> IDList = new ArrayList<>();
         IDList.addAll(this.enrolled_student_id);
         return IDList;

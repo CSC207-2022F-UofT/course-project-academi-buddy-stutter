@@ -21,5 +21,7 @@ public interface DatabaseInterface {
 
     ArrayList<String> getDocumentStringList();
 
+    boolean removeDocField(String documentName, String key);
+
 
 }

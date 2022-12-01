@@ -1,6 +1,5 @@
 package UseCases;
 
-import Entities.Course;
 import Entities.Student;
 
 import java.io.IOException;
@@ -26,14 +25,14 @@ public class CourseMatchManager {
         ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
         for(String course: enrolledCourse){
             try {
-                ArrayList<String> studentIDs = cb.getCourse(course).getEnrolledStudentID();
+                ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
                 ArrayList<Student> students = new ArrayList<>();
                 for (String s: studentIDs){
                     students.add((Student) ub.getUserByID(s));
                 }
                 sameSessionStudents.addAll(students);
             } catch (IOException e) {
-                System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getCourse()");
+                System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getLecCourse()");
                 throw new RuntimeException(e);
             }
         }

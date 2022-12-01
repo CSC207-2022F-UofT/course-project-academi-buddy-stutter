@@ -15,6 +15,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
     JLabel userIDLabel = new JLabel("User ID:");
     JLabel passwordLabel = new JLabel("Password:");
     JLabel confirmLabel = new JLabel("Confirm Password:");
+    JLabel errorLabel = new JLabel("Error: User Exists/Passwords Doesn't Match");
 
     // creating textfields
     JTextField fullNameText = new JTextField();
@@ -37,6 +38,9 @@ public class RegisterFrame extends JFrame implements ActionListener {
         userIDLabel.setBounds(10, 60, 50, 20);
         passwordLabel.setBounds(10, 85, 70, 20);
         confirmLabel.setBounds(10, 110, 120, 20);
+        errorLabel.setBounds(10,130,300,20);
+        errorLabel.setForeground(Color.red);
+        errorLabel.setVisible(false);
 
         // setting up textfields
         fullNameText.setBounds(130, 35, 200, 20);
@@ -45,9 +49,9 @@ public class RegisterFrame extends JFrame implements ActionListener {
         confirmText.setBounds(130, 110, 200, 20);
 
         // setting up buttons
-        registerBTN.setBounds(120, 145, 100, 20);
+        registerBTN.setBounds(120, 170, 100, 20);
         registerBTN.addActionListener(this);
-        cancelBTN.setBounds(230, 145, 100, 20);
+        cancelBTN.setBounds(230, 170, 100, 20);
         cancelBTN.addActionListener(this);
 
         // adding elements to Frame
@@ -55,6 +59,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.add(fullNameLabel);
         this.add(userIDLabel);
         this.add(passwordLabel);
+        this.add(errorLabel);
         this.add(confirmLabel);
         this.add(fullNameText);
         this.add(userIDText);
@@ -88,6 +93,9 @@ public class RegisterFrame extends JFrame implements ActionListener {
                 if(this.uiController.getRegisterUIControl().attemptRegister(fullName, id, password, confirm)){
                     this.uiController.toRegisterProfile();
                     this.dispose();
+                }
+                else{
+                    this.errorLabel.setVisible(true);
                 }
 
             } catch (IOException ex) {

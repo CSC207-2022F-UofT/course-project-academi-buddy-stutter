@@ -1,14 +1,9 @@
 package UIController;
 
 import Entities.Student;
-import UseCases.CourseDataManager;
-import UseCases.TagDataManager;
-import UseCases.UserDataManager;
+import UseCases.*;
 import Entities.User;
 import GUI.*;
-import UseCases.RegisterManager;
-import UseCases.TagMatchManager;
-import UseCases.TagSelectManager;
 
 import java.io.IOException;
 
@@ -20,11 +15,7 @@ public class UIController{
     private User self;
     private CourseDataManager courseManager;
     private UserDataManager userManager;
-    private RegisterManager registerManager;
     private TagDataManager tagManager;
-
-    private TagMatchManager tagMatchManager;
-    private TagSelectManager tagSelectManager;
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
@@ -34,6 +25,10 @@ public class UIController{
     private ProfileDisplayUIControl profileDisplayUIControl;
 
     private HomeUIControl homeUIControl;
+
+    private FriendListUIControl friendListUIControl;
+    private TagMatchUIControl tagMatchUIControl;
+    private TagSelectUIControl tagSelectUIControl;
 
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
@@ -59,8 +54,9 @@ public class UIController{
 
     public HomeUIControl getHomeUIControl(){return homeUIControl;}
 
-    protected TagMatchUIControl tagMatchUIControl;
-    protected TagSelectUIControl tagSelectUIControl;
+    public FriendListUIControl getFriendListUIControl(){return friendListUIControl;}
+
+
 
 
 
@@ -75,9 +71,6 @@ public class UIController{
         // UseCases
 
 
-        this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
-        this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
-
 
         this.loginUIControl = new LoginUIControl(courseManager, userManager);
         this.registerUIControl = new RegisterUIControl(courseManager, userManager);
@@ -86,7 +79,8 @@ public class UIController{
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
         this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
         this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
-        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
+        this.homeUIControl = new HomeUIControl(courseManager,userManager);
+        this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
 
 
     }
@@ -133,4 +127,5 @@ public class UIController{
 
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 
+    public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 }

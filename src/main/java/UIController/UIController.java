@@ -137,6 +137,8 @@ public class UIController{
         LabelSelectFrame LabelSelectFrame = new LabelSelectFrame(this);
     }
 
+    public void toFileUpload() { FileUploadFrame fileUploadFrame = new FileUploadFrame(this);}
+
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}

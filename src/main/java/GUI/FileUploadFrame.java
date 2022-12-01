@@ -1,5 +1,7 @@
 package GUI;
 
+import UIController.UIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,12 +9,20 @@ import java.awt.event.ActionListener;
 
 public class FileUploadFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Upload Your Calendar:");
+    JLabel completedLabel = new JLabel();
     JButton uploadBTN = new JButton("File");
     JButton nextBTN = new JButton("Next");
-    public FileUploadFrame(){
+
+
+    UIController uiController;
+
+    public FileUploadFrame(UIController uiController){
+        this.uiController = uiController;
+
         // setting up title label
         titleLabel.setBounds(60, 0, 300, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        completedLabel.setBounds(135, 75, 50, 20);
 
         // setting up buttons
         uploadBTN.setBounds(135, 50, 50, 20);
@@ -24,9 +34,10 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         this.add(titleLabel);
         this.add(uploadBTN);
         this.add(nextBTN);
+        this.add(completedLabel);
 
         this.setTitle("File Upload Frame"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
@@ -39,5 +50,9 @@ public class FileUploadFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource() == nextBTN){
+            this.dispose();
+            uiController.toProfileCompleteFrame();
+        }
     }
 }

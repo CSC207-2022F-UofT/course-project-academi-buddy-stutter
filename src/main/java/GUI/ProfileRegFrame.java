@@ -19,7 +19,7 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
 
     // creating textarea
     JTextArea infoText = new JTextArea();
-    JButton completeBTN = new JButton("Complete Profile");
+    JButton completeBTN = new JButton("Next");
 
     UIController uiController;
 
@@ -62,7 +62,7 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
         if(e.getSource() == completeBTN){
             uiController.getRegisterUIControl().updateEmailAndInfo(emailText.getText(), infoText.getText());
             this.dispose();
-            uiController.toProfileCompleteFrame();
+            uiController.toFileUpload();
         }
     }
 }

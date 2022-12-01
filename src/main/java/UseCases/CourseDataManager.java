@@ -2,7 +2,6 @@ package UseCases;
 import Gateways.DatabaseInterface;
 import Entities.Course;
 import Entities.Student;
-import Entities.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class CourseDataManager {
         fi.addEntry(courseCode, "day of week", course.getDayOfWeek());
         fi.addEntry(courseCode, "start time", course.getStartTime());
         fi.addEntry(courseCode, "year", course.getYear());
+        fi.addEntry(courseCode, "enrolled students id", course.getEnrolledIDList());
     }
 
     public boolean addStudent(Course course, Student student) throws IOException {
@@ -48,7 +48,7 @@ public class CourseDataManager {
         boolean added = course.addStudent(student);
         if(added){
             student.addCourse(course);
-            fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledID());
+            fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledIDList());
             ud.updateStudentCourses(student);//update student's enrolled course in userdatabase.
             return true;
         }
@@ -63,22 +63,22 @@ public class CourseDataManager {
         boolean removed = course.removeStudent(student);
         if(removed){
             student.removeCourse(course);
-            fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledID());
+            fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledIDList());
             ud.updateStudentCourses(student);//update student's enrolled course in userdatabase.
             return true;
         }
         return false;
     }
 
-    public Course getCourse(String courseCode) throws IOException {
+    public Course getCourse(String courseCode, String courseType) throws IOException {
         /**
-         * get a course by course code.
+         * get a lecture course by course code.
          */
         fi.initialize("courses");
-        if(!this.getCourseCodeList().contains(courseCode)){
+        if(!this.getCourseCodeList().contains(courseCode + courseType)){
             return null;
         }
-        Map<String, Object> courseDetail = fi.getEntry(courseCode);
+        Map<String, Object> courseDetail = fi.getEntry(courseCode + courseType);
         Course course = new Course(courseCode, (String) courseDetail.get("session type"),
                 (String) courseDetail.get("session number"), (String) courseDetail.get("session name"),
                 (String) courseDetail.get("day of week"), (String) courseDetail.get("start time"),

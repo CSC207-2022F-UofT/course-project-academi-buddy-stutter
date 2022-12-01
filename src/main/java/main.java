@@ -1,7 +1,10 @@
+import Entities.InterestTag;
 import Entities.Student;
 import External.BiweeklyAPI;
 import External.FirebaseAPI;
 import GUI.*;
+import TestDataFactory.ReadCounter;
+import TestDataFactory.WriteCounter;
 import UIController.UIController;
 import UseCases.CalendarInterpreter;
 import UseCases.CourseDataManager;
@@ -14,7 +17,6 @@ import com.google.firebase.FirebaseOptions;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class main {
 
@@ -37,11 +39,11 @@ public class main {
         CourseDataManager cb = new CourseDataManager(cbc, ub);
         TagDataManager tb = new TagDataManager(tbc, ub);
 
-        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
+        Student student = (Student) ub.getUserByID("567789");
         Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
         UIController uiController = new UIController(student, cb, ub, tb);
         //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
-        TagMatchFrame tm = new TagMatchFrame(uiController);
+        //TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
         //ProfileFrame pf = new ProfileFrame(uiController);
     }

@@ -26,8 +26,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JLabel passwordLabel = new JLabel("Password:");
     JButton loginBTN = new JButton("LOGIN");
     JButton registerBTN = new JButton("REGISTER");
-    JTextField userIDText = new JTextField("Enter your user ID here:");
-    // JTextField passwordText = new JTextField("Enter your password here:");
+    JTextField userIDText = new JTextField();
     JPasswordField passwordText = new JPasswordField();
 
     UIController uiController;

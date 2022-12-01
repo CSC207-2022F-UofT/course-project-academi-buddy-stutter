@@ -1,5 +1,7 @@
 package GUI;
 
+import UIController.UIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,10 @@ import java.awt.event.ActionListener;
 public class RegCmplFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Your Registration is Complete!");
     JButton returnBTN = new JButton("Return to Login Page");
-    public RegCmplFrame(){
+
+    UIController uiController;
+    public RegCmplFrame(UIController uiController){
+        this.uiController = uiController;
         // setting labels
         titleLabel.setBounds(30, 20, 300, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));
@@ -33,5 +38,8 @@ public class RegCmplFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == returnBTN){
+            uiController.toLogin();
+        }
     }
 }

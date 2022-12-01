@@ -103,7 +103,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
             }
         }
         else if(e.getSource() == backBTN){
-            //TODO: go to home page
+            this.dispose();
         }
 
     }

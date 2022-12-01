@@ -91,7 +91,7 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
             applyBTN.setEnabled(false);
         }
         else if(e.getSource() == backBTN){
-            //TODO: go to home page
+            this.dispose();
         }
     }
 

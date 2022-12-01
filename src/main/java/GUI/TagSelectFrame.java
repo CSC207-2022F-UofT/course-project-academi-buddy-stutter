@@ -138,7 +138,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
             applyBTN.setEnabled(false);
         }
         else if(e.getSource() == backBTN){
-            //TODO: go to home page
+            this.dispose();
         }
     }
 

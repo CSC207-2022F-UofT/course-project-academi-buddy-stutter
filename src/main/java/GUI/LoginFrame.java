@@ -24,10 +24,10 @@ public class LoginFrame extends JFrame implements ActionListener {
     JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
     JLabel userLabel = new JLabel("USER ID:");
     JLabel passwordLabel = new JLabel("Password:");
+    JLabel errorLabel = new JLabel("Error: Incorrect login info");
     JButton loginBTN = new JButton("LOGIN");
     JButton registerBTN = new JButton("REGISTER");
-    JTextField userIDText = new JTextField("Enter your user ID here:");
-    // JTextField passwordText = new JTextField("Enter your password here:");
+    JTextField userIDText = new JTextField("");
     JPasswordField passwordText = new JPasswordField();
 
     UIController uiController;
@@ -35,7 +35,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     public LoginFrame(UIController uiController){
         this.uiController = uiController;
 
-        this.setTitle("LoginManager Frame"); // sets frame's title
+        this.setTitle("Login Screen"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
@@ -57,6 +57,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         passwordLabel.setBounds(10,100,100,20);
         programTitle.setBounds(60, 0, 300, 50);
         programTitle.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        errorLabel.setBounds(110, 120,300,20);
+        errorLabel.setVisible(false);
+        errorLabel.setForeground(Color.red);
 
         // textfields
         userIDText.setBounds(110, 75, 200, 20);
@@ -69,9 +72,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.add(registerBTN);
         this.add(userLabel);
         this.add(passwordLabel);
-
-
-
+        this.add(errorLabel);
         this.add(programTitle);
         this.add(userIDText);
         this.add(passwordText);
@@ -94,6 +95,9 @@ public class LoginFrame extends JFrame implements ActionListener {
                     this.dispose();
                     this.uiController.updateUser();
                     this.uiController.toHome();
+                }
+                else{
+                    this.errorLabel.setVisible(true);
                 }
 
             } catch (IOException ex) {

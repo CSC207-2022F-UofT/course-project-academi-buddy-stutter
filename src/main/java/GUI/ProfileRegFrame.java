@@ -1,5 +1,8 @@
 package GUI;
 
+import Entities.User;
+import UIController.UIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,28 +11,27 @@ import java.awt.event.ActionListener;
 public class ProfileRegFrame extends JFrame implements ActionListener {
     // creating labels
     JLabel proTitleLabel = new JLabel("Profile");
-    JLabel nameLabel = new JLabel("Full Name:");
     JLabel emailLabel = new JLabel("UofT Email:");
     JLabel infoLabel = new JLabel("About:");
 
     // creating textfields
-    JTextField nameText = new JTextField();
     JTextField emailText = new JTextField();
 
     // creating textarea
     JTextArea infoText = new JTextArea();
     JButton completeBTN = new JButton("Complete Profile");
 
-    public ProfileRegFrame(){
+    UIController uiController;
+
+    public ProfileRegFrame(UIController uiController){
+        this.uiController = uiController;
         // setting up labels
         proTitleLabel.setBounds(140, 0, 300, 30);
         proTitleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        nameLabel.setBounds(10, 30, 100, 20);
         emailLabel.setBounds(10, 55, 100, 20);
         infoLabel.setBounds(10, 80, 100, 20);
 
         // setting up textfields
-        nameText.setBounds(110, 30, 200, 20);
         emailText.setBounds(110, 55, 200, 20);
         infoText.setBounds(110, 80, 200, 80);
 
@@ -39,10 +41,8 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
 
         // adding elements in frame
         this.add(proTitleLabel);
-        this.add(nameLabel);
         this.add(emailLabel);
         this.add(infoLabel);
-        this.add(nameText);
         this.add(emailText);
         this.add(infoText);
         this.add(completeBTN);
@@ -59,6 +59,10 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == completeBTN){
+            uiController.getRegisterUIControl().updateEmailAndInfo(emailText.getText(), infoText.getText());
+            this.dispose();
+            uiController.toProfileCompleteFrame();
+        }
     }
 }

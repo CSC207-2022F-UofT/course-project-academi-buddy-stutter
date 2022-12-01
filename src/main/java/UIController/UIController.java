@@ -113,6 +113,18 @@ public class UIController{
         RegisterFrame registerFrame = new RegisterFrame(this);
     }
 
+    public void toRegisterProfile(){
+        ProfileRegFrame profileRegFrame = new ProfileRegFrame(this);
+    }
+
+    public void toProfile(){
+        ProfileFrame profileFrame = new ProfileFrame(this);
+    }
+
+    public void toProfileCompleteFrame(){
+        RegCmplFrame regCmplFrame = new RegCmplFrame(this);
+    }
+
     public void toTagMatch(){
         TagMatchFrame tagMatchFrame = new TagMatchFrame(this);
     }
@@ -121,11 +133,16 @@ public class UIController{
         TagSelectFrame tagSelectFrame = new TagSelectFrame(this);
     }
 
+    public void toLabelSelect(){
+        LabelSelectFrame LabelSelectFrame = new LabelSelectFrame(this);
+    }
+
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
     private void initializeAfterLogin(){
+        System.out.println("initialized");
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);

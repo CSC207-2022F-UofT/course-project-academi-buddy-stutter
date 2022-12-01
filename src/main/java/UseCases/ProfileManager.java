@@ -87,4 +87,24 @@ public class ProfileManager extends UseCase{
             throw new RuntimeException(e);
         }
     }
+
+    public void updateEmail(String userID, String email){
+        try {
+            Student student = (Student) ub.getUserByID(userID);
+            student.setEmail(email);
+            ub.addStudentUser(student);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateInfo(String userID, String info){
+        try {
+            Student student = (Student) ub.getUserByID(userID);
+            student.setUserInfo(info);
+            ub.addStudentUser(student);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

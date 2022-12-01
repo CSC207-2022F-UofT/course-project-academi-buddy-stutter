@@ -1,5 +1,6 @@
 package UIController;
 
+import Entities.Student;
 import UseCases.CourseDataManager;
 import UseCases.UserDataManager;
 import UseCases.RegisterManager;
@@ -17,6 +18,10 @@ public class RegisterUIControl {
 
         return registerManager.register(fullName, id, password, confirm);
 
+    }
+
+    public void updateEmailAndInfo(String email, String info){
+        registerManager.updateEmailAndInfo(email, info);
     }
 
 }

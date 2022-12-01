@@ -1,6 +1,5 @@
 package UseCases;
 
-import Entities.Course;
 import Entities.Student;
 import Entities.User;
 
@@ -44,16 +43,45 @@ public class ProfileManager extends UseCase{
         try {
             User user = this.ub.getUserByID(userID);
             ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
-            StringBuilder courseString = new StringBuilder();
-            if(coursesList.contains(null)){
-                return courseString.toString();
+            ArrayList<String> lectureList = new ArrayList<>();
+            ArrayList<String> tutorialList = new ArrayList<>();
+            if(coursesList.contains("")){
+                coursesList.remove("");
             }
             for(String course: coursesList){
-                courseString.append(course);
+                if (lectureList.contains(course)){
+                    tutorialList.add(course);
+                }
+                else{
+                    lectureList.add(course);
+                }
+            }
+            StringBuilder courseString = new StringBuilder();
+            courseString.append("Lectures:\n");
+            for(String lecture: lectureList){
+                System.out.println(lecture);
+                if(cb.getCourse(lecture, "LEC") == null){
+                    tutorialList.add(lecture);
+                }
+                else{
+                    courseString.append(lecture);
+                    courseString.append(": ");
+                    courseString.append(cb.getCourse(lecture, "LEC").getCourseName());
+                    courseString.append("\n");
+                }
+            }
+            if(tutorialList.isEmpty()){
+                return courseString.toString();
+            }
+            courseString.append("\n");
+            courseString.append("Tutorials:\n");
+            for(String tutorial: tutorialList){
+                courseString.append(tutorial);
                 courseString.append(": ");
-                courseString.append(cb.getCourse(course).getCourseName());
+                courseString.append(cb.getCourse(tutorial, "TUT").getCourseName());
                 courseString.append("\n");
             }
+            courseString.deleteCharAt(courseString.length() - 1);
             return courseString.toString();
         } catch (IOException e) {
             throw new RuntimeException(e);

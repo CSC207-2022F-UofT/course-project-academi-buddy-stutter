@@ -18,7 +18,9 @@ public class ProfileFrame extends JFrame implements ActionListener {
 
     // creating textarea
     JTextArea infoText = new JTextArea();
-    JTextArea courseText = new JTextArea();
+
+    JTextArea courseText = new JTextArea(10, 10);
+    JScrollPane courseTextScoll = new JScrollPane(courseText);
     UIController uiController;
 
     JButton backBTN = new JButton("Back");
@@ -33,7 +35,7 @@ public class ProfileFrame extends JFrame implements ActionListener {
 
         nameText.setBounds(130, 10, 200, 20);
         emailText.setBounds(130, 35, 200, 20);
-        courseText.setBounds(130, 60, 200, 100);
+        courseTextScoll.setBounds(130,65, 200, 110);
         infoText.setBounds(130, 180, 200, 40);
         courseText.setEditable(false);
         nameText.setEditable(false);
@@ -43,6 +45,10 @@ public class ProfileFrame extends JFrame implements ActionListener {
         emailText.setText(uiController.getProfileUIControl().getEmail());
         courseText.setText(uiController.getProfileUIControl().getCourse());
         infoText.setText(uiController.getProfileUIControl().getInfo());
+        courseTextScoll.setViewportView(courseText);
+        courseTextScoll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        courseTextScoll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
 
         backBTN.setBounds(345, 230, 80, 20);
         backBTN.addActionListener(this);
@@ -54,12 +60,15 @@ public class ProfileFrame extends JFrame implements ActionListener {
         this.add(classLabel);
         this.add(infoLabel);
 
+
         this.add(nameText);
         this.add(emailText);
-        this.add(courseText);
         this.add(infoText);
 
+        this.getContentPane().add(courseTextScoll);
+
         this.add(backBTN);
+
 
 
         this.setTitle("File Upload Frame"); // sets frame's title

@@ -1,6 +1,6 @@
 package TestDataFactory;
 
-public class WriteCounter {
+public abstract class WriteCounter {
     private static int count;
 
     public static void addCount(){

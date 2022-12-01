@@ -20,4 +20,8 @@ public class FriendListUIControl {
         return friendListManager.getFriendList(self.getUserID());
     }
 
+    public ArrayList<Student> getFriendRequestList() {
+        return friendListManager.getFriendRequestList(self.getUserID());
+    }
+
 }

@@ -184,7 +184,7 @@ public class UIController{
 
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 
-    public void toFriendList(String userID) {FriendListFrame friendListFrame = new FriendListFrame(this, userID);}
+    public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
     private void initializeAfterLogin(){
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);

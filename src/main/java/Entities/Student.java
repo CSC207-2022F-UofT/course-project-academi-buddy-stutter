@@ -42,9 +42,21 @@ public class Student extends User{
         return courseCodes;
     }
 
-    public ArrayList<Student> getFriendList() { return this.friendList; }
+    public ArrayList<Student> getFriendList() {
+        Student student1 = new Student("1", "qwerty", "John Doe1", "A test subject1");
+        Student student2 = new Student("2", "qwerty", "John Doe2", "A test subject2");
+
+        this.friendList.add(student1);
+        this.friendList.add(student2);
+        return this.friendList;
+    }
 
     public ArrayList<Student> getFriendListRequest() {
+        Student student3 = new Student("3", "qwerty", "John Doe3", "A test subject3");
+        Student student4 = new Student("4", "qwerty", "John Doe4", "A test subject4");
+
+        this.friend_request_list.add(student3);
+        this.friend_request_list.add(student4);
         return this.friend_request_list;
     }
 

@@ -24,4 +24,16 @@ public class FriendListUIControl {
         return friendListManager.getFriendRequestList(self.getUserID());
     }
 
+    public void acceptFriendRequest(String userID, String friendID) {
+        friendListManager.acceptFriendRequest(userID, friendID);
+    }
+
+    public void updateFriendList(String userID) {
+        friendListManager.updateFriendList(userID);
+    }
+
+    public void acceptedRequest(String friendID, String userID) {
+        friendListManager.acceptedRequest(friendID, userID);
+    }
+
 }

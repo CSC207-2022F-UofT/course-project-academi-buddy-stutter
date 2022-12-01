@@ -10,6 +10,17 @@ public class Student extends User{
 
     private ArrayList<Student> friendList;
     private ArrayList<Student> friend_request_list;
+    private ArrayList<Student> friendRequestSentList;
+
+    public Student(String UID, String UPass, String full_name, String info){
+        super(UID, UPass, full_name, info);
+        this.tags_of_interests = new ArrayList<>();
+        this.labels = new ArrayList<>();
+        this.enrolled_course_codes = new ArrayList<>();
+        this.friendList = new ArrayList<>();
+        this.friend_request_list = new ArrayList<>();
+        this.friendRequestSentList = new ArrayList<>();
+    }
 
     public void setFriend_list(ArrayList<Student> friend_list_to_add) {
         this.friendList = friend_list_to_add;
@@ -60,15 +71,12 @@ public class Student extends User{
         return this.friend_request_list;
     }
 
-    //init
-    public Student(String UID, String UPass, String full_name, String info){
-        super(UID, UPass, full_name, info);
-        this.tags_of_interests = new ArrayList<>();
-        this.labels = new ArrayList<>();
-        this.enrolled_course_codes = new ArrayList<>();
-        this.friendList = new ArrayList<>();
-        this.friend_request_list = new ArrayList<>();
+    public ArrayList<Student> getFriendRequestSentList() {
+        return this.friendRequestSentList;
     }
+
+    //init
+
 
     public void updateStudentTOI(InterestTag tag, boolean selected){
         if(selected && !(isTagSelected(tag))){
@@ -105,16 +113,17 @@ public class Student extends User{
         this.friendList.add(student);
     }
 
+
     public void acceptFriendRequest(Student student) {
         if (this.friend_request_list.contains(student)) {
             this.friend_request_list.remove(student);
             this.addFriend(student);
-            student.sendAcceptedRequest(this);
         }
     }
 
-    public void sendAcceptedRequest(Student student) {
+    public void acceptedRequest(Student student) {
         this.addFriend(student);
+        this.friend_request_list.remove(student);
     }
     public void receiveFriendRequest(Student student) {
         this.friend_request_list.add(student);

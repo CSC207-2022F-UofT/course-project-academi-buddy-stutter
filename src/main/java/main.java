@@ -43,9 +43,9 @@ public class main {
 //        TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
 //        TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
-//        ProfileFrame pf = new ProfileFrame(uiController);
+        ProfileFrame pf = new ProfileFrame(uiController);
 //        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789", "23456");
-        FriendListFrame flf = new FriendListFrame(uiController);
+//        FriendListFrame flf = new FriendListFrame(uiController, "567789");
     }
 
 }

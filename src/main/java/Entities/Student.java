@@ -8,11 +8,11 @@ public class Student extends User{
 
     private String email;
 
-    private ArrayList<Student> friend_list;
+    private ArrayList<Student> friendList;
     private ArrayList<Student> friend_request_list;
 
     public void setFriend_list(ArrayList<Student> friend_list_to_add) {
-        this.friend_list = friend_list_to_add;
+        this.friendList = friend_list_to_add;
     }
 
     public void setTabs_of_interests(ArrayList<InterestTag> tags_of_interests) {
@@ -42,11 +42,7 @@ public class Student extends User{
         return courseCodes;
     }
 
-    public ArrayList<Student> getFriendList() {
-        ArrayList<Student> friendList = new ArrayList<>();
-        friendList.addAll(this.friend_list);
-        return friendList;
-    }
+    public ArrayList<Student> getFriendList() { return this.friendList; }
 
     public ArrayList<Student> getFriendListRequest() {
         return this.friend_request_list;
@@ -58,7 +54,7 @@ public class Student extends User{
         this.tags_of_interests = new ArrayList<>();
         this.labels = new ArrayList<>();
         this.enrolled_course_codes = new ArrayList<>();
-        this.friend_list = new ArrayList<>();
+        this.friendList = new ArrayList<>();
         this.friend_request_list = new ArrayList<>();
     }
 
@@ -94,7 +90,7 @@ public class Student extends User{
         /*
         Add stduent to this user's friend list if this user received request from this student
          */
-        this.friend_list.add(student);
+        this.friendList.add(student);
     }
 
     public void acceptFriendRequest(Student student) {

@@ -19,10 +19,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import UIController.UIController;
 
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
-
+    String userID;
     JLabel friendLabel = new JLabel("Friend List");
     JLabel friendRequestLabel = new JLabel("Friend Requests");
     String[] friendData = {};
@@ -53,8 +55,9 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     UIController uiController;
 
 
-    public FriendListFrame(UIController uiController){
+    public FriendListFrame(UIController uiController, String userID){
         this.uiController = uiController;
+        this.userID = userID;
 
         this.setTitle("Friend List and Requests"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
@@ -77,7 +80,23 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
         //list
         friendData = new String[]{"friend 1", "friend 2", "friend 3", "friend 4", "friend 5", "friend 6", "friend 7"};
-        friendList.setListData(friendData);
+        ArrayList<String> fd = new ArrayList<>();
+        fd.add("f1");
+        fd.add("f1");
+        fd.add("f1");
+        fd.add("f1");
+
+        ArrayList<Student> friendArray = uiController.getFriendListUIControl().getFriendList();
+        String[] friendToString = new String[friendArray.size()];
+        ArrayList<String> temp = new ArrayList<>();
+        for (Student friend: friendArray) {
+            temp.add(friend.getFullName());
+        }
+        friendToString = temp.toArray(friendToString);
+        friendList.setListData(friendToString);
+//        for (Student friend: friendArray) {
+//            friendData
+//        };
 
         //table
         friendRequestTable.setBounds(215,40,180,50);

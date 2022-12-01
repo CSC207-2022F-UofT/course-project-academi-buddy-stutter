@@ -179,14 +179,15 @@ public class UserDataManager {
         return fi.getDocumentStringList().contains(ID);
     }
 
-    public ArrayList<User> getFriendListByUserID(String userID) {
+    public ArrayList<Student> getFriendListByUserID(String userID) throws IOException {
         /**
-         * get a user by userid.
+         * get a friend list by userid.
          */
-        if (userID == "") {
-            return null;
-        }
-        return null;
+        ArrayList<Student> friendList;
+        Student user = (Student) getUserByID(userID);
+        friendList = user.getFriendList();
+        return friendList;
+
     }
 
 

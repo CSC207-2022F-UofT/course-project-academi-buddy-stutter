@@ -128,7 +128,7 @@ public class UIController{
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(
             this, userID, self.getUserID());}
 
-    public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
+    public void toFriendList(String userID) {FriendListFrame friendListFrame = new FriendListFrame(this, userID);}
 
     public void toProfile() {ProfileFrame profileFrame = new ProfileFrame(this);}
 }

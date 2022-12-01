@@ -45,6 +45,9 @@ public class ProfileManager extends UseCase{
             ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
             ArrayList<String> lectureList = new ArrayList<>();
             ArrayList<String> tutorialList = new ArrayList<>();
+            if(coursesList.contains("")){
+                coursesList.remove("");
+            }
             for(String course: coursesList){
                 if (lectureList.contains(course)){
                     tutorialList.add(course);
@@ -54,19 +57,23 @@ public class ProfileManager extends UseCase{
                 }
             }
             StringBuilder courseString = new StringBuilder();
-            if(coursesList.contains("")){
-                return courseString.toString();
-            }
             courseString.append("Lectures:\n");
             for(String lecture: lectureList){
-                courseString.append(lecture);
-                courseString.append(": ");
-                courseString.append(cb.getCourse(lecture, "LEC").getCourseName());
-                courseString.append("\n");
+                System.out.println(lecture);
+                if(cb.getCourse(lecture, "LEC") == null){
+                    tutorialList.add(lecture);
+                }
+                else{
+                    courseString.append(lecture);
+                    courseString.append(": ");
+                    courseString.append(cb.getCourse(lecture, "LEC").getCourseName());
+                    courseString.append("\n");
+                }
             }
             if(tutorialList.isEmpty()){
                 return courseString.toString();
             }
+            courseString.append("\n");
             courseString.append("Tutorials:\n");
             for(String tutorial: tutorialList){
                 courseString.append(tutorial);
@@ -74,6 +81,7 @@ public class ProfileManager extends UseCase{
                 courseString.append(cb.getCourse(tutorial, "TUT").getCourseName());
                 courseString.append("\n");
             }
+            courseString.deleteCharAt(courseString.length() - 1);
             return courseString.toString();
         } catch (IOException e) {
             throw new RuntimeException(e);

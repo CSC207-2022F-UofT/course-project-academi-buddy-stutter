@@ -23,4 +23,15 @@ public class FriendListManager extends UseCase{
             throw new RuntimeException(e);
         }
     }
+
+    public ArrayList<Student> getFriendRequestList(String userID) {
+        try {
+            ArrayList<Student> friendRequestList;
+            Student user = (Student) this.ub.getUserByID(userID);
+            friendRequestList = user.getFriendListRequest();
+            return friendRequestList;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

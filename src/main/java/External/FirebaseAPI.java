@@ -59,14 +59,21 @@ public class FirebaseAPI implements DatabaseInterface {
     public boolean addEntry(String documentName, String key, Object value){
         DocumentReference docRef = getDocRef(documentName);
         Map<String, Object> currentData = getEntry(documentName);
+        Map<String, Object> data;
         ApiFuture<WriteResult> result;
-        if(currentData.containsKey(key)){
-            result = docRef.update(key, value);
-            WriteCounter.addCount();
-            return printUpdateResult(result);
+        if(currentData == null){
+            data = new HashMap<>();
         }
-        currentData.put(key, value);
-        result = docRef.set(currentData);
+        else {
+            data = currentData;
+            if(data.containsKey(key)){
+                result = docRef.update(key, value);
+                WriteCounter.addCount();
+                return printUpdateResult(result);
+            }
+        }
+        data.put(key, value);
+        result = docRef.set(data);
         WriteCounter.addCount();
         return printUpdateResult(result);
     }
@@ -87,6 +94,7 @@ public class FirebaseAPI implements DatabaseInterface {
         return entry;
     }
 
+
     private DocumentReference getDocRef(String documentName){
         DocumentReference docRef;
         docRef = db.collection(collectionName).document(documentName);
@@ -94,9 +102,17 @@ public class FirebaseAPI implements DatabaseInterface {
     }
 
     public boolean removeEntry(String documentName){
-        DocumentReference docRef = db.collection(collectionName).document(documentName);
-
+        DocumentReference docRef = getDocRef(documentName);
         ApiFuture<WriteResult> result = docRef.delete();
+        return printUpdateResult(result);
+    }
+
+    public boolean removeDocField(String documentName, String key){
+        DocumentReference docRef = getDocRef(documentName);
+        Map<String, Object> data = getEntry(documentName);
+        data.remove(key);
+        ApiFuture<WriteResult> result = docRef.set(data);
+        WriteCounter.addCount();
         return printUpdateResult(result);
     }
 

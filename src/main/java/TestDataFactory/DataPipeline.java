@@ -83,7 +83,8 @@ public class DataPipeline {
         List<Label> l5 = new ArrayList<>();
 
         // Student s1 = userDataFactory.createStudent("567789", "qwerty", "John Doeeeee", "Random", "rtyui@l.com", t1, l1);
-        Course c1 = courseDataFactory.createCourse("CSC800", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
+        Course c1 = courseDataFactory.createCourse("CSC800H1", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
+        System.out.println(c1.getEnrolledIDList());
         // courseDataFactory.addStudent(c1, s1);
 
         // sample student objects

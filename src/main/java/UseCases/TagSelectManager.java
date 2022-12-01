@@ -20,13 +20,6 @@ public class TagSelectManager extends UseCase {
 
     public void updateStudentTag(Student self, String tagName, boolean selected){
         InterestTag tag = new InterestTag(tagName);
-        if(!tb.getTagNameList().contains(tagName)) {
-            try {
-                tb.addTag(tag);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
         if(selected){
             try {
                 System.out.println("selected");

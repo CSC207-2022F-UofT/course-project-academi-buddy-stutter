@@ -45,7 +45,7 @@ public class main {
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);
         ProfileFrame pf = new ProfileFrame(uiController);
 //        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789", "23456");
-//        FriendListFrame flf = new FriendListFrame(uiController, "567789");
+        //FriendListFrame flf = new FriendListFrame(uiController);
     }
 
 }

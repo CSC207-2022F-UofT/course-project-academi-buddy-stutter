@@ -30,6 +30,8 @@ public class UIController{
     private TagMatchUIControl tagMatchUIControl;
     private TagSelectUIControl tagSelectUIControl;
 
+    private MatchUIControl matchUIControl;
+
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
     }
@@ -56,7 +58,7 @@ public class UIController{
 
     public FriendListUIControl getFriendListUIControl(){return friendListUIControl;}
 
-
+    public MatchUIControl getMatchUIControl(){return matchUIControl;}
 
 
 
@@ -79,9 +81,9 @@ public class UIController{
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
         this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
         this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
-        this.homeUIControl = new HomeUIControl(courseManager,userManager);
+        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
-
+        this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
 
     }
     public void updateSelf(){

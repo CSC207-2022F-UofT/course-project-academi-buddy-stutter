@@ -41,7 +41,7 @@ public class main {
         Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
         UIController uiController = new UIController(student, cb, ub, tb);
 
-        LoginFrame lg = new LoginFrame(uiController);
+        LoginFrame loginFrame = new LoginFrame(uiController);
     }
 
 }

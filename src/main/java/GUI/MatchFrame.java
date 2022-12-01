@@ -6,6 +6,7 @@ import org.checkerframework.checker.guieffect.qual.UI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MatchFrame extends JFrame implements ActionListener {
 
@@ -58,9 +59,21 @@ public class MatchFrame extends JFrame implements ActionListener {
 
         this.setVisible(true);
     }
+
+    private void addNames(ArrayList<String> names){
+        for(String name: names){
+            outputText.append(name + "\n");
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource() == findBTN){
+            int numCommon = numBox.getSelectedIndex();
+//            this.uiController.getMatchUIControl().getMatches(numCommon, 4);
+
+        }
 
     }
 }

@@ -52,7 +52,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         tagSelectLabel.setBounds(10,10,100,20);
         listLabel.setBounds(10,35,120,20);
 
-        // textfields
+        // text fields
 
         // combobox
         tagComboBox.setBounds(130, 10, 120, 25); // set combobox position
@@ -62,7 +62,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         //list
         matchedList.setBounds(135, 35, 200, 150);
 
-        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
+        uiController.getTagMatchUIControl().setSelectedTag((String) tagComboBox.getSelectedItem());
         matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
         matchedList.addListSelectionListener(new ListSelectionListener() {
@@ -110,7 +110,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
+        uiController.getTagMatchUIControl().setSelectedTag((String) tagComboBox.getSelectedItem());
         matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
         profileBTN.setEnabled(false);

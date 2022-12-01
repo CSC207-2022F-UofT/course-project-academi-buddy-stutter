@@ -34,7 +34,7 @@ public class TagMatchUIControl{
 
     //TagSelectFrame
 
-    public void setSelectedtag(String selected){
+    public void setSelectedTag(String selected){
         tagMatchManager.setSelectedTag(selected);
     }
 

@@ -99,7 +99,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         // labels
         tagSelectLabel.setBounds(10,10,100,20);
 
-        // textfields
+        // text fields
 
 
 

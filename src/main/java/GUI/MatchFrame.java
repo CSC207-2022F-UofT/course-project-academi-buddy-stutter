@@ -37,7 +37,7 @@ public class MatchFrame extends JFrame implements ActionListener {
         returnBTN.setBounds(380, 160, 50, 20);
         findBTN.setBounds(10, 35, 50, 20);
 
-        // setting up textareas
+        // setting up text areas
         outputText.setBounds(135, 60, 200, 120);
         outputText.setEditable(false);
 

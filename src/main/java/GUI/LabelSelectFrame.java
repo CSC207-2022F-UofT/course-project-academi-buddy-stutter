@@ -97,13 +97,13 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        int count = 0;
+        int counter = 0;
         boolean enable = false;
         for(JCheckBox box: boxList){
-            if(initialState.get(count) != box.isSelected()){
+            if(initialState.get(counter) != box.isSelected()){
                 enable = true;
             }
-            count += 1;
+            counter += 1;
         }
         applyBTN.setEnabled(enable);
 

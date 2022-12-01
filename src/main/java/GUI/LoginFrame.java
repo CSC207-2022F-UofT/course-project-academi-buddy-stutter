@@ -3,8 +3,8 @@ package GUI;
 /*
 This class is to generate a LoginManager UI for the user to log in or register an account.
 The user can select their user type from the combobox that contains two options: {Administer, Student}.
-The user need to enter their user ID, which is the UTORID
-The user need to enter their account password to login or register
+The user need to enter their user ID, which is their "UTO-RID"
+The user need to enter their account password to log in or register
 The user need to enter their email for other people to contact them, when you are recommended as a study partner to
 someone else, they can contact you by email.
 There are two buttons at the bottom, one called "LoginManager" and the other called "Register", both buttons will bring the
@@ -24,10 +24,10 @@ public class LoginFrame extends JFrame implements ActionListener {
     JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
     JLabel userLabel = new JLabel("USER ID:");
     JLabel passwordLabel = new JLabel("Password:");
+    JLabel incorrectLoginLabel = new JLabel("Error: Incorrect ID/Password");
     JButton loginBTN = new JButton("LOGIN");
     JButton registerBTN = new JButton("REGISTER");
-    JTextField userIDText = new JTextField("Enter your user ID here:");
-    // JTextField passwordText = new JTextField("Enter your password here:");
+    JTextField userIDText = new JTextField("");
     JPasswordField passwordText = new JPasswordField();
 
     UIController uiController;
@@ -35,7 +35,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     public LoginFrame(UIController uiController){
         this.uiController = uiController;
 
-        this.setTitle("LoginManager Frame"); // sets frame's title
+        this.setTitle("Login Screen"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
@@ -57,8 +57,10 @@ public class LoginFrame extends JFrame implements ActionListener {
         passwordLabel.setBounds(10,100,100,20);
         programTitle.setBounds(60, 0, 300, 50);
         programTitle.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        incorrectLoginLabel.setBounds(100,125,200,20);
+        incorrectLoginLabel.setForeground(Color.red);
 
-        // textfields
+        // text-fields
         userIDText.setBounds(110, 75, 200, 20);
         passwordText.setBounds(110, 100, 200, 20);
 
@@ -69,13 +71,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.add(registerBTN);
         this.add(userLabel);
         this.add(passwordLabel);
-
-
-
         this.add(programTitle);
         this.add(userIDText);
         this.add(passwordText);
-
         this.setVisible(true); // set frame to visible
     }
 
@@ -94,6 +92,9 @@ public class LoginFrame extends JFrame implements ActionListener {
                     this.dispose();
                     this.uiController.updateUser();
                     this.uiController.toHome();
+                }
+                else{
+                    this.add(incorrectLoginLabel);
                 }
 
             } catch (IOException ex) {

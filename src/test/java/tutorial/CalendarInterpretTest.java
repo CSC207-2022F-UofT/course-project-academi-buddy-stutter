@@ -29,9 +29,9 @@ class CalendarInterpretTest {
                 e.printStackTrace();
             }
 
-            BiweeklyAPI capi = new BiweeklyAPI();
-            CalendarInterpreter ci = new CalendarInterpreter(capi);
-            Assertions.assertEquals("Team Meeting", capi.getSummary(ex_file, 0));
+            BiweeklyAPI cap = new BiweeklyAPI();
+            CalendarInterpreter ci = new CalendarInterpreter(c);
+            Assertions.assertEquals("Team Meeting", cc.getSummary(ex_file, 0));
 
              */
 

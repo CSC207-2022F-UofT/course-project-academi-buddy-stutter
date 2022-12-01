@@ -12,7 +12,7 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
     JLabel emailLabel = new JLabel("UofT Email:");
     JLabel infoLabel = new JLabel("About:");
 
-    // creating textfields
+    // creating text fields
     JTextField nameText = new JTextField();
     JTextField emailText = new JTextField();
 
@@ -28,7 +28,7 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
         emailLabel.setBounds(10, 55, 100, 20);
         infoLabel.setBounds(10, 80, 100, 20);
 
-        // setting up textfields
+        // setting up text fields
         nameText.setBounds(110, 30, 200, 20);
         emailText.setBounds(110, 55, 200, 20);
         infoText.setBounds(110, 80, 200, 80);

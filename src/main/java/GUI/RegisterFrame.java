@@ -1,6 +1,7 @@
 package GUI;
 
 import UIController.UIController;
+import UseCases.RegisterManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +16,10 @@ public class RegisterFrame extends JFrame implements ActionListener {
     JLabel userIDLabel = new JLabel("User ID:");
     JLabel passwordLabel = new JLabel("Password:");
     JLabel confirmLabel = new JLabel("Confirm Password:");
+    JLabel passNotMatchLabel = new JLabel("Error: Passwords Does Not Match");
+    JLabel existingUserLabel = new JLabel("Error: User Already Exists");
 
-    // creating textfields
+    // creating text-fields
     JTextField fullNameText = new JTextField();
     JTextField userIDText = new JTextField();
     JPasswordField passwordText = new JPasswordField();
@@ -37,17 +40,20 @@ public class RegisterFrame extends JFrame implements ActionListener {
         userIDLabel.setBounds(10, 60, 50, 20);
         passwordLabel.setBounds(10, 85, 70, 20);
         confirmLabel.setBounds(10, 110, 120, 20);
+        passNotMatchLabel.setBounds(30,125,250,20);
+        existingUserLabel.setBounds(30,140,200,20);
 
-        // setting up textfields
+
+        // setting up text fields
         fullNameText.setBounds(130, 35, 200, 20);
         userIDText.setBounds(130, 60, 200, 20);
         passwordText.setBounds(130, 85, 200, 20);
         confirmText.setBounds(130, 110, 200, 20);
 
         // setting up buttons
-        registerBTN.setBounds(120, 145, 100, 20);
+        registerBTN.setBounds(120, 170, 100, 20);
         registerBTN.addActionListener(this);
-        cancelBTN.setBounds(230, 145, 100, 20);
+        cancelBTN.setBounds(230, 170, 100, 20);
         cancelBTN.addActionListener(this);
 
         // adding elements to Frame
@@ -56,6 +62,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.add(userIDLabel);
         this.add(passwordLabel);
         this.add(confirmLabel);
+        //this.add(passNotMatchLabel);
+        //this.add(existingUserLabel);
         this.add(fullNameText);
         this.add(userIDText);
         this.add(passwordText);

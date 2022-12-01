@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class UIController{
 
-    //TODO: make UIController as parent class. Create seperate UIControl for each Frame, e.g. LoginUIControl, etc.
+    //TODO: make UIController as parent class. Create separate UIControl for each Frame, e.g. LoginUIControl, etc.
 
     private User self;
     private CourseDataManager courseManager;

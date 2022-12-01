@@ -11,7 +11,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     JLabel emailLabel = new JLabel("Email:");
     JLabel infoLabel = new JLabel("About:");
 
-    // creating textfields
+    // creating text fields
     JTextField nameText = new JTextField();
     JTextField emailText = new JTextField();
 

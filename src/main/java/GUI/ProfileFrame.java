@@ -12,7 +12,7 @@ public class ProfileFrame extends JFrame implements ActionListener {
     JLabel classLabel = new JLabel("Enrolled Courses:");
     JLabel infoLabel = new JLabel("About:");
 
-    // creating textfields
+    // creating text fields
     JTextField nameText = new JTextField();
     JTextField emailText = new JTextField();
 

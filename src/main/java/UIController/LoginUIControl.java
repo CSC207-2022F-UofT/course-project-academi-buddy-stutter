@@ -18,7 +18,7 @@ public class LoginUIControl{
 
     public boolean attemptLogin(String id, String password) throws IOException {
 
-        boolean loggedIn =  loginManager.login(id, password);
+        boolean loggedIn = loginManager.login(id, password);
         if(loggedIn){
             loadUser(loginManager.getActiveUser());
         }

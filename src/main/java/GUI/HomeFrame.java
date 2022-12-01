@@ -97,7 +97,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         if (e.getSource() == logoutBTN) {
             this.dispose();
             uiController.unloadUser();
-            uiController.toRegister();
+            uiController.toLogin();
         }
 
         if (e.getSource() == findStudyBuddyBTN) {

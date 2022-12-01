@@ -32,13 +32,13 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
     JButton profileBTN = new JButton("Profile");
 
-    String[] columnNames = {"First Name", "Requests"};
+    String[] columnNames = {"First Name", "Requests", "userID"};
     Object[][] requestData =
             {
-                    {"Elon Musk", "Accept"},
-                    {"Bill Gates","Accept"},
-                    {"Elon Ma", "Accept"},
-                    {"John Wick", "Accept"},
+                    {"Elon Musk", "Accept", "u1"},
+                    {"Bill Gates","Accept", "u2"},
+                    {"Elon Ma", "Accept", "u3"},
+                    {"John Wick", "Accept", "u4"},
             };
 
     DefaultTableModel model = new DefaultTableModel(requestData, columnNames) {
@@ -81,9 +81,14 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
         //table
         friendRequestTable.setBounds(215,40,180,50);
-        friendRequestTable.getColumnModel().getColumn(1).setPreferredWidth(2);
+        friendRequestTable.getColumnModel().getColumn(1).setPreferredWidth(3);
 
         friendRequestTable.setCellSelectionEnabled(true);
+
+        // set userID column width to 0 so it doesn't show to normal user
+        friendRequestTable.getColumnModel().getColumn(2).setMinWidth(0);
+        friendRequestTable.getColumnModel().getColumn(2).setMaxWidth(0);
+        friendRequestTable.getColumnModel().getColumn(2).setWidth(0);
 
         friendRequestTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -96,7 +101,8 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                 String selectedData = (String) friendRequestTable.getValueAt(row, col);
                 if (selectedData.equals("Accept")) {
                     String name = (String) friendRequestTable.getValueAt(row, 0);
-                    System.out.println("Accepted " + name);
+                    String userID = (String) friendRequestTable.getValueAt(row, 2);
+                    System.out.println("Accepted " + name + "userID: " + userID);
                     model.removeRow(row);
                 } else {
                     System.out.println("Clicked " + selectedData);
@@ -113,6 +119,8 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         JScrollPane scrollPaneRequest = new JScrollPane(friendRequestTable);
         scrollPaneRequest.setBounds(200,40,200,100);
         this.getContentPane().add(scrollPaneRequest, BorderLayout.CENTER);
+
+        //get friend list from student data
 
 //        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
 //        matchedStu = uiController.getTagMatchUIControl().getNameList();

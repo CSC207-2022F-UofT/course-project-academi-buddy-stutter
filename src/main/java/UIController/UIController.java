@@ -67,7 +67,7 @@ public class UIController{
         this.courseManager = courseManager;
         this.userManager = userManager;
         this.tagManager = tagManager;
-        updateSelf();
+        // updateSelf();
 
 
         // UseCases
@@ -76,14 +76,7 @@ public class UIController{
 
         this.loginUIControl = new LoginUIControl(courseManager, userManager);
         this.registerUIControl = new RegisterUIControl(courseManager, userManager);
-        this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
-        this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
-        this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
-        this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
-        this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
-        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
-        this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
-        this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
+
 
     }
     public void updateSelf(){
@@ -109,6 +102,7 @@ public class UIController{
 
     public void toHome(){
         HomeFrame HomeFrame = new HomeFrame(this);
+        initializeAfterLogin();
     }
 
     public void toMatch(){
@@ -130,4 +124,15 @@ public class UIController{
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
+
+    private void initializeAfterLogin(){
+        this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
+        this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
+        this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
+        this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
+        this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
+        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
+        this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
+        this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
+    }
 }

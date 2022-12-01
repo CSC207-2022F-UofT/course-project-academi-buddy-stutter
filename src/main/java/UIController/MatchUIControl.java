@@ -13,7 +13,7 @@ public class MatchUIControl {
         this.self = (Student)self;
         this.courseMatchManager = new CourseMatchManager(courseDatabase, userDatabase);
     }
-//
+
 //
 //    public getMatches(numCommon, 4){
 //        this.courseMatchManager.getTopSameSessionStudents(this.self)

@@ -5,7 +5,7 @@ import UIController.UIController;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ProfileFrame extends JFrame implements ActionListener, MouseListener {
+public class ProfileFrame extends JFrame implements ActionListener, MouseListener, KeyListener {
     JLabel nameLabel = new JLabel("Name:");
     JLabel emailLabel = new JLabel("Email:");
     JLabel classLabel = new JLabel("Enrolled Courses:");
@@ -28,6 +28,9 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
 
     JButton updateCourse = new JButton("Reupload");
 
+    String currentEmail;
+    String currentInfo;
+
     public ProfileFrame(UIController uiController){
         this.uiController = uiController;
         // Labels
@@ -45,14 +48,19 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         emailText.setEditable(true);
         infoText.setEditable(true);
         nameText.setText(uiController.getProfileUIControl().getName());
-        emailText.setText(uiController.getProfileUIControl().getEmail());
+        currentEmail = uiController.getProfileUIControl().getEmail();
+        if(currentEmail == null){
+            currentEmail = "";
+        }
+        emailText.setText(currentEmail);
+        currentInfo = uiController.getProfileUIControl().getInfo();
+        infoText.setText(currentInfo);
         courseText.setText(uiController.getProfileUIControl().getCourse());
-        infoText.setText(uiController.getProfileUIControl().getInfo());
         courseTextScoll.setViewportView(courseText);
         courseTextScoll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         courseTextScoll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        emailText.addMouseListener(this);
-        infoText.addMouseListener(this);
+        emailText.addKeyListener(this);
+        infoText.addKeyListener(this);
         updateCourse.addActionListener(this);
 
 
@@ -109,10 +117,12 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
             this.dispose();
         } else if (e.getSource() == changeEmail) {
             uiController.getProfileUIControl().updateEmail(emailText.getText());
+            currentEmail = emailText.getText();
             changeEmail.setEnabled(false);
         }
         else if (e.getSource() == changeInfo) {
             uiController.getProfileUIControl().updateInfo(infoText.getText());
+            currentInfo = infoText.getText();
             changeInfo.setEnabled(false);
         }
         else if (e.getSource() == updateCourse) {
@@ -123,12 +133,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == emailText) {
-            changeEmail.setEnabled(true);
 
-        } else if (e.getSource() == infoText) {
-            changeInfo.setEnabled(true);
-        }
     }
 
     @Override
@@ -149,5 +154,36 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if(e.getSource() == emailText){
+            System.out.println(emailText.getText());
+            System.out.println(currentEmail);
+            if(!emailText.getText().equals(currentEmail)){
+                changeEmail.setEnabled(true);
+            }
+            else{
+                changeEmail.setEnabled(false);
+            }
+        } else if (e.getSource() == infoText) {
+            if(!infoText.getText().equals(currentInfo)){
+                changeInfo.setEnabled(true);
+            }
+            else{
+                changeInfo.setEnabled(false);
+            }
+        }
     }
 }

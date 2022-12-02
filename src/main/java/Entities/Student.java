@@ -8,9 +8,9 @@ public class Student extends User{
 
     private String email;
 
-    private ArrayList<Student> friendList;
-    private ArrayList<Student> friend_request_list;
-    private ArrayList<Student> friendRequestSentList;
+    private ArrayList<String> friendList;
+    private ArrayList<String> friend_request_list;
+    private ArrayList<String> friendRequestSentList;
 
     public Student(String UID, String UPass, String full_name, String info){
         super(UID, UPass, full_name, info);
@@ -22,7 +22,7 @@ public class Student extends User{
         this.friendRequestSentList = new ArrayList<>();
     }
 
-    public void setFriend_list(ArrayList<Student> friend_list_to_add) {
+    public void setFriend_list(ArrayList<String> friend_list_to_add) {
         this.friendList = friend_list_to_add;
     }
 
@@ -53,25 +53,19 @@ public class Student extends User{
         return courseCodes;
     }
 
-    public ArrayList<Student> getFriendList() {
-        Student student1 = new Student("1", "qwerty", "John Doe1", "A test subject1");
-        Student student2 = new Student("2", "qwerty", "John Doe2", "A test subject2");
-
-        this.friendList.add(student1);
-        this.friendList.add(student2);
+    public ArrayList<String> getFriendList() {
+//        this.friendList.add("1");
+//        this.friendList.add("2");
         return this.friendList;
     }
 
-    public ArrayList<Student> getFriendListRequest() {
-        Student student3 = new Student("3", "qwerty", "John Doe3", "A test subject3");
-        Student student4 = new Student("4", "qwerty", "John Doe4", "A test subject4");
-
-        this.friend_request_list.add(student3);
-        this.friend_request_list.add(student4);
+    public ArrayList<String> getFriendListRequest() {
+//        this.friend_request_list.add("3");
+//        this.friend_request_list.add("4");
         return this.friend_request_list;
     }
 
-    public ArrayList<Student> getFriendRequestSentList() {
+    public ArrayList<String> getFriendRequestSentList() {
         return this.friendRequestSentList;
     }
 
@@ -110,30 +104,30 @@ public class Student extends User{
         }
     }
 
-    private void addFriend(Student student) {
+    private void addFriend(String userID) {
         /*
         Add stduent to this user's friend list if this user received request from this student
          */
-        this.friendList.add(student);
+        this.friendList.add(userID);
     }
 
 
-    public void acceptFriendRequest(Student student) {
-        if (this.friend_request_list.contains(student)) {
-            this.friend_request_list.remove(student);
-            this.addFriend(student);
+    public void acceptFriendRequest(String userID) {
+        if (this.friend_request_list.contains(userID)) {
+            this.friend_request_list.remove(userID);
+            this.addFriend(userID);
         }
     }
 
-    public void acceptedRequest(Student student) {
-        this.addFriend(student);
-        this.friend_request_list.remove(student);
+    public void acceptedRequest(String userID) {
+        this.addFriend(userID);
+        this.friend_request_list.remove(userID);
     }
-    public void receiveFriendRequest(Student student) {
-        this.friend_request_list.add(student);
+    public void receiveFriendRequest(String userID) {
+        this.friend_request_list.add(userID);
     }
     public void sendFriendRequest(Student student) {
-        student.receiveFriendRequest(this);
+        student.receiveFriendRequest(this.user_id);
     }
 
 

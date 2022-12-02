@@ -10,9 +10,9 @@ public class FriendListManager extends UseCase{
         super(courseDatabase, userDatabase);
     }
 
-    public ArrayList<Student> getFriendList(String userID) {
+    public ArrayList<String> getFriendList(String userID) {
         try {
-            ArrayList<Student> friendList;
+            ArrayList<String> friendList;
             Student user = (Student) this.ub.getUserByID(userID);
             friendList = user.getFriendList();
             return friendList;
@@ -21,12 +21,20 @@ public class FriendListManager extends UseCase{
         }
     }
 
-    public ArrayList<Student> getFriendRequestList(String userID) {
+    public ArrayList<String> getFriendRequestList(String userID) {
         try {
-            ArrayList<Student> friendRequestList;
+            ArrayList<String> friendRequestList;
             Student user = (Student) this.ub.getUserByID(userID);
             friendRequestList = user.getFriendListRequest();
             return friendRequestList;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getFriendFullName(String userID) {
+        try {
+            return this.ub.getUserByID(userID).getFullName();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -41,7 +49,7 @@ public class FriendListManager extends UseCase{
             Student friend = (Student) this.ub.getUserByID(friendID);
             System.out.println("i'm finally here");
 
-            user.acceptFriendRequest(friend);
+            user.acceptFriendRequest(userId);
             System.out.println(user.getFullName() + " accepted " + friend.getFullName());
             return true;
 
@@ -62,8 +70,7 @@ public class FriendListManager extends UseCase{
     public void acceptedRequest(String friendID, String userID) {
         try{
             Student friend = (Student) this.ub.getUserByID(friendID);
-            Student user = (Student) this.ub.getUserByID(userID);
-            friend.acceptedRequest(user);
+            friend.acceptedRequest(userID);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

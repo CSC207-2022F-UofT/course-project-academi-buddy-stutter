@@ -76,9 +76,10 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         //
         //
         // get friend list from the user
-        ArrayList<Student> friendArray = uiController.getFriendListUIControl().getFriendList();
+        ArrayList<String> friendArray = uiController.getFriendListUIControl().getFriendList();
         String[] friendToString = new String[friendArray.size()];
-        friendToString = this.convertToArray(friendArray);
+        friendToString = friendArray.toArray(friendToString);
+//        friendToString = this.convertToArray(friendArray);
 //        String[] friendToString = new String[friendArray.size()];
 //        ArrayList<String> temp = new ArrayList<>();
 //        // convert ArrayList to String Array for JList
@@ -90,9 +91,9 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
 
         //table
-        ArrayList<Student> friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
+        ArrayList<String> friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
         String[] friendRequestToString = new String[friendRequestList.size()];
-        friendRequestToString = this.convertToArray(friendRequestList);
+        friendRequestToString = friendRequestList.toArray(friendRequestToString);
 
         DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
             @Override
@@ -105,12 +106,12 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         friendRequestTable = new JTable( requestsModel );
 
         // Add every friend request as an Object array into JTable
-        for (Student friend: friendRequestList) {
+        for (String friendID: friendRequestList) {
             Object[] row = new Object[3];
             ArrayList<String> stringRow = new ArrayList<>();
-            stringRow.add(friend.getFullName());
+            stringRow.add(uiController.getFriendListUIControl().getFriendFullName(friendID));
             stringRow.add("Accept");
-            stringRow.add(friend.getUserID());
+            stringRow.add(friendID);
             row = stringRow.toArray(row);
             requestsModel.addRow(row);
         }

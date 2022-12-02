@@ -1,6 +1,7 @@
 package UseCases;
 
 import Entities.Student;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class CourseMatchManager {
         System.out.println(enrolledCourse);
         for(String course: enrolledCourse){
             try {
+                System.out.println(course);
                 ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
                 ArrayList<Student> students = new ArrayList<>();
                 for (String s: studentIDs){
@@ -43,19 +45,18 @@ public class CourseMatchManager {
     /**
      * Helper method, stay private.
      */
-    private HashMap<Student, Integer> getSameSessionMap(Student student){
+    private HashMap<String, Integer> getSameSessionMap(Student student){
         ArrayList<Student> sameSessionStudents = getSameSessionList(student);
-        HashMap<Student, Integer> potentialStudents = new HashMap<>();
+        HashMap<String, Integer> potentialStudents = new HashMap<>();
         for(Student s: sameSessionStudents){
             Integer rank;
-            System.out.println(s.getUserID());
-            if(potentialStudents.containsKey(s)){
-                rank = potentialStudents.get(s);
-                potentialStudents.replace(s, rank, rank + 1);
+            if(potentialStudents.containsKey(s.getUserID())){
+                rank = potentialStudents.get(s.getUserID());
+                potentialStudents.replace(s.getUserID(), rank, rank + 1);
             }
             else {
                 rank = 1;
-                potentialStudents.put(s, rank);
+                potentialStudents.put(s.getUserID(), rank);
             }
         }
         return potentialStudents;
@@ -66,10 +67,10 @@ public class CourseMatchManager {
      * @param numOfCommon number of common sessions
      * @return an arraylist of student
      */
-    public ArrayList<Student> getSameSessionStudents(Student student, int numOfCommon){
-        ArrayList<Student> sameSessionStuByNum = new ArrayList<>();
-        HashMap<Student, Integer> potentialStudents = getSameSessionMap(student);
-        for(Student s: potentialStudents.keySet()){
+    public ArrayList<String> getSameSessionStudents(Student student, int numOfCommon){
+        ArrayList<String> sameSessionStuByNum = new ArrayList<>();
+        HashMap<String, Integer> potentialStudents = getSameSessionMap(student);
+        for(String s: potentialStudents.keySet()){
             if(potentialStudents.get(s).equals(numOfCommon)){
                 sameSessionStuByNum.add(s);
             }
@@ -83,10 +84,17 @@ public class CourseMatchManager {
      * @param topNum number of student of the returned arraylist.
      * @return an arraylist of student
      */
-    public ArrayList<Student> getTopSameSessionStudents(Student student, int numOfCommon, int topNum){
-        ArrayList<Student> topSameSessionStu = getSameSessionStudents(student, numOfCommon);
-        if(topNum < topSameSessionStu.size()){
-            topSameSessionStu = (ArrayList<Student>) topSameSessionStu.subList(0, topNum);
+    public ArrayList<String> getTopSameSessionStudents(Student student, int numOfCommon, int topNum){
+        ArrayList<String> sameSessionStu = getSameSessionStudents(student, numOfCommon);
+        ArrayList<String> topSameSessionStu = new ArrayList<>();
+        System.out.println(sameSessionStu.size());
+        if(topNum < sameSessionStu.size()){
+            for(int i = 0; i < topNum; i++){
+                topSameSessionStu.add(sameSessionStu.get(i));
+            }
+        }
+        for(String s: topSameSessionStu){
+            System.out.println(s);
         }
         return topSameSessionStu;
     }

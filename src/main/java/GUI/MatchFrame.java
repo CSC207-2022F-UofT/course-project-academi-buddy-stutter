@@ -23,7 +23,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     JLabel selectLabel = new JLabel("Select Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
 
-    String[] userType = {"1", "2", "3", "4", "5", "6"};
+    String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     JComboBox<String> numBox = new JComboBox<>(userType);
 //    JTextArea outputText = new JTextArea();
 
@@ -93,9 +93,9 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         this.setVisible(true);
     }
 
-    private void addMatches(ArrayList<Student> students){
-        for(Student s: students){
-            matchedStu.addElement(s.getFullName());
+    private void addMatches(ArrayList<String> students){
+        for(String s: students){
+            matchedStu.addElement(uiController.getMatchUIControl().getFullName(s));
         }
         matchedList.setModel(matchedStu);
 
@@ -106,7 +106,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
 
         if(e.getSource() == findBTN){
             int numCommon = numBox.getSelectedIndex();
-            ArrayList<Student> matches = this.uiController.getMatchUIControl().getMatches(numCommon, 4);
+            ArrayList<String> matches = this.uiController.getMatchUIControl().getMatches(numCommon, 4);
 
             addMatches(matches);
 

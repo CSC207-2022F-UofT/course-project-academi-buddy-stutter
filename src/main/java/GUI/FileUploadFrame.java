@@ -10,8 +10,10 @@ import java.awt.event.ActionListener;
 public class FileUploadFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Upload Your Calendar:");
     JLabel completedLabel = new JLabel();
-    JButton uploadBTN = new JButton("File");
+    JButton uploadBTN = new JButton("Upload");
     JButton nextBTN = new JButton("Next");
+
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
 
     UIController uiController;
@@ -22,7 +24,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         // setting up title label
         titleLabel.setBounds(60, 0, 300, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        completedLabel.setBounds(135, 75, 50, 20);
+        completedLabel.setBounds(135, 75, 150, 20);
 
         // setting up buttons
         uploadBTN.setBounds(135, 50, 50, 20);
@@ -37,7 +39,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         this.add(completedLabel);
 
         this.setTitle("Calendar Upload"); // sets frame's title
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
@@ -56,6 +58,8 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         }
 
         else if (e.getSource() == uploadBTN) {
+            completedLabel.setForeground(Color.black);
+            completedLabel.setText("Uploading...");
             if (uiController.getFileUploadUIControl().upload()) {
                 try {
                     uiController.getFileUploadUIControl().copyFileToPath();
@@ -68,6 +72,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
                     throw new RuntimeException(ex);
                 }
             }
+            completedLabel.setText("");
         }
     }
 }

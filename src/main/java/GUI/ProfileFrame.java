@@ -98,7 +98,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
 
 
         this.setTitle("Profile"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(440, 300);

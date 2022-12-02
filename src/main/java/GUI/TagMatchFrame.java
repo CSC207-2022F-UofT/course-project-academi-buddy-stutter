@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -25,13 +26,14 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     JList<String> matchedList = new JList<>(matchedStu);
 
     UIController uiController;
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
 
     public TagMatchFrame(UIController uiController){
         this.uiController = uiController;
 
         this.setTitle("Match by Tag"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(410, 230);
@@ -94,13 +96,14 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == profileBTN){
-            System.out.println(matchedList.getSelectedIndex() + matchedList.getSelectedValue());
+            this.setCursor(waitCursor);
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
                 String selectedID = uiController.getTagMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
                 System.out.println(selectedName + selectedID);
                 uiController.toProfileDisplay(selectedID);
             }
+            this.setCursor(Cursor.getDefaultCursor());
         }
         else if(e.getSource() == backBTN){
             this.dispose();
@@ -110,9 +113,11 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        this.setCursor(waitCursor);
         uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
         matchedStu = uiController.getTagMatchUIControl().getNameList();
         matchedList.setModel(matchedStu);
         profileBTN.setEnabled(false);
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

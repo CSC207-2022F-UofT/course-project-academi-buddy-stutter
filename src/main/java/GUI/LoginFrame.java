@@ -33,6 +33,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
     JPasswordField passwordText = new JPasswordField("");
 
     UIController uiController;
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     public LoginFrame(UIController uiController){
         this.uiController = uiController;
@@ -90,8 +91,8 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == loginBTN){
+            this.setCursor(waitCursor);
             try {
-
                 String id = userIDText.getText();
                 String password = new String(passwordText.getPassword());
 
@@ -108,6 +109,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+            this.setCursor(Cursor.getDefaultCursor());
         }
 
         if (e.getSource() == registerBTN){

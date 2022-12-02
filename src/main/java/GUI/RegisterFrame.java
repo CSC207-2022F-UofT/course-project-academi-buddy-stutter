@@ -24,7 +24,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
     JPasswordField confirmText = new JPasswordField();
 
     // creating button
-    JButton registerBTN = new JButton("Register");
+    JButton registerBTN = new JButton("Next");
     JButton cancelBTN = new JButton("Cancel");
 
     UIController uiController;

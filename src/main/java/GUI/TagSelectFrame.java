@@ -42,11 +42,13 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     UIController uiController;
     private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
 
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+
     public TagSelectFrame(UIController uiController){
         this.uiController = uiController;
 
         this.setTitle("Interest Tag Selection"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(330, 230);
@@ -129,6 +131,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
+            this.setCursor(waitCursor);
             ArrayList<Boolean> newState = new ArrayList<>();
             for (JCheckBox box: boxList){
                 uiController.getTagSelectUIControl().updateStudentTag(box.getText(), box.isSelected());
@@ -136,6 +139,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
             }
             initialState = newState;
             applyBTN.setEnabled(false);
+            this.setCursor(Cursor.getDefaultCursor());
         }
         else if(e.getSource() == backBTN){
             this.dispose();

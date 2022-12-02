@@ -22,6 +22,8 @@ public class HomeFrame extends JFrame implements ActionListener {
     JButton profileBTN = new JButton("Profile");
     JButton uploadBTN = new JButton("Upload Courses");
 
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+
     UIController uiController;
 
     public HomeFrame(UIController uiController){
@@ -42,7 +44,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         findStudyBuddyBTN.addActionListener(this);
         findInsBuddyBTN.setBounds(180, 90, 150, 20);
         findInsBuddyBTN.addActionListener(this);
-        statusBTN.setBounds(10, 115, 130, 20);
+        statusBTN.setBounds(10, 115, 150, 20);
         statusBTN.addActionListener(this);
         insTagBTN.setBounds(180, 115, 150, 20);
         insTagBTN.addActionListener(this);
@@ -83,7 +85,9 @@ public class HomeFrame extends JFrame implements ActionListener {
             uiController.toTagMatch();
         }
         else if (e.getSource() == profileBTN) {
+            this.setCursor(waitCursor);
             uiController.toProfile();
+            this.setCursor(Cursor.getDefaultCursor());
         }
 
         if (e.getSource() == logoutBTN) {

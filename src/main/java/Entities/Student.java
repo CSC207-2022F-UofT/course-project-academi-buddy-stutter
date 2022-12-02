@@ -53,24 +53,14 @@ public class Student extends User{
         return courseCodes;
     }
 
-    public ArrayList<String> getFriendList() {
-//        this.friendList.add("1");
-//        this.friendList.add("2");
-        return this.friendList;
-    }
+    public ArrayList<String> getFriendList() {return this.friendList;}
 
-    public ArrayList<String> getFriendListRequest() {
-//        this.friend_request_list.add("3");
-//        this.friend_request_list.add("4");
-        return this.friend_request_list;
-    }
+    public ArrayList<String> getFriendListRequest() {return this.friend_request_list;}
 
     public ArrayList<String> getFriendRequestSentList() {
         return this.friendRequestSentList;
     }
-
     //init
-
 
     public void updateStudentTOI(InterestTag tag, boolean selected){
         if(selected && !(isTagSelected(tag))){
@@ -89,6 +79,8 @@ public class Student extends User{
     public void updateFriendList(String friendID) {
         this.friendList.add(friendID);
     }
+    public void updateFriendRequestList(String userID) {this.friend_request_list.add(userID);}
+    public void updateFriendRequestSentList(String userID) {this.friendRequestSentList.add(userID);};
 
     public void updateLabel(Label label, boolean selected){
         if(selected && !(isLabelSelected(label))){
@@ -104,30 +96,30 @@ public class Student extends User{
         }
     }
 
-    private void addFriend(String userID) {
-        /*
-        Add stduent to this user's friend list if this user received request from this student
-         */
-        this.friendList.add(userID);
-    }
+    private void addFriend(String userID) {this.friendList.add(userID);}
 
 
     public void acceptFriendRequest(String userID) {
         if (this.friend_request_list.contains(userID)) {
             this.friend_request_list.remove(userID);
-            this.addFriend(userID);
+            this.addFriend(userID.trim().strip());
         }
     }
 
     public void acceptedRequest(String userID) {
-        this.addFriend(userID);
-        this.friend_request_list.remove(userID);
+        userID = userID.trim().strip();
+        if (this.friendRequestSentList.contains(userID)) {
+            this.friendRequestSentList.remove(userID);
+            this.addFriend(userID);
+        }
+
     }
     public void receiveFriendRequest(String userID) {
         this.friend_request_list.add(userID);
     }
     public void sendFriendRequest(Student student) {
         student.receiveFriendRequest(this.user_id);
+        this.friendRequestSentList.add(student.user_id);
     }
 
 

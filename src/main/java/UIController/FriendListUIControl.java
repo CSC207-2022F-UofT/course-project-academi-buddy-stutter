@@ -10,23 +10,22 @@ import java.util.ArrayList;
 
 public class FriendListUIControl {
     private FriendListManager friendListManager;
-    private User self;
-    public FriendListUIControl(User self, CourseDataManager courseManager, UserDataManager userManager) {
+    private User user;
+    public FriendListUIControl(User user, CourseDataManager courseManager, UserDataManager userManager) {
         this.friendListManager = new FriendListManager(courseManager, userManager);
-        this.self = self;
+        this.user = user;
     }
 
     public String getUserId() {
-        return self.getUserID();
+        return user.getUserID();
     }
 
-    public ArrayList<Student> getFriendList() {
-        return friendListManager.getFriendList(self.getUserID());
+    public ArrayList<String> getFriendList() {
+        return friendListManager.getFriendList(user.getUserID());
     }
 
-    public ArrayList<Student> getFriendRequestList() {
-        return friendListManager.getFriendRequestList(self.getUserID());
-    }
+    public ArrayList<String> getFriendRequestList() {return friendListManager.getFriendRequestList(user.getUserID());}
+    public String getFriendFullName(String userID) {return friendListManager.getFriendFullName(userID);}
 
     public boolean acceptFriendRequest(String userID, String friendID) {
         System.out.println("friendlist ui control");

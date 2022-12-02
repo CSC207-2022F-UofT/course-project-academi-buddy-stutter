@@ -35,8 +35,6 @@ public class UserDataManager {
         fi.addEntry(userID, "account password", user.getUserPassword());
         fi.addEntry(userID, "full name", user.getFullName());
         fi.addEntry(userID, "student info", user.getUserInfo());
-
-
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -64,9 +62,9 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "tags of interests", tagList.toString());
 
-        ArrayList<String> friendList = toUserIdStrings(student.getFriendList());
-        ArrayList<String> friendRequests = toUserIdStrings(student.getFriendListRequest());
-        ArrayList<String> friendRequestsSent = toUserIdStrings(student.getFriendRequestSentList());
+        ArrayList<String> friendList = student.getFriendList();
+        ArrayList<String> friendRequests = student.getFriendListRequest();
+        ArrayList<String> friendRequestsSent = student.getFriendRequestSentList();
 
         fi.addEntry(studentID, "friend list", friendList);
         fi.addEntry(studentID, "friend request list", friendRequests);
@@ -139,11 +137,9 @@ public class UserDataManager {
                 }
                 // update get friend list
                 String friendsString = (String) userData.get("friend list");
-                List<String> friends = Arrays.asList(friendsString.substring(1, friendsString.length()-1).split(","));
+                String[] friends = friendsString.substring(1, friendsString.length()-1).split(",");
                 for(String f: friends) {
-                    String friend = f;
-                    retrievedUser.updateFriends(friend, true);
-                    retrievedUser.updateStudentTOI(tag, true);
+                    retrievedUser.updateFriendList(f);
                 }
                 return retrievedUser;
             }else if (type.equals("admin")){
@@ -197,19 +193,19 @@ public class UserDataManager {
     public void updateFriendList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
-        fi.addEntry(studentID, "friend list", toUserIdStrings(student.getFriendList()));
+        fi.addEntry(studentID, "friend list", student.getFriendList());
     }
 
     public void updateFriendRequestList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
-        fi.addEntry(studentID, "friend request list", toUserIdStrings(student.getFriendListRequest()));
+        fi.addEntry(studentID, "friend request list", student.getFriendListRequest());
     }
 
     public void updateFriendRequestsSentList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
-        fi.addEntry(studentID, "friend request sent list", toUserIdStrings(student.getFriendRequestSentList()));
+        fi.addEntry(studentID, "friend request sent list", student.getFriendRequestSentList());
     }
 
 

@@ -1,14 +1,23 @@
 package GUI;
 
+import Entities.Student;
 import UIController.UIController;
 import org.checkerframework.checker.guieffect.qual.UI;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-public class MatchFrame extends JFrame implements ActionListener {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MatchFrame extends JFrame implements ActionListener, ItemListener{
 
     JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
     JLabel selectLabel = new JLabel("Select Label:");
@@ -16,10 +25,15 @@ public class MatchFrame extends JFrame implements ActionListener {
 
     String[] userType = {"1", "2", "3", "4", "5", "6"};
     JComboBox<String> numBox = new JComboBox<>(userType);
-    JTextArea outputText = new JTextArea();
+//    JTextArea outputText = new JTextArea();
 
-    JButton returnBTN = new JButton("BACK");
-    JButton findBTN = new JButton("FIND");
+    DefaultListModel<String> matchedStu = new DefaultListModel<>();
+    JList<String> matchedList = new JList<>(matchedStu);
+
+    JButton returnBTN = new JButton("Back");
+    JButton findBTN = new JButton("Find");
+
+    JButton profileBTN = new JButton("Profile");
 
     UIController uiController;
     public MatchFrame(UIController uiController) {
@@ -36,16 +50,34 @@ public class MatchFrame extends JFrame implements ActionListener {
         // setting up buttons
         returnBTN.setBounds(380, 160, 50, 20);
         findBTN.setBounds(10, 35, 50, 20);
+        findBTN.addActionListener(this);
+        findBTN.setFocusable(false);
 
+        profileBTN.setBounds(350, 35, 50, 20);
+        profileBTN.addActionListener(this);
+        profileBTN.setFocusable(false);
+        profileBTN.setEnabled(false);
+        
         // setting up textareas
-        outputText.setBounds(135, 60, 200, 120);
-        outputText.setEditable(false);
+        matchedList.setBounds(135, 60, 200, 120);
+        matchedList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(matchedList.isSelectionEmpty()){
+                    profileBTN.setEnabled(false);
+                }
+                profileBTN.setEnabled(true);
+            }
+        });
+
 
         // adding elements to frame
         this.add(numCommonLabel);
         // this.add(selectLabel);
         this.add(matchLabel);
-        this.add(outputText);
+
+        this.add(matchedList);
+
         this.add(numBox);
         this.add(returnBTN);
         this.add(findBTN);
@@ -60,10 +92,12 @@ public class MatchFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    private void addNames(ArrayList<String> names){
-        for(String name: names){
-            outputText.append(name + "\n");
+    private void addMatches(ArrayList<Student> students){
+        for(Student s: students){
+            matchedStu.addElement(s.getFullName());
         }
+        matchedList.setModel(matchedStu);
+
     }
 
     @Override
@@ -71,9 +105,31 @@ public class MatchFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == findBTN){
             int numCommon = numBox.getSelectedIndex();
-//            this.uiController.getMatchUIControl().getMatches(numCommon, 4);
+            ArrayList<Student> matches = this.uiController.getMatchUIControl().getMatches(numCommon, 4);
+
+            addMatches(matches);
 
         }
 
+        else if (e.getSource() == profileBTN){
+
+            if(matchedList.getSelectedIndex() != -1){
+                String selectedName = matchedList.getSelectedValue();
+                String selectedID = uiController.getMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+                System.out.println(selectedName + selectedID);
+                uiController.toProfileDisplay(selectedID);
+            }
+        }
+
+
+
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        uiController.getTagMatchUIControl().setSelectedtag((String) numBox.getSelectedItem());
+        matchedStu = uiController.getTagMatchUIControl().getNameList();
+        matchedList.setModel(matchedStu);
+        profileBTN.setEnabled(false);
     }
 }

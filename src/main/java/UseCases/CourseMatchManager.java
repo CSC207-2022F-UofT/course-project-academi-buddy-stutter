@@ -23,6 +23,7 @@ public class CourseMatchManager {
     private ArrayList<Student> getSameSessionList(Student student){
         ArrayList<Student> sameSessionStudents = new ArrayList<>();
         ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
+        System.out.println(enrolledCourse);
         for(String course: enrolledCourse){
             try {
                 ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
@@ -47,6 +48,7 @@ public class CourseMatchManager {
         HashMap<Student, Integer> potentialStudents = new HashMap<>();
         for(Student s: sameSessionStudents){
             Integer rank;
+            System.out.println(s.getUserID());
             if(potentialStudents.containsKey(s)){
                 rank = potentialStudents.get(s);
                 potentialStudents.replace(s, rank, rank + 1);

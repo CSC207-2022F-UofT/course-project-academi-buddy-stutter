@@ -57,6 +57,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
+        returnBTN.addActionListener(this);
         
         // setting up textareas
         matchedList.setBounds(135, 60, 200, 120);
@@ -119,6 +120,9 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
                 System.out.println(selectedName + selectedID);
                 uiController.toProfileDisplay(selectedID);
             }
+        }
+        if(e.getSource() == returnBTN){
+            this.dispose();
         }
 
 

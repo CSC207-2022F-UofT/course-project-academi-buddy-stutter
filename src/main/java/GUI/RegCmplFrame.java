@@ -39,7 +39,13 @@ public class RegCmplFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnBTN){
-            uiController.toLogin();
+            if(uiController.loggedIn()){
+                this.dispose();
+            }else{
+                this.dispose();
+                uiController.toLogin();
+            }
+
         }
     }
 }

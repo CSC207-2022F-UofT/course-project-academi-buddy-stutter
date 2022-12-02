@@ -45,9 +45,6 @@ public class ProfileManager extends UseCase{
             ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
             ArrayList<String> lectureList = new ArrayList<>();
             ArrayList<String> tutorialList = new ArrayList<>();
-            if(coursesList.contains("")){
-                coursesList.remove("");
-            }
             for(String course: coursesList){
                 if (lectureList.contains(course)){
                     tutorialList.add(course);

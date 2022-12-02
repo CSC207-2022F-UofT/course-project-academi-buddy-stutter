@@ -111,6 +111,9 @@ public class UserDataManager {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<String> courseList = new ArrayList<>();
                 courseList.addAll(courseCodes);
+                if(courseList.contains("")){
+                    courseList.remove("");
+                }
                 retrievedUser.setEnrolledCourses(courseList);
                 //
                 String labelsString = (String) userData.get("labels");

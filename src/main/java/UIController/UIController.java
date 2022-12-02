@@ -96,6 +96,9 @@ public class UIController{
         this.self = null;
     }
 
+    public boolean loggedIn(){
+        return this.self != null;
+    }
 
     public void toLogin(){
         LoginFrame loginFrame = new LoginFrame(this);

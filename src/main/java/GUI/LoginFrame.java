@@ -35,7 +35,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     public LoginFrame(UIController uiController){
         this.uiController = uiController;
 
-        this.setTitle("Login Screen"); // sets frame's title
+        this.setTitle("Login"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

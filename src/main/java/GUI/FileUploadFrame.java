@@ -36,7 +36,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         this.add(nextBTN);
         this.add(completedLabel);
 
-        this.setTitle("File Upload Frame"); // sets frame's title
+        this.setTitle("Calendar Upload"); // sets frame's title
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

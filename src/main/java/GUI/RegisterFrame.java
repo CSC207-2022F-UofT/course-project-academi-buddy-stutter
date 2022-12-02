@@ -68,7 +68,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.add(registerBTN);
         this.add(cancelBTN);
 
-        this.setTitle("Register Frame"); // sets frame's title
+        this.setTitle("Account Register"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

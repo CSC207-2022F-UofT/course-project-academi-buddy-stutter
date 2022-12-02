@@ -83,7 +83,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         this.add(returnBTN);
         this.add(findBTN);
 
-        this.setTitle("Match Frame"); // sets frame's title
+        this.setTitle("Match by Course"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

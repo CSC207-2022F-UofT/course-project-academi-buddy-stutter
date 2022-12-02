@@ -47,7 +47,7 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
         this.add(infoText);
         this.add(completeBTN);
 
-        this.setTitle("Profile Frame"); // sets frame's title
+        this.setTitle("Profile Register"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

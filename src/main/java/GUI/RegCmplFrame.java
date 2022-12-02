@@ -26,7 +26,7 @@ public class RegCmplFrame extends JFrame implements ActionListener {
         this.add(titleLabel);
         this.add(returnBTN);
 
-        this.setTitle("File Upload Frame"); // sets frame's title
+        this.setTitle("Registration Complete"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

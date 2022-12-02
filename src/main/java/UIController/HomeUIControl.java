@@ -27,5 +27,9 @@ public class HomeUIControl {
     }
 
 
+    public String getName(){
+        return self.getFullName();
+    }
+
 
 }

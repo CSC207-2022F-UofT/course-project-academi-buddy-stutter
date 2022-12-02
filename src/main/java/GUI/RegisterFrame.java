@@ -93,6 +93,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
                 if(this.uiController.getRegisterUIControl().attemptRegister(fullName, id, password, confirm)){
                     this.uiController.toRegisterProfile();
                     this.dispose();
+                    this.uiController.getLoginUIControl().attemptLogin(id, password);
+                    this.uiController.updateUser();
                 }
                 else{
                     this.errorLabel.setVisible(true);

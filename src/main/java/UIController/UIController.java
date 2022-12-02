@@ -32,6 +32,8 @@ public class UIController{
 
     private MatchUIControl matchUIControl;
 
+    private FileUploadUIControl fileUploadUIControl;
+
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
     }
@@ -60,7 +62,7 @@ public class UIController{
 
     public MatchUIControl getMatchUIControl(){return matchUIControl;}
 
-
+    public FileUploadUIControl getFileUploadUIControl(){return  fileUploadUIControl;}
 
     public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = user;
@@ -137,7 +139,10 @@ public class UIController{
         LabelSelectFrame LabelSelectFrame = new LabelSelectFrame(this);
     }
 
-    public void toFileUpload() { FileUploadFrame fileUploadFrame = new FileUploadFrame(this);}
+    public void toFileUpload() {
+        this.fileUploadUIControl = new FileUploadUIControl(self, courseManager, userManager);
+        FileUploadFrame fileUploadFrame = new FileUploadFrame(this);
+    }
 
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
 

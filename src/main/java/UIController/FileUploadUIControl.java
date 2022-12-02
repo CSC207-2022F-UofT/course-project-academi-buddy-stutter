@@ -5,20 +5,17 @@ import Entities.User;
 import External.BiweeklyAPI;
 import External.JavaxAPI;
 import UseCases.CourseDataManager;
-import UseCases.UserDataManager;
 import UseCases.UploadManager;
+import UseCases.UserDataManager;
 
 import java.io.IOException;
 
-
-public class HomeUIControl {
-
-
+public class FileUploadUIControl {
 
     private UploadManager uploadManager;
     private Student self;
 
-    public HomeUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
+    public FileUploadUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
         this.self = (Student) self;
         JavaxAPI javaxAPI = new JavaxAPI();
         BiweeklyAPI biweeklyAPI = new BiweeklyAPI();
@@ -26,6 +23,18 @@ public class HomeUIControl {
 
     }
 
+
+    public boolean upload(){
+        return this.uploadManager.upload();
+    }
+
+    public void updateDatabase() throws IOException {
+        this.uploadManager.updateDatabase(this.self);
+    }
+
+    public void copyFileToPath() throws IOException {
+        this.uploadManager.copyFileToPath();
+    }
 
 
 }

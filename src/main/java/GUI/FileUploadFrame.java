@@ -54,5 +54,20 @@ public class FileUploadFrame extends JFrame implements ActionListener {
             this.dispose();
             uiController.toProfileCompleteFrame();
         }
+
+        else if (e.getSource() == uploadBTN) {
+            if (uiController.getFileUploadUIControl().upload()) {
+                try {
+                    uiController.getFileUploadUIControl().copyFileToPath();
+                    completedLabel.setForeground(Color.green);
+                    completedLabel.setText("Uploaded!");
+                    uiController.getFileUploadUIControl().updateDatabase();
+                } catch (Exception ex) {
+                    completedLabel.setForeground(Color.red);
+                    completedLabel.setText("Error!");
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
     }
 }

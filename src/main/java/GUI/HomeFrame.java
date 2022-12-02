@@ -65,7 +65,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         this.add(statusBTN);
         this.add(insTagBTN);
         this.add(profileBTN);
-        this.add(uploadBTN);
+//        this.add(uploadBTN);
 
         this.setTitle("Home Frame"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
@@ -79,23 +79,8 @@ public class HomeFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Select File
-        if (e.getSource() == uploadBTN) {
-            if (uiController.getHomeUIControl().upload()) {
-                try {
-                    uiController.getHomeUIControl().copyFileToPath();
-                    completedLabel.setForeground(Color.green);
-                    completedLabel.setText("Uploaded!");
-                    this.add(findStudyBuddyBTN);
-                    uiController.getHomeUIControl().updateDatabase();
-                } catch (Exception ex) {
-                    completedLabel.setForeground(Color.red);
-                    completedLabel.setText("Error!");
-                    throw new RuntimeException(ex);
-                }
-            }
-        }
-        else if (e.getSource() == insTagBTN) {
+
+        if (e.getSource() == insTagBTN) {
             uiController.toTagSelect();
         }
         else if (e.getSource() == statusBTN) {

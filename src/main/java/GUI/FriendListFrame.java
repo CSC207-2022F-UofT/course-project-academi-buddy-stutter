@@ -140,6 +140,8 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                     String friendID = (String) friendRequestTable.getValueAt(row, 2);
                     System.out.println("Accepted " + name + " userID: " + friendID);
 
+                    String userID = uiController.getFriendListUIControl().getUserId();
+
                     uiController.getFriendListUIControl().acceptFriendRequest(userID, friendID);
                     uiController.getFriendListUIControl().acceptedRequest(friendID, userID);
                     uiController.getFriendListUIControl().updateFriendList(userID);

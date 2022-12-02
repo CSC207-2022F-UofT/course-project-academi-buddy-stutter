@@ -92,6 +92,10 @@ public class Student extends User{
         }
     }
 
+    public void updateFriendList(String friendID) {
+        this.friendList.add(friendID);
+    }
+
     public void updateLabel(Label label, boolean selected){
         if(selected && !(isLabelSelected(label))){
             labels.add(label);

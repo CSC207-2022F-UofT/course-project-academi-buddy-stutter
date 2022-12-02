@@ -5,6 +5,7 @@ import Entities.User;
 import UseCases.CourseDataManager;
 import UseCases.FriendListManager;
 import UseCases.UserDataManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -20,24 +21,26 @@ public class FriendListUIControl {
         return user.getUserID();
     }
 
-    public ArrayList<String> getFriendList() {
-        return friendListManager.getFriendList(user.getUserID());
-    }
+    public ArrayList<String> getFriendList() { return friendListManager.getFriendList(user.getUserID());}
 
     public ArrayList<String> getFriendRequestList() {return friendListManager.getFriendRequestList(user.getUserID());}
     public String getFriendFullName(String userID) {return friendListManager.getFriendFullName(userID);}
 
-    public boolean acceptFriendRequest(String userID, String friendID) {
-        System.out.println("friendlist ui control");
-        return friendListManager.acceptFriendRequest(userID, friendID);
-    }
-
-    public void updateFriendList(String userID) {
-        friendListManager.updateFriendList(userID);
-    }
-
     public void acceptedRequest(String friendID, String userID) {
         friendListManager.acceptedRequest(friendID, userID);
+    }
+    public boolean acceptFriendRequest(String userID, String friendID) {
+        return friendListManager.acceptFriendRequest(userID, friendID);
+    }
+    // FriendListFrame Helper Function
+    public String[] IdsToFullNames(@NotNull ArrayList<String> ids) {
+        ArrayList<String> fullNames = new ArrayList<>();
+        String[] fullNamesArr = new String[ids.size()];
+        for (String id: ids) {
+            fullNames.add(friendListManager.getFriendFullName(id.trim().strip()));
+        }
+        fullNamesArr = fullNames.toArray(fullNamesArr);
+        return fullNamesArr;
     }
 
 }

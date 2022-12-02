@@ -41,16 +41,18 @@ public class FriendListManager extends UseCase{
     }
 
     public boolean acceptFriendRequest(String userId, String friendID) {
+        //Updates Student entity data
         try {
-            System.out.println("this is my id: " + userId);
             Student user = (Student) this.ub.getUserByID(userId);
-            System.out.println("this is friend id: " + friendID);
-
             Student friend = (Student) this.ub.getUserByID(friendID);
-            System.out.println("i'm finally here");
-
-            user.acceptFriendRequest(userId);
             System.out.println(user.getFullName() + " accepted " + friend.getFullName());
+
+            user.acceptFriendRequest(friendID);
+
+            System.out.println("Added friend to Entity model");
+            this.ub.updateFriendRequestList(user);
+
+            this.ub.updateFriendList(user);
             return true;
 
         } catch (IOException e) {
@@ -58,19 +60,15 @@ public class FriendListManager extends UseCase{
         }
     }
 
-    public void updateFriendList(String userID) {
-        try {
-            Student user = (Student) this.ub.getUserByID(userID);
-            this.ub.updateFriendList(user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void acceptedRequest(String friendID, String userID) {
+        //Updates Student entity data
         try{
             Student friend = (Student) this.ub.getUserByID(friendID);
             friend.acceptedRequest(userID);
+            this.ub.updateFriendRequestsSentList(friend);
+            this.ub.updateFriendList(friend);
+            System.out.println("Friend's friend list: " + friend.getFriendList().toString());
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

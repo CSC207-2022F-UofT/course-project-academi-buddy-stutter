@@ -39,7 +39,7 @@ public class main {
 
         Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
         Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
-        UIController uiController = new UIController(student2, cb, ub, tb);
+        UIController uiController = new UIController(student, cb, ub, tb);
 //        TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
 //        TagMatchFrame tm = new TagMatchFrame(uiController);
         //LabelSelectFrame lb = new LabelSelectFrame(uiController);

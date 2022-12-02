@@ -77,23 +77,13 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         //
         // get friend list from the user
         ArrayList<String> friendArray = uiController.getFriendListUIControl().getFriendList();
-        String[] friendToString = new String[friendArray.size()];
-        friendToString = friendArray.toArray(friendToString);
-//        friendToString = this.convertToArray(friendArray);
-//        String[] friendToString = new String[friendArray.size()];
-//        ArrayList<String> temp = new ArrayList<>();
-//        // convert ArrayList to String Array for JList
-//        for (Student friend: friendArray) {
-//            temp.add(friend.getFullName());
-//        }
-//        friendToString = temp.toArray(friendToString);
+        String[] friendToString;
+        friendToString = uiController.getFriendListUIControl().IdsToFullNames(friendArray);
         friendList.setListData(friendToString);
 
 
         //table
         ArrayList<String> friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
-        String[] friendRequestToString = new String[friendRequestList.size()];
-        friendRequestToString = friendRequestList.toArray(friendRequestToString);
 
         DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
             @Override
@@ -106,7 +96,8 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         friendRequestTable = new JTable( requestsModel );
 
         // Add every friend request as an Object array into JTable
-        for (String friendID: friendRequestList) {
+        for (String friendID : friendRequestList) {
+            friendID = friendID.trim().strip();
             Object[] row = new Object[3];
             ArrayList<String> stringRow = new ArrayList<>();
             stringRow.add(uiController.getFriendListUIControl().getFriendFullName(friendID));
@@ -134,24 +125,25 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                 // Accept incoming friend request and delete accepted row
                 int row = friendRequestTable.rowAtPoint(e.getPoint());
                 int col = friendRequestTable.columnAtPoint(e.getPoint());
-
-                String selectedData = (String) friendRequestTable.getValueAt(row, col);
+                String selectedData = "";
+                if (requestsModel.getRowCount() > 0) {
+                    selectedData = (String) friendRequestTable.getValueAt(row, col);
+                }
                 if (selectedData.equals("Accept")) {
                     String name = (String) friendRequestTable.getValueAt(row, 0);
                     String friendID = (String) friendRequestTable.getValueAt(row, 2);
+                    friendID = friendID.trim().strip();
+
                     System.out.println("Accepted " + name + " userID: " + friendID);
 
                     String userID = uiController.getFriendListUIControl().getUserId();
+                    userID = userID.trim().strip();
 
                     uiController.getFriendListUIControl().acceptFriendRequest(userID, friendID);
                     uiController.getFriendListUIControl().acceptedRequest(friendID, userID);
-                    uiController.getFriendListUIControl().updateFriendList(userID);
-                    uiController.getFriendListUIControl().updateFriendList(friendID);
-
+                    refreshFriendList();
 
                     requestsModel.removeRow(row);
-                } else {
-                    System.out.println("Clicked " + selectedData);
                 }
             }
         });
@@ -198,6 +190,12 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 //        profileBTN.setEnabled(false);
     }
 
+    public void refreshFriendList() {
+        ArrayList<String> friendArray = uiController.getFriendListUIControl().getFriendList();
+        String[] friendToString;
+        friendToString = uiController.getFriendListUIControl().IdsToFullNames(friendArray);
+        friendList.setListData(friendToString);
+    }
     public String[] convertToArray(ArrayList<Student> students) {
         // Convert accepted student arraylist to string array with only student full name
         // then return student name array

@@ -27,7 +27,7 @@ public class RegCmplFrame extends JFrame implements ActionListener {
         this.add(returnBTN);
 
         this.setTitle("Registration Complete"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
@@ -39,12 +39,8 @@ public class RegCmplFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnBTN){
-            if(uiController.loggedIn()){
-                this.dispose();
-            }else{
-                this.dispose();
-                uiController.toLogin();
-            }
+            this.dispose();
+            uiController.toLogin();
 
         }
     }

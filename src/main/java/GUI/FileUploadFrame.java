@@ -13,14 +13,17 @@ public class FileUploadFrame extends JFrame implements ActionListener {
     JButton uploadBTN = new JButton("Upload");
     JButton nextBTN = new JButton("Next");
 
+    JButton backBTN = new JButton("Back");
+
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
+    private int status;
 
     UIController uiController;
 
-    public FileUploadFrame(UIController uiController){
+    public FileUploadFrame(UIController uiController, int source){
         this.uiController = uiController;
-
+        this.status = source;
         // setting up title label
         titleLabel.setBounds(60, 0, 300, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -31,6 +34,9 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         uploadBTN.addActionListener(this);
         nextBTN.setBounds(135, 170, 50, 20);
         nextBTN.addActionListener(this);
+        backBTN.setBounds(135, 140, 50, 20);
+        backBTN.addActionListener(this);
+
 
         // adding elements to the frame
         this.add(titleLabel);
@@ -52,12 +58,13 @@ public class FileUploadFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == nextBTN){
+        if (e.getSource() == nextBTN && status == UIController.FROM_REGISTER){
             this.dispose();
             uiController.toProfileCompleteFrame();
-        }
-
-        else if (e.getSource() == uploadBTN) {
+        } else if (e.getSource() == nextBTN && status == UIController.FROM_PROFILE) {
+            this.dispose();
+            uiController.toProfile();
+        } else if (e.getSource() == uploadBTN) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading...");
             if (uiController.getFileUploadUIControl().upload()) {
@@ -72,7 +79,9 @@ public class FileUploadFrame extends JFrame implements ActionListener {
                     throw new RuntimeException(ex);
                 }
             }
-            completedLabel.setText("");
+            else {
+                completedLabel.setText("");
+            }
         }
     }
 }

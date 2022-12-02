@@ -12,6 +12,10 @@ public class UIController{
 
     //TODO: make UIController as parent class. Create seperate UIControl for each Frame, e.g. LoginUIControl, etc.
 
+    public int STATUS;
+    public static int FROM_REGISTER = 0;
+    public static int FROM_PROFILE = 1;
+
     private User self;
     private CourseDataManager courseManager;
     private UserDataManager userManager;
@@ -119,10 +123,12 @@ public class UIController{
     }
 
     public void toRegisterProfile(){
+        STATUS = FROM_REGISTER;
         ProfileRegFrame profileRegFrame = new ProfileRegFrame(this);
     }
 
     public void toProfile(){
+        STATUS = FROM_PROFILE;
         ProfileFrame profileFrame = new ProfileFrame(this);
     }
 
@@ -144,7 +150,7 @@ public class UIController{
 
     public void toFileUpload() {
         this.fileUploadUIControl = new FileUploadUIControl(self, courseManager, userManager);
-        FileUploadFrame fileUploadFrame = new FileUploadFrame(this);
+        FileUploadFrame fileUploadFrame = new FileUploadFrame(this, STATUS);
     }
 
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}

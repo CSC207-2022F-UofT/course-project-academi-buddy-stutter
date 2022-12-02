@@ -57,6 +57,9 @@ public class ProfileManager extends UseCase{
                 }
             }
             StringBuilder courseString = new StringBuilder();
+            if(lectureList.isEmpty()){
+                return courseString.toString();
+            }
             courseString.append("Lectures:\n");
             for(String lecture: lectureList){
                 System.out.println(lecture);
@@ -107,4 +110,5 @@ public class ProfileManager extends UseCase{
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -12,11 +12,10 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 public class HomeFrame extends JFrame implements ActionListener {
-    JLabel titleLabel = new JLabel("Welcome, ");
+    JLabel titleLabel = new JLabel();
     JLabel statusLabel = new JLabel("Status:");
     JLabel completedLabel = new JLabel("");
     JButton logoutBTN = new JButton("LOG OUT");
-    JButton changePasswordBTN = new JButton("Change Password");
     JButton findStudyBuddyBTN = new JButton("Find Study Buddy");
     JButton findInsBuddyBTN = new JButton("Find Interest Buddy");
     JButton statusBTN = new JButton("Status Labels");
@@ -30,8 +29,9 @@ public class HomeFrame extends JFrame implements ActionListener {
         this.uiController = uiController;
 
         // setting up labels
-        titleLabel.setBounds(10, 0, 100, 50);
+        titleLabel.setBounds(10, 0, 200, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        titleLabel.setText("Welcome, " + uiController.getHomeUIControl().getName());
         completedLabel.setBounds(222, 62, 110, 20);
         completedLabel.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         statusLabel.setBounds(190, 62, 110, 20);
@@ -40,8 +40,6 @@ public class HomeFrame extends JFrame implements ActionListener {
         // setting up buttons
         logoutBTN.setBounds(250, 170, 80, 20);
         logoutBTN.addActionListener(this);
-        changePasswordBTN.setBounds(200, 50, 130, 20);
-        changePasswordBTN.addActionListener(this);
         uploadBTN.setBounds(80, 60, 110, 20);
         uploadBTN.addActionListener(this);
         findStudyBuddyBTN.setBounds(100, 120, 130, 20);
@@ -60,7 +58,6 @@ public class HomeFrame extends JFrame implements ActionListener {
         this.add(completedLabel);
         this.add(statusLabel);
         this.add(logoutBTN);
-        this.add(changePasswordBTN);
         this.add(findInsBuddyBTN);
         this.add(statusBTN);
         this.add(insTagBTN);

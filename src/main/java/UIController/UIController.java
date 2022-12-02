@@ -101,8 +101,8 @@ public class UIController{
     }
 
     public void toHome(){
-        HomeFrame HomeFrame = new HomeFrame(this);
         initializeAfterLogin();
+        HomeFrame HomeFrame = new HomeFrame(this);
     }
 
     public void toMatch(){
@@ -154,4 +154,5 @@ public class UIController{
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
         this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
     }
+
 }

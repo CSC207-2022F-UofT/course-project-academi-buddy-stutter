@@ -38,5 +38,9 @@ public class HomeUIControl {
         this.uploadManager.copyFileToPath();
     }
 
+    public String getName(){
+        return self.getFullName();
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package GUI;
 
 import UIController.UIController;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
     JLabel confirmLabel = new JLabel("Confirm Password:");
     JLabel errorLabel = new JLabel("Error: User Exists/Passwords Doesn't Match");
 
+    JLabel strengthLabel = new JLabel();
+
     // creating textfields
     JTextField fullNameText = new JTextField();
     JTextField userIDText = new JTextField();
@@ -26,6 +29,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
     // creating button
     JButton registerBTN = new JButton("Next");
     JButton cancelBTN = new JButton("Cancel");
+
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     UIController uiController;
     public RegisterFrame(UIController uiController){
@@ -41,6 +46,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
         errorLabel.setBounds(10,130,300,20);
         errorLabel.setForeground(Color.red);
         errorLabel.setVisible(false);
+        strengthLabel.setBounds(130,130,300,50);
+        strengthLabel.setForeground(Color.red);
 
         // setting up textfields
         fullNameText.setBounds(130, 35, 200, 20);
@@ -49,9 +56,9 @@ public class RegisterFrame extends JFrame implements ActionListener {
         confirmText.setBounds(130, 110, 200, 20);
 
         // setting up buttons
-        registerBTN.setBounds(120, 170, 100, 20);
+        registerBTN.setBounds(70, 200, 100, 20);
         registerBTN.addActionListener(this);
-        cancelBTN.setBounds(230, 170, 100, 20);
+        cancelBTN.setBounds(180, 200, 100, 20);
         cancelBTN.addActionListener(this);
 
         // adding elements to Frame
@@ -67,12 +74,13 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.add(confirmText);
         this.add(registerBTN);
         this.add(cancelBTN);
+        this.add(strengthLabel);
 
         this.setTitle("Account Register"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(340, 225);
+        this.setSize(340, 280);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true); // set frame to visible
@@ -88,21 +96,24 @@ public class RegisterFrame extends JFrame implements ActionListener {
                 String id = userIDText.getText();
                 String password = new String(passwordText.getPassword());
                 String confirm = new String(confirmText.getPassword());
-
-
-                if(this.uiController.getRegisterUIControl().attemptRegister(fullName, id, password, confirm)){
+                this.setCursor(waitCursor);
+                boolean registered = uiController.getRegisterUIControl().attemptRegister(fullName, id, password, confirm);
+                this.strengthLabel.setText(uiController.getRegisterUIControl().getWarningString(password));
+                int strength = uiController.getRegisterUIControl().getWarningString(password).length();
+                if(registered){
                     this.uiController.toRegisterProfile();
                     this.dispose();
                     this.uiController.getLoginUIControl().attemptLogin(id, password);
                     this.uiController.updateUser();
                 }
-                else{
+                else if (strength == 23){
                     this.errorLabel.setVisible(true);
                 }
 
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+            this.setCursor(Cursor.getDefaultCursor());
         }
 
         if (e.getSource() == cancelBTN){

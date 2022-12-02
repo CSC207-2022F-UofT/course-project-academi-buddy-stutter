@@ -16,6 +16,10 @@ public class FriendListUIControl {
         this.self = self;
     }
 
+    public String getUserId() {
+        return self.getUserID();
+    }
+
     public ArrayList<Student> getFriendList() {
         return friendListManager.getFriendList(self.getUserID());
     }
@@ -24,8 +28,9 @@ public class FriendListUIControl {
         return friendListManager.getFriendRequestList(self.getUserID());
     }
 
-    public void acceptFriendRequest(String userID, String friendID) {
-        friendListManager.acceptFriendRequest(userID, friendID);
+    public boolean acceptFriendRequest(String userID, String friendID) {
+        System.out.println("friendlist ui control");
+        return friendListManager.acceptFriendRequest(userID, friendID);
     }
 
     public void updateFriendList(String userID) {

@@ -137,6 +137,14 @@ public class UserDataManager {
                     InterestTag tag = new InterestTag(t);
                     retrievedUser.updateStudentTOI(tag, true);
                 }
+                // update get friend list
+                String friendsString = (String) userData.get("friend list");
+                List<String> friends = Arrays.asList(friendsString.substring(1, friendsString.length()-1).split(","));
+                for(String f: friends) {
+                    String friend = f;
+                    retrievedUser.updateFriends(friend, true);
+                    retrievedUser.updateStudentTOI(tag, true);
+                }
                 return retrievedUser;
             }else if (type.equals("admin")){
                 return new Admin(userID, uPass, fullName, info);

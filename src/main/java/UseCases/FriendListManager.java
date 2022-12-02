@@ -32,12 +32,18 @@ public class FriendListManager extends UseCase{
         }
     }
 
-    public void acceptFriendRequest(String userId, String friendID) {
+    public boolean acceptFriendRequest(String userId, String friendID) {
         try {
+            System.out.println("this is my id: " + userId);
             Student user = (Student) this.ub.getUserByID(userId);
+            System.out.println("this is friend id: " + friendID);
+
             Student friend = (Student) this.ub.getUserByID(friendID);
+            System.out.println("i'm finally here");
+
             user.acceptFriendRequest(friend);
             System.out.println(user.getFullName() + " accepted " + friend.getFullName());
+            return true;
 
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -17,9 +17,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class LoginFrame extends JFrame implements ActionListener {
+public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
     JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
     JLabel userLabel = new JLabel("USER ID:");
@@ -28,7 +30,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JButton loginBTN = new JButton("LOGIN");
     JButton registerBTN = new JButton("REGISTER");
     JTextField userIDText = new JTextField("");
-    JPasswordField passwordText = new JPasswordField();
+    JPasswordField passwordText = new JPasswordField("");
 
     UIController uiController;
 
@@ -48,6 +50,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         loginBTN.setBounds(60, 160, 100, 20);
         loginBTN.addActionListener(this);
         loginBTN.setFocusable(false);
+        loginBTN.setEnabled(false);
         registerBTN.setBounds(180, 160, 100, 20);
         registerBTN.addActionListener(this);
         registerBTN.setFocusable(false);
@@ -64,6 +67,8 @@ public class LoginFrame extends JFrame implements ActionListener {
         // textfields
         userIDText.setBounds(110, 75, 200, 20);
         passwordText.setBounds(110, 100, 200, 20);
+        userIDText.addKeyListener(this);
+        passwordText.addKeyListener(this);
 
         // combobox
 
@@ -111,5 +116,20 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
 
 
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        loginBTN.setEnabled(!userIDText.getText().equals("") && !new String(passwordText.getPassword()).equals(""));
     }
 }

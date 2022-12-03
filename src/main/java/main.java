@@ -37,12 +37,10 @@ public class main {
         CourseDataManager cb = new CourseDataManager(cbc, ub);
         TagDataManager tb = new TagDataManager(tbc, ub);
 
+//        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
+//        Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
         UIController uiController = new UIController(null, cb, ub, tb);
         LoginFrame loginFrame = new LoginFrame(uiController);
-//
-//        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
-//        UIController uiController = new UIController(student, cb, ub, tb);
-//        FriendListFrame flf = new FriendListFrame(uiController);
     }
 
 }

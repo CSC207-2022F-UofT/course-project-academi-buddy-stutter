@@ -65,7 +65,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
         returnBTN.addActionListener(this);
-        
+
         // setting up textareas
         matchedList.setBounds(135, 60, 200, 120);
         matchedList.addListSelectionListener(new ListSelectionListener() {

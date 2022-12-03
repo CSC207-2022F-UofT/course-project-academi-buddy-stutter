@@ -77,8 +77,6 @@ clicking on the "Find Study Buddy" button, program allows user to click on other
 The user can also click on the "back" button to go back to _HOME_ screen (**Step 6**).
 
 
-- **Feature 11**
-
 ## Program Workflow
 
 ![image](images/ClassDependencyDiagram.png)

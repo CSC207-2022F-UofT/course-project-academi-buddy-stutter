@@ -18,7 +18,6 @@ public class AdminFrame extends JFrame implements ActionListener {
     JButton logoutBTN = new JButton("LOG OUT");
     JButton removeUserBTN = new JButton("remove");
 
-    JLabel removeUserLabel = new JLabel("Enter User ID:");
 
     JTextField userIDField = new JTextField();
 
@@ -32,8 +31,8 @@ public class AdminFrame extends JFrame implements ActionListener {
         // setting up labels
         titleLabel.setBounds(10, 0, 200, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        titleLabel.setText("Welcome, " + uiController.getHomeUIControl().getName().split("\\s+")[0]);
-        removeUserLabel.setBounds(10, 50, 100, 50);
+        titleLabel.setText("Welcome, " + uiController.getAdminUIControl().getName().split("\\s+")[0]);
+        resultLabel.setBounds(10, 100, 100, 50);
         resultLabel.setBounds(80, 100, 200, 50);
         // setting up buttons
         logoutBTN.setBounds(250, 170, 80, 20);
@@ -46,10 +45,11 @@ public class AdminFrame extends JFrame implements ActionListener {
 
 
         // adding elements to frame
-        this.add(removeUserLabel);
+        this.add(resultLabel);
         this.add(titleLabel);
         this.add(logoutBTN);
         this.add(removeUserBTN);
+        this.add(userIDField);
 
         this.setTitle("Admin"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame

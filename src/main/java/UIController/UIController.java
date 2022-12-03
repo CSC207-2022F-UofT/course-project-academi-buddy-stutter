@@ -114,10 +114,12 @@ public class UIController{
     }
 
     public void toHome(){
-        initializeAfterLogin();
+        System.out.println(self.getClass());
         if(self instanceof Student){
+            initializeAfterLogin();
             HomeFrame HomeFrame = new HomeFrame(this);
         }else if(self instanceof Admin){
+            initializeAdminAfterLogin();
             AdminFrame adminFrame = new AdminFrame(this);
         }
     }
@@ -166,7 +168,6 @@ public class UIController{
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
     private void initializeAfterLogin(){
-        System.out.println("initialized");
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
@@ -175,6 +176,10 @@ public class UIController{
         this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
         this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
+    }
+
+    private void initializeAdminAfterLogin(){
+        this.adminUIControl = new AdminUIControl(self, courseManager, userManager, tagManager);
     }
 
 }

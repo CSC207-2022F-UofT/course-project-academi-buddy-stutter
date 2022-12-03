@@ -44,18 +44,7 @@ public class UploadManager extends UseCase {
     }
 
     public void reuploadUpdateDatabase(Student student) throws IOException {
-        for(String courseCode: student.getEnrolledCourseCodes()){
-            Course course = courseDataManager.getCourse(courseCode, "LEC");
-            courseDataManager.removeStudent(course, student);
-            student.removeCourse(course);
-        }
-        if(!student.getEnrolledCourseCodes().isEmpty()){
-            for(String courseCode: student.getEnrolledCourseCodes()){
-                Course course = courseDataManager.getCourse(courseCode, "TUT");
-                courseDataManager.removeStudent(course, student);
-                student.removeCourse(course);
-            }
-        }
+        AdminActionsManager.removeStudentFromCourse(student, courseDataManager);
         updateDatabase(student);
     }
 

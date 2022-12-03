@@ -65,11 +65,12 @@ public class CourseDataManager {
         return false;
     }
 
-    public boolean removeStudent(Course course, Student student) throws IOException {
+    public boolean removeStudent(String courseCode, String courseType, Student student) throws IOException {
         /**
          * remove a student to a course. It also updates in user database as well.
          */
         fi.initialize("courses");
+        Course course = this.getCourse(courseCode, courseType);
         boolean removed = course.removeStudent(student);
         if(removed){
             student.removeCourse(course);

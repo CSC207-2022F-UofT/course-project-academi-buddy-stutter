@@ -45,7 +45,7 @@ public class TagDataManager {
     public boolean removeStudent(InterestTag tag, Student student) throws IOException {
         fi.initialize("tags");
         ArrayList<String> students = getStudentList(tag);
-        if(!students.contains(student.getUserID())){
+        if(students.contains(student.getUserID())){
             fi.initialize("tags");
             fi.removeDocField(tag.getName(), student.getUserID());
             return true;

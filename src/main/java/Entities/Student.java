@@ -142,5 +142,7 @@ public class Student extends User{
         for(InterestTag t: tags_of_interests){
             tagNames.add(t.getName());
         }
-        return tagNames.contains(tag.getName());}
+        return tagNames.contains(tag.getName());
+    }
+
 }

@@ -133,9 +133,12 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         if(e.getSource() == applyBTN){
             this.setCursor(waitCursor);
             ArrayList<Boolean> newState = new ArrayList<>();
-            for (JCheckBox box: boxList){
-                uiController.getTagSelectUIControl().updateStudentTag(box.getText(), box.isSelected());
-                newState.add(box.isSelected());
+            for(int i = 0; i < initialState.size(); i++){
+                boolean selection = boxList.get(i).isSelected();
+                newState.add(selection);
+                if(selection != initialState.get(i)){
+                    uiController.getTagSelectUIControl().updateStudentTag(boxList.get(i).getText(), boxList.get(i).isSelected());
+                }
             }
             initialState = newState;
             applyBTN.setEnabled(false);

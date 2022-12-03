@@ -6,6 +6,7 @@ import Entities.Student;
 import Entities.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AdminActionsManager extends UseCase{
 
@@ -22,16 +23,16 @@ public class AdminActionsManager extends UseCase{
     }
 
     public boolean removeUser(String userID){
+        System.out.println(userID);
         if(!userExist(userID)){
             return false;
         }
         try {
             Student student = (Student) userDataManager.getUserByID(userID);
             removeStudentFromCourse(student, courseDataManager);
-            if(!student.getTags().get(0).getName().equals("")){
-                removeStudentFromTag(student, tagDataManager);
-            }
+            removeStudentFromTag(student, tagDataManager);
             userDataManager.removeUser(userID);
+            System.out.println("true");
             return true;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +55,9 @@ public class AdminActionsManager extends UseCase{
     }
     private void removeStudentFromTag(Student student, TagDataManager tagDataManager) throws IOException{
         for(InterestTag t: student.getTags()){
-            tagDataManager.removeStudent(t, student);
+            if(!t.getName().equals("")){
+                tagDataManager.removeStudent(t, student);
+            }
         }
     }
 

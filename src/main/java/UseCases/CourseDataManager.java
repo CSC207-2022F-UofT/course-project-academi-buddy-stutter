@@ -101,6 +101,10 @@ public class CourseDataManager {
         List<String> sid = Arrays.asList(sidString.substring(1, sidString.length() - 1).split(", "));
         ArrayList<String> studentIDList = new ArrayList<>();
         studentIDList.addAll(sid);
+        if(studentIDList.contains("")){
+            studentIDList.remove("");
+        }
+
         course.setEnrolledStudents(studentIDList);
         return course;
     }

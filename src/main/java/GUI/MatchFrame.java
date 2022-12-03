@@ -122,7 +122,15 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
             int numCommon = numBox.getSelectedIndex();
             ArrayList<Student> matches;
             try {
-                matches = this.uiController.getMatchUIControl().getMatches(numCommon);
+                if((String)labelBox.getSelectedItem() == "None"){
+                    matches = this.uiController.getMatchUIControl().getMatches(numCommon);
+                }else{
+//
+                    this.uiController.getMatchUIControl().getMatches(numCommon);
+                    matches = uiController.getMatchUIControl().
+                            getLabeledMatches((String)labelBox.getSelectedItem());
+                }
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -152,30 +160,16 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-//        if(e.getSource() == labelBox){
-//
-//            if((String) labelBox.getSelectedItem() == "None"){
-//                int numCommon = numBox.getSelectedIndex();
-//                ArrayList<Student> matches;
-//                try {
-//                    matches = this.uiController.getMatchUIControl().getMatches(numCommon, 5);
-//                } catch (IOException ex) {
-//                    throw new RuntimeException(ex);
-//                }
-//
-//                addMatches(matches);
-//            }
-//
-//
-//            ArrayList<Student> filteredStudents = uiController.getMatchUIControl().
-//                    getLabeledMatches((String)labelBox.getSelectedItem());
-//
-//            clearMatches();
-//            addMatches(filteredStudents);
-//
-//            if(filteredStudents.size() == 0){
-//                profileBTN.setEnabled(false);
-//            }
-//        }
+        if(e.getSource() == labelBox){
+
+            ArrayList<Student> filteredStudents = uiController.getMatchUIControl().
+                    getLabeledMatches((String)labelBox.getSelectedItem());
+
+            addMatches(filteredStudents);
+
+            if(filteredStudents.size() == 0){
+                profileBTN.setEnabled(false);
+            }
+        }
     }
 }

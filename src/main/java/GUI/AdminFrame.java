@@ -17,6 +17,7 @@ public class AdminFrame extends JFrame implements ActionListener {
     JLabel resultLabel = new JLabel();
     JButton logoutBTN = new JButton("LOG OUT");
     JButton removeUserBTN = new JButton("remove");
+    JLabel enterLabel = new JLabel("Enter User ID:");
 
 
     JTextField userIDField = new JTextField();
@@ -32,16 +33,18 @@ public class AdminFrame extends JFrame implements ActionListener {
         titleLabel.setBounds(10, 0, 200, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         titleLabel.setText("Welcome, " + uiController.getAdminUIControl().getName().split("\\s+")[0]);
-        resultLabel.setBounds(10, 100, 100, 50);
-        resultLabel.setBounds(80, 100, 200, 50);
+        resultLabel.setBounds(270, 50, 100, 20);
+        // resultLabel.setBounds(80, 100, 200, 50);
+        enterLabel.setBounds(10, 50, 100, 20);
+
         // setting up buttons
         logoutBTN.setBounds(250, 170, 80, 20);
         logoutBTN.addActionListener(this);
-        removeUserBTN.setBounds(10, 115, 150, 20);
+        removeUserBTN.setBounds(120, 100, 100, 20);
         removeUserBTN.addActionListener(this);
         removeUserBTN.addActionListener(this);
 
-        userIDField.setBounds(80, 50, 200, 50);
+        userIDField.setBounds(110, 50, 150, 20);
 
 
         // adding elements to frame
@@ -50,8 +53,9 @@ public class AdminFrame extends JFrame implements ActionListener {
         this.add(logoutBTN);
         this.add(removeUserBTN);
         this.add(userIDField);
+        this.add(enterLabel);
 
-        this.setTitle("Admin"); // sets frame's title
+        this.setTitle("Admin Frame"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

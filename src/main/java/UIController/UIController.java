@@ -39,6 +39,8 @@ public class UIController{
 
     private FileUploadUIControl fileUploadUIControl;
 
+    private AllStudentsUIControl allStudentsUIControl;
+
     private AdminUIControl adminUIControl;
     public AdminUIControl getAdminUIControl() {return adminUIControl;}
 
@@ -71,6 +73,8 @@ public class UIController{
     public MatchUIControl getMatchUIControl(){return matchUIControl;}
 
     public FileUploadUIControl getFileUploadUIControl(){return  fileUploadUIControl;}
+
+    public AllStudentsUIControl getAllStudentsUIControl() {return allStudentsUIControl;}
 
     public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = user;
@@ -167,6 +171,8 @@ public class UIController{
 
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
+    public void toAllStudents() {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
+
     private void initializeAfterLogin(){
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
@@ -176,6 +182,7 @@ public class UIController{
         this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
         this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
+        this.allStudentsUIControl = new AllStudentsUIControl(self, courseManager, userManager);
     }
 
     private void initializeAdminAfterLogin(){

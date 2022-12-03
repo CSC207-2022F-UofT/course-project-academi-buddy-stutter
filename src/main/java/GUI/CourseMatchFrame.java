@@ -2,23 +2,20 @@ package GUI;
 
 import Entities.Student;
 import UIController.UIController;
-import org.checkerframework.checker.guieffect.qual.UI;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class MatchFrame extends JFrame implements ActionListener, ItemListener{
+public class CourseMatchFrame extends JFrame implements ActionListener, ItemListener{
     JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
     JLabel selectLabel = new JLabel("Select Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
@@ -32,8 +29,10 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     JButton findBTN = new JButton("Find");
     JButton profileBTN = new JButton("Profile");
 
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+
     UIController uiController;
-    public MatchFrame(UIController uiController) {
+    public CourseMatchFrame(UIController uiController) {
         this.uiController = uiController;
         // setting up labels:
         numCommonLabel.setBounds(10, 10, 270, 20);
@@ -102,6 +101,8 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
             matchedStu.addElement(s.getFullName());
         }
         matchedList.setModel(matchedStu);
+        matchedList.clearSelection();
+        profileBTN.setEnabled(false);
     }
 
     private void clearMatches(){
@@ -113,10 +114,11 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource() == findBTN){
+            this.setCursor(waitCursor);
             int numCommon = numBox.getSelectedIndex();
             ArrayList<Student> matches;
             try {
-                if((String)labelBox.getSelectedItem() == "None"){
+                if(labelBox.getSelectedItem().equals("None")){
                     matches = this.uiController.getMatchUIControl().getMatches(numCommon);
                 }else{
 
@@ -128,19 +130,19 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-
             addMatches(matches);
-
+            this.setCursor(Cursor.getDefaultCursor());
         }
 
         else if (e.getSource() == profileBTN){
-
+            this.setCursor(waitCursor);
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
                 String selectedID = uiController.getMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
                 System.out.println(selectedName + selectedID);
                 uiController.toProfileDisplay(selectedID);
             }
+            this.setCursor(Cursor.getDefaultCursor());
         }
         if(e.getSource() == returnBTN){
             this.dispose();

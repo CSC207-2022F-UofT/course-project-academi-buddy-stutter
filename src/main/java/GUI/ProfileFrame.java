@@ -129,7 +129,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
             changeInfo.setEnabled(false);
         }
         else if (e.getSource() == updateCourse) {
-            uiController.toFileUpload();
+            uiController.toCalendarUpload();
         }
 
     }

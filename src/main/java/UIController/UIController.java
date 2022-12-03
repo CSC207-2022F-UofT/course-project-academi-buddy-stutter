@@ -11,8 +11,6 @@ import java.io.IOException;
 
 public class UIController{
 
-    //TODO: make UIController as parent class. Create seperate UIControl for each Frame, e.g. LoginUIControl, etc.
-
     public int STATUS;
     public static int FROM_REGISTER = 0;
     public static int FROM_PROFILE = 1;
@@ -35,7 +33,7 @@ public class UIController{
     private TagMatchUIControl tagMatchUIControl;
     private TagSelectUIControl tagSelectUIControl;
 
-    private MatchUIControl matchUIControl;
+    private CourseMatchUIControl matchUIControl;
 
     private FileUploadUIControl fileUploadUIControl;
 
@@ -68,7 +66,7 @@ public class UIController{
 
     public FriendListUIControl getFriendListUIControl(){return friendListUIControl;}
 
-    public MatchUIControl getMatchUIControl(){return matchUIControl;}
+    public CourseMatchUIControl getMatchUIControl(){return matchUIControl;}
 
     public FileUploadUIControl getFileUploadUIControl(){return  fileUploadUIControl;}
 
@@ -77,8 +75,6 @@ public class UIController{
         this.courseManager = courseManager;
         this.userManager = userManager;
         this.tagManager = tagManager;
-        // updateSelf();
-
 
         // UseCases
 
@@ -88,13 +84,6 @@ public class UIController{
         this.registerUIControl = new RegisterUIControl(courseManager, userManager);
 
 
-    }
-    public void updateSelf(){
-        try {
-            this.self = userManager.getUserByID(self.getUserID());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
     public void updateUser(){
         this.self = this.loginUIControl.getUser();
@@ -125,7 +114,7 @@ public class UIController{
     }
 
     public void toMatch(){
-        MatchFrame matchFrame = new MatchFrame(this);
+        CourseMatchFrame matchFrame = new CourseMatchFrame(this);
     }
 
     public void toRegister(){
@@ -158,9 +147,9 @@ public class UIController{
         LabelSelectFrame LabelSelectFrame = new LabelSelectFrame(this);
     }
 
-    public void toFileUpload() {
+    public void toCalendarUpload() {
         this.fileUploadUIControl = new FileUploadUIControl(self, courseManager, userManager);
-        FileUploadFrame fileUploadFrame = new FileUploadFrame(this, STATUS);
+        CalendarUploadFrame fileUploadFrame = new CalendarUploadFrame(this, STATUS);
     }
 
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
@@ -175,7 +164,7 @@ public class UIController{
         this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
         this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
-        this.matchUIControl = new MatchUIControl(self, courseManager, userManager);
+        this.matchUIControl = new CourseMatchUIControl(self, courseManager, userManager);
     }
 
     private void initializeAdminAfterLogin(){

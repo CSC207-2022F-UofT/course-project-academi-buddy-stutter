@@ -12,7 +12,6 @@ public class AdminActionsManager extends UseCase{
 
     private UserDataManager userDataManager;
     private CourseDataManager courseDataManager;
-
     private TagDataManager tagDataManager;
 
     public AdminActionsManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDataManager) {

@@ -1,6 +1,5 @@
 package GUI;
 
-import Entities.User;
 import UIController.UIController;
 
 import javax.swing.*;
@@ -62,7 +61,7 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
         if(e.getSource() == completeBTN){
             uiController.getRegisterUIControl().updateEmailAndInfo(emailText.getText(), infoText.getText());
             this.dispose();
-            uiController.toFileUpload();
+            uiController.toCalendarUpload();
         }
     }
 }

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FileUploadFrame extends JFrame implements ActionListener {
+public class CalendarUploadFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Upload Your Calendar:");
     JLabel completedLabel = new JLabel();
     JButton uploadBTN = new JButton("Upload");
@@ -21,7 +21,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
 
     UIController uiController;
 
-    public FileUploadFrame(UIController uiController, int source){
+    public CalendarUploadFrame(UIController uiController, int source){
         this.uiController = uiController;
         this.status = source;
         // setting up title label

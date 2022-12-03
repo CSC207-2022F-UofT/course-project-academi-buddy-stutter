@@ -24,17 +24,11 @@ public class CourseMatchManager {
     private ArrayList<Student> getSameSessionList(Student student){
         ArrayList<Student> sameSessionStudents = new ArrayList<>();
         ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
-<<<<<<< HEAD
         System.out.println(enrolledCourse);
         for(String course: enrolledCourse){
             try {
                 System.out.println(course);
                 ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
-=======
-        for(String course: enrolledCourse){
-            try {
-                ArrayList<String> studentIDs = cb.getCourse(course).getEnrolledStudentID();
->>>>>>> cf8a37a (Fixed an infinite loop in database)
                 ArrayList<Student> students = new ArrayList<>();
                 for (String s: studentIDs){
                     students.add((Student) ub.getUserByID(s));

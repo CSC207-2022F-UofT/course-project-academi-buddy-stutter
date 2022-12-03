@@ -61,7 +61,6 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         courseTextScoll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         emailText.addKeyListener(this);
         infoText.addKeyListener(this);
-        updateCourse.addActionListener(this);
 
 
         backBTN.setBounds(345, 260, 80, 20);
@@ -73,9 +72,12 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         changeEmail.setFocusable(false);
         changeInfo.setBounds(345, 180, 80, 20);
         changeInfo.setEnabled(false);
+        changeInfo.addActionListener(this);
         updateCourse.setBounds(345, 65, 80, 20);
         updateCourse.setEnabled(true);
         updateCourse.setFocusable(false);
+        updateCourse.addActionListener(this);
+
 
         // adding elements to frame
         this.add(nameLabel);
@@ -121,6 +123,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
             changeEmail.setEnabled(false);
         }
         else if (e.getSource() == changeInfo) {
+            System.out.println(infoText.getText() + currentInfo);
             uiController.getProfileUIControl().updateInfo(infoText.getText());
             currentInfo = infoText.getText();
             changeInfo.setEnabled(false);

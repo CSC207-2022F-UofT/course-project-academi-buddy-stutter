@@ -24,7 +24,10 @@ public class FriendListUIControl {
     public ArrayList<String> getFriendList() { return friendListManager.getFriendList(user.getUserID());}
 
     public ArrayList<String> getFriendRequestList() {return friendListManager.getFriendRequestList(user.getUserID());}
+    public ArrayList<String> getFriendRequestSentList() {return friendListManager.getFriendRequestSentList(user.getUserID());}
+
     public String getFriendFullName(String userID) {return friendListManager.getFriendFullName(userID);}
+    public boolean isRequestSent(String friendID) {return friendListManager.isRequestSent(user.getUserID(), friendID);}
 
     public void acceptedRequest(String friendID, String userID) {
         friendListManager.acceptedRequest(friendID, userID);

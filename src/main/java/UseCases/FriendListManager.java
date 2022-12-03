@@ -32,6 +32,18 @@ public class FriendListManager extends UseCase{
         }
     }
 
+    public ArrayList<String> getFriendRequestSentList(String userID) {
+        try {
+            ArrayList<String> friendRequestSentList;
+            Student user = (Student) this.ub.getUserByID(userID);
+            friendRequestSentList = user.getFriendRequestSentList();
+            return friendRequestSentList;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public String getFriendFullName(String userID) {
         try {
             return this.ub.getUserByID(userID).getFullName();
@@ -94,5 +106,23 @@ public class FriendListManager extends UseCase{
             System.out.println("Friend request failed to receive.");
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean isRequestSent(String userID, String friendID) {
+        // check if friend request is sent or is friend already
+        try{
+            Student user = (Student) this.ub.getUserByID(userID);
+            Student friend = (Student) this.ub.getUserByID(friendID);
+            if (user.getFriendList().contains(friendID)) {
+                return false;
+            } else if (user.getFriendListRequest().contains(friendID) || friend.getFriendListRequest().contains(userID)) {
+                return false;
+            }
+            return true;
+        }catch (IOException e) {
+            System.out.println("Cannot access friend list/request/sent list");
+            throw new RuntimeException(e);
+        }
+
     }
 }

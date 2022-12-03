@@ -27,6 +27,8 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     public ProfileDisplayFrame(UIController uiController, String userID){
         this.uiController = uiController;
         this.userID = userID;
+
+
         // Labels
         nameLabel.setBounds(10, 10, 100, 20);
         emailLabel.setBounds(10, 35, 100, 20);
@@ -42,17 +44,26 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         emailText.setText(uiController.getProfileDisplayUIControl().getEmail(userID));
         infoText.setText(uiController.getProfileDisplayUIControl().getInfo(userID));
 
+
         addFriendBTN.setBounds(300, 30, 90, 20);
         addFriendBTN.addActionListener(this);
         addFriendBTN.setFocusable(false);
-        if (uiController.getFriendListUIControl().getFriendList().contains(userID)) {
-            addFriendBTN.setEnabled(false);
-        } else {
-            addFriendBTN.setEnabled(true);
-        }
+
+        // Update addFriend button clickable status
+        boolean canAdd = uiController.getFriendListUIControl().isRequestSent(userID);
+        addFriendBTN.setEnabled(canAdd);
+
+//        addFriendBTN.setFocusable(false);
+//        if (uiController.getFriendListUIControl().getFriendList().contains(userID) &&
+//            uiController.getFriendListUIControl().getFriendRequestSentList().contains(userID)) {
+//            addFriendBTN.setEnabled(false);
+//        } else {
+//            addFriendBTN.setEnabled(true);
+//        }
+
         closeBTN.setBounds(330, 165, 50, 20);
         closeBTN.addActionListener(this);
-        closeBTN.setFocusable(false);
+//        closeBTN.setFocusable(false);
 
         // adding elements to frame
         this.add(nameLabel);
@@ -83,9 +94,11 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
             this.dispose();
         }
         else if (e.getSource() == addFriendBTN) {
-            String viewerID = uiController.getProfileUIControl().getUserID();
-            uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
-            uiController.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
+            if (!uiController.getFriendListUIControl().isRequestSent(userID)) {
+                String viewerID = uiController.getProfileUIControl().getUserID();
+                uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
+                uiController.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
+            }
         }
     }
 }

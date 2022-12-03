@@ -244,7 +244,6 @@ public class UserDataManager {
 //        System.out.println(student.getFullName() + "friend request sent list has been updated on Firebase");
     }
 
-
     //Helper methods
     private ArrayList<String> toUserIdStrings(ArrayList<Student> students) {
         ArrayList<String> userIDs = new ArrayList<>();

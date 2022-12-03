@@ -16,10 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CourseMatchFrame extends JFrame implements ActionListener, ItemListener{
-    JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
-    JLabel selectLabel = new JLabel("Select Label:");
+    JLabel numCommonLabel = new JLabel("Minimum Number of Common Sessions:");
+    JLabel selectLabel = new JLabel("Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
-    String[] userType = {"1", "2", "3", "4", "5", "6"};
+    String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     JComboBox<String> numBox = new JComboBox<>(userType);
     String[] labels = {"None", "Want to Meet", "Want to Collaborate", "Want to Discuss"};
     JComboBox<String> labelBox = new JComboBox<>(labels);
@@ -27,7 +27,9 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
     JList<String> matchedList = new JList<>(matchedStu);
     JButton returnBTN = new JButton("Back");
     JButton findBTN = new JButton("Find");
-    JButton profileBTN = new JButton("Profile");
+    JButton profileBTN = new JButton("Go to Profile");
+
+    JButton commonSessionBTN = new JButton("Common Sessions");
 
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
@@ -35,33 +37,42 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
     public CourseMatchFrame(UIController uiController) {
         this.uiController = uiController;
         // setting up labels:
-        numCommonLabel.setBounds(10, 10, 270, 20);
+        numCommonLabel.setBounds(10, 10, 290, 20);
         selectLabel.setBounds(10, 35, 100, 20);
         matchLabel.setBounds(10, 60, 120, 20);
 
         // setting up combobox for numSameSessions
         numBox.setEditable(false);
-        numBox.setBounds(280, 10, 70, 20);
+        numBox.setBounds(355, 10, 70, 25);
 
         // setting up combobox for labels
         labelBox.setEditable(false);
-        labelBox.setBounds(135, 35, 215, 20);
+        labelBox.setBounds(210, 35, 215, 25);
         labelBox.addItemListener(this);
 
         // setting up buttons
-        returnBTN.setBounds(380, 160, 50, 20);
-        findBTN.setBounds(380, 10, 50, 20);
+        returnBTN.setBounds(440, 220, 50, 20);
+        returnBTN.addActionListener(this);
+        findBTN.setBounds(440, 10, 50, 20);
         findBTN.addActionListener(this);
         findBTN.setFocusable(false);
 
-        profileBTN.setBounds(380, 60, 50, 20);
+        profileBTN.setBounds(155, 190, 130, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
-        returnBTN.addActionListener(this);
+
+        commonSessionBTN.setBounds(290, 190, 130, 20);
+        commonSessionBTN.setFocusable(false);
+        commonSessionBTN.setOpaque(false);
+        commonSessionBTN.setContentAreaFilled(false);
+        commonSessionBTN.setBorderPainted(true);
+        commonSessionBTN.addActionListener(this);
+        commonSessionBTN.setEnabled(false);
+
 
         // setting up textareas
-        matchedList.setBounds(135, 60, 200, 120);
+        matchedList.setBounds(155, 60, 265, 120);
         matchedList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -69,6 +80,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
                     profileBTN.setEnabled(false);
                 }
                 profileBTN.setEnabled(true);
+                commonSessionBTN.setEnabled(true);
             }
         });
 
@@ -84,12 +96,13 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         this.add(returnBTN);
         this.add(findBTN);
         this.add(profileBTN);
+        this.add(commonSessionBTN);
 
         this.setTitle("Match by Course"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(450, 230);
+        this.setSize(510, 280);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true);
@@ -103,6 +116,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         matchedList.setModel(matchedStu);
         matchedList.clearSelection();
         profileBTN.setEnabled(false);
+        commonSessionBTN.setEnabled(false);
     }
 
     private void clearMatches(){
@@ -144,6 +158,13 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
             }
             this.setCursor(Cursor.getDefaultCursor());
         }
+        else if (e.getSource() == commonSessionBTN) {
+            this.setCursor(waitCursor);
+            String selectedID = uiController.getMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+            uiController.toCommonSession(selectedID);
+            this.setCursor(Cursor.getDefaultCursor());
+
+        }
         if(e.getSource() == returnBTN){
             this.dispose();
         }
@@ -161,6 +182,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
             if(filteredStudents.size() == 0){
                 profileBTN.setEnabled(false);
+                commonSessionBTN.setEnabled(false);
             }
         }
     }

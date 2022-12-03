@@ -36,8 +36,10 @@ public class UploadManager extends UseCase {
         CalendarInterpreter ci = new CalendarInterpreter(this.calendarInterface);
         ArrayList<Course> courses = ci.getCourses(ci.readCalendar("coursesCalendar.ics"));
         for(Course c: courses){
-            this.cb.addCourse(c);
-            this.cb.addStudent(c, student);
+            this.cb.updateCourse(c);
+            String courseCode = c.getCourseCode();
+            String courseType = c.getCourseType();
+            this.cb.addStudent(courseCode, courseType, student);
         }
     }
 

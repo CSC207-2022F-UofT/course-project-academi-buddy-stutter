@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +24,10 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     JLabel selectLabel = new JLabel("Select Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
 
-    String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+    String[] userType = {"1", "2", "3", "4", "5", "6"};
     JComboBox<String> numBox = new JComboBox<>(userType);
-//    JTextArea outputText = new JTextArea();
+    String[] labels = {"None", "Want to Meet", "Want to Collaborate", "Want to Discuss"};
+    JComboBox<String> labelBox = new JComboBox<>(labels);
 
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
     JList<String> matchedList = new JList<>(matchedStu);
@@ -40,20 +42,25 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         this.uiController = uiController;
         // setting up labels:
         numCommonLabel.setBounds(10, 10, 270, 20);
-        // selectLabel.setBounds(10, 35, 100, 20);
+        selectLabel.setBounds(10, 35, 100, 20);
         matchLabel.setBounds(10, 60, 120, 20);
 
-        // setting up combobox
+        // setting up combobox for numSameSessions
         numBox.setEditable(false);
         numBox.setBounds(280, 10, 70, 20);
 
+        // setting up combobox for labels
+        labelBox.setEditable(false);
+        labelBox.setBounds(135, 35, 215, 20);
+        labelBox.addItemListener(this);
+
         // setting up buttons
         returnBTN.setBounds(380, 160, 50, 20);
-        findBTN.setBounds(10, 35, 50, 20);
+        findBTN.setBounds(380, 10, 50, 20);
         findBTN.addActionListener(this);
         findBTN.setFocusable(false);
 
-        profileBTN.setBounds(350, 35, 50, 20);
+        profileBTN.setBounds(380, 60, 50, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
@@ -74,14 +81,16 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
 
         // adding elements to frame
         this.add(numCommonLabel);
-        // this.add(selectLabel);
+        this.add(selectLabel);
         this.add(matchLabel);
 
         this.add(matchedList);
 
         this.add(numBox);
+        this.add(labelBox);
         this.add(returnBTN);
         this.add(findBTN);
+        this.add(profileBTN);
 
         this.setTitle("Match by Course"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
@@ -93,12 +102,16 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         this.setVisible(true);
     }
 
-    private void addMatches(ArrayList<String> students){
-        for(String s: students){
-            matchedStu.addElement(uiController.getMatchUIControl().getFullName(s));
+    private void addMatches(ArrayList<Student> students){
+        for(Student s: students){
+            matchedStu.addElement(s.getFullName());
         }
         matchedList.setModel(matchedStu);
+    }
 
+    private void clearMatches(){
+        matchedStu = new DefaultListModel<>();
+        matchedList.setModel(matchedStu);
     }
 
     @Override
@@ -106,7 +119,12 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
 
         if(e.getSource() == findBTN){
             int numCommon = numBox.getSelectedIndex();
-            ArrayList<String> matches = this.uiController.getMatchUIControl().getMatches(numCommon, 4);
+            ArrayList<Student> matches;
+            try {
+                matches = this.uiController.getMatchUIControl().getMatches(numCommon);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
 
             addMatches(matches);
 
@@ -127,13 +145,36 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
 
 
 
+
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        uiController.getTagMatchUIControl().setSelectedtag((String) numBox.getSelectedItem());
-        matchedStu = uiController.getTagMatchUIControl().getNameList();
-        matchedList.setModel(matchedStu);
-        profileBTN.setEnabled(false);
+
+//        if(e.getSource() == labelBox){
+//
+//            if((String) labelBox.getSelectedItem() == "None"){
+//                int numCommon = numBox.getSelectedIndex();
+//                ArrayList<Student> matches;
+//                try {
+//                    matches = this.uiController.getMatchUIControl().getMatches(numCommon, 5);
+//                } catch (IOException ex) {
+//                    throw new RuntimeException(ex);
+//                }
+//
+//                addMatches(matches);
+//            }
+//
+//
+//            ArrayList<Student> filteredStudents = uiController.getMatchUIControl().
+//                    getLabeledMatches((String)labelBox.getSelectedItem());
+//
+//            clearMatches();
+//            addMatches(filteredStudents);
+//
+//            if(filteredStudents.size() == 0){
+//                profileBTN.setEnabled(false);
+//            }
+//        }
     }
 }

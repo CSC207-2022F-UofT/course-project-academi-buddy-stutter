@@ -15,17 +15,15 @@ public class CourseDataFactory extends DataFactory{
 
     public Course createCourse(String courseCode, String courseType, String sessionNumber, String courseName, String day, String startTime, String year){
         Course course = new Course(courseCode, courseType, sessionNumber, courseName, day, startTime, year);
-        try {
-            courseDataManager.addCourse(course);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        courseDataManager.updateCourse(course);
         return course;
     }
 
     public void addStudent(Course course, Student student){
         try {
-            courseDataManager.addStudent(course, student);
+            String courseCode = course.getCourseCode();
+            String courseType = course.getCourseType();
+            courseDataManager.addStudent(courseCode, courseType, student);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

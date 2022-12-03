@@ -25,11 +25,10 @@ public class CourseDataManager {
         fi.initialize("courses");
         return fi.getDocumentStringList();
     }
-    public void addCourse(Course course) throws IOException {
+    private void addCourse(Course course){
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
          */
-        fi.initialize("courses");
         String courseCode = course.getCourseCode() + course.getCourseType();
         fi.addEntry(courseCode, "session type", course.getCourseType());
         fi.addEntry(courseCode, "session number", course.getSessionNumber());
@@ -40,11 +39,22 @@ public class CourseDataManager {
         fi.addEntry(courseCode, "enrolled students id", course.getEnrolledIDList());
     }
 
-    public boolean addStudent(Course course, Student student) throws IOException {
+    public void updateCourse(Course course){
+        fi.initialize("courses");
+        String courseIdentifier = course.getCourseCode() + course.getCourseType();
+
+        if(!courseExists(courseIdentifier)){
+            addCourse(course);
+        }
+    }
+
+    public boolean addStudent(String courseCode, String courseType, Student student) throws IOException {
         /**
          * add a student to a course. It also updates in user database as well.
          */
         fi.initialize("courses");
+        Course course = this.getCourse(courseCode, courseType);
+
         boolean added = course.addStudent(student);
         if(added){
             student.addCourse(course);
@@ -75,9 +85,12 @@ public class CourseDataManager {
          * get a lecture course by course code.
          */
         fi.initialize("courses");
-        if(!this.getCourseCodeList().contains(courseCode + courseType)){
+        System.out.println(courseCode + courseType);
+        if(!courseExists(courseCode + courseType)){
+
             return null;
         }
+
         Map<String, Object> courseDetail = fi.getEntry(courseCode + courseType);
         Course course = new Course(courseCode, (String) courseDetail.get("session type"),
                 (String) courseDetail.get("session number"), (String) courseDetail.get("session name"),
@@ -89,6 +102,11 @@ public class CourseDataManager {
         studentIDList.addAll(sid);
         course.setEnrolledStudents(studentIDList);
         return course;
+    }
+
+    private boolean courseExists(String courseIdentifier){
+        fi.initialize("courses");
+        return this.getCourseCodeList().contains(courseIdentifier);
     }
 
 }

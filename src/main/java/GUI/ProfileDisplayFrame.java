@@ -94,11 +94,13 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
             this.dispose();
         }
         else if (e.getSource() == addFriendBTN) {
-            if (!uiController.getFriendListUIControl().isRequestSent(userID)) {
+//            if (!uiController.getFriendListUIControl().isRequestSent(userID)) {
                 String viewerID = uiController.getProfileUIControl().getUserID();
                 uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
                 uiController.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
-            }
+                System.out.println("Sending friend request to: " + viewerID);
+                addFriendBTN.setEnabled(false);
+//            }
         }
     }
 }

@@ -27,7 +27,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(300, 230);
+        this.setSize(250, 250);
         this.setLocationRelativeTo(null);
 
         refreshStudentsTable();
@@ -35,10 +35,10 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
         // User Interface
 
         // Labels
-        allStudentLabel.setBounds(150, 10, 100, 20);
+        allStudentLabel.setBounds(80, 10, 100, 20);
 
         //JScrollPane
-        studentScroll.setBounds(50, 30, 150, 150);
+        studentScroll.setBounds(50, 40, 150, 150);
 
         //Set Table
         studentList = uiController.getAllStudentsUIControl().getAllStudents();

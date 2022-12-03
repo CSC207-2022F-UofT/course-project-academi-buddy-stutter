@@ -19,7 +19,7 @@ public class RegCmplFrame extends JFrame implements ActionListener {
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 
         // setting buttons
-        returnBTN.setBounds(75, 170, 200, 20);
+        returnBTN.setBounds(67, 150, 200, 20);
         returnBTN.addActionListener(this);
 
         // adding elements to the frame

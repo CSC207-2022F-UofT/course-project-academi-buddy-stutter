@@ -3,6 +3,7 @@ package GUI;
 import UIController.UIController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class ProfileFrame extends JFrame implements ActionListener, MouseListener, KeyListener {
@@ -28,6 +29,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
 
     JButton updateCourse = new JButton("Reupload");
 
+
     String currentEmail;
     String currentInfo;
 
@@ -43,6 +45,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         emailText.setBounds(130, 35, 200, 20);
         courseTextScoll.setBounds(130,65, 200, 110);
         infoText.setBounds(130, 180, 200, 100);
+        updateCourse.setFont(new Font("Times New Roman", Font.PLAIN, 11));
         courseText.setEditable(false);
         nameText.setEditable(false);
         emailText.setEditable(true);
@@ -103,7 +106,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(440, 320);
+        this.setSize(460, 320);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true);

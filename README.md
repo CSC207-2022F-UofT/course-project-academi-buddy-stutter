@@ -1,39 +1,89 @@
-# Project Template
+# CSC207 Group-106 "STUDY BUDDY FINDER"
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+"STUDY BUDDY FINDER" is a program that allows similar interest users to connect with each other, based
+on each individual's course schedule.
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+The user navigates through the program's UI, by the end, the program returns other students for the user to connect
+with. The user will be presented with other profiles to access. The exact features and frames will be discussed later 
+on.
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+## Program Operation Steps/Features
 
-## Workflow Documents
+Program launches on _LOGIN_ screen 
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+(Note: following **Features** does not match numbering on GitHub).
+- **Feature 1** (_LOGIN_ screen):
+  - **Feature 1.1** (_LOGIN_ screen, user has an account): User login through the frame and is directed to the _HOME_ 
+screen (**Feature 6**).
+  - **Feature 1.2** (_LOGIN_ screen, user enters incorrect info): User will be prompted on screen of error. User may try 
+again.
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
 
-## Gradle Project
-Database.CalendarInterpreter this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+- **Feature 2** (_REGISTER_ screen):
+  - **Feature 2.1** (_REGISTER_ screen, user doesn't have an account): User click on the "Register" button and fills in 
+  the required information.
+    After registering, the user is directed to the _COMPLETE PROFILE_ screen (**Feature 3**).
+  - **Feature 2.2** (_REGISTER_ screen, user has an account/passwords does not match): On screen, prompts user that
+    error has occurred. User may try again.
+  - **Feature 2.3** (_REGISTER_ screen, user clicks on "Cancel" button): User is directed back to the _LOGIN_ screen 
+  (**Feature 1**).
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+- **Feature 3** (_COMPLETE PROFILE_ screen): User fills in additional information, full name, email, and bio. User is 
+then directed to UPLOAD SCREEN (**Feature 4.1**).
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+- **Feature 4** (_UPLOAD SCREEN_):
+  - **Feature 4.1** (_UPLOAD SCREEN_, user first time calendar upload): User uploads a courseCalendar ics file from 
+  their computer and data is created and updated to database, Firebase. Note, this step may take a while. 
+  User is then directed to _REGISTRATION COMPLETE_ screen (**Feature 5**).
+  - **Feature 4.2** (_UPLOAD_ screen, user uploads calendar from _USER PROFILE_ screen): Same as (**Feature 4.1**) 
+  except user is directed back to their _USER PROFILE_ screen (**Feature 7**).
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
 
-You can create another simple class and try generating a test for this class.
+- **Feature 5** (_REGISTRATION COMPLETE_ screen): After registration, screen is displayed for user to navigate to the
+_LOGIN_ screen (**Feature 1**).
+
+
+- **Feature 6** (_HOME_ screen, user successful login/directed from _REGISTRATION COMPLETE_ screen): User can direct 
+them-self, 
+using buttons, to navigate to:
+  - _USER PROFILE_(**Feature 7**).
+  - Select _STATUS LABELS_(**Feature 8**).
+  - Select _INTERESTS_(**Feature 9**).
+  - _FIND STUDY BUDDY_(**Feature 10**).
+  - _FIND INTEREST BUDDY_(**Feature 11**).
+  - "Logout" button (**Feature 1**).
+
+
+- **Feature 7** (_USER PROFILE_ screen, user accesses their own profile): User can conduct profile operations 
+such as:
+  - change their email.
+  - look at their enrolled courses.
+  - write/update their about.
+  - upload a new calendar using "Upload Button"(**Feature 4.2**).
+  - click on "back" button and go back to _HOME_ screen (**Feature 6**).
+
+
+- **Feature 8** (_STATUS LABELS_ screen): User choose labels they're a part of. "Wants to Meet", etc. Then user 
+is directed back to _HOME_ screen (**Feature 6**).
+
+
+- **Feature 9** (_SELECT INTERESTS_ screen): User chooses their interests. "Sports", "Music", etc. Then user is 
+directed back to _HOME_ screen (**Feature 6**).
+
+
+- **Feature 10** (_FIND STUDY BUDDY_ screen): User can select "Number of Courses" and "Status Labels" to sort from. After 
+clicking on the "Find Study Buddy" button, program allows user to click on other users matched (**Feature 12**). 
+The user can also click on the "back" button to go back to _HOME_ screen (**Feature 6**).
+
+
+## Program Workflow
+
+![image](images/ClassDependencyDiagram.png)
+
+- This is how each class is organized and their relationships with each other
+
+## User Navigation (Features/Frames)
+
+

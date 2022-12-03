@@ -13,6 +13,8 @@ public class TagMatchManager extends UseCase{
     private InterestTag selectedTag;
     private TagDataManager tagManager;
 
+    private ArrayList<String> idList = new ArrayList<>();
+
 
     public TagMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
         super(courseDatabase, userDatabase);
@@ -22,6 +24,7 @@ public class TagMatchManager extends UseCase{
     public void setSelectedTag(String selected){
         InterestTag selectedTag = new InterestTag(selected);
         this.selectedTag = selectedTag;
+        idList = new ArrayList<>();
     }
 
     public ArrayList<Student> match(){
@@ -48,14 +51,15 @@ public class TagMatchManager extends UseCase{
         }
         for(Student s: students){
             if(s.getUserID() != null && !s.getUserID().equals(self.getUserID())) {
+                idList.add(s.getUserID());
                 nameList.add(s.getFullName());
             }
         }
         return nameList;
     }
 
-    public Student getStudentByIndex(int index){
-        return match().get(index);
+    public String getStudentIDByIndex(int index){
+        return idList.get(index);
     }
 
 

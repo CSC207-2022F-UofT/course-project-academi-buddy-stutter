@@ -14,6 +14,7 @@ import com.google.firebase.FirebaseOptions;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class main {
@@ -37,17 +38,11 @@ public class main {
         CourseDataManager cb = new CourseDataManager(cbc, ub);
         TagDataManager tb = new TagDataManager(tbc, ub);
 
-        Student student = new Student("12345", "qwerty", "John Doe", "A test subject");
-        Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
-        UIController uiController = new UIController(student, cb, ub, tb);
-        //TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
-        //TagMatchFrame tm = new TagMatchFrame(uiController);
-        //LabelSelectFrame lb = new LabelSelectFrame(uiController);
-        //ProfileFrame pf = new ProfileFrame(uiController);
-        BiweeklyAPI bi = new BiweeklyAPI();
-        CalendarInterpreter ci = new CalendarInterpreter(bi);
-        //System.out.println(bi.getLength("coursesCalendar.ics"));
-        System.out.println(ci.getCourses(ci.readCalendar("coursesCalendar.ics")).get(0).getCourseType());
+        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
+//        Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
+        UIController uiController = new UIController(null, cb, ub, tb);
+        LoginFrame loginFrame = new LoginFrame(uiController);
+        //FriendListFrame friendListFrame = new FriendListFrame(uiController);
 
     }
 

@@ -30,14 +30,12 @@ public class UserDataManager {
          * @return whether a user is added. If returned false, then the user already exists.
          */
         fi.initialize("users");
-        if(exist(user)){
-            return false;
-        }
         String userID = user.getUserID();
         fi.addEntry(userID, "account type", "user");
         fi.addEntry(userID, "account password", user.getUserPassword());
         fi.addEntry(userID, "full name", user.getFullName());
         fi.addEntry(userID, "student info", user.getUserInfo());
+
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -46,9 +44,6 @@ public class UserDataManager {
          * @return whether a student user is added. If returned false, then the student user already exists.
          */
         fi.initialize("users");
-        if(exist(student)){
-            return false;
-        }
         String studentID = student.getUserID();
         addUser(student);
         fi.addEntry(studentID, "account type", "student");
@@ -58,15 +53,25 @@ public class UserDataManager {
         for(Label i: student.getLabels()){
             labelList.add(i.getName());
         }
+        labelList.remove("");
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
+        //fi.addEntry(studentID, "friend list", student.getFriendList());
+        //fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
         }
+        tagList.remove("");
         fi.addEntry(studentID, "tags of interests", tagList.toString());
         return true;
     }
+
+    public void updateStudentCourses(Student student){
+        String studentID = student.getUserID();
+        fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
+    }
+
 
     public boolean addAdminUser(Admin admin) throws IOException {
         /**
@@ -74,21 +79,18 @@ public class UserDataManager {
          * @return whether an admin user is added. If returned false, then the admin user already exists.
          */
         fi.initialize("users");
-        if(exist(admin)){
-            return false;
-        }
         String adminID = admin.getUserID();
         addUser(admin);
         fi.addEntry(adminID, "account type", "admin");
         return true;
     }
 
-    public boolean removeUser(User user){
+    public boolean removeUser(String userID){
         /**
          * remove a user from database.
          */
         fi.initialize("users");
-        return fi.removeEntry(user.getUserID());
+        return fi.removeEntry(userID);
     }
 
     public User getUserByID(String userID) throws IOException{
@@ -109,25 +111,30 @@ public class UserDataManager {
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
-                ArrayList<Course> courseList = new ArrayList<>();
-                for(String courseCode: courseCodes){
-                    CourseDataManager courseDB = new CourseDataManager(fi, this);
-                    courseList.add(courseDB.getCourse(courseCode));
+                ArrayList<String> courseList = new ArrayList<>();
+                courseList.addAll(courseCodes);
+                if(courseList.contains("")){
+                    courseList.remove("");
                 }
                 retrievedUser.setEnrolledCourses(courseList);
                 //
                 String labelsString = (String) userData.get("labels");
                 List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
-                for(String l: labels){
-                    Label label = new Label(l);
-                    retrievedUser.updateLabel(label, true);
+
+                for(String l: labels) {
+                    if(!labels.get(0).equals("")){
+                        Label label = new Label(l);
+                        retrievedUser.updateLabel(label, true);
+                    }
                 }
                 //
                 String tagString = (String) userData.get("tags of interests");
                 List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
                 for(String t: tags) {
-                    InterestTag tag = new InterestTag(t);
-                    retrievedUser.updateStudentTOI(tag, true);
+                    if(!tags.equals("")){
+                        InterestTag tag = new InterestTag(t);
+                        retrievedUser.updateStudentTOI(tag, true);
+                    }
                 }
                 return retrievedUser;
             }else if (type.equals("admin")){
@@ -140,19 +147,19 @@ public class UserDataManager {
         return null;
     }
 
-//    this method should be in matcher? not database! for clean architecture?
-    public ArrayList<Course> getCommonSession(Student self, Student target) throws IOException {
+    //    this method should be in matcher? not database! for clean architecture?
+    public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
         /**
          * get a list of common session between two users.
          */
         fi.initialize("users");
-        ArrayList<Course> commonSessions = new ArrayList<>();
+        ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
-        Student s = (Student) getUserByID(self.getUserID());
-        Student t = (Student) getUserByID(target.getUserID());
-        ArrayList<Course> selfEnrolledCourses = s.getEnrolledCourses();
-        ArrayList<Course> targetEnrolledCourses = t.getEnrolledCourses();
-        for(Course c: selfEnrolledCourses){
+        Student s = (Student) getUserByID(selfUserID);
+        Student t = (Student) getUserByID(targetUserID);
+        ArrayList<String> selfEnrolledCourses = s.getEnrolledCourseCodes();
+        ArrayList<String> targetEnrolledCourses = t.getEnrolledCourseCodes();
+        for(String c: selfEnrolledCourses){
             if(targetEnrolledCourses.contains(c)){
                 commonSessions.add(c);
             }

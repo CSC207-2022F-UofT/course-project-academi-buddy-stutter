@@ -5,10 +5,7 @@ import Entities.InterestTag;
 import Entities.Student;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TagDataManager {
     private DatabaseInterface fi;
@@ -25,56 +22,35 @@ public class TagDataManager {
         return fi.getDocumentStringList();
     }
 
-    public void addTag(InterestTag tag) throws IOException {
-        fi.initialize("tags");
-        String tagName = tag.getName();
-        ArrayList<String> strList = new ArrayList<>();
-        fi.addEntry(tagName, "students", strList.toString());
-    }
 
     public ArrayList<String> getStudentList(InterestTag tag){
         fi.initialize("tags");
         String tagName = tag.getName();
-        Map<String, Object> tagEntry= fi.getEntry(tagName);
-        String stuString = (String) tagEntry.get("students");
-        if(stuString == null){
-            return new ArrayList<>();
-        }
-        List<String> studentList = Arrays.asList(stuString.substring(1, stuString.length() - 1).split(", "));
+        Map<String, Object> tagEntry = fi.getEntry(tagName);
+        Set<String> studentsSet = tagEntry.keySet();
         ArrayList<String> students = new ArrayList<>();
-        for(String s: studentList){
-            students.add(s);
-        }
+        students.addAll(studentsSet);
         return students;
     }
 
     public void addStudent(InterestTag tag, Student student) throws IOException {
         fi.initialize("tags");
-        ArrayList<String> students = new ArrayList<>();
-        for(String s: getStudentList(tag)){
-            students.add(s);
-        }
+        ArrayList<String> students = getStudentList(tag);
         if(!students.contains(student.getUserID())){
-            students.add(student.getUserID());
-            student.updateStudentTOI(tag, true);
-            ud.addStudentUser(student);
-            fi.addEntry(tag.getName(), "students", students.toString());
+            fi.initialize("tags");
+            fi.addEntry(tag.getName(), student.getUserID(), 1);
         }
     }
 
-    public void removeStudent(InterestTag tag, Student student) throws IOException {
+    public boolean removeStudent(InterestTag tag, Student student) throws IOException {
         fi.initialize("tags");
-        ArrayList<String> students = new ArrayList<>();
-        for(String s: getStudentList(tag)){
-            students.add(s);
-        }
+        ArrayList<String> students = getStudentList(tag);
         if(students.contains(student.getUserID())){
-            students.remove(student.getUserID());
-            student.updateStudentTOI(tag, false);
-            ud.addStudentUser(student);
             fi.initialize("tags");
-            fi.addEntry(tag.getName(), "students", students.toString());
+            fi.removeDocField(tag.getName(), student.getUserID());
+            return true;
         }
+        return false;
     }
 
 

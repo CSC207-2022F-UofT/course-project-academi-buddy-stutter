@@ -29,4 +29,13 @@ public class ProfileUIControl {
         String userID = user.getUserID();
         return profileManager.getUserInfo(userID);
     }
+
+    public void updateEmail(String email){
+        String userID = user.getUserID();
+        profileManager.updateEmail(userID, email);
+    }
+    public void updateInfo(String info){
+        String userID = user.getUserID();
+        profileManager.updateInfo(userID, info);
+    }
 }

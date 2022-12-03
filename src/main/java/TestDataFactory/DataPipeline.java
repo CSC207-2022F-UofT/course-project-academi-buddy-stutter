@@ -80,14 +80,15 @@ public class DataPipeline {
         l3.add(labelLibrary.get(2));
         List<Label> l4 = new ArrayList<>();
         l4.add(labelLibrary.get(2));
-        List<InterestTag> l5 = new ArrayList<>();
+        List<Label> l5 = new ArrayList<>();
 
         // Student s1 = userDataFactory.createStudent("567789", "qwerty", "John Doeeeee", "Random", "rtyui@l.com", t1, l1);
-        Course c1 = courseDataFactory.createCourse("CSC800", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
+        Course c1 = courseDataFactory.createCourse("CSC800H1", "LEC", "0101", "Computer Algorithm", "Tue", "1500", "2022");
+        System.out.println(c1.getEnrolledIDList());
         // courseDataFactory.addStudent(c1, s1);
 
         // sample student objects
-        Student s1 = userDataFactory.createStudent("63267",	"qwerty",	"Ash Cooper",	"Meet",	"ac63@gmail.com",	t1,	l1);
+        Student s1 = userDataFactory.createStudent("63267",	"qwerty",	"Ash Copper",	"Meet",	"ac63@gmail.com",	t1,	l1);
         Student s2 = userDataFactory.createStudent("72053",	"asdfgh",	"Sin Piper",	"Meet",	"sp72@mail.com",	t5,	l2);
         Student s3 = userDataFactory.createStudent("34592",	"zxcvbn",	"Ur Retared",	"Meet",	"ur48@sg.com",	t2,	l3);
         Student s4 = userDataFactory.createStudent("60383",	"poiuyt",	"Im SB",	"Meet",	"abc@mail.com",	t3,	l4);
@@ -97,5 +98,7 @@ public class DataPipeline {
         Student s8 = userDataFactory.createStudent("12611",	"pwmfns",	"Cell Phone",	"Discuss",	"998su@gmail.com",	t4,	l1);
         Student s9 = userDataFactory.createStudent("88927",	"xcvjsn",	"bubble tea",	"Discuss",	"asdfwwww@gmail.com",	t1,	l1);
         Student s10 = userDataFactory.createStudent("59407",	"asokgt",	"air pods",	"Discuss",	"asdf2ss2sdfd@mail.com",	t2,	l4);
+        System.out.println("Read: " + ReadCounter.getCount());
+        System.out.println("Write: " + WriteCounter.getCount());
     }
 }

@@ -5,6 +5,7 @@ import UIController.UIController;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,11 +26,12 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
 
     UIController uiController;
     private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
+    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     public LabelSelectFrame(UIController uiController){
         this.uiController = uiController;
         this.setTitle("Status Label Selection"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
@@ -82,6 +84,7 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
+            this.setCursor(waitCursor);
             ArrayList<Boolean> newState = new ArrayList<>();
             for (JCheckBox box: boxList){
                 uiController.getLabelSelectUIControl().updateStudentLabel(box.getText(), box.isSelected());
@@ -89,9 +92,10 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
             }
             initialState = newState;
             applyBTN.setEnabled(false);
+            this.setCursor(Cursor.getDefaultCursor());
         }
         else if(e.getSource() == backBTN){
-            //TODO: go to home page
+            this.dispose();
         }
     }
 

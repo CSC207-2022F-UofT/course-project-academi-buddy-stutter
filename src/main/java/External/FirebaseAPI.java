@@ -1,6 +1,8 @@
 package External;
 
 import Gateways.DatabaseInterface;
+import TestDataFactory.ReadCounter;
+import TestDataFactory.WriteCounter;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 
@@ -55,42 +57,62 @@ public class FirebaseAPI implements DatabaseInterface {
         return documentList;
     }
     public boolean addEntry(String documentName, String key, Object value){
-        List<QueryDocumentSnapshot> currentDocuments = this.getDocumentList();
-        DocumentReference docRef;
-        docRef = db.collection(collectionName).document(documentName);
-        Map<String, Object> data = new HashMap<>();
-        for (QueryDocumentSnapshot document : currentDocuments) {
-            System.out.println(document.getId());
-            if(document.getId().equals(documentName)){
-                Map<String, Object> currentData = document.getData();
-                for(String k: currentData.keySet()){
-                    data.put(k, currentData.get(k));
-                }
-                data.put(key, value);
+        DocumentReference docRef = getDocRef(documentName);
+        Map<String, Object> currentData = getEntry(documentName);
+        Map<String, Object> data;
+        ApiFuture<WriteResult> result;
+        if(currentData == null){
+            data = new HashMap<>();
+        }
+        else {
+            data = currentData;
+            if(data.containsKey(key)){
+                result = docRef.update(key, value);
+                WriteCounter.addCount();
+                return printUpdateResult(result);
             }
         }
-        ApiFuture<WriteResult> result = docRef.set(data);
+        data.put(key, value);
+        result = docRef.set(data);
+        WriteCounter.addCount();
         return printUpdateResult(result);
     }
 
     public Map<String, Object> getEntry(String documentName){
-        HashMap<String, Object> entry = new HashMap<>();
-        List<QueryDocumentSnapshot> currentDocuments = new ArrayList<>();
-        for (QueryDocumentSnapshot q: this.getDocumentList()){
-            currentDocuments.add(q);
+        DocumentReference docRef = getDocRef(documentName);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        ReadCounter.addCount();
+        DocumentSnapshot doc = null;
+        try {
+            doc = future.get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
         }
-        for (QueryDocumentSnapshot document : currentDocuments) {
-            if(document.getId().equals(documentName)){
-                return document.getData();
-            }
-        }
+        Map<String, Object> entry = doc.getData();
         return entry;
     }
 
-    public boolean removeEntry(String documentName){
-        DocumentReference docRef = db.collection(collectionName).document(documentName);
 
+    private DocumentReference getDocRef(String documentName){
+        DocumentReference docRef;
+        docRef = db.collection(collectionName).document(documentName);
+        return docRef;
+    }
+
+    public boolean removeEntry(String documentName){
+        DocumentReference docRef = getDocRef(documentName);
         ApiFuture<WriteResult> result = docRef.delete();
+        return printUpdateResult(result);
+    }
+
+    public boolean removeDocField(String documentName, String key){
+        DocumentReference docRef = getDocRef(documentName);
+        Map<String, Object> data = getEntry(documentName);
+        data.remove(key);
+        ApiFuture<WriteResult> result = docRef.set(data);
+        WriteCounter.addCount();
         return printUpdateResult(result);
     }
 

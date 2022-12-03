@@ -11,30 +11,26 @@ public class Student extends User{
         this.tags_of_interests = tags_of_interests;
     }
 
-    public void setEnrolledCourses(ArrayList<Course> enrolled_courses) {
-        this.enrolled_courses = enrolled_courses;
+    public void setEnrolledCourses(ArrayList<String> enrolled_courses) {
+        ArrayList<String> courseCodeList = new ArrayList<>();
+        for (String course: enrolled_courses){
+            courseCodeList.add(course);
+        }
+        this.enrolled_course_codes = courseCodeList;
     }
 
     public void setEmail(String email){this.email = email;}
 
     public String getEmail(){return email;}
 
-    private ArrayList<Course> enrolled_courses;
+    private ArrayList<String> enrolled_course_codes;
 
     public ArrayList<InterestTag> getTags() {return tags_of_interests;}
     public ArrayList<Label> getLabels() {return labels;}
 
-    public ArrayList<Course> getEnrolledCourses() {return enrolled_courses;}
-
     public ArrayList<String> getEnrolledCourseCodes() {
         ArrayList<String> courseCodes = new ArrayList<>();
-        if(enrolled_courses.contains(null)){
-            return new ArrayList<>();
-        }
-        for(int i = 0; i < enrolled_courses.size(); i++){
-            courseCodes.add(enrolled_courses.get(i).getCourseCode() + enrolled_courses.get(i).getCourseType());
-        }
-
+        courseCodes.addAll(this.enrolled_course_codes);
         return courseCodes;
     }
 
@@ -43,7 +39,7 @@ public class Student extends User{
         super(UID, UPass, full_name, info);
         this.tags_of_interests = new ArrayList<>();
         this.labels = new ArrayList<>();
-        this.enrolled_courses = new ArrayList<>();
+        this.enrolled_course_codes = new ArrayList<>();
     }
 
     public void updateStudentTOI(InterestTag tag, boolean selected){
@@ -76,16 +72,16 @@ public class Student extends User{
 
 
     public boolean addCourse(Course course){
-        if(enrolled_courses.contains(course)){
+        if(enrolled_course_codes.contains(course.getCourseCode())){
             return false;
         }
-        enrolled_courses.add(course);
+        enrolled_course_codes.add(course.getCourseCode());
         return true;
     }
 
     public boolean removeCourse(Course course){
-        if(enrolled_courses.contains(course)){
-            enrolled_courses.remove(course);
+        if(enrolled_course_codes.contains(course.getCourseCode())){
+            enrolled_course_codes.remove(course.getCourseCode());
             return true;
         }
         return false;
@@ -103,5 +99,7 @@ public class Student extends User{
         for(InterestTag t: tags_of_interests){
             tagNames.add(t.getName());
         }
-        return tagNames.contains(tag.getName());}
+        return tagNames.contains(tag.getName());
+    }
+
 }

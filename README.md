@@ -11,6 +11,7 @@ on.
 ![image](images/Program_Runthrough.png)
 ![image](images/Other_Features_1.png)
 ![image](images/Other_Features_2.png)
+
 Program launches on _LOGIN_ screen 
 
 (Note: following **Features** does not match numbering on GitHub).
@@ -118,7 +119,5 @@ users after selecting the profile.
 ![image](images/ClassDependencyDiagram.png)
 
 - This is how each class is organized and their relationships with each other
-
-## User Navigation (Features/Frames)
 
 

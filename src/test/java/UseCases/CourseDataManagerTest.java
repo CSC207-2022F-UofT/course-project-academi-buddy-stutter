@@ -1,5 +1,6 @@
 package UseCases;
 
+import Entities.Course;
 import Entities.Student;
 import TestAPI.TestDataAPI;
 import org.junit.jupiter.api.Test;
@@ -7,21 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-class CourseDataManagerTest {
 
-    private ArrayList<Object> initializeStaticDatabase(){
-        TestDataAPI cbc = new TestDataAPI();
-        TestDataAPI ubc = new TestDataAPI();
-        TestDataAPI tbc = new TestDataAPI();
-        UserDataManager ub = new UserDataManager(ubc);
-        CourseDataManager cb = new CourseDataManager(cbc, ub);
-        TagDataManager tb = new TagDataManager(tbc, ub);
-        ArrayList<Object> managers = new ArrayList<>();
-        managers.add(ub);
-        managers.add(cb);
-        managers.add(tb);
-        return managers;
-    }
+class CourseDataManagerTest extends Tests{
+
+
 
 
     @Test
@@ -32,7 +22,9 @@ class CourseDataManagerTest {
         TagDataManager tb = (TagDataManager) managers.get(2);
 
 
+        Course courseA = new Course("999", "lec", "")
 
+        cb.updateCourse();
 
 
 

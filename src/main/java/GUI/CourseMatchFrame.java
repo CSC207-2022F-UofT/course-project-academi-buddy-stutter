@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CourseMatchFrame extends JFrame implements ActionListener, ItemListener{
-    JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
-    JLabel selectLabel = new JLabel("Select Label:");
+    JLabel numCommonLabel = new JLabel("Minimum Number of Common Sessions:");
+    JLabel selectLabel = new JLabel("Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
     String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     JComboBox<String> numBox = new JComboBox<>(userType);
@@ -37,32 +37,32 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
     public CourseMatchFrame(UIController uiController) {
         this.uiController = uiController;
         // setting up labels:
-        numCommonLabel.setBounds(10, 10, 270, 20);
+        numCommonLabel.setBounds(10, 10, 290, 20);
         selectLabel.setBounds(10, 35, 100, 20);
         matchLabel.setBounds(10, 60, 120, 20);
 
         // setting up combobox for numSameSessions
         numBox.setEditable(false);
-        numBox.setBounds(280, 10, 70, 20);
+        numBox.setBounds(355, 10, 70, 25);
 
         // setting up combobox for labels
         labelBox.setEditable(false);
-        labelBox.setBounds(135, 35, 215, 20);
+        labelBox.setBounds(210, 35, 215, 25);
         labelBox.addItemListener(this);
 
         // setting up buttons
-        returnBTN.setBounds(395, 160, 50, 20);
+        returnBTN.setBounds(440, 220, 50, 20);
         returnBTN.addActionListener(this);
-        findBTN.setBounds(395, 10, 50, 20);
+        findBTN.setBounds(440, 10, 50, 20);
         findBTN.addActionListener(this);
         findBTN.setFocusable(false);
 
-        profileBTN.setBounds(355, 60, 130, 20);
+        profileBTN.setBounds(155, 190, 130, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
 
-        commonSessionBTN.setBounds(355, 85, 130, 20);
+        commonSessionBTN.setBounds(290, 190, 130, 20);
         commonSessionBTN.setFocusable(false);
         commonSessionBTN.setOpaque(false);
         commonSessionBTN.setContentAreaFilled(false);
@@ -72,7 +72,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
 
         // setting up textareas
-        matchedList.setBounds(135, 60, 200, 120);
+        matchedList.setBounds(155, 60, 265, 120);
         matchedList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -102,7 +102,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(500, 230);
+        this.setSize(510, 280);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true);

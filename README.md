@@ -7,7 +7,7 @@ The user navigates through the program's UI, by the end, the program returns oth
 with. The user will be presented with other profiles to access. The exact features and frames will be discussed later 
 on.
 
-## Program Operation Steps
+## Program Operation Steps/Features
 
 Program launches on _LOGIN_ screen 
 

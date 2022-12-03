@@ -144,7 +144,7 @@ public class CourseMatchManager2 {
             ArrayList<String> labelNames = new ArrayList<>();
 
             for(Label l: s.getLabels()){
-                    labelNames.add(l.getName());
+                labelNames.add(l.getName());
             }
             if(labelNames.contains(label)){
                 filtered.add(s);

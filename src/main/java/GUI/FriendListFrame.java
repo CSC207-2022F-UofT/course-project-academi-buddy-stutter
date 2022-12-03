@@ -1,50 +1,25 @@
 package GUI;
 import Entities.Student;
-import External.JavaxAPI;
-import com.sun.tools.jconsole.JConsoleContext;
-import UseCases.TagMatchManager;
-
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.IOException;
-import java.sql.Array;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import UIController.UIController;
 
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
-    String userID;
     JLabel friendLabel = new JLabel("Friend List");
     JLabel friendRequestLabel = new JLabel("Friend Requests");
     String[] friendData = {};
     JList<String> friendList = new JList(friendData);
-    JButton backBTN = new JButton("Back");
-
-    JButton profileBTN = new JButton("Profile");
-
     String[] columnNames = {"First Name", "Requests", "userID"};
-    Object[][] requestData =
-            {
-                    {"Elon Musk", "Accept", "u1"},
-                    {"Bill Gates","Accept", "u2"},
-                    {"Elon Ma", "Accept", "u3"},
-                    {"John Wick", "Accept", "u4"},
-            };
-
     JTable friendRequestTable;
-
     UIController uiController;
 
 
@@ -52,36 +27,46 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         this.uiController = uiController;
 
         this.setTitle("Friend List and Requests"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(410, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
-
         // places objects inside frame
-
-        // buttons
-        backBTN.setBounds(180, 165, 50, 20);
-        backBTN.addActionListener(this);
-        backBTN.setFocusable(false);
 
         // labels
         friendLabel.setBounds(55,10,100,20);
         friendRequestLabel.setBounds(255, 10, 100, 20);
 
-        //list
-        // _____> delete the below line -> only for testing
-        //
-        //
-        //
         // get friend list from the user
         ArrayList<String> friendArray = uiController.getFriendListUIControl().getFriendList();
         String[] friendToString;
         friendToString = uiController.getFriendListUIControl().IdsToFullNames(friendArray);
         friendList.setListData(friendToString);
 
+//        friendList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        friendList.addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//                    int idx = friendList.getSelectedIndex();
+//                    System.out.println(friendToString[idx]);
+//            }
+//        });
 
+        MouseListener mouseListener = new MouseAdapter() {
+            public void mouseClicked(MouseEvent mouseEvent) {
+                JList theList = (JList) mouseEvent.getSource();
+                if (mouseEvent.getClickCount() == 2) {
+                    int index = theList.locationToIndex(mouseEvent.getPoint());
+                    if (index >= 0) {
+                        Object o = theList.getModel().getElementAt(index);
+                        System.out.println("Double-clicked on: " + o.toString());
+                    }
+                }
+            }
+        };
+        friendList.addMouseListener(mouseListener);
         //table
         ArrayList<String> friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
 
@@ -159,28 +144,13 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         this.getContentPane().add(scrollPaneRequest, BorderLayout.CENTER);
 
         // adds objects to the frame
-        this.add(backBTN);
         this.add(friendLabel);
         this.add(friendRequestLabel);
 
         this.setVisible(true); // set frame to visible
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == profileBTN){
-//            if(matchedList.getSelectedIndex() != -1){
-//                String selectedName = matchedList.getSelectedValue();
-//                String selectedID = uiController.getTagMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
-//                uiController.toProfileDisplay(selectedID);
-//            }
-        }
-        else if(e.getSource() == backBTN){
-            //TODO: go to home page
-        }
-
-    }
+    public void actionPerformed(ActionEvent e) {}
 
     @Override
     public void itemStateChanged(ItemEvent e) {

@@ -25,6 +25,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     JButton changeEmail = new JButton("Change");
     JButton changeInfo = new JButton("Change");
     JButton backBTN = new JButton("Back");
+    JButton friendListBTN = new JButton("Friends");
 
     JButton updateCourse = new JButton("Reupload");
 
@@ -76,6 +77,9 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         updateCourse.setBounds(345, 65, 80, 20);
         updateCourse.setEnabled(true);
         updateCourse.setFocusable(false);
+        friendListBTN.setBounds(345, 250, 100,20);
+        friendListBTN.addActionListener(this);
+        friendListBTN.setFocusable(false);
 
         // adding elements to frame
         this.add(nameLabel);
@@ -94,6 +98,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         this.add(changeEmail);
         this.add(changeInfo);
         this.add(updateCourse);
+        this.add(friendListBTN);
 
 
 
@@ -127,6 +132,8 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         }
         else if (e.getSource() == updateCourse) {
             uiController.toFileUpload();
+        } else if (e.getSource() == friendListBTN) {
+            uiController.toFriendList();
         }
 
     }

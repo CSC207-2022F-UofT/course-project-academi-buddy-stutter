@@ -83,12 +83,12 @@ public class UserDataManager {
         return true;
     }
 
-    public boolean removeUser(User user){
+    public boolean removeUser(String userID){
         /**
          * remove a user from database.
          */
         fi.initialize("users");
-        return fi.removeEntry(user.getUserID());
+        return fi.removeEntry(userID);
     }
 
     public User getUserByID(String userID) throws IOException{

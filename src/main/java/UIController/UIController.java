@@ -1,5 +1,6 @@
 package UIController;
 
+import Entities.Admin;
 import Entities.Student;
 import UseCases.*;
 import Entities.User;
@@ -37,6 +38,9 @@ public class UIController{
     private MatchUIControl matchUIControl;
 
     private FileUploadUIControl fileUploadUIControl;
+
+    private AdminUIControl adminUIControl;
+    public AdminUIControl getAdminUIControl() {return adminUIControl;}
 
     public LoginUIControl getLoginUIControl() {
         return loginUIControl;
@@ -111,7 +115,11 @@ public class UIController{
 
     public void toHome(){
         initializeAfterLogin();
-        HomeFrame HomeFrame = new HomeFrame(this);
+        if(self instanceof Student){
+            HomeFrame HomeFrame = new HomeFrame(this);
+        }else if(self instanceof Admin){
+            AdminFrame adminFrame = new AdminFrame(this);
+        }
     }
 
     public void toMatch(){

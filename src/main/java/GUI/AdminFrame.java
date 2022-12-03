@@ -42,7 +42,6 @@ public class AdminFrame extends JFrame implements ActionListener {
         logoutBTN.addActionListener(this);
         removeUserBTN.setBounds(120, 100, 100, 20);
         removeUserBTN.addActionListener(this);
-        removeUserBTN.addActionListener(this);
 
         userIDField.setBounds(110, 50, 150, 20);
 
@@ -70,6 +69,7 @@ public class AdminFrame extends JFrame implements ActionListener {
         if(e.getSource() == removeUserBTN){
             String userID = userIDField.getText();
             boolean removed = uiController.getAdminUIControl().removeUser(userID);
+            System.out.println("r:" + removed);
             if(removed){
                 resultLabel.setForeground(Color.GREEN);
                 resultLabel.setText("Successful");

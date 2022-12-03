@@ -53,6 +53,7 @@ public class UserDataManager {
         for(Label i: student.getLabels()){
             labelList.add(i.getName());
         }
+        labelList.remove("");
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
         //fi.addEntry(studentID, "friend list", student.getFriendList());
@@ -61,6 +62,7 @@ public class UserDataManager {
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
         }
+        tagList.remove("");
         fi.addEntry(studentID, "tags of interests", tagList.toString());
         return true;
     }
@@ -118,16 +120,21 @@ public class UserDataManager {
                 //
                 String labelsString = (String) userData.get("labels");
                 List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
-                for(String l: labels){
-                    Label label = new Label(l);
-                    retrievedUser.updateLabel(label, true);
+
+                for(String l: labels) {
+                    if(!labels.get(0).equals("")){
+                        Label label = new Label(l);
+                        retrievedUser.updateLabel(label, true);
+                    }
                 }
                 //
                 String tagString = (String) userData.get("tags of interests");
                 List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
                 for(String t: tags) {
-                    InterestTag tag = new InterestTag(t);
-                    retrievedUser.updateStudentTOI(tag, true);
+                    if(!tags.equals("")){
+                        InterestTag tag = new InterestTag(t);
+                        retrievedUser.updateStudentTOI(tag, true);
+                    }
                 }
                 return retrievedUser;
             }else if (type.equals("admin")){

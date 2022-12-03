@@ -111,9 +111,12 @@ public class UserDataManager {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<String> courseList = new ArrayList<>();
                 courseList.addAll(courseCodes);
+<<<<<<< HEAD
                 if(courseList.contains("")){
                     courseList.remove("");
                 }
+=======
+>>>>>>> cf8a37a (Fixed an infinite loop in database)
                 retrievedUser.setEnrolledCourses(courseList);
                 //
                 String labelsString = (String) userData.get("labels");

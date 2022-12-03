@@ -42,9 +42,14 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         emailText.setText(uiController.getProfileDisplayUIControl().getEmail(userID));
         infoText.setText(uiController.getProfileDisplayUIControl().getInfo(userID));
 
-        addFriendBTN.setBounds(330, 30, 50, 20);
+        addFriendBTN.setBounds(300, 30, 90, 20);
         addFriendBTN.addActionListener(this);
         addFriendBTN.setFocusable(false);
+        if (uiController.getFriendListUIControl().getFriendList().contains(userID)) {
+            addFriendBTN.setEnabled(false);
+        } else {
+            addFriendBTN.setEnabled(true);
+        }
         closeBTN.setBounds(330, 165, 50, 20);
         closeBTN.addActionListener(this);
         closeBTN.setFocusable(false);

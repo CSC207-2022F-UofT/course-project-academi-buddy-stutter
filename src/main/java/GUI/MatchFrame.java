@@ -103,6 +103,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     }
 
     private void addMatches(ArrayList<Student> students){
+        clearMatches();
         for(Student s: students){
             matchedStu.addElement(s.getFullName());
         }

@@ -24,6 +24,7 @@ public class MatchUIControl {
 
 
     public ArrayList<Student> getMatches(int min_numCommon) throws IOException {
+        this.matches = new ArrayList();
         this.matches = this.courseMatchManager2.getTopSameSessionStudents(this.self, min_numCommon);
         return this.matches;
     }

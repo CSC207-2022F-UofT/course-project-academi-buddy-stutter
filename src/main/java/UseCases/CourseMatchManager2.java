@@ -31,20 +31,26 @@ public class CourseMatchManager2 {
      * Helper method, stay private.
      */
     private void updateMatchCount(Student student){
+        matchCount = new HashMap<>();
         ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
         for(String course: enrolledCourse){
             try {
                 ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
 
                 for(String id : studentIDs){
-                    if(matchCount.containsKey(id)){
-                        int currentCount = matchCount.get(id);
-                        currentCount ++;
-                        matchCount.put(id, currentCount);
-                    }else{
-                        matchCount.put(id, 1);
+                    if(!id.equals(student.getUserID())){
+                        if(matchCount.containsKey(id)){
+                            int currentCount = matchCount.get(id);
+                            currentCount ++;
+                            matchCount.put(id, currentCount);
+                        }else{
+                            matchCount.put(id, 1);
+                        }
                     }
+
                 }
+
+
 
             } catch (IOException e) {
                 System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getLecCourse()");

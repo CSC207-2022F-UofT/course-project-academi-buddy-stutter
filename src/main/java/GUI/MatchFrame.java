@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class implements MatchFrame that allows user to find study buddy through matching same courses.
+ * User can select number of common sessions and desired match labels to find study buddies.
+ */
 public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
     JLabel selectLabel = new JLabel("Select Label:");
@@ -32,6 +36,9 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
     JButton findBTN = new JButton("Find");
     JButton profileBTN = new JButton("Profile");
 
+    /**
+     * This constructor method implements all UI components for MatchFrame.
+     */
     UIController uiController;
     public MatchFrame(UIController uiController) {
         this.uiController = uiController;
@@ -96,6 +103,10 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         this.setVisible(true);
     }
 
+    /**
+     * This method appends matched study buddies to the JList, displaying their full names instead of User ID.
+     * @param students this list contains matched study buddies for the user
+     */
     private void addMatches(ArrayList<Student> students){
         clearMatches();
         for(Student s: students){
@@ -104,11 +115,19 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         matchedList.setModel(matchedStu);
     }
 
+    /**
+     * This method clears all text inside the JList.
+     */
     private void clearMatches(){
         matchedStu = new DefaultListModel<>();
         matchedList.setModel(matchedStu);
     }
 
+    /**
+     * When the "Find" button is clicked, this method calls corresponding controller to access the matching algorithm,
+     * then displays the matched study buddies to JList.
+     * User can also see matched study buddies' profile by highlighting their names and click the "Profile" button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -147,6 +166,10 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         }
     }
 
+    /**
+     * This method applies filtering to the matching algorithm so that it only searches students that satisfy both
+     * conditions. [Number of common sessions and Same Labels]
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
 

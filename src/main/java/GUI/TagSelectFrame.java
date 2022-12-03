@@ -1,29 +1,19 @@
 package GUI;
 import UIController.UIController;
-import Entities.Student;
-import com.sun.tools.jconsole.JConsoleContext;
-import UseCases.TagMatchManager;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class implements TagSelectFrame so that user can choose different interest tags.
+ */
 public class TagSelectFrame extends JFrame implements ActionListener, ChangeListener {
-
-
     JLabel tagSelectLabel = new JLabel("Select Tag:");
-
     ArrayList<JCheckBox> boxList = new ArrayList<>();
-
     JCheckBox adventureCB = new JCheckBox("Adventure");
     JCheckBox musicCB = new JCheckBox("Music");
     JCheckBox catCB = new JCheckBox("Cat");
@@ -33,27 +23,25 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     JCheckBox beerCB = new JCheckBox("Beer");
     JCheckBox gameCB = new JCheckBox("Video Games");
     JCheckBox photoCB = new JCheckBox("Photography");
-
     JButton backBTN = new JButton("Back");
     JButton applyBTN = new JButton("Apply");
-
     String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
-
     UIController uiController;
     private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
-
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
+    /**
+     * Implements all UI components
+     */
     public TagSelectFrame(UIController uiController){
         this.uiController = uiController;
 
         this.setTitle("Interest Tag Selection"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(330, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
-
 
         // places objects inside frame
         // buttons
@@ -101,14 +89,9 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         // labels
         tagSelectLabel.setBounds(10,10,100,20);
 
-        // textfields
-
-
-
         // adds objects to the frame
         this.add(backBTN);
         this.add(applyBTN);
-
         this.add(adventureCB);
         this.add(musicCB);
         this.add(catCB);
@@ -118,16 +101,14 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         this.add(beerCB);
         this.add(gameCB);
         this.add(photoCB);
-
-
-
-
         this.add(tagSelectLabel);
 
         this.setVisible(true); // set frame to visible
     }
 
-
+    /**
+     * Updates usre profile in database with selected interest tags.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
@@ -149,6 +130,9 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         }
     }
 
+    /**
+     * "Apply" button is only enabled when user chooses different interest tags from last round.
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         int count = 0;
@@ -160,7 +144,5 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
             count += 1;
         }
         applyBTN.setEnabled(enable);
-
     }
-
 }

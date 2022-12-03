@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class implements ProfileDisplayFrame that displays the profile of a user.
+ */
 public class ProfileDisplayFrame extends JFrame implements ActionListener {
     JLabel nameLabel = new JLabel("Name:");
     JLabel emailLabel = new JLabel("Email:");
@@ -24,6 +27,10 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
 
     String userID;
 
+    /**
+     * This constructor method implements all UI components for ProfileDisplayFrame.
+     * @param userID the User ID of the user that the program is displaying, pulls user profile from database
+     */
     public ProfileDisplayFrame(UIController uiController, String userID){
         this.uiController = uiController;
         this.userID = userID;
@@ -88,6 +95,10 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * When the "Add Friend" button is clicked, the program calls corresponding controllers to send friend request to
+     * the user (with userID).
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == closeBTN){

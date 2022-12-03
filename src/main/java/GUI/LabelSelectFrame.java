@@ -10,6 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This class implements LabelSelectFrame that allows the user to select labels from:
+ * - Want to Meet
+ * - Want to Collaborate
+ * - Want to Discuss
+ */
 public class LabelSelectFrame extends JFrame implements ActionListener, ChangeListener {
 
 
@@ -28,6 +34,9 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
     private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
+    /**
+     * This constructor method implements all UI components for LabelSelectFrame
+     */
     public LabelSelectFrame(UIController uiController){
         this.uiController = uiController;
         this.setTitle("Status Label Selection"); // sets frame's title
@@ -80,7 +89,10 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
         this.setVisible(true); // set frame to visible
     }
 
-
+    /**
+     * When the "Apply" button is clicked, the program will access database and updates user's profile with selected
+     * labels. User can select multiple labels and updates them to their profile.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == applyBTN){
@@ -99,6 +111,9 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
         }
     }
 
+    /**
+     * This method makes sure the user has changed the labels, otherwise the "Apply" will be disabled.
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         int count = 0;

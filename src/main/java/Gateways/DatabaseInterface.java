@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 public interface DatabaseInterface {
     void initialize(String collectionName);
 
-    List<QueryDocumentSnapshot> getDocumentList();
+    List<?> getDocumentList();
 
     boolean addEntry(String documentName, String key, Object value);
 

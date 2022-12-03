@@ -30,13 +30,15 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
         this.setSize(300, 230);
         this.setLocationRelativeTo(null);
 
+        refreshStudentsTable();
+
         // User Interface
 
         // Labels
         allStudentLabel.setBounds(150, 10, 100, 20);
 
         //JScrollPane
-        studentScroll.setBounds(100, 30, 150, 200);
+        studentScroll.setBounds(50, 30, 150, 150);
 
         //Set Table
         studentList = uiController.getAllStudentsUIControl().getAllStudents();
@@ -73,6 +75,10 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
             }
         });
 
+        studentScroll.setViewportView(studentTable);
+        studentScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        studentScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
         this.add(allStudentLabel);
         this.getContentPane().add(studentScroll, BorderLayout.CENTER);
         this.setVisible(true);
@@ -86,5 +92,25 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     @Override
     public void itemStateChanged(ItemEvent e) {
 
+    }
+
+    public void refreshStudentsTable() {
+        studentModel.setRowCount(0);
+        studentList = uiController.getAllStudentsUIControl().getAllStudents();
+
+        addStudentsToList(studentList, uiController, studentModel);
+    }
+
+    static void addStudentsToList(ArrayList<String> studentList, UIController uiController, DefaultTableModel studentModel) {
+        System.out.println(studentList.toString());
+        for (String studentID : studentList) {
+            studentID = studentID.trim().strip();
+            Object[] row = new Object[2];
+            ArrayList<String> stringRow = new ArrayList<>();
+            stringRow.add(uiController.getFriendListUIControl().getFriendFullName(studentID));
+            stringRow.add(studentID);
+            row = stringRow.toArray(row);
+            studentModel.addRow(row);
+        }
     }
 }

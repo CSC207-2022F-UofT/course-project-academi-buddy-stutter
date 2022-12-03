@@ -184,15 +184,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         friendModel.setRowCount(0);
         friendList = uiController.getFriendListUIControl().getFriendList();
 
-        for (String friendID : friendList) {
-            friendID = friendID.trim().strip();
-            Object[] row = new Object[2];
-            ArrayList<String> stringRow = new ArrayList<>();
-            stringRow.add(uiController.getFriendListUIControl().getFriendFullName(friendID));
-            stringRow.add(friendID);
-            row = stringRow.toArray(row);
-            friendModel.addRow(row);
-        }
+        AllStudentsFrame.addStudentsToList(friendList, (UIController) uiController, friendModel);
     }
 
     private void refreshFriendRequestListTable() {

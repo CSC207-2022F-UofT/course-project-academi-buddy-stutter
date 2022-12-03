@@ -1,4 +1,5 @@
 package Entities;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Student extends User{
@@ -6,6 +7,24 @@ public class Student extends User{
     private ArrayList<Label> labels;
 
     private String email;
+
+    private ArrayList<String> friendList;
+    private ArrayList<String> friend_request_list;
+    private ArrayList<String> friendRequestSentList;
+
+    public Student(String UID, String UPass, String full_name, String info){
+        super(UID, UPass, full_name, info);
+        this.tags_of_interests = new ArrayList<>();
+        this.labels = new ArrayList<>();
+        this.enrolled_course_codes = new ArrayList<>();
+        this.friendList = new ArrayList<>();
+        this.friend_request_list = new ArrayList<>();
+        this.friendRequestSentList = new ArrayList<>();
+    }
+
+    public void setFriend_list(ArrayList<String> friend_list_to_add) {
+        this.friendList = friend_list_to_add;
+    }
 
     public void setTabs_of_interests(ArrayList<InterestTag> tags_of_interests) {
         this.tags_of_interests = tags_of_interests;
@@ -34,13 +53,14 @@ public class Student extends User{
         return courseCodes;
     }
 
-    //init
-    public Student(String UID, String UPass, String full_name, String info){
-        super(UID, UPass, full_name, info);
-        this.tags_of_interests = new ArrayList<>();
-        this.labels = new ArrayList<>();
-        this.enrolled_course_codes = new ArrayList<>();
+    public ArrayList<String> getFriendList() {return this.friendList;}
+
+    public ArrayList<String> getFriendListRequest() {return this.friend_request_list;}
+
+    public ArrayList<String> getFriendRequestSentList() {
+        return this.friendRequestSentList;
     }
+    //init
 
     public void updateStudentTOI(InterestTag tag, boolean selected){
         if(selected && !(isTagSelected(tag))){
@@ -56,6 +76,12 @@ public class Student extends User{
         }
     }
 
+    public void updateFriendList(String friendID) {
+        this.friendList.add(friendID);
+    }
+    public void updateFriendRequestList(String userID) {this.friend_request_list.add(userID);}
+    public void updateFriendRequestSentList(String userID) {this.friendRequestSentList.add(userID);};
+
     public void updateLabel(Label label, boolean selected){
         if(selected && !(isLabelSelected(label))){
             labels.add(label);
@@ -68,6 +94,32 @@ public class Student extends User{
                 this.labels = newLabels;
             }
         }
+    }
+
+    private void addFriend(String userID) {this.friendList.add(userID);}
+
+
+    public void acceptFriendRequest(String userID) {
+        if (this.friend_request_list.contains(userID)) {
+            this.friend_request_list.remove(userID);
+            this.addFriend(userID.trim().strip());
+        }
+    }
+
+    public void acceptedRequest(String userID) {
+        userID = userID.trim().strip();
+        if (this.friendRequestSentList.contains(userID)) {
+            this.friendRequestSentList.remove(userID);
+            this.addFriend(userID);
+        }
+
+    }
+    public void receiveFriendRequest(String userID) {
+        this.friend_request_list.add(userID);
+    }
+    public void sendFriendRequest(Student student) {
+        student.receiveFriendRequest(this.user_id);
+        this.friendRequestSentList.add(student.user_id);
     }
 
 

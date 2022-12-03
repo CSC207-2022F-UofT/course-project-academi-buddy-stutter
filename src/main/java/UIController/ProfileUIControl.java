@@ -1,9 +1,12 @@
 package UIController;
 
+import Entities.Student;
 import Entities.User;
 import UseCases.CourseDataManager;
 import UseCases.ProfileManager;
 import UseCases.UserDataManager;
+
+import java.util.ArrayList;
 
 public class ProfileUIControl {
     private ProfileManager profileManager;

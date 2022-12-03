@@ -2,8 +2,10 @@ package UseCases;
 
 import Entities.Student;
 import Entities.User;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProfileManager extends UseCase{
@@ -103,6 +105,16 @@ public class ProfileManager extends UseCase{
             Student student = (Student) ub.getUserByID(userID);
             student.setUserInfo(info);
             ub.addStudentUser(student);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean sendFriendRequest(String userID, String viewerUserID){
+        try {
+            User viewerUser = this.ub.getUserByID(viewerUserID);
+            User receiveRequestUser = this.ub.getUserByID(userID);
+            ((Student) viewerUser).sendFriendRequest((Student) receiveRequestUser);
+            return true;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

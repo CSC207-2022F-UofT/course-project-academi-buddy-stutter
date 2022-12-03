@@ -153,7 +153,7 @@ public class UIController{
         FileUploadFrame fileUploadFrame = new FileUploadFrame(this, STATUS);
     }
 
-    public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
+    public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, self.getUserID(), userID);}
 
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 

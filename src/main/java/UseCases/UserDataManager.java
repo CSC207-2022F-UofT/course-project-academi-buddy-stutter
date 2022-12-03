@@ -35,7 +35,6 @@ public class UserDataManager {
         fi.addEntry(userID, "account password", user.getUserPassword());
         fi.addEntry(userID, "full name", user.getFullName());
         fi.addEntry(userID, "student info", user.getUserInfo());
-
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -55,17 +54,27 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
-        //fi.addEntry(studentID, "friend list", student.getFriendList());
-        //fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
+//        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
+//        fi.addEntry(studentID, "friend list request", student.getFriendListRequest().toString());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
         }
         fi.addEntry(studentID, "tags of interests", tagList.toString());
+
+        ArrayList<String> friendList = student.getFriendList();
+        ArrayList<String> friendRequests = student.getFriendListRequest();
+        ArrayList<String> friendRequestsSent = student.getFriendRequestSentList();
+
+        fi.addEntry(studentID, "friend list", friendList.toString());
+        fi.addEntry(studentID, "friend request list", friendRequests.toString());
+        fi.addEntry(studentID, "friend request sent list", friendRequestsSent.toString());
         return true;
     }
 
+
     public void updateStudentCourses(Student student){
+        fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
     }
@@ -129,6 +138,38 @@ public class UserDataManager {
                     InterestTag tag = new InterestTag(t);
                     retrievedUser.updateStudentTOI(tag, true);
                 }
+                // update get friend list
+                String friendsString = (String) userData.get("friend list");
+                if (!friendsString.equals("[]")) {
+                    String[] friends = friendsString.substring(1, friendsString.length()-1).split(", ");
+                    for(String f: friends) {
+                        f = f.trim().strip();
+                        retrievedUser.updateFriendList(f);
+                    }
+                }
+
+
+                // update get friend request list
+                String friendRequestString = (String) userData.get("friend request list");
+                String[] friendRequests = friendRequestString.substring(1, friendRequestString.length()-1).split(", ");
+                if (!friendRequestString.equals("[]")) {
+                    for(String fr: friendRequests) {
+                        fr = fr.trim().strip();
+                        retrievedUser.updateFriendRequestList(fr);
+                    }
+                }
+
+                // update get friend request sent list
+                String requestSentString = (String) userData.get("friend request sent list");
+                if(!requestSentString.equals("[]")){
+                    String[] requests = requestSentString.substring(1, requestSentString.length()-1).split(", ");
+                    for(String r: requests) {
+                        r = r.trim().strip();
+                        retrievedUser.updateFriendRequestSentList(r);
+                    }
+                }
+
+
                 return retrievedUser;
             }else if (type.equals("admin")){
                 return new Admin(userID, uPass, fullName, info);
@@ -177,6 +218,38 @@ public class UserDataManager {
         return fi.getDocumentStringList().contains(ID);
     }
 
+    // FriendList Methods
+    public void updateFriendList(Student student) {
+        fi.initialize("users");
+        String studentID = student.getUserID();
+        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
+        System.out.println(student.getFullName() + "friend list has been updated on Firebase");
+    }
 
+    public void updateFriendRequestList(Student student) {
+        fi.initialize("users");
+        String studentID = student.getUserID();
+        fi.addEntry(studentID, "friend request list", student.getFriendListRequest().toString());
+        System.out.println(student.getFullName() + "friend request list has been updated on Firebase");
+    }
+
+    public void updateFriendRequestsSentList(Student student) {
+        fi.initialize("users");
+        String studentID = student.getUserID();
+        fi.addEntry(studentID, "friend request sent list", student.getFriendRequestSentList().toString());
+        System.out.println(student.getFullName() + "friend request sent list has been updated on Firebase");
+    }
+
+
+    //Helper methods
+    private ArrayList<String> toUserIdStrings(ArrayList<Student> students) {
+        ArrayList<String> userIDs = new ArrayList<>();
+        for(Student s: students){
+            userIDs.add(s.getUserID());
+        }
+        return userIDs;
+    }
 
 }
+
+

@@ -3,6 +3,7 @@ package GUI;
 import UIController.UIController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,12 +21,15 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     UIController uiController;
 
     JButton closeBTN = new JButton("Close");
+    JButton addFriendBTN = new JButton("Add Friend");
 
     String userID;
+    String viewerUserID;
 
-    public ProfileDisplayFrame(UIController uiController, String userID){
+    public ProfileDisplayFrame(UIController uiController, String userID, String viewerUserID){
         this.uiController = uiController;
         this.userID = userID;
+        this.viewerUserID = viewerUserID;
         // Labels
         nameLabel.setBounds(10, 10, 100, 20);
         emailLabel.setBounds(10, 35, 100, 20);
@@ -45,6 +49,10 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         closeBTN.addActionListener(this);
         closeBTN.setFocusable(false);
 
+        addFriendBTN.setBounds(130, 165, 100, 20);
+        addFriendBTN.addActionListener(this);
+        addFriendBTN.setFocusable(false);
+
         // adding elements to frame
         this.add(nameLabel);
         this.add(emailLabel);
@@ -55,6 +63,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.add(infoText);
 
         this.add(closeBTN);
+        this.add(addFriendBTN);
 
 
         this.setTitle(uiController.getProfileDisplayUIControl().getName(userID)+ "'s Profile"); // sets frame's title
@@ -75,6 +84,13 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == closeBTN){
             this.dispose();
+        }
+        if (e.getSource() == addFriendBTN) {
+            if (uiController.getProfileDisplayUIControl().sendFriendRequest(this.userID, this.viewerUserID)) {
+                JOptionPane.showMessageDialog(this, "Friend Request Sent");
+            } else {
+                JOptionPane.showMessageDialog(this, "Friend Request Failed to Send");
+            }
         }
     }
 }

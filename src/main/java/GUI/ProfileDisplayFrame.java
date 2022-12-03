@@ -20,6 +20,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     UIController uiController;
 
     JButton closeBTN = new JButton("Close");
+    JButton addFriendBTN = new JButton("Add Friend");
 
     String userID;
 
@@ -41,6 +42,9 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         emailText.setText(uiController.getProfileDisplayUIControl().getEmail(userID));
         infoText.setText(uiController.getProfileDisplayUIControl().getInfo(userID));
 
+        addFriendBTN.setBounds(330, 30, 50, 20);
+        addFriendBTN.addActionListener(this);
+        addFriendBTN.setFocusable(false);
         closeBTN.setBounds(330, 165, 50, 20);
         closeBTN.addActionListener(this);
         closeBTN.setFocusable(false);
@@ -54,6 +58,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.add(emailText);
         this.add(infoText);
 
+        this.add(addFriendBTN);
         this.add(closeBTN);
 
 
@@ -67,14 +72,15 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == closeBTN){
             this.dispose();
+        }
+        else if (e.getSource() == addFriendBTN) {
+            String viewerID = uiController.getProfileUIControl().getUserID();
+            uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
+            uiController.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
         }
     }
 }

@@ -64,7 +64,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == nextBTN && status == UIController.FROM_PROFILE) {
             this.dispose();
             uiController.toProfile();
-        } else if (e.getSource() == uploadBTN) {
+        } else if (e.getSource() == uploadBTN && status == UIController.FROM_REGISTER) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading...");
             if (uiController.getFileUploadUIControl().upload()) {
@@ -73,6 +73,24 @@ public class FileUploadFrame extends JFrame implements ActionListener {
                     completedLabel.setForeground(Color.green);
                     completedLabel.setText("Uploaded!");
                     uiController.getFileUploadUIControl().updateDatabase();
+                } catch (Exception ex) {
+                    completedLabel.setForeground(Color.red);
+                    completedLabel.setText("Error!");
+                    throw new RuntimeException(ex);
+                }
+            }
+            else {
+                completedLabel.setText("");
+            }
+        } else if (e.getSource() == uploadBTN && status == UIController.FROM_PROFILE) {
+            completedLabel.setForeground(Color.black);
+            completedLabel.setText("Uploading...");
+            if (uiController.getFileUploadUIControl().upload()) {
+                try {
+                    uiController.getFileUploadUIControl().copyFileToPath();
+                    completedLabel.setForeground(Color.green);
+                    completedLabel.setText("Uploaded!");
+                    uiController.getFileUploadUIControl().reuploadCalendar();
                 } catch (Exception ex) {
                     completedLabel.setForeground(Color.red);
                     completedLabel.setText("Error!");

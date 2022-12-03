@@ -16,7 +16,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     JTextField emailText = new JTextField();
 
     // creating textarea
-    JTextField infoText = new JTextField();
+    JTextArea infoText = new JTextArea();
 
     JTextArea courseText = new JTextArea(10, 10);
     JScrollPane courseTextScoll = new JScrollPane(courseText);
@@ -42,7 +42,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         nameText.setBounds(130, 10, 200, 20);
         emailText.setBounds(130, 35, 200, 20);
         courseTextScoll.setBounds(130,65, 200, 110);
-        infoText.setBounds(130, 180, 200, 40);
+        infoText.setBounds(130, 180, 200, 100);
         courseText.setEditable(false);
         nameText.setEditable(false);
         emailText.setEditable(true);
@@ -64,10 +64,10 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         updateCourse.addActionListener(this);
 
 
-        backBTN.setBounds(345, 230, 80, 20);
+        backBTN.setBounds(345, 260, 80, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        changeEmail.setBounds(340, 35, 80, 20);
+        changeEmail.setBounds(345, 35, 80, 20);
         changeEmail.addActionListener(this);
         changeEmail.setEnabled(false);
         changeEmail.setFocusable(false);
@@ -101,7 +101,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(440, 300);
+        this.setSize(440, 320);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true);

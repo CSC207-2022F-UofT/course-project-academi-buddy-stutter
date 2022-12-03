@@ -14,13 +14,29 @@ import java.util.ArrayList;
 import UIController.UIController;
 
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
+    UIController uiController;
     JLabel friendLabel = new JLabel("Friend List");
     JLabel friendRequestLabel = new JLabel("Friend Requests");
     String[] friendData = {};
     JList<String> friendList = new JList(friendData);
-    String[] columnNames = {"First Name", "Requests", "userID"};
     JTable friendRequestTable;
-    UIController uiController;
+    String[] requestColumnNames = {"Full Name", "Requests", "userID"};
+    DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            //all cells false
+            return false;
+        }
+    };
+    JTable friendListTable;
+    String[] friendColumnNames = {"Name", "userID"};
+    DefaultTableModel friendModel = new DefaultTableModel(0, 2) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            //all cells false
+            return false;
+        }
+    };
 
 
     public FriendListFrame(UIController uiController){
@@ -40,44 +56,66 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         friendRequestLabel.setBounds(255, 10, 100, 20);
 
         // get friend list from the user
-        ArrayList<String> friendArray = uiController.getFriendListUIControl().getFriendList();
-        String[] friendToString;
-        friendToString = uiController.getFriendListUIControl().IdsToFullNames(friendArray);
-        friendList.setListData(friendToString);
-
-//        friendList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        friendList.addListSelectionListener(new ListSelectionListener() {
-//            @Override
-//            public void valueChanged(ListSelectionEvent e) {
-//                    int idx = friendList.getSelectedIndex();
-//                    System.out.println(friendToString[idx]);
+//        ArrayList<String> friendArray = uiController.getFriendListUIControl().getFriendList();
+//        String[] friendToString;
+//        friendToString = uiController.getFriendListUIControl().IdsToFullNames(friendArray);
+//        friendList.setListData(friendToString);
+//
+//        MouseListener mouseListener = new MouseAdapter() {
+//            public void mouseClicked(MouseEvent mouseEvent) {
+//                JList theList = (JList) mouseEvent.getSource();
+//                if (mouseEvent.getClickCount() == 2) {
+//                    int index = theList.locationToIndex(mouseEvent.getPoint());
+//                    if (index >= 0) {
+//                        Object o = theList.getModel().getElementAt(index);
+//                        System.out.println("Double-clicked on: " + o.toString());
+////                        uiController.toProfileDisplay();
+//                    }
+//                }
 //            }
-//        });
+//        };
+//        friendList.addMouseListener(mouseListener);
+        //scroll pane
 
-        MouseListener mouseListener = new MouseAdapter() {
-            public void mouseClicked(MouseEvent mouseEvent) {
-                JList theList = (JList) mouseEvent.getSource();
-                if (mouseEvent.getClickCount() == 2) {
-                    int index = theList.locationToIndex(mouseEvent.getPoint());
-                    if (index >= 0) {
-                        Object o = theList.getModel().getElementAt(index);
-                        System.out.println("Double-clicked on: " + o.toString());
-                    }
-                }
-            }
-        };
-        friendList.addMouseListener(mouseListener);
-        //table
+//        JScrollPane scrollPaneFriend = new JScrollPane(friendList);
+//        scrollPaneFriend.setBounds(35,40,120,100);
+//        this.getContentPane().add(scrollPaneFriend, BorderLayout.CENTER);
+//
+//        JScrollPane scrollPaneRequest = new JScrollPane(friendRequestTable);
+//        scrollPaneRequest.setBounds(200,40,200,100);
+//        this.getContentPane().add(scrollPaneRequest, BorderLayout.CENTER);
+
+        //friend list table
+        ArrayList<String> friendList = uiController.getFriendListUIControl().getFriendRequestList();
+
+        friendModel.setColumnIdentifiers(friendColumnNames);
+        friendListTable = new JTable( friendModel );
+
+        // Add every friend request as an Object array into JTable
+        for (String friendID : friendList) {
+            friendID = friendID.trim().strip();
+            Object[] row = new Object[2];
+            ArrayList<String> stringRow = new ArrayList<>();
+            stringRow.add(uiController.getFriendListUIControl().getFriendFullName(friendID));
+            stringRow.add(friendID);
+            row = stringRow.toArray(row);
+            friendModel.addRow(row);
+        }
+
+        // position table
+        friendListTable.setBounds(10,40,180,50);
+        friendListTable.getColumnModel().getColumn(1).setPreferredWidth(3);
+        friendListTable.setCellSelectionEnabled(true);
+
+        // set userID column width to 0 so it doesn't show to normal user
+        friendListTable.getColumnModel().getColumn(2).setMinWidth(0);
+        friendListTable.getColumnModel().getColumn(2).setMaxWidth(0);
+        friendListTable.getColumnModel().getColumn(2).setWidth(0);
+
+        //friend request table
         ArrayList<String> friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
 
-        DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                //all cells false
-                return false;
-            }
-        };
-        requestsModel.setColumnIdentifiers(columnNames);
+        requestsModel.setColumnIdentifiers(requestColumnNames);
         friendRequestTable = new JTable( requestsModel );
 
         // Add every friend request as an Object array into JTable
@@ -92,10 +130,9 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             requestsModel.addRow(row);
         }
 
-
+        // position table
         friendRequestTable.setBounds(215,40,180,50);
         friendRequestTable.getColumnModel().getColumn(1).setPreferredWidth(3);
-
         friendRequestTable.setCellSelectionEnabled(true);
 
         // set userID column width to 0 so it doesn't show to normal user
@@ -134,14 +171,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         });
 //
 
-        //scroll pane
-        JScrollPane scrollPaneFriend = new JScrollPane(friendList);
-        scrollPaneFriend.setBounds(35,40,120,100);
-        this.getContentPane().add(scrollPaneFriend, BorderLayout.CENTER);
 
-        JScrollPane scrollPaneRequest = new JScrollPane(friendRequestTable);
-        scrollPaneRequest.setBounds(200,40,200,100);
-        this.getContentPane().add(scrollPaneRequest, BorderLayout.CENTER);
 
         // adds objects to the frame
         this.add(friendLabel);

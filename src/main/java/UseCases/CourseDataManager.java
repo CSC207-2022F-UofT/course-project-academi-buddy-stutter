@@ -101,13 +101,10 @@ public class CourseDataManager {
         List<String> sid = Arrays.asList(sidString.substring(1, sidString.length() - 1).split(", "));
         ArrayList<String> studentIDList = new ArrayList<>();
         studentIDList.addAll(sid);
-<<<<<<< HEAD
         if(studentIDList.contains("")){
             studentIDList.remove("");
         }
 
-=======
->>>>>>> cf8a37a (Fixed an infinite loop in database)
         course.setEnrolledStudents(studentIDList);
         return course;
     }

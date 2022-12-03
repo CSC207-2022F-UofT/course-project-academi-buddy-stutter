@@ -35,6 +35,7 @@ public class UserDataManager {
         fi.addEntry(userID, "account password", user.getUserPassword());
         fi.addEntry(userID, "full name", user.getFullName());
         fi.addEntry(userID, "student info", user.getUserInfo());
+
         return true;
     }
     public boolean addStudentUser(Student student) throws IOException{
@@ -54,8 +55,8 @@ public class UserDataManager {
         }
         fi.addEntry(studentID, "labels", labelList.toString());
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
-//        fi.addEntry(studentID, "friend list", student.getFriendList().toString());
-//        fi.addEntry(studentID, "friend list request", student.getFriendListRequest().toString());
+        //fi.addEntry(studentID, "friend list", student.getFriendList());
+        //fi.addEntry(studentID, "friend list request", student.getFriendListRequest());
         ArrayList<String> tagList = new ArrayList<>();
         for(InterestTag i: student.getTags()){
             tagList.add(i.getName());
@@ -72,9 +73,7 @@ public class UserDataManager {
         return true;
     }
 
-
     public void updateStudentCourses(Student student){
-        fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
     }
@@ -92,12 +91,12 @@ public class UserDataManager {
         return true;
     }
 
-    public boolean removeUser(User user){
+    public boolean removeUser(String userID){
         /**
          * remove a user from database.
          */
         fi.initialize("users");
-        return fi.removeEntry(user.getUserID());
+        return fi.removeEntry(userID);
     }
 
     public User getUserByID(String userID) throws IOException{
@@ -120,6 +119,9 @@ public class UserDataManager {
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<String> courseList = new ArrayList<>();
                 courseList.addAll(courseCodes);
+                if(courseList.contains("")){
+                    courseList.remove("");
+                }
                 retrievedUser.setEnrolledCourses(courseList);
                 //
                 String labelsString = (String) userData.get("labels");
@@ -178,7 +180,7 @@ public class UserDataManager {
         return null;
     }
 
-//    this method should be in matcher? not database! for clean architecture?
+    //    this method should be in matcher? not database! for clean architecture?
     public ArrayList<String> getCommonSessionCode(Student self, Student target) throws IOException {
         /**
          * get a list of common session between two users.
@@ -248,5 +250,3 @@ public class UserDataManager {
     }
 
 }
-
-

@@ -103,7 +103,7 @@ public class UIController{
         this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
         this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
         this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
-        this.homeUIControl = new HomeUIControl(courseManager,userManager);
+        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
 
 
@@ -183,7 +183,6 @@ public class UIController{
     }
 
     public void toProfileDisplay(String userID){ProfileDisplayFrame profileDisplayFrame = new ProfileDisplayFrame(this, userID);}
-
     public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
     private void initializeAfterLogin(){

@@ -14,12 +14,14 @@ import java.util.Calendar;
 public class UploadManager extends UseCase {
     UploaderInterface uploaderInterface;
     CalendarInterface calendarInterface;
+    CourseDataManager courseDataManager;
     public UploadManager(CourseDataManager courseDatabase, UserDataManager userDatabase,
                          UploaderInterface uploaderInterface,
                          CalendarInterface calendarInterface){
         super(courseDatabase, userDatabase);
         this.uploaderInterface = uploaderInterface;
         this.calendarInterface = calendarInterface;
+        this.courseDataManager = courseDatabase;
     }
 
     public boolean upload(){
@@ -37,6 +39,22 @@ public class UploadManager extends UseCase {
             this.cb.addCourse(c);
             this.cb.addStudent(c, student);
         }
+    }
+
+    public void reuploadUpdateDatabase(Student student) throws IOException {
+        for(String courseCode: student.getEnrolledCourseCodes()){
+            Course course = courseDataManager.getCourse(courseCode, "LEC");
+            courseDataManager.removeStudent(course, student);
+            student.removeCourse(course);
+        }
+        if(!student.getEnrolledCourseCodes().isEmpty()){
+            for(String courseCode: student.getEnrolledCourseCodes()){
+                Course course = courseDataManager.getCourse(courseCode, "TUT");
+                courseDataManager.removeStudent(course, student);
+                student.removeCourse(course);
+            }
+        }
+        updateDatabase(student);
     }
 
 }

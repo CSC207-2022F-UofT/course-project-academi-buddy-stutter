@@ -32,6 +32,10 @@ public class FileUploadUIControl {
         this.uploadManager.updateDatabase(this.self);
     }
 
+    public void reuploadCalendar() throws IOException{
+        this.uploadManager.reuploadUpdateDatabase(this.self);
+    }
+
     public void copyFileToPath() throws IOException {
         this.uploadManager.copyFileToPath();
     }

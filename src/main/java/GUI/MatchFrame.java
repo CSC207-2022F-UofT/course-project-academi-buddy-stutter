@@ -19,22 +19,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MatchFrame extends JFrame implements ActionListener, ItemListener{
-
     JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
     JLabel selectLabel = new JLabel("Select Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
-
     String[] userType = {"1", "2", "3", "4", "5", "6"};
     JComboBox<String> numBox = new JComboBox<>(userType);
     String[] labels = {"None", "Want to Meet", "Want to Collaborate", "Want to Discuss"};
     JComboBox<String> labelBox = new JComboBox<>(labels);
-
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
     JList<String> matchedList = new JList<>(matchedStu);
-
     JButton returnBTN = new JButton("Back");
     JButton findBTN = new JButton("Find");
-
     JButton profileBTN = new JButton("Profile");
 
     UIController uiController;
@@ -77,7 +72,6 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
                 profileBTN.setEnabled(true);
             }
         });
-
 
         // adding elements to frame
         this.add(numCommonLabel);
@@ -125,7 +119,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
                 if((String)labelBox.getSelectedItem() == "None"){
                     matches = this.uiController.getMatchUIControl().getMatches(numCommon);
                 }else{
-//
+
                     this.uiController.getMatchUIControl().getMatches(numCommon);
                     matches = uiController.getMatchUIControl().
                             getLabeledMatches((String)labelBox.getSelectedItem());
@@ -151,10 +145,6 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         if(e.getSource() == returnBTN){
             this.dispose();
         }
-
-
-
-
     }
 
     @Override

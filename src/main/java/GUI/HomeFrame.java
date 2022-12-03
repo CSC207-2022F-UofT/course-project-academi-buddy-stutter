@@ -11,6 +11,16 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * This class constructs a home frame for the program. For which the user can access:
+ * - personal profile
+ * - Course Match Frame
+ * - Interest Match Frame
+ * - Label Select Frame
+ * - Interest Tag Select Frame
+ * This JFrame is considered as the main body of the program where the user can use different features of our program
+ * by clicking buttons on the JFrame.
+ */
 public class HomeFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel();
     JLabel completedLabel = new JLabel("");
@@ -21,11 +31,18 @@ public class HomeFrame extends JFrame implements ActionListener {
     JButton insTagBTN = new JButton("Interest Tags");
     JButton profileBTN = new JButton("Profile");
     JButton uploadBTN = new JButton("Upload Courses");
-
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
-
     UIController uiController;
 
+    /**
+     * Constructor Method: generates HomeFrame and positions the UI components
+     * - logoutBTN: returns to LoginFrame
+     * - findStudyBuddyBTN: goes to MatchFrame
+     * - findInsBuddyBTN: goes to TagMatchFrame
+     * - statusBTN: goes to LabelSelectFrame
+     * - insTagBTN: goes to TagSelectFrame
+     * - profileBTN: goes to ProfileFrame
+     */
     public HomeFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -35,6 +52,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         titleLabel.setText("Welcome, " + uiController.getHomeUIControl().getName().split("\\s+")[0]);
         completedLabel.setBounds(222, 62, 110, 20);
         completedLabel.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+
         // setting up buttons
         logoutBTN.setBounds(250, 170, 80, 20);
         logoutBTN.addActionListener(this);
@@ -50,7 +68,6 @@ public class HomeFrame extends JFrame implements ActionListener {
         insTagBTN.addActionListener(this);
         profileBTN.setBounds(250, 10, 50, 20);
         profileBTN.addActionListener(this);
-
 
         // adding elements to frame
         this.add(titleLabel);

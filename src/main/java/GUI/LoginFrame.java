@@ -1,18 +1,6 @@
 package GUI;
 
-/*
-This class is to generate a LoginManager UI for the user to log in or register an account.
-The user can select their user type from the combobox that contains two options: {Administer, Student}.
-The user need to enter their user ID, which is the UTORID
-The user need to enter their account password to login or register
-The user need to enter their email for other people to contact them, when you are recommended as a study partner to
-someone else, they can contact you by email.
-There are two buttons at the bottom, one called "LoginManager" and the other called "Register", both buttons will bring the
-user to the home page once the user has successfully registered or login (correct user ID and password are entered).
- */
-
 import UIController.UIController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,6 +8,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+
+/**
+ * This is the Login Frame. When the user launches the program, this is the first frame displayed to the user.
+ * - If the user already has an account, the user can enter USER ID and password, then click the LOGIN button to
+ *   enter HomeFrame
+ * - If the user does not have an account, the user can then click the REGISTER button to enter RegisterFrame to
+ *   register an account
+ */
 
 public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
@@ -35,6 +31,13 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
     UIController uiController;
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
+    /**
+     * This is the constructor method. Creates LoginFrame,
+     * - User can enter USER ID
+     * - User can enter password
+     * - User can click LOGIN button to log in
+     * - User can click REGISTER button to register a new account
+     */
     public LoginFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -45,8 +48,6 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
         this.setSize(340, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
-
-        // places objects inside frame
         // buttons
         loginBTN.setBounds(60, 160, 100, 20);
         loginBTN.addActionListener(this);
@@ -71,8 +72,6 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
         userIDText.addKeyListener(this);
         passwordText.addKeyListener(this);
 
-        // combobox
-
         // adds objects to the frame
         this.add(loginBTN);
         this.add(registerBTN);
@@ -86,7 +85,11 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
         this.setVisible(true); // set frame to visible
     }
 
-
+    /**
+     * When LOGIN button is clicked: program calls controller to check if user has entered correct USER ID and password,
+     * if all login info is correct, user is then brought to HomeFrame, else user will be warned.
+     * When REGISTER button is clicked: program takes user to RegisterFrame.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -95,7 +98,6 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
             try {
                 String id = userIDText.getText();
                 String password = new String(passwordText.getPassword());
-
 
                 if(this.uiController.getLoginUIControl().attemptLogin(id, password)){
                     this.dispose();
@@ -116,8 +118,6 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
             this.dispose();
             this.uiController.toRegister();
         }
-
-
     }
 
     @Override

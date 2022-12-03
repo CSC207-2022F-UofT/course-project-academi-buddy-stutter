@@ -39,12 +39,10 @@ public class main {
 
         UIController uiController = new UIController(null, cb, ub, tb);
         LoginFrame loginFrame = new LoginFrame(uiController);
-//        TagSelectFrame tagSelectFrame = new TagSelectFrame(uiController);
-//        TagMatchFrame tm = new TagMatchFrame(uiController);
-        //LabelSelectFrame lb = new LabelSelectFrame(uiController);
-//        ProfileFrame pf = new ProfileFrame(uiController);
-//        ProfileDisplayFrame pdf = new ProfileDisplayFrame(uiController, "567789", "23456");
-        FriendListFrame flf = new FriendListFrame(uiController);
+//
+//        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
+//        UIController uiController = new UIController(student, cb, ub, tb);
+//        FriendListFrame flf = new FriendListFrame(uiController);
     }
 
 }

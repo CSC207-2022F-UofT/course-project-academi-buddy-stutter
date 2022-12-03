@@ -30,11 +30,11 @@ public class FileUploadFrame extends JFrame implements ActionListener {
         completedLabel.setBounds(135, 75, 150, 20);
 
         // setting up buttons
-        uploadBTN.setBounds(135, 50, 50, 20);
+        uploadBTN.setBounds(115, 50, 100, 20);
         uploadBTN.addActionListener(this);
-        nextBTN.setBounds(135, 170, 50, 20);
+        nextBTN.setBounds(115, 170, 100, 20);
         nextBTN.addActionListener(this);
-        backBTN.setBounds(135, 140, 50, 20);
+        backBTN.setBounds(135, 140, 100, 20);
         backBTN.addActionListener(this);
 
 

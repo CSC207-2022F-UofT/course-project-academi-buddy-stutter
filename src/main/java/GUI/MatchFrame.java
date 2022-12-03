@@ -55,12 +55,12 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         labelBox.addItemListener(this);
 
         // setting up buttons
-        returnBTN.setBounds(380, 160, 50, 20);
-        findBTN.setBounds(380, 10, 50, 20);
+        returnBTN.setBounds(380, 160, 80, 20);
+        findBTN.setBounds(380, 10, 80, 20);
         findBTN.addActionListener(this);
         findBTN.setFocusable(false);
 
-        profileBTN.setBounds(380, 60, 50, 20);
+        profileBTN.setBounds(380, 60, 80, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
@@ -96,7 +96,7 @@ public class MatchFrame extends JFrame implements ActionListener, ItemListener{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(450, 230);
+        this.setSize(480, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true);

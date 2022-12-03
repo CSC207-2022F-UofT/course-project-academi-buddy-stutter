@@ -36,7 +36,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         completedLabel.setBounds(222, 62, 110, 20);
         completedLabel.setFont(new Font("Times New Roman", Font.PLAIN, 12));
         // setting up buttons
-        logoutBTN.setBounds(250, 170, 80, 20);
+        logoutBTN.setBounds(210, 170, 100, 20);
         logoutBTN.addActionListener(this);
         uploadBTN.setBounds(80, 60, 110, 20);
         uploadBTN.addActionListener(this);
@@ -48,7 +48,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         statusBTN.addActionListener(this);
         insTagBTN.setBounds(180, 115, 150, 20);
         insTagBTN.addActionListener(this);
-        profileBTN.setBounds(250, 10, 50, 20);
+        profileBTN.setBounds(230, 10, 80, 20);
         profileBTN.addActionListener(this);
 
 
@@ -66,7 +66,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(340, 230);
+        this.setSize(360, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true); // set frame to visible

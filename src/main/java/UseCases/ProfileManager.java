@@ -1,6 +1,5 @@
 package UseCases;
 
-import Entities.Course;
 import Entities.Student;
 import Entities.User;
 
@@ -80,10 +79,6 @@ public class ProfileManager extends UseCase{
                 courseString.append(tutorial);
                 courseString.append(": ");
                 courseString.append(cb.getCourse(tutorial, "TUT").getCourseName());
-            for(String course: coursesList){
-                courseString.append(course);
-                courseString.append(": ");
-                courseString.append(course);
                 courseString.append("\n");
             }
             courseString.deleteCharAt(courseString.length() - 1);
@@ -91,7 +86,7 @@ public class ProfileManager extends UseCase{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+    }
 
     public void updateEmail(String userID, String email){
         try {
@@ -112,3 +107,5 @@ public class ProfileManager extends UseCase{
             throw new RuntimeException(e);
         }
     }
+
+}

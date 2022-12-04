@@ -1,5 +1,6 @@
 package UseCases;
 
+import Entities.Course;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -9,6 +10,10 @@ import static org.junit.Assert.assertEquals;
 
 
 class CourseDataManagerTest extends Tests{
+
+    //FIXME this test is testing on LocalCourseData. Make it so that it tests CloudCourseData.
+
+
     ArrayList<?> managers;
 
     {
@@ -19,26 +24,41 @@ class CourseDataManagerTest extends Tests{
         }
     }
 
-    UserDataLocal ub = (UserDataLocal) managers.get(0);
-    CourseDataLocal cb = (CourseDataLocal) managers.get(1);
-    TagDataLocal tb = (TagDataLocal) managers.get(2);
+    LocalUserData ub = (LocalUserData) managers.get(0);
+    LocalCourseData cb = (LocalCourseData) managers.get(1);
+    LocalTagData tb = (LocalTagData) managers.get(2);
 
     @Test
     void getCourseCodeList() throws Exception {
 
-
-
         assertEquals(4, cb.getCourseCodeList().size());
-
-
     }
 
     @Test
-    void updateCourse() {
+    void updateCourse() throws Exception{
+        Course course = new Course(
+                "001",
+                "LEC",
+                "808",
+                "Chemistry 202",
+                "Tuesday",
+                "12:00",
+                "2003"
+        );
+        cb.updateCourse(course);
+        Course addedCourse = cb.getCourse(course.getCourseCode(), course.getCourseType());
+        assertEquals(course.getCourseCode(), addedCourse.getCourseCode());
+        assertEquals(course.getCourseType(), addedCourse.getCourseType());
+        assertEquals(course.getSessionNumber(), addedCourse.getSessionNumber());
+        assertEquals(course.getCourseName(), addedCourse.getCourseName());
+        assertEquals(course.getDayOfWeek(), addedCourse.getDayOfWeek());
+        assertEquals(course.getStartTime(), addedCourse.getStartTime());
+        assertEquals(course.getYear(), addedCourse.getYear());
     }
 
     @Test
     void addStudent() {
+
     }
 
     @Test

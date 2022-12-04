@@ -2,13 +2,9 @@ package UseCases;
 
 import Entities.Course;
 import Entities.Student;
-import Gateways.DatabaseInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 public interface CourseDataManager{
     ArrayList<String> getCourseCodeList();

@@ -1,8 +1,8 @@
 package UIController;
 
-import UseCases.CourseDataCloud;
-import UseCases.TagDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudTagData;
+import UseCases.CloudUserData;
 import Entities.User;
 import UseCases.TagMatchManager;
 
@@ -13,9 +13,9 @@ import java.util.List;
 public class TagMatchUIControl{
     private TagMatchManager tagMatchManager;
     private User self;
-    private TagDataCloud tagManager;
+    private CloudTagData tagManager;
 
-    public TagMatchUIControl(User self, CourseDataCloud courseManager, UserDataCloud userManager, TagDataCloud tagManager){
+    public TagMatchUIControl(User self, CloudCourseData courseManager, CloudUserData userManager, CloudTagData tagManager){
         this.self = self;
         this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
     }

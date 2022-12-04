@@ -4,13 +4,12 @@ import Entities.Admin;
 import Entities.Student;
 import Entities.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class UserDataLocal implements UserDataManager{
+public class LocalUserData implements UserDataManager{
     ArrayList<User> allUsers;
 
-    public UserDataLocal(){
+    public LocalUserData(){
         allUsers = new ArrayList<>();
     }
     @Override
@@ -24,7 +23,7 @@ public class UserDataLocal implements UserDataManager{
 
     @Override
     public boolean addUser(User user) {
-        if(!exist(user)){
+        if(!existByID(user.getUserID())){
             allUsers.add(user);
             return true;
         }
@@ -32,8 +31,8 @@ public class UserDataLocal implements UserDataManager{
     }
 
     @Override
-    public boolean addStudentUser(Student student) throws IOException {
-        if(!exist(student)){
+    public boolean addStudentUser(Student student){
+        if(!existByID(student.getUserID())){
             allUsers.add(student);
             return true;
         }
@@ -42,18 +41,12 @@ public class UserDataLocal implements UserDataManager{
 
     @Override
     public void updateStudentCourses(Student student){
-        ArrayList<User> newUserList = new ArrayList<>();
-        for (User user: allUsers){
-            if (user.getUserID().equals(student.getUserID())){
-                newUserList.add(student);
-            }
-        }
-        allUsers = newUserList;
+        updateArrayListOfUser(student);
     }
 
     @Override
-    public boolean addAdminUser(Admin admin) throws IOException {
-        if(!exist(admin)){
+    public boolean addAdminUser(Admin admin){
+        if(!existByID(admin.getUserID())){
             allUsers.add(admin);
             return true;
         }
@@ -74,10 +67,9 @@ public class UserDataLocal implements UserDataManager{
     }
 
     @Override
-    public User getUserByID(String userID) throws IOException {
+    public User getUserByID(String userID){
         for (User user:allUsers){
             if (user.getUserID().equals(userID)){
-                allUsers.remove(user);
                 return user;
             }
         }
@@ -85,9 +77,10 @@ public class UserDataLocal implements UserDataManager{
     }
 
     @Override
-    public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
+    public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID){
         Student self = (Student) getUserByID(selfUserID);
         Student target = (Student) getUserByID(targetUserID);
+        System.out.println(targetUserID);
         ArrayList<String> targetCourseCode = target.getEnrolledCourseCodes();
         ArrayList<String> commonCode = new ArrayList<>();
         for(String courseCode: self.getEnrolledCourseCodes()){
@@ -115,16 +108,29 @@ public class UserDataLocal implements UserDataManager{
 
     @Override
     public void updateFriendList(Student student) {
-
+        updateArrayListOfUser(student);
     }
 
     @Override
     public void updateFriendRequestList(Student student) {
-
+        updateArrayListOfUser(student);
     }
 
     @Override
     public void updateFriendRequestsSentList(Student student) {
+        updateArrayListOfUser(student);
+    }
 
+    private void updateArrayListOfUser(Student student){
+        ArrayList<User> newUserList = new ArrayList<>();
+        for (User user: allUsers){
+            if (!user.getUserID().equals(student.getUserID())){
+                newUserList.add(user);
+            }
+            else{
+                newUserList.add(student);
+            }
+        }
+        allUsers = newUserList;
     }
 }

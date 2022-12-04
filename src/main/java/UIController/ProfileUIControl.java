@@ -1,14 +1,14 @@
 package UIController;
 
 import Entities.User;
-import UseCases.CourseDataCloud;
+import UseCases.CloudCourseData;
 import UseCases.ProfileManager;
-import UseCases.UserDataCloud;
+import UseCases.CloudUserData;
 
 public class ProfileUIControl {
     private ProfileManager profileManager;
     private User user;
-    public ProfileUIControl(User user, CourseDataCloud courseDataManager, UserDataCloud userDataManager){
+    public ProfileUIControl(User user, CloudCourseData courseDataManager, CloudUserData userDataManager){
         this.user = user;
         this.profileManager = new ProfileManager(courseDataManager, userDataManager);
     }

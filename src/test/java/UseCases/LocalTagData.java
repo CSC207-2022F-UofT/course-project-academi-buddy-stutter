@@ -8,15 +8,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class TagDataLocal implements TagDataManager{
+public class LocalTagData implements TagDataManager{
 
-    private UserDataLocal userDataLocal;
+    private LocalUserData userDataLocal;
 
-    private HashMap<String, HashMap> allTags;
+    public HashMap<String, HashMap> allTags;
 
-    public TagDataLocal(UserDataLocal userDataLocal){
+    public LocalTagData(LocalUserData userDataLocal){
         this.userDataLocal = userDataLocal;
         allTags = new HashMap<>();
+        allTags.put("Adventure", new HashMap<>());
+        allTags.put("Beer", new HashMap<>());
+        allTags.put("Cat", new HashMap<>());
+        allTags.put("Music", new HashMap<>());
     }
 
     @Override
@@ -41,14 +45,17 @@ public class TagDataLocal implements TagDataManager{
     @Override
     public void addStudent(InterestTag tag, Student student) throws IOException {
         allTags.get(tag.getName()).put(student.getUserID(), 1);
+
     }
 
     @Override
     public boolean removeStudent(InterestTag tag, Student student) throws IOException {
-        if(!allTags.get(tag.getName()).keySet().contains(student.getUserID())){
+        System.out.println(getStudentList(tag));
+        System.out.println(tag.getName() + student.getUserID());
+        if(!allTags.get(tag.getName()).containsKey(student.getUserID())){
             return false;
         }
-        allTags.get(tag.getName()).remove(student.getUserID());
+        allTags.get(tag.getName()).remove(student.getUserID(), 1);
         return true;
     }
 }

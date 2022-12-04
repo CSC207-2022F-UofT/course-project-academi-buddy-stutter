@@ -2,9 +2,9 @@ import Entities.Student;
 import External.FirebaseAPI;
 import GUI.*;
 import UIController.UIController;
-import UseCases.CourseDataCloud;
-import UseCases.TagDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudTagData;
+import UseCases.CloudUserData;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -29,9 +29,9 @@ public class main {
         FirebaseAPI cbc = new FirebaseAPI();
         FirebaseAPI ubc = new FirebaseAPI();
         FirebaseAPI tbc = new FirebaseAPI();
-        UserDataCloud ub = new UserDataCloud(ubc);
-        CourseDataCloud cb = new CourseDataCloud(cbc, ub);
-        TagDataCloud tb = new TagDataCloud(tbc, ub);
+        CloudUserData ub = new CloudUserData(ubc);
+        CloudCourseData cb = new CloudCourseData(cbc, ub);
+        CloudTagData tb = new CloudTagData(tbc, ub);
 
         Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
 //        Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");

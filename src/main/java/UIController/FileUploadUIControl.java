@@ -4,9 +4,9 @@ import Entities.Student;
 import Entities.User;
 import External.BiweeklyAPI;
 import External.JavaxAPI;
-import UseCases.CourseDataCloud;
+import UseCases.CloudCourseData;
 import UseCases.UploadManager;
-import UseCases.UserDataCloud;
+import UseCases.CloudUserData;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class FileUploadUIControl {
     private UploadManager uploadManager;
     private Student self;
 
-    public FileUploadUIControl(User self, CourseDataCloud courseDatabase, UserDataCloud userDatabase){
+    public FileUploadUIControl(User self, CloudCourseData courseDatabase, CloudUserData userDatabase){
         this.self = (Student) self;
         JavaxAPI javaxAPI = new JavaxAPI();
         BiweeklyAPI biweeklyAPI = new BiweeklyAPI();

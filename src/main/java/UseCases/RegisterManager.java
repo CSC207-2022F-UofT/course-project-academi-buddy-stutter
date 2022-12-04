@@ -3,11 +3,12 @@ package UseCases;
 import Entities.Student;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterManager extends UseCase{
     Student student;
-    public RegisterManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase){
+    public RegisterManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
         super(courseDatabase, userDatabase);
     }
 

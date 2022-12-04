@@ -1,6 +1,7 @@
 package UseCases;
 
 import Entities.Course;
+import Entities.InterestTag;
 import Entities.Student;
 
 import java.io.IOException;
@@ -63,22 +64,47 @@ public class Tests {
 
     protected ArrayList<Object> initializeStaticDatabase() throws IOException {
 
-        UserDataLocal ub = new UserDataLocal();
-        CourseDataLocal cb = new CourseDataLocal(ub);
-        TagDataLocal tb = new TagDataLocal(ub);
+        LocalUserData ub = new LocalUserData();
+        LocalCourseData cb = new LocalCourseData(ub);
+        LocalTagData tb = new LocalTagData(ub);
         ArrayList<Object> managers = new ArrayList<>();
-        managers.add(ub);
-        managers.add(cb);
-        managers.add(tb);
 
         cb.addCourse(COURSEA);
         cb.addCourse(COURSEB);
         cb.addCourse(COURSEC);
         cb.addCourse(COURSED);
 
+        InterestTag adventure = new InterestTag("Adventure");
+        InterestTag music = new InterestTag("Music");
+        InterestTag beer = new InterestTag("Beer");
+        InterestTag cat = new InterestTag("Cat");
+
+        ArrayList<InterestTag> tagA = new ArrayList<>();
+        tb.addStudent(adventure, STUDENTA);
+        tb.addStudent(beer, STUDENTA);
+        tagA.add(adventure);
+        tagA.add(beer);
+
+        ArrayList<InterestTag> tagB = new ArrayList<>();
+        tb.addStudent(adventure, STUDENTB);
+        tb.addStudent(music, STUDENTB);
+        tagB.add(adventure);
+        tagB.add(music);
+
+        ArrayList<InterestTag> tagC = new ArrayList<>();
+        tb.addStudent(music, STUDENTC);
+        tb.addStudent(cat, STUDENTC);
+        tagC.add(music);
+        tagC.add(cat);
+
+        STUDENTA.setTabs_of_interests(tagA);
+        STUDENTB.setTabs_of_interests(tagB);
+        STUDENTC.setTabs_of_interests(tagC);
+
         ub.addStudentUser(STUDENTA);
         ub.addStudentUser(STUDENTB);
         ub.addStudentUser(STUDENTC);
+
         cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTA);
         cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTB);
         cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTC);
@@ -90,6 +116,11 @@ public class Tests {
 
         cb.addStudent(COURSED.getCourseCode(), "LEC", STUDENTB);
         cb.addStudent(COURSED.getCourseCode(), "LEC", STUDENTC);
+
+
+        managers.add(ub);
+        managers.add(cb);
+        managers.add(tb);
 
 
         return managers;

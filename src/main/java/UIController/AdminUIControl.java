@@ -2,16 +2,16 @@ package UIController;
 
 import Entities.User;
 import UseCases.AdminActionsManager;
-import UseCases.CourseDataCloud;
-import UseCases.TagDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudTagData;
+import UseCases.CloudUserData;
 
 public class AdminUIControl {
     private User self;
     private AdminActionsManager adminActionsManager;
 
 
-    public AdminUIControl(User self, CourseDataCloud courseDataManager, UserDataCloud userDataManager, TagDataCloud tagDataManager){
+    public AdminUIControl(User self, CloudCourseData courseDataManager, CloudUserData userDataManager, CloudTagData tagDataManager){
         this.self = self;
         this.adminActionsManager = new AdminActionsManager(courseDataManager, userDataManager, tagDataManager);
 

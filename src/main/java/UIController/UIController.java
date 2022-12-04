@@ -14,9 +14,9 @@ public class UIController{
     public static int FROM_PROFILE = 1;
 
     private User self;
-    private CourseDataCloud courseManager;
-    private UserDataCloud userManager;
-    private TagDataCloud tagManager;
+    private CloudCourseData courseManager;
+    private CloudUserData userManager;
+    private CloudTagData tagManager;
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
@@ -76,7 +76,7 @@ public class UIController{
 
     public AllStudentsUIControl getAllStudentsUIControl() {return allStudentsUIControl;}
 
-    public UIController(User user, CourseDataCloud courseManager, UserDataCloud userManager, TagDataCloud tagManager){
+    public UIController(User user, CloudCourseData courseManager, CloudUserData userManager, CloudTagData tagManager){
         this.self = user;
         this.courseManager = courseManager;
         this.userManager = userManager;

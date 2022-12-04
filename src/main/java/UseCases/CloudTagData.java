@@ -7,11 +7,11 @@ import Entities.Student;
 import java.io.IOException;
 import java.util.*;
 
-public class TagDataCloud implements TagDataManager{
+public class CloudTagData implements TagDataManager{
     private DatabaseInterface fi;
-    private UserDataCloud ud;
+    private CloudUserData ud;
 
-    public TagDataCloud(DatabaseInterface tb, UserDataCloud ud){
+    public CloudTagData(DatabaseInterface tb, CloudUserData ud){
         this.fi = tb;
         this.fi.initialize("tags");
         this.ud = ud;

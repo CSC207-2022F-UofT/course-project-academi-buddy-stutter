@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ProfileManager extends UseCase{
 
-    public ProfileManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
+    public ProfileManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
         super(courseDatabase, userDatabase);
     }
 

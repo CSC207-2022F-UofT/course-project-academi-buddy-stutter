@@ -6,11 +6,11 @@ import Entities.Student;
 import java.io.IOException;
 
 public class TagSelectManager extends UseCase {
-    private TagDataCloud tb;
+    private TagDataManager tb;
 
-    public TagSelectManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase, TagDataCloud tagManager) {
+    public TagSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
         super(courseDatabase, userDatabase);
-        this.tb= tagManager;
+        this.tb = tagManager;
     }
 
     public boolean getStudentTagState(Student self, String tagName){

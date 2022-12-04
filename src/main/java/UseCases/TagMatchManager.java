@@ -11,12 +11,12 @@ import java.util.List;
 public class TagMatchManager extends UseCase{
 
     private InterestTag selectedTag;
-    private TagDataCloud tagManager;
+    private TagDataManager tagManager;
 
     private ArrayList<String> idList = new ArrayList<>();
 
 
-    public TagMatchManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase, TagDataCloud tagManager) {
+    public TagMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
         super(courseDatabase, userDatabase);
         this.tagManager = tagManager;
     }
@@ -31,7 +31,6 @@ public class TagMatchManager extends UseCase{
         List<String> idList = tagManager.getStudentList(selectedTag);
         ArrayList<Student> matchedStudents = new ArrayList<>();
         for(String id: idList){
-            System.out.println(id);
             Student student;
             try {
                 student = (Student) ub.getUserByID(id);

@@ -1,7 +1,7 @@
 package UIController;
 
-import UseCases.CourseDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudUserData;
 import UseCases.RegisterManager;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.List;
 public class RegisterUIControl {
     private RegisterManager registerManager;
 
-    public RegisterUIControl(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
+    public RegisterUIControl(CloudCourseData courseDatabase, CloudUserData userDatabase) {
         this.registerManager = new RegisterManager(courseDatabase, userDatabase);
     }
 

@@ -10,10 +10,10 @@ import java.util.HashMap;
 
 public class CourseMatchManager {
 
-    private CourseDataCloud cb;
-    private UserDataCloud ub;
+    private CourseDataManager cb;
+    private UserDataManager ub;
 
-    public CourseMatchManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase){
+    public CourseMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
         this.cb = courseDatabase;
         this.ub = userDatabase;
     }

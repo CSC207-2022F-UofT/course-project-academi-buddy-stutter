@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class CourseDataCloud implements CourseDataManager {
+public class CloudCourseData implements CourseDataManager {
     private DatabaseInterface fi;
-    private UserDataCloud ud;
-    public CourseDataCloud(DatabaseInterface cb, UserDataCloud ud){
+    private CloudUserData ud;
+    public CloudCourseData(DatabaseInterface cb, CloudUserData ud){
         this.fi = cb;
         this.fi.initialize("courses");
         this.ud = ud;

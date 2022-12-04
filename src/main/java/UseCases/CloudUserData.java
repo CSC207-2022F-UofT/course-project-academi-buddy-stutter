@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class UserDataCloud implements UserDataManager{
+public class CloudUserData implements UserDataManager{
 
     private DatabaseInterface fi;
 
-    public UserDataCloud(DatabaseInterface ub){
+    public CloudUserData(DatabaseInterface ub){
         this.fi = ub;
         fi.initialize("users");
     }

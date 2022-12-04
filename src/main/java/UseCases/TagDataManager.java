@@ -1,6 +1,5 @@
 package UseCases;
 
-import Gateways.DatabaseInterface;
 import Entities.InterestTag;
 import Entities.Student;
 

@@ -1,8 +1,8 @@
 package UIController;
 
-import UseCases.CourseDataCloud;
-import UseCases.TagDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudTagData;
+import UseCases.CloudUserData;
 import Entities.Student;
 import Entities.User;
 import UseCases.TagSelectManager;
@@ -10,7 +10,7 @@ import UseCases.TagSelectManager;
 public class TagSelectUIControl {
     private TagSelectManager tagSelectManager;
     private User self;
-    public TagSelectUIControl(User self, CourseDataCloud courseManager, UserDataCloud userManager, TagDataCloud tagManager){
+    public TagSelectUIControl(User self, CloudCourseData courseManager, CloudUserData userManager, CloudTagData tagManager){
         this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
         this.self = self;
     }

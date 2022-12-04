@@ -2,8 +2,8 @@ package UIController;
 
 import Entities.User;
 import UseCases.CommonSessionManager;
-import UseCases.CourseDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudUserData;
 
 public class CommonSessionUIControl {
 
@@ -12,7 +12,7 @@ public class CommonSessionUIControl {
 
     private User self;
 
-    public CommonSessionUIControl(User self, CourseDataCloud courseDataManager, UserDataCloud userDataManager){
+    public CommonSessionUIControl(User self, CloudCourseData courseDataManager, CloudUserData userDataManager){
         this.self = self;
         this.commonSessionManager = new CommonSessionManager(courseDataManager, userDataManager);
     }

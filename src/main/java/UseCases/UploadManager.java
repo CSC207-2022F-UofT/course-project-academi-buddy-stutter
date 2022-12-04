@@ -1,18 +1,21 @@
 package UseCases;
 import Entities.Course;
 import Entities.Student;
+import External.BiweeklyAPI;
 import Gateways.CalendarInterface;
+import Gateways.DatabaseInterface;
 import Gateways.UploaderInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class UploadManager extends UseCase {
     UploaderInterface uploaderInterface;
     CalendarInterface calendarInterface;
-    CourseDataCloud courseDataManager;
-    public UploadManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase,
+    CourseDataManager courseDataManager;
+    public UploadManager(CourseDataManager courseDatabase, UserDataManager userDatabase,
                          UploaderInterface uploaderInterface,
                          CalendarInterface calendarInterface){
         super(courseDatabase, userDatabase);

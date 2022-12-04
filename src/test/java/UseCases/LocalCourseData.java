@@ -6,13 +6,13 @@ import Entities.Student;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CourseDataLocal implements CourseDataManager{
+public class LocalCourseData implements CourseDataManager{
 
-    private UserDataLocal userDataLocal;
+    private LocalUserData userDataLocal;
 
     private ArrayList<Course> allCourses;
 
-    public CourseDataLocal(UserDataLocal userDataLocal){
+    public LocalCourseData(LocalUserData userDataLocal){
         this.userDataLocal = userDataLocal;
         this.allCourses = new ArrayList<>();
     }
@@ -68,13 +68,17 @@ public class CourseDataLocal implements CourseDataManager{
         boolean removed = course.removeStudent(student);
         if(removed){
             student.removeCourse(course);
+            ArrayList<Course> newCourseList = new ArrayList<>();
             for(Course c: allCourses){
-                if (c.getCourseCode().equals(courseCode) && c.getCourseType().equals(courseType)){
-                    allCourses.remove(c);
-                    allCourses.add(course);
+                if (!(c.getCourseCode().equals(courseCode) && c.getCourseType().equals(courseType))){
+                    newCourseList.add(c);
+                }
+                else{
+                    newCourseList.add(course);
                 }
             }
             userDataLocal.updateStudentCourses(student);
+            allCourses = newCourseList;
             return true;
         }
         return false;

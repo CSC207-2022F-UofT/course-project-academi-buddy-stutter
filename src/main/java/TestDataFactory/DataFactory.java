@@ -1,14 +1,14 @@
 package TestDataFactory;
 
-import UseCases.CourseDataCloud;
-import UseCases.TagDataCloud;
-import UseCases.UserDataCloud;
+import UseCases.CloudCourseData;
+import UseCases.CloudTagData;
+import UseCases.CloudUserData;
 
 public class DataFactory {
-    protected CourseDataCloud courseDataManager;
-    protected UserDataCloud userDataManager;
-    protected TagDataCloud tagDataManager;
-    public DataFactory(CourseDataCloud courseDataManager, UserDataCloud userDataManager, TagDataCloud tagDataManager){
+    protected CloudCourseData courseDataManager;
+    protected CloudUserData userDataManager;
+    protected CloudTagData tagDataManager;
+    public DataFactory(CloudCourseData courseDataManager, CloudUserData userDataManager, CloudTagData tagDataManager){
         this.courseDataManager = courseDataManager;
         this.userDataManager = userDataManager;
         this.tagDataManager = tagDataManager;

@@ -1,5 +1,6 @@
 package UseCases;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,14 +17,18 @@ public class ProfileManagerTest extends Tests {
         }
     }
 
-    UserDataLocal ub = (UserDataLocal) managers.get(0);
-    CourseDataLocal cb = (CourseDataLocal) managers.get(1);
-    TagDataLocal tb = (TagDataLocal) managers.get(2);
+    LocalUserData ub = (LocalUserData) managers.get(0);
+    LocalCourseData cb = (LocalCourseData) managers.get(1);
+    LocalTagData tb = (LocalTagData) managers.get(2);
+
+    ProfileManager profileManager = new ProfileManager(cb, ub);
 
 
     @Test
     void GetNameTest() throws Exception {
-        ProfileManager p = new ProfileManager(cb, ub);
+        for(String userID: ub.getUserIDList()){
+            Assertions.assertEquals(ub.getUserByID(userID).getFullName(), profileManager.getName(userID));
+        }
 
     }
 

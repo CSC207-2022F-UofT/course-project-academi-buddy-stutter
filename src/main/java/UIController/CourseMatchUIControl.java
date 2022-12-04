@@ -9,6 +9,9 @@ import UseCases.UserDataManager;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Implements CourseMatchUIControl for CourseMatchFrame
+ */
 public class CourseMatchUIControl {
     private CourseMatchManager courseMatchManager;
 
@@ -19,13 +22,23 @@ public class CourseMatchUIControl {
         this.courseMatchManager = new CourseMatchManager(courseDatabase, userDatabase);
     }
 
-
+    /**
+     * Finds student matches
+     * @param min_numCommon minimum number of common sessions
+     * @return a list of matched students
+     * @throws IOException fails to find matching students
+     */
     public ArrayList<Student> getMatches(int min_numCommon) throws IOException {
         this.matches = new ArrayList();
         this.matches = this.courseMatchManager.getTopSameSessionStudents(this.self, min_numCommon);
         return this.matches;
     }
 
+    /**
+     * Get select student ID
+     * @param index
+     * @return
+     */
     public String getSelectedUserID(int index){
         return matches.get(index).getUserID();
     }

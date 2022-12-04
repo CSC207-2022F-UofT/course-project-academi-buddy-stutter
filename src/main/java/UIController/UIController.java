@@ -39,6 +39,8 @@ public class UIController{
 
     private CommonSessionUIControl commonSessionUIControl;
 
+    private AllStudentsUIControl allStudentsUIControl;
+
     private AdminUIControl adminUIControl;
     public AdminUIControl getAdminUIControl() {return adminUIControl;}
 
@@ -73,6 +75,8 @@ public class UIController{
     public FileUploadUIControl getFileUploadUIControl(){return  fileUploadUIControl;}
 
     public CommonSessionUIControl getCommonSessionUIControl() {return commonSessionUIControl;}
+
+    public AllStudentsUIControl getAllStudentsUIControl() {return allStudentsUIControl;}
 
     public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = user;
@@ -162,6 +166,8 @@ public class UIController{
 
     public void toCommonSession(String targetUserID) {CommonSessionFrame commonSessionFrame = new CommonSessionFrame(this, targetUserID);}
 
+    public void toAllStudents() {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
+
     private void initializeAfterLogin(){
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
@@ -172,6 +178,7 @@ public class UIController{
         this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
         this.matchUIControl = new CourseMatchUIControl(self, courseManager, userManager);
         this.commonSessionUIControl = new CommonSessionUIControl(self, courseManager, userManager);
+        this.allStudentsUIControl = new AllStudentsUIControl(self, courseManager, userManager);
     }
 
     private void initializeAdminAfterLogin(){

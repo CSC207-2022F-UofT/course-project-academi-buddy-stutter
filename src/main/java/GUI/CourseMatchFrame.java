@@ -15,9 +15,13 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class implements MatchFrame that allows user to find study buddy through matching same courses.
+ * User can select number of common sessions and desired match labels to find study buddies.
+ */
 public class CourseMatchFrame extends JFrame implements ActionListener, ItemListener{
-    JLabel numCommonLabel = new JLabel("Minimum Number of Common Sessions:");
-    JLabel selectLabel = new JLabel("Label:");
+    JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
+    JLabel selectLabel = new JLabel("Select Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
     String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     JComboBox<String> numBox = new JComboBox<>(userType);
@@ -33,6 +37,9 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
+    /**
+     * This constructor method implements all UI components for MatchFrame.
+     */
     UIController uiController;
     public CourseMatchFrame(UIController uiController) {
         this.uiController = uiController;
@@ -108,6 +115,10 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         this.setVisible(true);
     }
 
+    /**
+     * This method appends matched study buddies to the JList, displaying their full names instead of User ID.
+     * @param students this list contains matched study buddies for the user
+     */
     private void addMatches(ArrayList<Student> students){
         clearMatches();
         for(Student s: students){
@@ -119,11 +130,19 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         commonSessionBTN.setEnabled(false);
     }
 
+    /**
+     * This method clears all text inside the JList.
+     */
     private void clearMatches(){
         matchedStu = new DefaultListModel<>();
         matchedList.setModel(matchedStu);
     }
 
+    /**
+     * When the "Find" button is clicked, this method calls corresponding controller to access the matching algorithm,
+     * then displays the matched study buddies to JList.
+     * User can also see matched study buddies' profile by highlighting their names and click the "Profile" button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -170,6 +189,10 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         }
     }
 
+    /**
+     * This method applies filtering to the matching algorithm so that it only searches students that satisfy both
+     * conditions. [Number of common sessions and Same Labels]
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
 

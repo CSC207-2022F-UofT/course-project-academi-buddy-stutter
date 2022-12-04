@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class allows user to upload an ics calendar by clicking the "Upload" button.
+ */
 public class CalendarUploadFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Upload Your Calendar:");
     JLabel completedLabel = new JLabel();
@@ -21,6 +24,10 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
 
     UIController uiController;
 
+    /**
+     * This constructor method implments all UI components for FileUploadFrame.
+     * @param source keeps track of the status of user [registered, not registered]
+     */
     public CalendarUploadFrame(UIController uiController, int source){
         this.uiController = uiController;
         this.status = source;
@@ -55,6 +62,12 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
     }
 
 
+    /**
+     * This method checks whether the user is uploading a calendar as a registered student or not.
+     * An "Uploading..." message will be shown when the calendar is being uploaded to database
+     * An "Uploaded!" message will be shown when the calendar is successfully uploaded to database
+     * An "Error!" message will be shown when the calendar fails to upload to database.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

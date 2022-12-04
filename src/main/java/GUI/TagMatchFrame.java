@@ -11,9 +11,10 @@ import java.awt.event.ItemListener;
 
 import UIController.UIController;
 
+/**
+ * This class implements TagMatchFrame so that user can find buddies by matching same interest tags.
+ */
 public class TagMatchFrame extends JFrame implements ActionListener, ItemListener {
-
-
     JLabel listLabel = new JLabel("Matched Students:");
     JLabel tagSelectLabel = new JLabel("Select Tag:");
     JButton backBTN = new JButton("Back");
@@ -28,7 +29,9 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     UIController uiController;
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
-
+    /**
+     * Implements all UI components.
+     */
     public TagMatchFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -92,7 +95,9 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         this.setVisible(true); // set frame to visible
     }
 
-
+    /**
+     * The user can view matched buddies' profile by clicking the "Profile" button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == profileBTN){
@@ -111,6 +116,9 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
 
     }
 
+    /**
+     * Calls tag match algorithm, finds matched buddies, display all buddies onto JList.
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
         this.setCursor(waitCursor);

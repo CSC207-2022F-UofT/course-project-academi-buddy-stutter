@@ -244,12 +244,17 @@ public class CloudUserData implements UserDataManager{
 //        System.out.println(student.getFullName() + "friend request sent list has been updated on Firebase");
     }
 
-    //Helper methods
-    private ArrayList<String> toUserIdStrings(ArrayList<Student> students) {
-        ArrayList<String> userIDs = new ArrayList<>();
-        for(Student s: students){
-            userIDs.add(s.getUserID());
-        }
-        return userIDs;
+    public ArrayList<String> getAdminIDs() {
+        fi.initialize("users");
+        ArrayList<String> userIDs = this.getUserIDList();
+        ArrayList<String> adminIDs = new ArrayList<>();
+        for (String id: userIDs) {
+            Map<String, Object> userData = fi.getEntry(id);
+            String type = (String) userData.get("account type");
+            if (type.equals("admin")) {
+                adminIDs.add(id);
+            }
+        } return adminIDs;
     }
+
 }

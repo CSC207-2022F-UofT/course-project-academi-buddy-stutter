@@ -32,6 +32,6 @@ public interface UserDataManager {
     void updateFriendList(Student student);
     void updateFriendRequestList(Student student);
     void updateFriendRequestsSentList(Student student);
-
+    ArrayList<String> getAdminIDs();
 }
 

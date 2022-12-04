@@ -35,22 +35,35 @@ public class CourseMatchUIControl {
     }
 
     /**
-     * Get select student ID
-     * @param index
-     * @return
+     * Get select student ID by index
+     * @param index which user id we want to get
+     * @return user id of target index
      */
     public String getSelectedUserID(int index){
         return matches.get(index).getUserID();
     }
 
+    /**
+     * Find list of users by filtering labels
+     * @param label labels we want to have commons with
+     * @return a list of users that share common labels
+     */
     private ArrayList<Student> filterByLabel(String label){
         return courseMatchManager.filterByLabel(this.matches, label);
     }
 
+    /**
+     * @return whether there is atleast a match or not
+     */
     private boolean noMatches(){
         return matches.size() == 0;
     }
 
+    /**
+     * Match students by labels
+     * @param label labels that users should have common with
+     * @return a list of users that share the same labels
+     */
     public ArrayList<Student> getLabeledMatches(String label){
 
         if(!noMatches()){
@@ -59,6 +72,4 @@ public class CourseMatchUIControl {
             return new ArrayList<>();
         }
     }
-
-
 }

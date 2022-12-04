@@ -97,7 +97,7 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == uploadBTN && status == UIController.FROM_PROFILE) {
             completedLabel.setForeground(Color.black);
-            completedLabel.setText("Uploading...");
+            completedLabel.setText("Uploading. This may take a while...");
             if (uiController.getFileUploadUIControl().upload()) {
                 try {
                     uiController.getFileUploadUIControl().copyFileToPath();

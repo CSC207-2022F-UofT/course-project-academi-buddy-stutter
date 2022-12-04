@@ -84,7 +84,7 @@ public class FriendListManager extends UseCase{
      * To accept someone's friend request
      * @param userId the user to accept the friend request
      * @param friendID the friend id to accept
-     * @return True if the the friend request has been accepted, false otherwise.
+     * @return True if the friend request has been accepted, false otherwise.
      */
     public boolean acceptFriendRequest(String userId, String friendID) {
         //Updates Student entity data

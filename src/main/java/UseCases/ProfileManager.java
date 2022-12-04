@@ -8,10 +8,20 @@ import java.util.ArrayList;
 
 public class ProfileManager extends UseCase{
 
+    /**
+     * Use case for operations managing profiles in the databases.
+     * @param courseDatabase The course database.
+     * @param userDatabase The user database.
+     */
     public ProfileManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
         super(courseDatabase, userDatabase);
     }
 
+    /**
+     * Get the name of user given userID.
+     * @param userID The id of the user.
+     * @return The String name of the user.
+     */
     public String getName(String userID){
         try {
             User user = this.ub.getUserByID(userID);
@@ -21,6 +31,11 @@ public class ProfileManager extends UseCase{
         }
     }
 
+    /**
+     * Get the email of the user given userID.
+     * @param userID The id of the user.
+     * @return The String of the user's email.
+     */
     public String getUserEmail(String userID){
         try {
             User user = this.ub.getUserByID(userID);
@@ -30,6 +45,11 @@ public class ProfileManager extends UseCase{
         }
     }
 
+    /**
+     * Get the info of the user given userID.
+     * @param userID The id of the user.
+     * @return The String of the user's info.
+     */
     public String getUserInfo(String userID){
         try {
             User user = this.ub.getUserByID(userID);
@@ -39,6 +59,11 @@ public class ProfileManager extends UseCase{
         }
     }
 
+    /**
+     * Get the Course of the user given userID.
+     * @param userID The id of the user.
+     * @return The String of courses of the student.
+     */
     public String getCourseString(String userID){
         try {
             User user = this.ub.getUserByID(userID);
@@ -88,6 +113,11 @@ public class ProfileManager extends UseCase{
         }
     }
 
+    /**
+     * Updating the email of the user in their profile.
+     * @param userID The id of the user.
+     * @param email the new email that is being updated.
+     */
     public void updateEmail(String userID, String email){
         try {
             Student student = (Student) ub.getUserByID(userID);
@@ -98,6 +128,11 @@ public class ProfileManager extends UseCase{
         }
     }
 
+    /**
+     * Updating the info of a user in their profile.
+     * @param userID The id of the user.
+     * @param info The new information that is being updated.
+     */
     public void updateInfo(String userID, String info){
         try {
             Student student = (Student) ub.getUserByID(userID);

@@ -3,10 +3,18 @@ package UseCases;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The strength checker for the password component in register.
+ */
 public class StrengthChecker {
     public StrengthChecker() {
     }
 
+    /**
+     * To check the strength of the password.
+     * @param password The password that is being checked.
+     * @return The List of Strings of warnings if any.
+     */
     public List<String> checkStrength(String password) {
         List<String> warnings = new ArrayList<String>();
 

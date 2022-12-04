@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class StrengthCheckerTest extends Tests {
 
     @Test
-    void Strengthcheck() {
+    void StrengthCheckerTest() {
 
         String password = "hello";
 

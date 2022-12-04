@@ -25,9 +25,24 @@ public class ProfileManagerTest extends Tests {
 
 
     @Test
-    void GetNameTest() throws Exception {
+    void getNameTest() throws Exception {
         for(String userID: ub.getUserIDList()){
             Assertions.assertEquals(ub.getUserByID(userID).getFullName(), profileManager.getName(userID));
+        }
+
+    }
+    @Test
+    void getUserEmailTest() throws Exception {
+        for(String userID: ub.getUserIDList()){
+            Assertions.assertEquals(ub.getUserByID(userID).getUserID(), profileManager.getUserEmail(userID));
+        }
+
+    }
+
+    @Test
+    void getUserInfoTest() throws Exception {
+        for(String userID: ub.getUserIDList()){
+            Assertions.assertEquals(ub.getUserByID(userID).getUserInfo(), profileManager.getUserEmail(userID));
         }
 
     }

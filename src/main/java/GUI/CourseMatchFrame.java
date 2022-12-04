@@ -71,9 +71,6 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
         commonSessionBTN.setBounds(290, 190, 130, 20);
         commonSessionBTN.setFocusable(false);
-        commonSessionBTN.setOpaque(false);
-        commonSessionBTN.setContentAreaFilled(false);
-        commonSessionBTN.setBorderPainted(true);
         commonSessionBTN.addActionListener(this);
         commonSessionBTN.setEnabled(false);
 

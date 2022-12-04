@@ -62,7 +62,9 @@ using buttons, to navigate to:
   - (**Feature 6.4** _HOME_ screen) "Find Study Buddy" button navigates to _FIND STUDY BUDDY_ screen (**Feature 10**).
   - (**Feature 6.5** _HOME_ screen) "Find Interest Buddy" button navigates to _FIND INTEREST BUDDY_ screen 
   (**Feature 11**).
-  - (**Feature 6.6** _HOME_ screen) "LOG OUT" button navigates to "Login" screen (**Feature 1**).
+  - (**Feature 6.6** _HOME_ screen) "All Users" button navigates to _ALL USERS_ screen (**Feature 14**). 
+  - (**Feature 6.7** _HOME_ screen) "Friends" button navigates to _FRIENDS_ screen (**Feature 15**).
+  - (**Feature 6.8** _HOME_ screen) "LOG OUT" button navigates to "Login" screen (**Feature 1**). 
 
 
 - **Feature 7** (_USER PROFILE_ screen, user accesses their own profile): User can conduct profile operations 
@@ -97,7 +99,9 @@ After clicking on the "Find" button, program will display other users and allow 
   - (**Feature 10.4** _FIND STUDY BUDDY_ screen): After selecting and highlighting a user's name from "Match Students"
   area, "Profile" button will be activated, allowing the user to click and access selected profile
     (**Feature 12**).
-  - (**Feature 10.5** _FIND STUDY BUDDY_ screen): "Back" button allows the user to go back to _HOME_ screen 
+  - (**Feature 10.5** _FIND STUDY BUDDY_ screen): "Common Sessions" button allows the user to find the common sessions
+  between themselves and the selected user (**Feature 13**).
+  - (**Feature 10.6** _FIND STUDY BUDDY_ screen): "Back" button allows the user to go back to _HOME_ screen 
   (**Feature 6**).
 
 
@@ -110,6 +114,27 @@ After clicking on the "Find" button, program will display other users and allow 
 
 - **Feature 12** (_DISPLAY PROFILE_ screen): This screen is not modifiable, it is only for view purposes for other
 users after selecting the profile.
+  - **Feature 12.1** (_DISPLAY PROFILE_ screen): "Add Friend" button sends a friend request to the displayed profile's
+  user. This request will be seen by the other user in their friend request list in Friends (**Feature 15.1**).
+  - **Feature 12.2** (_DISPLAY PROFILE_ screen): "Close" button will close the screen and return to their previous
+  screen.
+
+
+- **Feature 13** (_COMMON SESSIONS_ screen): Allows the user to see the common sessions between them and the selected
+user.
+  - **Feature 13.1** (_COMMON SESSIONS_ screen): "Back" button return the user back to _FIND STUDY BUDDY_ screen 
+  (**Feature 10**)
+
+
+- **Feature 14** (_ALL USERS_ screen): Displays all users in the program. This screen is not modifiable directly.
+
+
+- **Feature 15** (_FRIENDS_ screen): This screen allows the user to manage their friends list.
+  - **Feature 15.1** (_FRIENDS_ screen): For any friend request the user receives, it will be displayed under the
+  "Friend Request" area where the user can approve the requests.
+  - **Feature 15.2** (_FRIENDS_ screen): For any approved friend requests, the friend will be displayed in the
+  "Friend List" where the name of the user becomes a button and could be used to access their display
+  profile (**Feature 12**). 
 
 
 

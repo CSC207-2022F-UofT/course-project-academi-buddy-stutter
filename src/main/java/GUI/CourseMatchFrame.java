@@ -59,9 +59,9 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         labelBox.addItemListener(this);
 
         // setting up buttons
-        returnBTN.setBounds(440, 220, 50, 20);
+        returnBTN.setBounds(410, 220, 70, 20);
         returnBTN.addActionListener(this);
-        findBTN.setBounds(440, 10, 50, 20);
+        findBTN.setBounds(420, 10, 60, 20);
         findBTN.addActionListener(this);
         findBTN.setFocusable(false);
 
@@ -70,7 +70,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);
 
-        commonSessionBTN.setBounds(290, 190, 130, 20);
+        commonSessionBTN.setBounds(290, 190, 150, 20);
         commonSessionBTN.setFocusable(false);
         commonSessionBTN.setOpaque(false);
         commonSessionBTN.setContentAreaFilled(false);

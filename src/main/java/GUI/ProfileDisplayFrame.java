@@ -52,7 +52,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         infoText.setText(uiController.getProfileDisplayUIControl().getInfo(userID));
 
 
-        addFriendBTN.setBounds(300, 30, 90, 20);
+        addFriendBTN.setBounds(280, 30, 100, 20);
         addFriendBTN.addActionListener(this);
         addFriendBTN.setFocusable(false);
 
@@ -68,7 +68,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
 //            addFriendBTN.setEnabled(true);
 //        }
 
-        closeBTN.setBounds(330, 165, 50, 20);
+        closeBTN.setBounds(310, 165, 70, 20);
         closeBTN.addActionListener(this);
 //        closeBTN.setFocusable(false);
 

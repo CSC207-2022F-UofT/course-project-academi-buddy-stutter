@@ -2,13 +2,12 @@ package UIController;
 
 import Entities.User;
 import UseCases.AdminActionsManager;
-import UseCases.CloudCourseData;
-import UseCases.CloudTagData;
-import UseCases.CloudUserData;
+import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
+import UseCases.UserDataManager;
 
-/**
- * Implements AdminUIControl for AdminFrame
- */
+import java.util.ArrayList;
+
 public class AdminUIControl {
     private User self;
     private AdminActionsManager adminActionsManager;

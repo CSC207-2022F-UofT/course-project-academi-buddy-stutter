@@ -5,6 +5,8 @@ import Entities.InterestTag;
 import Entities.Student;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Use case class for Admin operations on the database. Specifically, removing students from courses.

@@ -21,4 +21,8 @@ public class AllStudentsManager extends UseCase{
         System.out.println("Requesting for student list");
         return this.ub.getUserIDList();
     }
+
+    public ArrayList<String> getAdminIDs() {
+        return this.ub.getAdminIDs();
+    }
 }

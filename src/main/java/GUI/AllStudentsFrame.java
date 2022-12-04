@@ -119,13 +119,14 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     static void addStudentsToList(ArrayList<String> studentList, UIController uiController, DefaultTableModel studentModel) {
         System.out.println(studentList.toString());
         String userID = uiController.getProfileUIControl().getUserID();
+        ArrayList<String> adminIDs = uiController.getAllStudentsUIControl().getAdminIDs();
         for (String studentID : studentList) {
             studentID = studentID.trim().strip();
             Object[] row = new Object[2];
             ArrayList<String> stringRow = new ArrayList<>();
             stringRow.add(uiController.getFriendListUIControl().getFriendFullName(studentID));
             stringRow.add(studentID);
-            if (!userID.equals(studentID)) {
+            if (!userID.equals(studentID) && !adminIDs.contains(studentID)) {
                 row = stringRow.toArray(row);
                 studentModel.addRow(row);
             }

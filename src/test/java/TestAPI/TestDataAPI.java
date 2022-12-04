@@ -11,7 +11,7 @@ import java.util.Map;
 public class TestDataAPI implements DatabaseInterface {
 
     private String collectionName;
-    private List<TestQueryDocumentSnapshot> documents;;
+    private List<TestQueryDocumentSnapshot> documents = new ArrayList<>();;
 
     public TestDataAPI(){
         this.collectionName = "";

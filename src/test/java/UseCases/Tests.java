@@ -4,6 +4,7 @@ import Entities.Course;
 import Entities.Student;
 import TestAPI.TestDataAPI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tests {
@@ -61,7 +62,7 @@ public class Tests {
     );
 
 
-    protected ArrayList<Object> initializeStaticDatabase(){
+    protected ArrayList<Object> initializeStaticDatabase() throws IOException {
         TestDataAPI cbc = new TestDataAPI();
         TestDataAPI ubc = new TestDataAPI();
         TestDataAPI tbc = new TestDataAPI();
@@ -74,43 +75,23 @@ public class Tests {
         managers.add(tb);
 
 
-        ArrayList<String> STUDENTA_ENROLLED_COURSES = new ArrayList<String>() {
-            {
-                add("999");
-                add("888");
-                add("777");
-            }
-        };
+        ub.addStudentUser(STUDENTA);
+        ub.addStudentUser(STUDENTB);
+        ub.addStudentUser(STUDENTC);
 
-        COURSEA.addStudent(STUDENTA);
-        COURSEB.addStudent(STUDENTA);
-        COURSEC.addStudent(STUDENTA);
+        cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTA);
+        cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTB);
+        cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTC);
 
-        STUDENTA.setEnrolledCourses(STUDENTA_ENROLLED_COURSES);
+        cb.addStudent(COURSEB.getCourseCode(), "LEC", STUDENTA);
+        cb.addStudent(COURSEB.getCourseCode(), "LEC", STUDENTB);
 
-        ArrayList<String> STUDENTB_ENROLLED_COURSES = new ArrayList<String>() {
-            {
-                add("999");
-                add("777");
-            }
-        };
+        cb.addStudent(COURSEC.getCourseCode(), "LEC", STUDENTB);
 
-        COURSEA.addStudent(STUDENTB);
-        COURSEC.addStudent(STUDENTA);
+        cb.addStudent(COURSED.getCourseCode(), "LEC", STUDENTB);
+        cb.addStudent(COURSED.getCourseCode(), "LEC", STUDENTC);
 
-        STUDENTB.setEnrolledCourses(STUDENTA_ENROLLED_COURSES);
 
-        ArrayList<String> STUDENTC_ENROLLED_COURSES = new ArrayList<String>() {
-            {
-                add("888");
-                add("666");
-            }
-        };
-
-        COURSEB.addStudent(STUDENTC);
-        COURSED.addStudent(STUDENTC);
-
-        STUDENTC.setEnrolledCourses(STUDENTA_ENROLLED_COURSES);
         return managers;
     }
 }

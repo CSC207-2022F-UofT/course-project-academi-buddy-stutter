@@ -91,7 +91,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(340, 280);
+        this.setSize(360, 280);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         this.setVisible(true); // set frame to visible

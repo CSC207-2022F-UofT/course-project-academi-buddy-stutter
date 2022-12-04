@@ -1,14 +1,21 @@
 package Entities;
-//TODO: to be implemented in stage 2. Need tagDataBase.
-//Tags for of interests. We will decide on a list of interest tags for users to choose from. Students will also be able
-// to see others who have the same tag selected.
-//e.g. Classical Music, Sci-fi novels, Video Games, etc.
+
+/**
+ * Implements InterestTag that user can choose from
+ */
 public class InterestTag {
     private String name;
 
+    /**
+     * Constructs an interest tag
+     * @param n name of interest tag
+     */
     public InterestTag(String n){
         this.name = n;
     }
 
+    /**
+     * @return name of an interest tag
+     */
     public String getName(){return name;}
 }

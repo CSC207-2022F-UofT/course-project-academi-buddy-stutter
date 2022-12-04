@@ -8,24 +8,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Use case operations for course matcher.
+ */
 public class CourseMatchManager {
 
     private CourseDataManager cb;
     private UserDataManager ub;
 
+    /**
+     * Initializer
+     * @param courseDatabase the course database.
+     * @param userDatabase the user database.
+     */
     public CourseMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
         this.cb = courseDatabase;
         this.ub = userDatabase;
     }
 
-    private int maxSameCourses = 17;
+    private final int maxSameCourses = 17;
 
     private int resultLimit = 5;
 
     private HashMap<String, Integer> matchCount = new HashMap<>();
 
     /**
-     * Helper method, stay private.
+     * Private helper method.
+     * @param student to access information from this student.
      */
     private void updateMatchCount(Student student){
         matchCount = new HashMap<>();
@@ -46,9 +55,6 @@ public class CourseMatchManager {
                     }
 
                 }
-
-
-
             } catch (IOException e) {
                 System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getLecCourse()");
                 throw new RuntimeException(e);
@@ -56,16 +62,19 @@ public class CourseMatchManager {
         }
     }
 
+    /**
+     * return a ArrayList of matched ids
+     * @return ArrayList of matched ids
+     */
     private ArrayList<String>[] getMatchedArray(){
         String[] keys = this.matchCount.keySet().toArray(new String[0]);
 
         ArrayList<String>[] matchedList = new ArrayList[this.maxSameCourses];
 
-//      intialize matched list to be an array of empty arrayLists...
+    //initialize matched list to be an array of empty arrayLists...
         for(int i = 0; i < matchedList.length; i++){
             matchedList[i] = new ArrayList<>();
         }
-
         for(String id: keys){
             int count = this.matchCount.get(id);
             matchedList[count].add(id);
@@ -73,7 +82,11 @@ public class CourseMatchManager {
         return matchedList;
     }
 
-
+    /**
+     * To get the max common integer value in the matched array.
+     * @param matchedArray ArrayList of matched courses.
+     * @return the max int value of location in matched array.
+     */
     private int maxCommon(ArrayList<String>[] matchedArray){
 
         int latestEmpty = -1;
@@ -91,7 +104,12 @@ public class CourseMatchManager {
         }
     }
 
-
+    /**
+     * Getting the same session students that are matched.
+     * @param student the student that is being matched.
+     * @param minNumOfCommon the minimum number of common courses.
+     * @return Array list of students that are matched to the student parameter.
+     */
     public ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) throws IOException {
 
         updateMatchCount(student);
@@ -130,11 +148,15 @@ public class CourseMatchManager {
                 students.add(stu);
             }
         }
-
         return students;
-
     }
 
+    /**
+     * Filter the match results by selected label.
+     * @param matches ArrayList of students that are matched.
+     * @param label The label to filter by.
+     * @return The ArrayList of matched students that are of the same label.
+     */
     public ArrayList<Student> filterByLabel(ArrayList<Student> matches, String label){
         ArrayList<Student> filtered = new ArrayList<>();
         for(Student s: matches){

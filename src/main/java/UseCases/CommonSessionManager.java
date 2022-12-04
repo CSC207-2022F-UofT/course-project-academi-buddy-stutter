@@ -3,14 +3,27 @@ package UseCases;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Use case operations on common sessions.
+ */
 public class CommonSessionManager extends UseCase{
 
     private int numberOfCommonSessions;
 
+    /**
+     * Initiator
+     * @param courseDatabase the course database
+     * @param userDatabase the user database
+     */
     public CommonSessionManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
         super(courseDatabase, userDatabase);
     }
 
+    /**
+     * Getting the name of the user given id
+     * @param targetUserID the id of the target
+     * @return the name of the user with the id
+     */
     public String getName(String targetUserID){
         try {
             return this.ub.getUserByID(targetUserID).getFullName();
@@ -19,6 +32,12 @@ public class CommonSessionManager extends UseCase{
         }
     }
 
+    /**
+     * Getting common session between user and target.
+     * @param selfUserID the user's id
+     * @param targetUserID the target's id
+     * @return The String of common sessions
+     */
     public String getCommonSessions(String selfUserID, String targetUserID){
         ArrayList<String> commonCourseCode = new ArrayList<>();
         StringBuilder courseString = new StringBuilder();
@@ -69,6 +88,10 @@ public class CommonSessionManager extends UseCase{
         }
     }
 
+    /**
+     * Getting the number of common sessions
+     * @return the number of common sessions.
+     */
     public int getNumberOfCommonSessions(){
         return numberOfCommonSessions;
     }

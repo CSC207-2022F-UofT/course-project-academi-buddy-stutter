@@ -5,6 +5,9 @@ import UIController.UIController;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * Implements JFrame that shows common courses between 2 registered users
+ */
 public class CommonSessionFrame extends JFrame implements ActionListener{
 
     JLabel numberOfCommonSessionLabel = new JLabel("");
@@ -17,6 +20,10 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
 
     int numberOfCommonSession;
 
+    /**
+     * constructs all UI components
+     * @param targetUserID user id of the target user we want to compare
+     */
     public CommonSessionFrame(UIController uiController, String targetUserID){
         this.uiController = uiController;
         this.targetUserID = targetUserID;
@@ -56,9 +63,9 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
     }
 
 
-
-
-
+    /**
+     * closes the JFrame
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backBTN){

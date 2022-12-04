@@ -57,7 +57,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         completedLabel.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 
         // setting up buttons
-        logoutBTN.setBounds(250, 170, 80, 20);
+        logoutBTN.setBounds(220, 170, 100, 20);
         logoutBTN.addActionListener(this);
         uploadBTN.setBounds(80, 60, 110, 20);
         uploadBTN.addActionListener(this);
@@ -71,7 +71,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         insTagBTN.addActionListener(this);
         profileBTN.setBounds(250, 20, 80, 20);
         profileBTN.addActionListener(this);
-        studentsBTN.setBounds(10, 170, 80, 20);
+        studentsBTN.setBounds(10, 170, 105, 20);
         studentsBTN.addActionListener(this);
         friendsBTN.setBounds(250, 45, 80, 20);
         friendsBTN.addActionListener(this);

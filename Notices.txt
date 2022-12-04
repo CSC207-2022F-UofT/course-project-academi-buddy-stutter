@@ -1,0 +1,33 @@
+**Top Priorities**
+- Come to decision for Topics 3 and 4 update README accordingly
+- Test Cases for things that are able to test without creating a new database. Mention which ones are not testable here
+(In Topic 5: NOT TESTABLE area, please provide reasoning)
+- Clean up code (400 errors)
+- Resolve error in code
+
+
+Topic 1: Different errors in code.
+- Warning are the ones we have to fix. These include,
+    - Easy to fix: redundancy, small class changes
+    - Required discussion: repeated/identical classes, unused elements
+    - Challenging: Class structure, data flow
+Errors In Code:
+- Interest tags seemed to have an error.
+
+Topic 2: JavaDoc
+- Should be easy, but time-consuming
+
+Topic 3: User experience
+- User logic error (Finding buddy by chance)
+
+Topic 4: Potential Solutions for Topic 3
+- Changing to sort by student courses instead of number of courses
+- Changing interest tag names to general programs
+- Displaying which courses are the same
+- Select course searching
+Any other ideas not implemented could be written on as future work
+- Chat feature
+- Recover password by sending a email to the address of their password
+- Change password (generating code and emailing it)
+
+Topic 5: NOT TESTABLE AREA (Please write down list of testcases and reasoning that they are not able to be implemented)

@@ -39,16 +39,16 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(410, 230);
+        this.setSize(450, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
 
         // places objects inside frame
         // buttons
-        backBTN.setBounds(350, 165, 50, 20);
+        backBTN.setBounds(350, 165, 70, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        profileBTN.setBounds(350, 35, 50, 20);
+        profileBTN.setBounds(350, 35, 80, 20);
         profileBTN.addActionListener(this);
         profileBTN.setFocusable(false);
         profileBTN.setEnabled(false);

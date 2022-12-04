@@ -14,6 +14,7 @@ import com.google.firebase.FirebaseOptions;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class main {
@@ -37,10 +38,12 @@ public class main {
         CourseDataManager cb = new CourseDataManager(cbc, ub);
         TagDataManager tb = new TagDataManager(tbc, ub);
 
-//        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
+        Student student = new Student("567789", "qwerty", "John Doe", "A test subject");
 //        Student student2 = new Student("23456", "qwerty", "John Doe2", "A test subject");
         UIController uiController = new UIController(null, cb, ub, tb);
         LoginFrame loginFrame = new LoginFrame(uiController);
+        //FriendListFrame friendListFrame = new FriendListFrame(uiController);
+
     }
 
 }

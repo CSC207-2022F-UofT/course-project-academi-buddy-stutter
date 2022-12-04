@@ -188,15 +188,15 @@ public class UserDataManager {
     }
 
     //    this method should be in matcher? not database! for clean architecture?
-    public ArrayList<String> getCommonSessionCode(Student self, Student target) throws IOException {
+    public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
         /**
          * get a list of common session between two users.
          */
         fi.initialize("users");
         ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
-        Student s = (Student) getUserByID(self.getUserID());
-        Student t = (Student) getUserByID(target.getUserID());
+        Student s = (Student) getUserByID(selfUserID);
+        Student t = (Student) getUserByID(targetUserID);
         ArrayList<String> selfEnrolledCourses = s.getEnrolledCourseCodes();
         ArrayList<String> targetEnrolledCourses = t.getEnrolledCourseCodes();
         for(String c: selfEnrolledCourses){

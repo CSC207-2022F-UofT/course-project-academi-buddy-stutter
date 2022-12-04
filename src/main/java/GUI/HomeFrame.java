@@ -38,7 +38,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     /**
      * Constructor Method: generates HomeFrame and positions the UI components
      * - logoutBTN: returns to LoginFrame
-     * - findStudyBuddyBTN: goes to MatchFrame
+     * - findStudyBuddyBTN: goes to CourseMatchFrame
      * - findInsBuddyBTN: goes to TagMatchFrame
      * - statusBTN: goes to LabelSelectFrame
      * - insTagBTN: goes to TagSelectFrame

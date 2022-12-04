@@ -1,6 +1,7 @@
 package GUI;
 
 import UIController.UIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * This class allows user to upload an ics calendar by clicking the "Upload" button.
  */
-public class FileUploadFrame extends JFrame implements ActionListener {
+public class CalendarUploadFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Upload Your Calendar:");
     JLabel completedLabel = new JLabel();
     JButton uploadBTN = new JButton("Upload");
@@ -27,7 +28,7 @@ public class FileUploadFrame extends JFrame implements ActionListener {
      * This constructor method implments all UI components for FileUploadFrame.
      * @param source keeps track of the status of user [registered, not registered]
      */
-    public FileUploadFrame(UIController uiController, int source){
+    public CalendarUploadFrame(UIController uiController, int source){
         this.uiController = uiController;
         this.status = source;
         // setting up title label

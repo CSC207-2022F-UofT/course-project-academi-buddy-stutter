@@ -34,7 +34,7 @@ public class UploadManager extends UseCase {
 
     public void updateDatabase(Student student) throws IOException {
         CalendarInterpreter ci = new CalendarInterpreter(this.calendarInterface);
-        ArrayList<Course> courses = ci.getCourses(ci.readCalendar("coursesCalendar.ics"));
+        ArrayList<Course> courses = ci.getCourses("coursesCalendar.ics");
         for(Course c: courses){
             this.cb.updateCourse(c);
             String courseCode = c.getCourseCode();

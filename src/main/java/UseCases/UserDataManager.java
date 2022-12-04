@@ -216,6 +216,7 @@ public class UserDataManager {
     }
 
 
+
     public boolean existByID(String ID){
         /**
          * @return whether a user exists in the database.

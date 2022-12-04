@@ -1,14 +1,22 @@
 package Entities;
 
-// Labels of status/moods/intents. We will create a list for students to choose from, and display them alongside matched results.
-//e.g. Want to collaborate, Want to discuss, Want to review together, etc.
+/**
+ * Implements labels
+ */
 public class Label {
     String name;
 
+    /**
+     * Constructs a label
+     * @param n name of label
+     */
     public Label(String n){
         this.name = n;
     }
 
+    /**
+     * @return name of a label
+     */
     public String getName() {
         return name;
     }

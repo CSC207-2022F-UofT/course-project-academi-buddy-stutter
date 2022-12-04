@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class informs the user that he/she has successfully registered an account.
+ */
+
 public class RegCmplFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel("Your Registration is Complete!");
     JButton returnBTN = new JButton("Return to Login Page");
@@ -36,12 +40,14 @@ public class RegCmplFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Takes user to LoginFrame when "Return" button is clicked.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnBTN){
             this.dispose();
             uiController.toLogin();
-
         }
     }
 }

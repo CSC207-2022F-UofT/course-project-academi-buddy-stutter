@@ -5,6 +5,9 @@ import UIController.UIController;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * This class implements ProfileFrame that allows user to view and modify personal information.
+ */
 public class ProfileFrame extends JFrame implements ActionListener, MouseListener, KeyListener {
     JLabel nameLabel = new JLabel("Name:");
     JLabel emailLabel = new JLabel("Email:");
@@ -31,6 +34,9 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     String currentEmail;
     String currentInfo;
 
+    /**
+     * This constructor method implements all UI components for ProfileFrame.
+     */
     public ProfileFrame(UIController uiController){
         this.uiController = uiController;
         // Labels
@@ -110,8 +116,10 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     }
 
 
-
-
+    /**
+     * The "Change" button is only enabled when there is actual change to the text of Email and About.
+     * User can reupload a calendar by clicking the "Reupload" button, this will take user to FileUploadFrame.
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {

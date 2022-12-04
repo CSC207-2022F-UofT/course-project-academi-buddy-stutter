@@ -38,4 +38,8 @@ public class ProfileUIControl {
         String userID = user.getUserID();
         profileManager.updateInfo(userID, info);
     }
+
+    public String getUserID() {
+        return user.getUserID();
+    }
 }

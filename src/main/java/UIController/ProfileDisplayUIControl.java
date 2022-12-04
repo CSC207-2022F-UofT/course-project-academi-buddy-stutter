@@ -16,7 +16,6 @@ public class ProfileDisplayUIControl {
     public String getEmail(String userID){
         return profileManager.getUserEmail(userID);
     }
-
     public String getInfo(String userID){
         return profileManager.getUserInfo(userID);
     }

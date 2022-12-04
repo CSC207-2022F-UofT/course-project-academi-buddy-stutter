@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class implements ProfileRegFrame that allows to enter Email and additional information.
+ */
 public class ProfileRegFrame extends JFrame implements ActionListener {
     // creating labels
     JLabel proTitleLabel = new JLabel("Profile");
@@ -22,6 +25,9 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
 
     UIController uiController;
 
+    /**
+     * This constructor method implements all UI components for ProfileRegFrame.
+     */
     public ProfileRegFrame(UIController uiController){
         this.uiController = uiController;
         // setting up labels
@@ -56,6 +62,9 @@ public class ProfileRegFrame extends JFrame implements ActionListener {
         this.setVisible(true); // set frame to visible
     }
 
+    /**
+     * Takes input from user and updates it to database.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == completeBTN){

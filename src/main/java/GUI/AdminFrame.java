@@ -1,30 +1,28 @@
 package GUI;
 
 import UIController.UIController;
-
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 
+/**
+ * This class implements a AdminFrame that only displays to Administrative Users.
+ * Administrative user can remove user by searching User ID.
+ */
 public class AdminFrame extends JFrame implements ActionListener {
     JLabel titleLabel = new JLabel();
-
     JLabel resultLabel = new JLabel();
     JButton logoutBTN = new JButton("LOG OUT");
     JButton removeUserBTN = new JButton("remove");
     JLabel enterLabel = new JLabel("Enter User ID:");
-
-
     JTextField userIDField = new JTextField();
-
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
-
     UIController uiController;
+
+    /**
+     * This constructor method implements all UI elements for the AdminFrame.
+     */
 
     public AdminFrame(UIController uiController){
         this.uiController = uiController;
@@ -55,7 +53,7 @@ public class AdminFrame extends JFrame implements ActionListener {
         this.add(enterLabel);
 
         this.setTitle("Admin Frame"); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(340, 230);
@@ -64,6 +62,11 @@ public class AdminFrame extends JFrame implements ActionListener {
         this.setVisible(true); // set frame to visible
     }
 
+    /**
+     * When user clicks on the [Remove] button, the program searches User ID and try to remove that user from database,
+     * A "Successful" message will be shown when user is removed from database.
+     * A "Failed" message will be shown when user cannot be removed from database.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == removeUserBTN){

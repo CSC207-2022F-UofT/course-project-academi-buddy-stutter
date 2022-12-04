@@ -31,6 +31,7 @@ public class HomeFrame extends JFrame implements ActionListener {
     JButton insTagBTN = new JButton("Interest Tags");
     JButton profileBTN = new JButton("Profile");
     JButton uploadBTN = new JButton("Upload Courses");
+    JButton studentsBTN = new JButton("All Students");
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
     UIController uiController;
 
@@ -68,6 +69,8 @@ public class HomeFrame extends JFrame implements ActionListener {
         insTagBTN.addActionListener(this);
         profileBTN.setBounds(250, 10, 50, 20);
         profileBTN.addActionListener(this);
+        studentsBTN.setBounds(250, 40, 80, 20);
+        studentsBTN.addActionListener(this);
 
         // adding elements to frame
         this.add(titleLabel);
@@ -78,6 +81,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         this.add(statusBTN);
         this.add(insTagBTN);
         this.add(profileBTN);
+        this.add(studentsBTN);
 
         this.setTitle("Home"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // closes the frame
@@ -104,6 +108,10 @@ public class HomeFrame extends JFrame implements ActionListener {
         else if (e.getSource() == profileBTN) {
             this.setCursor(waitCursor);
             uiController.toProfile();
+            this.setCursor(Cursor.getDefaultCursor());
+        } else if (e.getSource() == studentsBTN) {
+            this.setCursor(waitCursor);
+            uiController.toAllStudents();
             this.setCursor(Cursor.getDefaultCursor());
         }
 

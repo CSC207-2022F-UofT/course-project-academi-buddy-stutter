@@ -9,6 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * This class implements the RegisterFrame that allows user to enter:
+ * - full name
+ * - user id
+ * - password
+ * - confirm password
+ */
 public class RegisterFrame extends JFrame implements ActionListener {
     // creating labels
     JLabel regTitleLabel = new JLabel("Registration");
@@ -33,6 +40,10 @@ public class RegisterFrame extends JFrame implements ActionListener {
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     UIController uiController;
+
+    /**
+     * This method implements all UI components for RegisterFrame.
+     */
     public RegisterFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -86,6 +97,12 @@ public class RegisterFrame extends JFrame implements ActionListener {
         this.setVisible(true); // set frame to visible
     }
 
+    /**
+     * Gives user a warning when user id already exists.
+     * Gives user a warning when password is not long enough
+     * Gives user a warning when password does not contain digits
+     * Gives user a warning when password does not contain letters
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

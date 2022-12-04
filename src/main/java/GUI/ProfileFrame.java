@@ -5,6 +5,9 @@ import UIController.UIController;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * This class implements ProfileFrame that allows user to view and modify personal information.
+ */
 public class ProfileFrame extends JFrame implements ActionListener, MouseListener, KeyListener {
     JLabel nameLabel = new JLabel("Name:");
     JLabel emailLabel = new JLabel("Email:");
@@ -25,12 +28,16 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     JButton changeEmail = new JButton("Change");
     JButton changeInfo = new JButton("Change");
     JButton backBTN = new JButton("Back");
+    JButton friendsBTN = new JButton("Friends");
 
     JButton updateCourse = new JButton("Reupload");
 
     String currentEmail;
     String currentInfo;
 
+    /**
+     * This constructor method implements all UI components for ProfileFrame.
+     */
     public ProfileFrame(UIController uiController){
         this.uiController = uiController;
         // Labels
@@ -66,6 +73,9 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         backBTN.setBounds(345, 260, 80, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
+        friendsBTN.setBounds(345, 10, 80, 20);
+        friendsBTN.addActionListener(this);
+        friendsBTN.setFocusable(false);
         changeEmail.setBounds(345, 35, 80, 20);
         changeEmail.addActionListener(this);
         changeEmail.setEnabled(false);
@@ -93,6 +103,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         this.getContentPane().add(courseTextScoll);
 
         this.add(backBTN);
+        this.add(friendsBTN);
         this.add(changeEmail);
         this.add(changeInfo);
         this.add(updateCourse);
@@ -110,8 +121,10 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     }
 
 
-
-
+    /**
+     * The "Change" button is only enabled when there is actual change to the text of Email and About.
+     * User can reupload a calendar by clicking the "Reupload" button, this will take user to FileUploadFrame.
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -130,6 +143,9 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         }
         else if (e.getSource() == updateCourse) {
             uiController.toCalendarUpload();
+        }
+        else if (e.getSource() == friendsBTN) {
+            uiController.toFriendList();
         }
 
     }

@@ -130,6 +130,9 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * The "Login" button will only be enabled when the user enters text into User ID and password text fields.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         loginBTN.setEnabled(!userIDText.getText().equals("") && !new String(passwordText.getPassword()).equals(""));

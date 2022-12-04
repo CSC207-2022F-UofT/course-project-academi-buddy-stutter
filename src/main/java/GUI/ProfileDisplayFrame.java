@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class implements ProfileDisplayFrame that displays the profile of a user.
+ */
 public class ProfileDisplayFrame extends JFrame implements ActionListener {
     JLabel nameLabel = new JLabel("Name:");
     JLabel emailLabel = new JLabel("Email:");
@@ -20,12 +23,19 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
     UIController uiController;
 
     JButton closeBTN = new JButton("Close");
+    JButton addFriendBTN = new JButton("Add Friend");
 
     String userID;
 
+    /**
+     * This constructor method implements all UI components for ProfileDisplayFrame.
+     * @param userID the User ID of the user that the program is displaying, pulls user profile from database
+     */
     public ProfileDisplayFrame(UIController uiController, String userID){
         this.uiController = uiController;
         this.userID = userID;
+
+
         // Labels
         nameLabel.setBounds(10, 10, 100, 20);
         emailLabel.setBounds(10, 35, 100, 20);
@@ -41,9 +51,26 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         emailText.setText(uiController.getProfileDisplayUIControl().getEmail(userID));
         infoText.setText(uiController.getProfileDisplayUIControl().getInfo(userID));
 
+
+        addFriendBTN.setBounds(300, 30, 90, 20);
+        addFriendBTN.addActionListener(this);
+        addFriendBTN.setFocusable(false);
+
+        // Update addFriend button clickable status
+        boolean canAdd = uiController.getFriendListUIControl().isRequestSent(userID);
+        addFriendBTN.setEnabled(canAdd);
+
+//        addFriendBTN.setFocusable(false);
+//        if (uiController.getFriendListUIControl().getFriendList().contains(userID) &&
+//            uiController.getFriendListUIControl().getFriendRequestSentList().contains(userID)) {
+//            addFriendBTN.setEnabled(false);
+//        } else {
+//            addFriendBTN.setEnabled(true);
+//        }
+
         closeBTN.setBounds(330, 165, 50, 20);
         closeBTN.addActionListener(this);
-        closeBTN.setFocusable(false);
+//        closeBTN.setFocusable(false);
 
         // adding elements to frame
         this.add(nameLabel);
@@ -54,6 +81,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.add(emailText);
         this.add(infoText);
 
+        this.add(addFriendBTN);
         this.add(closeBTN);
 
 
@@ -67,14 +95,23 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-
-
-
-
+    /**
+     * When the "Add Friend" button is clicked, the program calls corresponding controllers to send friend request to
+     * the user (with userID).
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == closeBTN){
             this.dispose();
+        }
+        else if (e.getSource() == addFriendBTN) {
+//            if (!uiController.getFriendListUIControl().isRequestSent(userID)) {
+                String viewerID = uiController.getProfileUIControl().getUserID();
+                uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
+                uiController.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
+                System.out.println("Sending friend request to: " + viewerID);
+                addFriendBTN.setEnabled(false);
+//            }
         }
     }
 }

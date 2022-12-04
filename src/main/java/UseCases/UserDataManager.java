@@ -2,7 +2,6 @@ package UseCases;
 
 import Gateways.DatabaseInterface;
 import Entities.*;
-import Entities.Course;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,25 +9,37 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Use case operator for user data.
+ */
 public class UserDataManager {
 
     private DatabaseInterface fi;
 
+    /**
+     * Initializer.
+     * @param ub The database interface.
+     */
     public UserDataManager(DatabaseInterface ub){
         this.fi = ub;
         fi.initialize("users");
     }
 
-
+    /**
+     * Getting the user id list
+     * @return An ArrayList of Strings of user ids
+     */
     public ArrayList<String> getUserIDList(){
         fi.initialize("users");
         return fi.getDocumentStringList();
     }
+
+    /**
+     * add a user to the database.
+     * @param user the user that is being added to database.
+     * @return whether a user is added. If returned false, then the user already exists.
+     */
     public boolean addUser(User user){
-        /**
-         * add a user to the database.
-         * @return whether a user is added. If returned false, then the user already exists.
-         */
         fi.initialize("users");
         String userID = user.getUserID();
         fi.addEntry(userID, "account type", "user");
@@ -37,11 +48,13 @@ public class UserDataManager {
         fi.addEntry(userID, "student info", user.getUserInfo());
         return true;
     }
+
+    /**
+     * add a student user to the database.
+     * @param student the student that is being added to database.
+     * @return whether a student user is added. If returned false, then the student user already exists.
+     */
     public boolean addStudentUser(Student student) throws IOException{
-        /**
-         * add a student user to the database.
-         * @return whether a student user is added. If returned false, then the student user already exists.
-         */
         fi.initialize("users");
         String studentID = student.getUserID();
         addUser(student);
@@ -72,11 +85,14 @@ public class UserDataManager {
         return true;
     }
 
+    /**
+     * Update the courses for student.
+     * @param student The student to update the courses for.
+     */
     public void updateStudentCourses(Student student){
         String studentID = student.getUserID();
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
     }
-
 
     public boolean addAdminUser(Admin admin) throws IOException {
         /**
@@ -90,18 +106,22 @@ public class UserDataManager {
         return true;
     }
 
+    /**
+     * Removes a user from database.
+     * @param userID the id of the user to be removed.
+     * @return True if user was successfully removed, false otherwise.
+     */
     public boolean removeUser(String userID){
-        /**
-         * remove a user from database.
-         */
         fi.initialize("users");
         return fi.removeEntry(userID);
     }
 
+    /**
+     * get a user by their user id
+     * @param userID the id of the user to get
+     * @return the user of the matching id
+     */
     public User getUserByID(String userID) throws IOException{
-        /**
-         * get a user by userid.
-         */
         fi.initialize("users");
         Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
@@ -117,7 +137,8 @@ public class UserDataManager {
                 retrievedUser.setEmail(email);
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
-                List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
+                List<String> courseCodes =
+                        Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
                 ArrayList<String> courseList = new ArrayList<>();
                 courseList.addAll(courseCodes);
                 if(courseList.contains("")){
@@ -127,7 +148,8 @@ public class UserDataManager {
 
                 //
                 String labelsString = (String) userData.get("labels");
-                List<String> labels = Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
+                List<String> labels =
+                        Arrays.asList(labelsString.substring(1, labelsString.length() - 1).split(", "));
 
                 for(String l: labels) {
                     if(!labels.get(0).equals("")){
@@ -188,10 +210,14 @@ public class UserDataManager {
     }
 
     //    this method should be in matcher? not database! for clean architecture?
+
+    /**
+     * get a list of common session between two users.
+     * @param selfUserID the current user id
+     * @param targetUserID the target user id
+     * @return A ArrayList of Strings of common sessions
+     */
     public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
-        /**
-         * get a list of common session between two users.
-         */
         fi.initialize("users");
         ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
@@ -207,37 +233,52 @@ public class UserDataManager {
         return commonSessions;
     }
 
+    /**
+     * whether a user exists in the database.
+     * @return whether a user exists in the database.
+     */
     public boolean exist(User user){
-        /**
-         * @return whether a user exists in the database.
-         */
         fi.initialize("users");
         return fi.getDocumentList().contains(user.getUserID());
     }
 
-
-
+    /**
+     * whether a user exists in the database.
+     * @return whether a user exists in the database.
+     */
     public boolean existByID(String ID){
-        /**
-         * @return whether a user exists in the database.
-         */
         fi.initialize("users");
         return fi.getDocumentStringList().contains(ID);
     }
 
     // FriendList Methods
+
+    /**
+     * Updating the friend list
+     * @param student the student to update for
+     */
     public void updateFriendList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend list", student.getFriendList().toString());
 //        System.out.println(student.getFullName() + "friend list has been updated on Firebase");
     }
+
+    /**
+     * Updating the friend request list
+     * @param student the student to update for
+     */
     public void updateFriendRequestList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend request list", student.getFriendListRequest().toString());
 //        System.out.println(student.getFullName() + "friend request list has been updated on Firebase");
     }
+
+    /**
+     * Updating the friend request sent list.
+     * @param student the student to update for.
+     */
     public void updateFriendRequestsSentList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
@@ -246,6 +287,9 @@ public class UserDataManager {
     }
 
     //Helper methods
+    /**
+     * Helper method
+     */
     private ArrayList<String> toUserIdStrings(ArrayList<Student> students) {
         ArrayList<String> userIDs = new ArrayList<>();
         for(Student s: students){

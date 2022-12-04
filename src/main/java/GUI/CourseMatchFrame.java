@@ -19,9 +19,10 @@ import java.util.ArrayList;
  * This class implements MatchFrame that allows user to find study buddy through matching same courses.
  * User can select number of common sessions and desired match labels to find study buddies.
  */
+
 public class CourseMatchFrame extends JFrame implements ActionListener, ItemListener{
-    JLabel numCommonLabel = new JLabel("Enter the Number of Common Sessions:");
-    JLabel selectLabel = new JLabel("Select Label:");
+    JLabel numCommonLabel = new JLabel("Minimum Number of Common Sessions:");
+    JLabel selectLabel = new JLabel("Label:");
     JLabel matchLabel = new JLabel("Matched Students:");
     String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     JComboBox<String> numBox = new JComboBox<>(userType);
@@ -37,10 +38,10 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
-    /**
-     * This constructor method implements all UI components for MatchFrame.
-     */
     UIController uiController;
+    /**
+     * This constructor method implements all UI components for CourseMatchFrame.
+     */
     public CourseMatchFrame(UIController uiController) {
         this.uiController = uiController;
         // setting up labels:

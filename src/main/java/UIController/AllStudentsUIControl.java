@@ -18,4 +18,7 @@ public class AllStudentsUIControl {
     public ArrayList<String> getAllStudents() {
         return allStudentsManager.getAllStudents();
     }
+    public ArrayList<String> getAdminIDs() {
+        return allStudentsManager.getAdminIDs();
+    }
 }

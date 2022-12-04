@@ -3,6 +3,7 @@ package UseCases;
 import Gateways.DatabaseInterface;
 import Entities.*;
 import Entities.Course;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,17 @@ public class UserDataManager {
         fi.initialize("users");
     }
 
+    public ArrayList<String> getAdminIDs() {
+        ArrayList<String> userIDs = this.getUserIDList();
+        ArrayList<String> adminIDs = new ArrayList<>();
+        for (String id: userIDs) {
+            Map<String, Object> userData = fi.getEntry(id);
+            String type = (String) userData.get("account type");
+            if (type.equals("admin")) {
+                adminIDs.add(id);
+            }
+        } return adminIDs;
+    }
 
     public ArrayList<String> getUserIDList(){
         fi.initialize("users");

@@ -6,6 +6,8 @@ import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
+import java.util.ArrayList;
+
 public class AdminUIControl {
     private User self;
     private AdminActionsManager adminActionsManager;

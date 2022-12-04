@@ -52,10 +52,6 @@ public class Student extends User{
      */
     public void setEmail(String email){this.email = email;}
 
-    public void setFriend_list(ArrayList<String> friend_list_to_add) {
-        this.friendList = friend_list_to_add;
-    }
-
     /**
      * @return user's Email
      */
@@ -173,7 +169,7 @@ public class Student extends User{
     }
 
     /**
-     * Accepted friend request
+     * Accepted friend request. Remove userID friend request sent list
      * @param userID a user id
      */
     public void acceptedRequest(String userID) {

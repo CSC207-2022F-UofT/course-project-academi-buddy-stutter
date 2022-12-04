@@ -8,7 +8,7 @@ with. The user will be presented with other profiles to access. The exact featur
 on.
 
 ## Program Operation Steps/Features
-![image](images/Program_Runthrough.png)
+![image](images/Project_Runthrough.png)
 ![image](images/Other_Features_1.png)
 ![image](images/Other_Features_2.png)
 
@@ -62,7 +62,7 @@ using buttons, to navigate to:
   - (**Feature 6.4** _HOME_ screen) "Find Study Buddy" button navigates to _FIND STUDY BUDDY_ screen (**Feature 10**).
   - (**Feature 6.5** _HOME_ screen) "Find Interest Buddy" button navigates to _FIND INTEREST BUDDY_ screen 
   (**Feature 11**).
-  - (**Feature 6.6** _HOME_ screen) "All Users" button navigates to _ALL USERS_ screen (**Feature 14**). 
+  - (**Feature 6.6** _HOME_ screen) "All Students" button navigates to _ALL STUDENTS_ screen (**Feature 14**). 
   - (**Feature 6.7** _HOME_ screen) "Friends" button navigates to _FRIENDS_ screen (**Feature 15**).
   - (**Feature 6.8** _HOME_ screen) "LOG OUT" button navigates to "Login" screen (**Feature 1**). 
 
@@ -126,7 +126,7 @@ user.
   (**Feature 10**)
 
 
-- **Feature 14** (_ALL USERS_ screen): Displays all users in the program. This screen is not modifiable directly.
+- **Feature 14** (_ALL STUDENTS_ screen): Displays all students in the program. This screen is not modifiable directly.
 
 
 - **Feature 15** (_FRIENDS_ screen): This screen allows the user to manage their friends list.

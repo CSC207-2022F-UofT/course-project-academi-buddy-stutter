@@ -76,13 +76,41 @@ public class Tests {
 
         ArrayList<String> STUDENTA_ENROLLED_COURSES = new ArrayList<String>() {
             {
-                add("111");
-                add("222");
-                add("333");
+                add("999");
+                add("888");
+                add("777");
             }
         };
 
+        COURSEA.addStudent(STUDENTA);
+        COURSEB.addStudent(STUDENTA);
+        COURSEC.addStudent(STUDENTA);
+
         STUDENTA.setEnrolledCourses(STUDENTA_ENROLLED_COURSES);
+
+        ArrayList<String> STUDENTB_ENROLLED_COURSES = new ArrayList<String>() {
+            {
+                add("999");
+                add("777");
+            }
+        };
+
+        COURSEA.addStudent(STUDENTB);
+        COURSEC.addStudent(STUDENTA);
+
+        STUDENTB.setEnrolledCourses(STUDENTA_ENROLLED_COURSES);
+
+        ArrayList<String> STUDENTC_ENROLLED_COURSES = new ArrayList<String>() {
+            {
+                add("888");
+                add("666");
+            }
+        };
+
+        COURSEB.addStudent(STUDENTC);
+        COURSED.addStudent(STUDENTC);
+
+        STUDENTC.setEnrolledCourses(STUDENTA_ENROLLED_COURSES);
         return managers;
     }
 }

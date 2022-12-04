@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * Implements JFrame that displays all registered users
+ */
 public class AllStudentsFrame extends JFrame implements ActionListener, ItemListener {
 
     UIController uiController;
@@ -21,6 +24,9 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     JTable studentTable;
     JScrollPane studentScroll = new JScrollPane(studentTable);
 
+    /**
+     * Constructs all UI components
+     */
     public AllStudentsFrame(UIController uiController) {
         this.uiController = uiController;
         this.setTitle("All Students");
@@ -94,6 +100,9 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
 
     }
 
+    /**
+     * refreshes student table
+     */
     public void refreshStudentsTable() {
         studentModel.setRowCount(0);
         studentList = uiController.getAllStudentsUIControl().getAllStudents();
@@ -101,6 +110,12 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
         addStudentsToList(studentList, uiController, studentModel);
     }
 
+    /**
+     * appends student to table
+     * @param studentList contains a list of registered user
+     * @param uiController an instance of UIController
+     * @param studentModel an instance of DefaultTableModel
+     */
     static void addStudentsToList(ArrayList<String> studentList, UIController uiController, DefaultTableModel studentModel) {
         System.out.println(studentList.toString());
         String userID = uiController.getProfileUIControl().getUserID();

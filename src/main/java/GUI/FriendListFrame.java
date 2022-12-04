@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 import UIController.UIController;
 
+/**
+ * Implements JFrame that shows accepted friends and pending accepting friends to user
+ */
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
     UIController uiController;
     JLabel friendLabel = new JLabel("Friend List");
@@ -36,7 +39,9 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     JScrollPane requestsScroll = new JScrollPane(friendRequestTable);
 
 
-
+    /**
+     * implements all UI components
+     */
     public FriendListFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -174,29 +179,22 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 //        profileBTN.setEnabled(false);
     }
 
+    /**
+     * refreshes friend list table
+     */
     public void refreshFriendListTable() {
-        // helper method that refresh friend list table data
-
-        // get updated friend list data from firebase
-//        if (friendListTable != null) {
-//            friendListTable.removeRowSelectionInterval(0, friendListTable.getRowCount()-1);
-//        }
         friendModel.setRowCount(0);
         friendList = uiController.getFriendListUIControl().getFriendList();
 
         AllStudentsFrame.addStudentsToList(friendList, (UIController) uiController, friendModel);
     }
 
+    /**
+     * Refreshes friend request list table
+     */
     private void refreshFriendRequestListTable() {
-        // helper method that refresh friendrequestlist table data
-
-        // get updated friend request list from firebase
-//        if (friendRequestTable != null) {
-//            friendRequestTable.removeRowSelectionInterval(0, friendRequestTable.getRowCount()-1);
-//        }
         requestsModel.setRowCount(0);
         friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
-
 
         for (String friendID : friendRequestList) {
             friendID = friendID.trim().strip();
@@ -209,10 +207,13 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             requestsModel.addRow(row);
         }
     }
-    public String[] convertToArray(ArrayList<Student> students) {
-        // Convert accepted student arraylist to string array with only student full name
-        // then return student name array
 
+    /**
+     * Convert accepted student arraylist to string array with only student full name
+     * @param students a list of Student objects
+     * @return student name array
+     */
+    public String[] convertToArray(ArrayList<Student> students) {
         String[] stringArray = new String[students.size()];
         ArrayList<String> temp = new ArrayList<>();
         // convert ArrayList to String Array for JList

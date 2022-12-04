@@ -120,7 +120,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 // Return value of a table where mouse is clicked
-                // Accept incoming friend request and delete accepted row
+                // Approve incoming friend request and delete accepted row
                 int row = friendRequestTable.rowAtPoint(e.getPoint());
                 int col = friendRequestTable.columnAtPoint(e.getPoint());
                 String selectedData = "";
@@ -142,7 +142,6 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                     refreshFriendListTable();
                     refreshFriendRequestListTable();
 
-//                    requestsModel.removeRow(row);
                 } else {
                     String friendID = (String) friendRequestTable.getValueAt(row, 2);
                     friendID = friendID.trim().strip();
@@ -150,7 +149,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                 }
             }
         });
-//
+
         friendsScroll.setViewportView(friendListTable);
         requestsScroll.setViewportView(friendRequestTable);
         friendsScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -163,8 +162,6 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         this.add(friendRequestLabel);
         this.getContentPane().add(friendsScroll, BorderLayout.CENTER);
         this.getContentPane().add(requestsScroll, BorderLayout.CENTER);
-//        this.add(friendListTable);
-//        this.add(friendRequestTable);
         this.setTitle("Friends");
         this.setVisible(true); // set frame to visible
     }
@@ -173,10 +170,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-//        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
-//        matchedStu = uiController.getTagMatchUIControl().getNameList();
-//        matchedList.setModel(matchedStu);
-//        profileBTN.setEnabled(false);
+
     }
 
     /**

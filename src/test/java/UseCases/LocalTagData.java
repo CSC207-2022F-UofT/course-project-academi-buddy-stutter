@@ -21,6 +21,11 @@ public class LocalTagData implements TagDataManager{
         allTags.put("Beer", new HashMap<>());
         allTags.put("Cat", new HashMap<>());
         allTags.put("Music", new HashMap<>());
+        allTags.put("Outdoors", new HashMap<>());
+        allTags.put("Books", new HashMap<>());
+        allTags.put("Photography", new HashMap<>());
+        allTags.put("Video Games", new HashMap<>());
+        allTags.put("Movies", new HashMap<>());
     }
 
     @Override

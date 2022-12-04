@@ -2,9 +2,9 @@ package UIController;
 
 import Entities.User;
 import Entities.Student;
-import UseCases.CloudCourseData;
+import UseCases.CourseDataManager;
 import UseCases.CourseMatchManager;
-import UseCases.CloudUserData;
+import UseCases.UserDataManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class CourseMatchUIControl {
 
     public Student self;
     private ArrayList<Student> matches = new ArrayList();
-    public CourseMatchUIControl(User self, CloudCourseData courseDatabase, CloudUserData userDatabase){
+    public CourseMatchUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
         this.self = (Student)self;
         this.courseMatchManager = new CourseMatchManager(courseDatabase, userDatabase);
     }

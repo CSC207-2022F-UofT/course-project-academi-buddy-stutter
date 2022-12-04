@@ -21,9 +21,9 @@ public class UIController{
     public static int FROM_PROFILE = 1;
 
     private User self;
-    private CloudCourseData courseManager;
-    private CloudUserData userManager;
-    private CloudTagData tagManager;
+    private CourseDataManager courseManager;
+    private UserDataManager userManager;
+    private TagDataManager tagManager;
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
@@ -130,7 +130,7 @@ public class UIController{
      * @param userManager instance of userManager class
      * @param tagManager instance of tagManager class
      */
-    public UIController(User user, CloudCourseData courseManager, CloudUserData userManager, CloudTagData tagManager){
+    public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.self = user;
         this.courseManager = courseManager;
         this.userManager = userManager;

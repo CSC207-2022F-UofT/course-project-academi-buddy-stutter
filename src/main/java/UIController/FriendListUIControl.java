@@ -1,9 +1,9 @@
 package UIController;
 
 import Entities.User;
-import UseCases.CloudCourseData;
+import UseCases.CourseDataManager;
 import UseCases.FriendListManager;
-import UseCases.CloudUserData;
+import UseCases.UserDataManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class FriendListUIControl {
     private FriendListManager friendListManager;
     private User user;
-    public FriendListUIControl(User user, CloudCourseData courseManager, CloudUserData userManager) {
+    public FriendListUIControl(User user, CourseDataManager courseManager, UserDataManager userManager) {
         this.friendListManager = new FriendListManager(courseManager, userManager);
         this.user = user;
     }

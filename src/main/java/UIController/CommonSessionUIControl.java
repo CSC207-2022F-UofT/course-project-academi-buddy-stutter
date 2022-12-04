@@ -2,8 +2,8 @@ package UIController;
 
 import Entities.User;
 import UseCases.CommonSessionManager;
-import UseCases.CloudCourseData;
-import UseCases.CloudUserData;
+import UseCases.CourseDataManager;
+import UseCases.UserDataManager;
 
 /**
  * Implements CommonSessionUIControl for CommonSessionFrame
@@ -18,7 +18,7 @@ public class CommonSessionUIControl {
      * @param courseDataManager an instance of CourseDataManager
      * @param userDataManager an instance of UserDataManager
      */
-    public CommonSessionUIControl(User self, CloudCourseData courseDataManager, CloudUserData userDataManager){
+    public CommonSessionUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager){
         this.self = self;
         this.commonSessionManager = new CommonSessionManager(courseDataManager, userDataManager);
     }

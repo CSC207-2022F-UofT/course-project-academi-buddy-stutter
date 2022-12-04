@@ -1,9 +1,9 @@
 package UIController;
 
 import Entities.User;
-import UseCases.CloudCourseData;
+import UseCases.CourseDataManager;
 import UseCases.ProfileManager;
-import UseCases.CloudUserData;
+import UseCases.UserDataManager;
 
 /**
  * Implements ProfileUIControl for ProfileFrame
@@ -18,7 +18,7 @@ public class ProfileUIControl {
      * @param courseDataManager an instance of CourseDataManager
      * @param userDataManager an instance of UserDataManager
      */
-    public ProfileUIControl(User user, CloudCourseData courseDataManager, CloudUserData userDataManager){
+    public ProfileUIControl(User user, CourseDataManager courseDataManager, UserDataManager userDataManager){
         this.user = user;
         this.profileManager = new ProfileManager(courseDataManager, userDataManager);
     }

@@ -1,8 +1,8 @@
 package UIController;
 
-import UseCases.CloudCourseData;
+import UseCases.CourseDataManager;
 import UseCases.ProfileManager;
-import UseCases.CloudUserData;
+import UseCases.UserDataManager;
 
 /**
  * Implements ProfileDisplayUIControl for ProfileDisplayFrame
@@ -15,7 +15,7 @@ public class ProfileDisplayUIControl {
      * @param courseDataManager an instance of CourseDataManager
      * @param userDataManager an instance of UserDataManager
      */
-    public ProfileDisplayUIControl(CloudCourseData courseDataManager, CloudUserData userDataManager){
+    public ProfileDisplayUIControl(CourseDataManager courseDataManager, UserDataManager userDataManager){
         this.profileManager = new ProfileManager(courseDataManager, userDataManager);
     }
 

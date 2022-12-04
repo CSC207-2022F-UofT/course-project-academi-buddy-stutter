@@ -2,9 +2,9 @@ package UIController;
 
 import Entities.Student;
 import Entities.User;
-import UseCases.CloudCourseData;
+import UseCases.CourseDataManager;
 import UseCases.LabelSelectManager;
-import UseCases.CloudUserData;
+import UseCases.UserDataManager;
 
 /**
  * Implements LabelSelectUIControl
@@ -19,7 +19,7 @@ public class LabelSelectUIControl {
      * @param courseDataManager an instance of CourseDataManager
      * @param userDataManager an instance of UserDataManager
      */
-    public LabelSelectUIControl(User self, CloudCourseData courseDataManager, CloudUserData userDataManager){
+    public LabelSelectUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager){
         this.self = self;
         this.labelSelectManager = new LabelSelectManager(courseDataManager, userDataManager);
     }

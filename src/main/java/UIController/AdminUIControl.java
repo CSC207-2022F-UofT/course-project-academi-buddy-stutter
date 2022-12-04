@@ -6,8 +6,9 @@ import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
-import java.util.ArrayList;
-
+/**
+ * Implements AdminUIControl for AdminFrame
+ */
 public class AdminUIControl {
     private User self;
     private AdminActionsManager adminActionsManager;
@@ -19,7 +20,7 @@ public class AdminUIControl {
      * @param userDataManager instance of UserDataManager
      * @param tagDataManager instance of TagDataManager
      */
-    public AdminUIControl(User self, CloudCourseData courseDataManager, CloudUserData userDataManager, CloudTagData tagDataManager){
+    public AdminUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
         this.self = self;
         this.adminActionsManager = new AdminActionsManager(courseDataManager, userDataManager, tagDataManager);
 

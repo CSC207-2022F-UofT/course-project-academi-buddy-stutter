@@ -1,7 +1,7 @@
 package UIController;
 
-import UseCases.CloudCourseData;
-import UseCases.CloudUserData;
+import UseCases.CourseDataManager;
+import UseCases.UserDataManager;
 import UseCases.RegisterManager;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class RegisterUIControl {
      * @param courseDatabase an instance of CourseDataManager
      * @param userDatabase an instance of UserDataManager
      */
-    public RegisterUIControl(CloudCourseData courseDatabase, CloudUserData userDatabase) {
+    public RegisterUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase) {
         this.registerManager = new RegisterManager(courseDatabase, userDatabase);
     }
 

@@ -1,11 +1,8 @@
 package UIController;
 
-import UseCases.CloudCourseData;
-import UseCases.CloudTagData;
-import UseCases.CloudUserData;
+import UseCases.*;
 import Entities.Student;
 import Entities.User;
-import UseCases.TagSelectManager;
 
 /**
  * Implements TagSelectUIControl for TagSelectFrame
@@ -21,7 +18,7 @@ public class TagSelectUIControl {
      * @param userManager an instance of UserDataManager
      * @param tagManager an instance of TagDataManager
      */
-    public TagSelectUIControl(User self, CloudCourseData courseManager, CloudUserData userManager, CloudTagData tagManager){
+    public TagSelectUIControl(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
         this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
         this.self = self;
     }

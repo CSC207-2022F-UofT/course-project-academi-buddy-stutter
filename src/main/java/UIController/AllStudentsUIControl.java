@@ -2,8 +2,8 @@ package UIController;
 
 import Entities.User;
 import UseCases.AllStudentsManager;
-import UseCases.CloudCourseData;
-import UseCases.CloudUserData;
+import UseCases.CourseDataManager;
+import UseCases.UserDataManager;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class AllStudentsUIControl {
      * @param courseManager an instance of CourseDataManager
      * @param userManager an instance of UserDataManager
      */
-    public AllStudentsUIControl(User user, CloudCourseData courseManager, CloudUserData userManager) {
+    public AllStudentsUIControl(User user, CourseDataManager courseManager, UserDataManager userManager) {
         this.allStudentsManager = new AllStudentsManager(courseManager, userManager);
         this.user = user;
     }

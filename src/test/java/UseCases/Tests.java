@@ -74,6 +74,13 @@ public class Tests {
         managers.add(cb);
         managers.add(tb);
 
+        cb.addCourse(COURSEA);
+        cb.addCourse(COURSEB);
+        cb.addCourse(COURSEC);
+        cb.addCourse(COURSED);
+
+        System.out.println(cb.getCourseCodeList());
+
 
         ub.addStudentUser(STUDENTA);
         ub.addStudentUser(STUDENTB);

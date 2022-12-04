@@ -25,7 +25,7 @@ public class CourseDataManager {
         fi.initialize("courses");
         return fi.getDocumentStringList();
     }
-    private void addCourse(Course course){
+    public void addCourse(Course course){
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
          */

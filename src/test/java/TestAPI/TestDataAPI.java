@@ -33,21 +33,24 @@ public class TestDataAPI implements DatabaseInterface {
 
         Map<String, Object> currentData = getEntry(documentName);
 
+
         if(currentData == null){
             currentData = new HashMap<>();
+            currentData.put(key, value);
         }
         else {
             if(currentData.containsKey(key)){
+                documents.remove(new TestQueryDocumentSnapshot(documentName, (HashMap<String, ?>) currentData));
                 currentData.put(key, value);
             }
         }
-        currentData.put(key, value);
+        documents.add(new TestQueryDocumentSnapshot(documentName, (HashMap<String, ?>) currentData));
+
         return true;
     }
 
     @Override
     public Map<String, Object> getEntry(String documentName) {
-
         for(TestQueryDocumentSnapshot t: this.documents){
             if(t.getDocumentName().equals(documentName)){
                 return (Map<String, Object>) t.getData();

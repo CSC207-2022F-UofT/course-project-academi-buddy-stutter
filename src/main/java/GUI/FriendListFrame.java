@@ -14,12 +14,16 @@ import java.util.ArrayList;
 
 import UIController.UIController;
 
+/**
+ * This class implements FriendListFrame that allows user to view and accept friend list and requests.
+ */
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
     UIController uiController;
     JLabel friendLabel = new JLabel("Friend List");
     JLabel friendRequestLabel = new JLabel("Friend Requests");
     String[] requestColumnNames = {"Full Name", "Requests", "userID"};
     DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
+        // set all cell non-editable
         @Override
         public boolean isCellEditable(int row, int column) {return false;}
     };
@@ -29,14 +33,16 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     JTable friendRequestTable;
     String[] friendColumnNames = {"Full Name", "userID"};
     DefaultTableModel friendModel = new DefaultTableModel(0, 2) {
+        // set all cell non-editable
         @Override
         public boolean isCellEditable(int row, int column) {return false;}
     };
     JScrollPane friendsScroll = new JScrollPane(friendListTable);
     JScrollPane requestsScroll = new JScrollPane(friendRequestTable);
 
-
-
+    /**
+     * This constructor method implements all UI components for FriendListFrame.
+     */
     public FriendListFrame(UIController uiController){
         this.uiController = uiController;
 
@@ -47,7 +53,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         this.setSize(410, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
-        // places objects inside frame
+        // refresh both list to get latest data from firebase
         refreshFriendListTable();
         refreshFriendRequestListTable();
 
@@ -78,6 +84,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         friendListTable.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
+                // get clicked username and userId then
                 // go to friend's profile display page when clicked
                 int row = friendListTable.rowAtPoint(e.getPoint());
                 int col = friendListTable.columnAtPoint(e.getPoint());
@@ -95,7 +102,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             }
         });
 
-        //friend request table
+        //create friend request table
         friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
 
         requestsModel.setColumnIdentifiers(requestColumnNames);
@@ -132,12 +139,11 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                     String userID = uiController.getFriendListUIControl().getUserId();
                     userID = userID.trim().strip();
 
+                    // updates request for both viewer and friend
                     uiController.getFriendListUIControl().acceptFriendRequest(userID, friendID);
                     uiController.getFriendListUIControl().acceptedRequest(friendID, userID);
                     refreshFriendListTable();
                     refreshFriendRequestListTable();
-
-//                    requestsModel.removeRow(row);
                 } else {
                     String friendID = (String) friendRequestTable.getValueAt(row, 2);
                     friendID = friendID.trim().strip();
@@ -145,7 +151,8 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
                 }
             }
         });
-//
+
+        // set scroll pane
         friendsScroll.setViewportView(friendListTable);
         requestsScroll.setViewportView(friendRequestTable);
         friendsScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -158,9 +165,6 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         this.add(friendRequestLabel);
         this.getContentPane().add(friendsScroll, BorderLayout.CENTER);
         this.getContentPane().add(requestsScroll, BorderLayout.CENTER);
-//        this.add(friendListTable);
-//        this.add(friendRequestTable);
-        this.setTitle("Friends");
         this.setVisible(true); // set frame to visible
     }
 
@@ -168,19 +172,9 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-//        uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
-//        matchedStu = uiController.getTagMatchUIControl().getNameList();
-//        matchedList.setModel(matchedStu);
-//        profileBTN.setEnabled(false);
     }
 
     public void refreshFriendListTable() {
-        // helper method that refresh friend list table data
-
-        // get updated friend list data from firebase
-//        if (friendListTable != null) {
-//            friendListTable.removeRowSelectionInterval(0, friendListTable.getRowCount()-1);
-//        }
         friendModel.setRowCount(0);
         friendList = uiController.getFriendListUIControl().getFriendList();
 
@@ -188,16 +182,10 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     }
 
     private void refreshFriendRequestListTable() {
-        // helper method that refresh friendrequestlist table data
-
-        // get updated friend request list from firebase
-//        if (friendRequestTable != null) {
-//            friendRequestTable.removeRowSelectionInterval(0, friendRequestTable.getRowCount()-1);
-//        }
         requestsModel.setRowCount(0);
         friendRequestList = uiController.getFriendListUIControl().getFriendRequestList();
 
-
+        // add each friend request to the table
         for (String friendID : friendRequestList) {
             friendID = friendID.trim().strip();
             Object[] row = new Object[3];
@@ -208,18 +196,5 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             row = stringRow.toArray(row);
             requestsModel.addRow(row);
         }
-    }
-    public String[] convertToArray(ArrayList<Student> students) {
-        // Convert accepted student arraylist to string array with only student full name
-        // then return student name array
-
-        String[] stringArray = new String[students.size()];
-        ArrayList<String> temp = new ArrayList<>();
-        // convert ArrayList to String Array for JList
-        for (Student friend: students) {
-            temp.add(friend.getFullName());
-        }
-        stringArray = temp.toArray(stringArray);
-        return stringArray;
     }
 }

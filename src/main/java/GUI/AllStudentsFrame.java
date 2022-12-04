@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * This class implements AllStudentsFrame that allows user to view all list of student and their profile.
+ */
 public class AllStudentsFrame extends JFrame implements ActionListener, ItemListener {
 
     UIController uiController;
@@ -21,6 +24,9 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     JTable studentTable;
     JScrollPane studentScroll = new JScrollPane(studentTable);
 
+    /**
+     * This constructor method implements all UI components for AllStudentsFrame.
+     */
     public AllStudentsFrame(UIController uiController) {
         this.uiController = uiController;
         this.setTitle("All Students");
@@ -48,7 +54,6 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
 
         //Position Table
         studentTable.setBounds(100,30,150,200);
-//        studentTable.getColumnModel().getColumn(0).setPreferredWidth(100);
 
         // Hide userID column
         studentTable.getColumnModel().getColumn(1).setMinWidth(0);
@@ -56,13 +61,16 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
         studentTable.getColumnModel().getColumn(1).setWidth(0);
 
         studentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * This method open up other student's profile display page when clicked on the name
+             * @param e the event to be processed
+             */
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 // go to friend's profile display page when clicked
                 int row = studentTable.rowAtPoint(e.getPoint());
                 int col = studentTable.columnAtPoint(e.getPoint());
                 String selectedData = "";
-                System.out.println(studentModel.getRowCount());
                 if (studentModel.getRowCount() > 0) {
                     selectedData = (String) studentTable.getValueAt(row, col);
                 }

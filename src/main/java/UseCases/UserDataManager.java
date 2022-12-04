@@ -227,30 +227,27 @@ public class UserDataManager {
 
     // FriendList Methods
     public void updateFriendList(Student student) {
+        /**
+         * update user's friend list
+         */
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend list", student.getFriendList().toString());
-//        System.out.println(student.getFullName() + "friend list has been updated on Firebase");
     }
     public void updateFriendRequestList(Student student) {
+        /**
+         * update user's friend request list
+         */
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend request list", student.getFriendListRequest().toString());
-//        System.out.println(student.getFullName() + "friend request list has been updated on Firebase");
     }
     public void updateFriendRequestsSentList(Student student) {
+        /**
+         * update user's friend request sent list
+         */
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend request sent list", student.getFriendRequestSentList().toString());
-//        System.out.println(student.getFullName() + "friend request sent list has been updated on Firebase");
-    }
-
-    //Helper methods
-    private ArrayList<String> toUserIdStrings(ArrayList<Student> students) {
-        ArrayList<String> userIDs = new ArrayList<>();
-        for(Student s: students){
-            userIDs.add(s.getUserID());
-        }
-        return userIDs;
     }
 }

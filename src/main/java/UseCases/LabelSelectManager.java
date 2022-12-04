@@ -1,13 +1,12 @@
 package UseCases;
 
-import Entities.InterestTag;
 import Entities.Label;
 import Entities.Student;
 
 import java.io.IOException;
 
 public class LabelSelectManager extends UseCase{
-    public LabelSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
+    public LabelSelectManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
         super(courseDatabase, userDatabase);
     }
 

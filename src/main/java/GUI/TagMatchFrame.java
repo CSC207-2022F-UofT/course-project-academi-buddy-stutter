@@ -16,7 +16,7 @@ import UIController.UIController;
  */
 public class TagMatchFrame extends JFrame implements ActionListener, ItemListener {
     JLabel listLabel = new JLabel("Matched Students:");
-    JLabel tagSelectLabel = new JLabel("Select Tag:");
+    JLabel tagSelectLabel = new JLabel("Select TagDataManager:");
     JButton backBTN = new JButton("Back");
 
     JButton profileBTN = new JButton("Profile");
@@ -35,7 +35,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     public TagMatchFrame(UIController uiController){
         this.uiController = uiController;
 
-        this.setTitle("Match by Tag"); // sets frame's title
+        this.setTitle("Match by TagDataManager"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

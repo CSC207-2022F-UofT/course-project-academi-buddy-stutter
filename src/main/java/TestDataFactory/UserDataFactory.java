@@ -3,15 +3,15 @@ package TestDataFactory;
 import Entities.InterestTag;
 import Entities.Label;
 import Entities.Student;
-import UseCases.CourseDataManager;
-import UseCases.TagDataManager;
-import UseCases.UserDataManager;
+import UseCases.CourseDataCloud;
+import UseCases.TagDataCloud;
+import UseCases.UserDataCloud;
 
 import java.io.IOException;
 import java.util.List;
 
 public class UserDataFactory extends DataFactory{
-    public UserDataFactory(CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager) {
+    public UserDataFactory(CourseDataCloud courseDataManager, UserDataCloud userDataManager, TagDataCloud tagDataManager) {
         super(courseDataManager, userDataManager, tagDataManager);
     }
     public Student createStudent(String userID, String password, String fullName, String info, String email, List<InterestTag> tags, List<Label> labels) throws IOException {

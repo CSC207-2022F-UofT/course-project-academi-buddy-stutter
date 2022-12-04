@@ -1,14 +1,9 @@
 package UIController;
 
-import Entities.Student;
 import Entities.User;
-import GUI.CommonSessionFrame;
 import UseCases.CommonSessionManager;
-import UseCases.CourseDataManager;
-import UseCases.UserDataManager;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import UseCases.CourseDataCloud;
+import UseCases.UserDataCloud;
 
 public class CommonSessionUIControl {
 
@@ -17,7 +12,7 @@ public class CommonSessionUIControl {
 
     private User self;
 
-    public CommonSessionUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager){
+    public CommonSessionUIControl(User self, CourseDataCloud courseDataManager, UserDataCloud userDataManager){
         this.self = self;
         this.commonSessionManager = new CommonSessionManager(courseDataManager, userDataManager);
     }

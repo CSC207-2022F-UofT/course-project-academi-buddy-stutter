@@ -2,7 +2,6 @@ package UseCases;
 
 import Entities.Course;
 import Entities.Student;
-import TestAPI.TestDataAPI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,12 +62,10 @@ public class Tests {
 
 
     protected ArrayList<Object> initializeStaticDatabase() throws IOException {
-        TestDataAPI cbc = new TestDataAPI();
-        TestDataAPI ubc = new TestDataAPI();
-        TestDataAPI tbc = new TestDataAPI();
-        UserDataManager ub = new UserDataManager(ubc);
-        CourseDataManager cb = new CourseDataManager(cbc, ub);
-        TagDataManager tb = new TagDataManager(tbc, ub);
+
+        UserDataLocal ub = new UserDataLocal();
+        CourseDataLocal cb = new CourseDataLocal(ub);
+        TagDataLocal tb = new TagDataLocal(ub);
         ArrayList<Object> managers = new ArrayList<>();
         managers.add(ub);
         managers.add(cb);
@@ -79,13 +76,9 @@ public class Tests {
         cb.addCourse(COURSEC);
         cb.addCourse(COURSED);
 
-        System.out.println(cb.getCourseCodeList());
-
-
         ub.addStudentUser(STUDENTA);
         ub.addStudentUser(STUDENTB);
         ub.addStudentUser(STUDENTC);
-
         cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTA);
         cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTB);
         cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTC);

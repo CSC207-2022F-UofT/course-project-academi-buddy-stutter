@@ -2,11 +2,11 @@ package UseCases;
 
 public class UseCase {
 
-    protected CourseDataManager cb;
-    protected UserDataManager ub;
+    protected CourseDataCloud cb;
+    protected UserDataCloud ub;
 
 
-    public UseCase(CourseDataManager courseDatabase, UserDataManager userDatabase){
+    public UseCase(CourseDataCloud courseDatabase, UserDataCloud userDatabase){
         this.cb = courseDatabase;
         this.ub = userDatabase;
     }

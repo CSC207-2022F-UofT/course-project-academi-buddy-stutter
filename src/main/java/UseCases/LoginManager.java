@@ -9,7 +9,7 @@ public class LoginManager extends UseCase{
 
     User activeUser = null;
 
-    public LoginManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
+    public LoginManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase){
         super(courseDatabase, userDatabase);
     }
 

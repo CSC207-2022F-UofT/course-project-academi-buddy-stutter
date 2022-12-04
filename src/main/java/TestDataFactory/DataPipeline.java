@@ -5,9 +5,9 @@ import Entities.InterestTag;
 import Entities.Label;
 import Entities.Student;
 import External.FirebaseAPI;
-import UseCases.CourseDataManager;
-import UseCases.TagDataManager;
-import UseCases.UserDataManager;
+import UseCases.CourseDataCloud;
+import UseCases.TagDataCloud;
+import UseCases.UserDataCloud;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -33,9 +33,9 @@ public class DataPipeline {
         FirebaseAPI cbc = new FirebaseAPI();
         FirebaseAPI ubc = new FirebaseAPI();
         FirebaseAPI tbc = new FirebaseAPI();
-        UserDataManager ub = new UserDataManager(ubc);
-        CourseDataManager cb = new CourseDataManager(cbc, ub);
-        TagDataManager tb = new TagDataManager(tbc, ub);
+        UserDataCloud ub = new UserDataCloud(ubc);
+        CourseDataCloud cb = new CourseDataCloud(cbc, ub);
+        TagDataCloud tb = new TagDataCloud(tbc, ub);
 
         String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
         String[] labelType = {"Want to Meet", "Want to Collaborate", "Want to Discuss"};

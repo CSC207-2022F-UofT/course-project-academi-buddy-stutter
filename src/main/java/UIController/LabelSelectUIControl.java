@@ -2,15 +2,15 @@ package UIController;
 
 import Entities.Student;
 import Entities.User;
-import UseCases.CourseDataManager;
+import UseCases.CourseDataCloud;
 import UseCases.LabelSelectManager;
-import UseCases.UserDataManager;
+import UseCases.UserDataCloud;
 
 public class LabelSelectUIControl {
     private User self;
     private LabelSelectManager labelSelectManager;
 
-    public LabelSelectUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager){
+    public LabelSelectUIControl(User self, CourseDataCloud courseDataManager, UserDataCloud userDataManager){
         this.self = self;
         this.labelSelectManager = new LabelSelectManager(courseDataManager, userDataManager);
     }

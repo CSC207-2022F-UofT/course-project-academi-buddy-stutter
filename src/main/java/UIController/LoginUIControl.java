@@ -1,8 +1,8 @@
 package UIController;
 
-import UseCases.CourseDataManager;
+import UseCases.CourseDataCloud;
 import UseCases.LoginManager;
-import UseCases.UserDataManager;
+import UseCases.UserDataCloud;
 import Entities.User;
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class LoginUIControl{
 
     private LoginManager loginManager;
     public User self;
-    public LoginUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase){
+    public LoginUIControl(CourseDataCloud courseDatabase, UserDataCloud userDatabase){
 
         this.loginManager = new LoginManager(courseDatabase, userDatabase);
     }

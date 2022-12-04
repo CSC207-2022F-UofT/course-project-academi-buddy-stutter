@@ -2,14 +2,14 @@ package TestDataFactory;
 
 import Entities.Course;
 import Entities.Student;
-import UseCases.CourseDataManager;
-import UseCases.TagDataManager;
-import UseCases.UserDataManager;
+import UseCases.CourseDataCloud;
+import UseCases.TagDataCloud;
+import UseCases.UserDataCloud;
 
 import java.io.IOException;
 
 public class CourseDataFactory extends DataFactory{
-    public CourseDataFactory(CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+    public CourseDataFactory(CourseDataCloud courseDataManager, UserDataCloud userDataManager, TagDataCloud tagDataManager){
         super(courseDataManager, userDataManager, tagDataManager);
     }
 

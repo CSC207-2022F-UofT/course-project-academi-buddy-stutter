@@ -1,10 +1,9 @@
 package UseCases;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AllStudentsManager extends UseCase{
-    public AllStudentsManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
+    public AllStudentsManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
         super(courseDatabase, userDatabase);
     }
 

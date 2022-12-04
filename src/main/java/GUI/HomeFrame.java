@@ -17,7 +17,7 @@ import java.nio.file.StandardCopyOption;
  * - Course Match Frame
  * - Interest Match Frame
  * - Label Select Frame
- * - Interest Tag Select Frame
+ * - Interest TagDataManager Select Frame
  * This JFrame is considered as the main body of the program where the user can use different features of our program
  * by clicking buttons on the JFrame.
  */

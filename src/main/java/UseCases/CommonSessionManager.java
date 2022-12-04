@@ -7,7 +7,7 @@ public class CommonSessionManager extends UseCase{
 
     private int numberOfCommonSessions;
 
-    public CommonSessionManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
+    public CommonSessionManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
         super(courseDatabase, userDatabase);
     }
 

@@ -3,18 +3,16 @@ package UseCases;
 import Entities.Course;
 import Entities.InterestTag;
 import Entities.Student;
-import Entities.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AdminActionsManager extends UseCase{
 
-    private UserDataManager userDataManager;
-    private CourseDataManager courseDataManager;
-    private TagDataManager tagDataManager;
+    private UserDataCloud userDataManager;
+    private CourseDataCloud courseDataManager;
+    private TagDataCloud tagDataManager;
 
-    public AdminActionsManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDataManager) {
+    public AdminActionsManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase, TagDataCloud tagDataManager) {
         super(courseDatabase, userDatabase);
         this.userDataManager = userDatabase;
         this.courseDataManager = courseDatabase;
@@ -38,7 +36,7 @@ public class AdminActionsManager extends UseCase{
         }
     }
 
-    static void removeStudentFromCourse(Student student, CourseDataManager courseDataManager) throws IOException {
+    static void removeStudentFromCourse(Student student, CourseDataCloud courseDataManager) throws IOException {
         for(String c: student.getEnrolledCourseCodes()){
             Course course = courseDataManager.getCourse(c, "LEC");
             courseDataManager.removeStudent(course.getCourseCode(), course.getCourseType(), student);
@@ -52,7 +50,7 @@ public class AdminActionsManager extends UseCase{
             }
         }
     }
-    private void removeStudentFromTag(Student student, TagDataManager tagDataManager) throws IOException{
+    private void removeStudentFromTag(Student student, TagDataCloud tagDataManager) throws IOException{
         for(InterestTag t: student.getTags()){
             if(!t.getName().equals("")){
                 tagDataManager.removeStudent(t, student);

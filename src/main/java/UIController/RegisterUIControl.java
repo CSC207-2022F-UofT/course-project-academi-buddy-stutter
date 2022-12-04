@@ -1,8 +1,7 @@
 package UIController;
 
-import Entities.Student;
-import UseCases.CourseDataManager;
-import UseCases.UserDataManager;
+import UseCases.CourseDataCloud;
+import UseCases.UserDataCloud;
 import UseCases.RegisterManager;
 
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.util.List;
 public class RegisterUIControl {
     private RegisterManager registerManager;
 
-    public RegisterUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase) {
+    public RegisterUIControl(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
         this.registerManager = new RegisterManager(courseDatabase, userDatabase);
     }
 

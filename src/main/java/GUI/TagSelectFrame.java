@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * This class implements TagSelectFrame so that user can choose different interest tags.
  */
 public class TagSelectFrame extends JFrame implements ActionListener, ChangeListener {
-    JLabel tagSelectLabel = new JLabel("Select Tag:");
+    JLabel tagSelectLabel = new JLabel("Select TagDataManager:");
     ArrayList<JCheckBox> boxList = new ArrayList<>();
     JCheckBox adventureCB = new JCheckBox("Adventure");
     JCheckBox musicCB = new JCheckBox("Music");
@@ -36,7 +36,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     public TagSelectFrame(UIController uiController){
         this.uiController = uiController;
 
-        this.setTitle("Interest Tag Selection"); // sets frame's title
+        this.setTitle("Interest TagDataManager Selection"); // sets frame's title
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

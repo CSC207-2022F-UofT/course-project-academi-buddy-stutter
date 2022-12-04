@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FriendListManager extends UseCase{
-    public FriendListManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
+    public FriendListManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase) {
         super(courseDatabase, userDatabase);
     }
 

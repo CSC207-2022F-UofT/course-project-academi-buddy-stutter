@@ -6,8 +6,6 @@ import UseCases.*;
 import Entities.User;
 import GUI.*;
 
-import java.io.IOException;
-
 
 public class UIController{
 
@@ -16,9 +14,9 @@ public class UIController{
     public static int FROM_PROFILE = 1;
 
     private User self;
-    private CourseDataManager courseManager;
-    private UserDataManager userManager;
-    private TagDataManager tagManager;
+    private CourseDataCloud courseManager;
+    private UserDataCloud userManager;
+    private TagDataCloud tagManager;
 
     protected LoginUIControl loginUIControl;
     protected RegisterUIControl registerUIControl;
@@ -78,7 +76,7 @@ public class UIController{
 
     public AllStudentsUIControl getAllStudentsUIControl() {return allStudentsUIControl;}
 
-    public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
+    public UIController(User user, CourseDataCloud courseManager, UserDataCloud userManager, TagDataCloud tagManager){
         this.self = user;
         this.courseManager = courseManager;
         this.userManager = userManager;

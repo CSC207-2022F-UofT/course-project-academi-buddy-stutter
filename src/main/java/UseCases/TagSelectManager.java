@@ -6,9 +6,9 @@ import Entities.Student;
 import java.io.IOException;
 
 public class TagSelectManager extends UseCase {
-    private TagDataManager tb;
+    private TagDataCloud tb;
 
-    public TagSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
+    public TagSelectManager(CourseDataCloud courseDatabase, UserDataCloud userDatabase, TagDataCloud tagManager) {
         super(courseDatabase, userDatabase);
         this.tb= tagManager;
     }

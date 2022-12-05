@@ -101,6 +101,22 @@ public class Tests {
         STUDENTB.setTabs_of_interests(tagB);
         STUDENTC.setTabs_of_interests(tagC);
 
+        ArrayList<String> studentAFriendList = new ArrayList<>();
+        ArrayList<String> studentBFriendList = new ArrayList<>();
+        ArrayList<String> studentAFriendRequestList = new ArrayList<>();
+        ArrayList<String> studentCFriendRequestSentList = new ArrayList<>();
+
+        studentAFriendList.add(STUDENTB.getUserID());
+        studentBFriendList.add(STUDENTA.getUserID());
+
+        studentAFriendRequestList.add(STUDENTC.getUserID());
+        studentCFriendRequestSentList.add(STUDENTA.getUserID());
+
+        STUDENTA.setFriendList(studentAFriendList);
+        STUDENTB.setFriendList(studentBFriendList);
+        STUDENTA.setFriendRequestList(studentAFriendRequestList);
+        STUDENTC.setFriendRequestSentList(studentCFriendRequestSentList);
+
         ub.addStudentUser(STUDENTA);
         ub.addStudentUser(STUDENTB);
         ub.addStudentUser(STUDENTC);

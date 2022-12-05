@@ -131,6 +131,10 @@ public class Student extends User{
         }
     }
 
+    public void setFriendList(ArrayList<String> friends) { this.friendList = friends;}
+    public void setFriendRequestList(ArrayList<String> requests) { this.friend_request_list = requests;}
+    public void setFriendRequestSentList(ArrayList<String> sentList) {this.friendRequestSentList = sentList;}
+
     /**
      * Updates friend list
      * @param friendID a user id to be added to user's friend list

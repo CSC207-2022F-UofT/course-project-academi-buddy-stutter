@@ -9,7 +9,6 @@ import java.io.IOException;
  * Use case operations for selecting a tag.
  */
 public class TagSelectManager extends UseCase {
-    private TagDataManager tb;
 
     /**
      * Initializer

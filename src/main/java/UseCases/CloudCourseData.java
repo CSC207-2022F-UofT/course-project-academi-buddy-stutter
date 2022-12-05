@@ -17,6 +17,8 @@ public class CloudCourseData implements CourseDataManager {
         this.fi.initialize("courses");
         this.ud = ud;
     }
+
+    @Override
     public ArrayList<String> getCourseCodeList(){
         /**
          * get a list of course code that is currently documented in the database.
@@ -25,6 +27,8 @@ public class CloudCourseData implements CourseDataManager {
         fi.initialize("courses");
         return fi.getDocumentStringList();
     }
+
+    @Override
     public void addCourse(Course course){
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
@@ -39,6 +43,7 @@ public class CloudCourseData implements CourseDataManager {
         fi.addEntry(courseCode, "enrolled students id", course.getEnrolledIDList());
     }
 
+    @Override
     public void updateCourse(Course course){
         fi.initialize("courses");
         String courseIdentifier = course.getCourseCode() + course.getCourseType();
@@ -48,6 +53,7 @@ public class CloudCourseData implements CourseDataManager {
         }
     }
 
+    @Override
     public boolean addStudent(String courseCode, String courseType, Student student) throws IOException {
         /**
          * add a student to a course. It also updates in user database as well.
@@ -66,6 +72,7 @@ public class CloudCourseData implements CourseDataManager {
         return false;
     }
 
+    @Override
     public boolean removeStudent(String courseCode, String courseType, Student student) throws IOException {
         /**
          * remove a student to a course. It also updates in user database as well.
@@ -82,6 +89,7 @@ public class CloudCourseData implements CourseDataManager {
         return false;
     }
 
+    @Override
     public Course getCourse(String courseCode, String courseType) throws IOException {
         /**
          * get a lecture course by course code.

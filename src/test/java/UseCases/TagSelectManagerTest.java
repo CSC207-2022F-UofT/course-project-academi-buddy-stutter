@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-class TagSelectManagerTest extends Tests{
+class TagSelectManagerTest extends TestDataFactory {
 
     ArrayList<?> managers;
 

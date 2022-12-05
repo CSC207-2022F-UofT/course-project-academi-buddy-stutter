@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class TagMatchManagerTest extends Tests{
+class TagMatchManagerTest extends TestDataFactory {
 
     ArrayList<?> managers;
 

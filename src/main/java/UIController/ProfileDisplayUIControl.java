@@ -10,6 +10,8 @@ import UseCases.UserDataManager;
  * Implements ProfileDisplayUIControl for ProfileDisplayFrame
  */
 public class ProfileDisplayUIControl {
+
+    private String userID;
     private ProfileManager profileManager;
 
     /**
@@ -18,6 +20,7 @@ public class ProfileDisplayUIControl {
      * @param userDataManager an instance of UserDataManager
      */
     public ProfileDisplayUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.userID = userID;
         this.profileManager = new ProfileManager(courseDataManager, userDataManager, tagDataManager);
     }
 

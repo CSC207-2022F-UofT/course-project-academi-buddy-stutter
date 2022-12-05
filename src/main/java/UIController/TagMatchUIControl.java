@@ -33,7 +33,7 @@ public class TagMatchUIControl{
     }
 
     /**
-     * @return a list of matched users
+     * @return a list of matched users in DefaultListModel for GUI.
      */
     public DefaultListModel<String> getNameList() throws IOException {
         List<String> nameList = new ArrayList<>();

@@ -15,10 +15,10 @@ public class TagSelectUIControl {
 
     /**
      * Constructs TagSelectUIControl
-     * @param self a user
-     * @param courseManager an instance of CourseDataManager
-     * @param userManager an instance of UserDataManager
-     * @param tagManager an instance of TagDataManager
+     * @param userID a user
+     * @param courseDataManager an instance of CourseDataManager
+     * @param userDataManager an instance of UserDataManager
+     * @param tagDataManager an instance of TagDataManager
      */
     public TagSelectUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
         this.tagSelectManager = new TagSelectManager(courseDataManager, userDataManager, tagDataManager);

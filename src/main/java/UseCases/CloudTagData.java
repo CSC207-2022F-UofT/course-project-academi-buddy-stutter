@@ -17,12 +17,13 @@ public class CloudTagData implements TagDataManager{
         this.ud = ud;
     }
 
+    @Override
     public ArrayList<String> getTagNameList(){
         fi.initialize("tags");
         return fi.getDocumentStringList();
     }
 
-
+    @Override
     public ArrayList<String> getStudentList(InterestTag tag){
         fi.initialize("tags");
         String tagName = tag.getName();
@@ -33,6 +34,7 @@ public class CloudTagData implements TagDataManager{
         return students;
     }
 
+    @Override
     public void addStudent(InterestTag tag, Student student) throws IOException {
         fi.initialize("tags");
         ArrayList<String> students = getStudentList(tag);
@@ -42,6 +44,7 @@ public class CloudTagData implements TagDataManager{
         }
     }
 
+    @Override
     public boolean removeStudent(InterestTag tag, Student student) throws IOException {
         fi.initialize("tags");
         ArrayList<String> students = getStudentList(tag);

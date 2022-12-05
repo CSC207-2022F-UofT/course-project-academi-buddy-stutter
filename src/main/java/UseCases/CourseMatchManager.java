@@ -2,8 +2,10 @@ package UseCases;
 
 import Entities.Label;
 import Entities.Student;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -87,7 +89,7 @@ public class CourseMatchManager extends UseCase{
 
         int latestEmpty = -1;
 
-        for(int i =1; i<this.maxSameCourses; i++){
+        for(int i = 0; i<this.maxSameCourses; i++){
             if(matchedArray[i].isEmpty()){
                 latestEmpty = i;
             }
@@ -104,7 +106,7 @@ public class CourseMatchManager extends UseCase{
      * Getting the same session students that are matched.
      * @param student the student that is being matched.
      * @param minNumOfCommon the minimum number of common courses.
-     * @return Array list of students that are matched to the student parameter.
+     * @return Array list of students that are matched to the student parameter, in descending order by number of common.
      */
     public ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) throws IOException {
 
@@ -112,7 +114,8 @@ public class CourseMatchManager extends UseCase{
         ArrayList<String>[] matchedList = this.getMatchedArray();
         int maxCommonCount = maxCommon(matchedList);
 
-        ArrayList<String>[] targetMatchedList = Arrays.copyOfRange(matchedList, minNumOfCommon, maxCommonCount + 1);
+        ArrayList<String>[] targetMatchedList = Arrays.copyOfRange(matchedList, minNumOfCommon + 1, maxCommonCount + 1);
+        ArrayUtils.reverse(targetMatchedList);
 
         ArrayList<String> ids = new ArrayList<>();
         for(int i = 0; i<targetMatchedList.length; i++){

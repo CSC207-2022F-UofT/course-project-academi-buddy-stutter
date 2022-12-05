@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 
-public class StrengthCheckerTest extends Tests {
+public class StrengthCheckerTest extends TestDataFactory {
 
     @Test
     void Strengthcheck() {

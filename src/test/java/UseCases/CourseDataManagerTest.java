@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 
-class CourseDataManagerTest extends Tests{
+class CourseDataManagerTest extends TestDataFactory {
 
     //FIXME this test is testing on LocalCourseData. Make it so that it tests CloudCourseData.
 

@@ -18,11 +18,13 @@ public class CloudUserData implements UserDataManager{
         fi.initialize("users");
     }
 
-
+    @Override
     public ArrayList<String> getUserIDList(){
         fi.initialize("users");
         return fi.getDocumentStringList();
     }
+
+    @Override
     public boolean addUser(User user){
         /**
          * add a user to the database.
@@ -36,6 +38,8 @@ public class CloudUserData implements UserDataManager{
         fi.addEntry(userID, "student info", user.getUserInfo());
         return true;
     }
+
+    @Override
     public boolean addStudentUser(Student student) throws IOException{
         /**
          * add a student user to the database.
@@ -71,12 +75,13 @@ public class CloudUserData implements UserDataManager{
         return true;
     }
 
+    @Override
     public void updateStudentCourses(Student student){
         String studentID = student.getUserID();
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
     }
 
-
+    @Override
     public boolean addAdminUser(Admin admin) throws IOException {
         /**
          * add an admin user to the database.
@@ -89,6 +94,7 @@ public class CloudUserData implements UserDataManager{
         return true;
     }
 
+    @Override
     public boolean removeUser(String userID){
         /**
          * remove a user from database.
@@ -97,6 +103,7 @@ public class CloudUserData implements UserDataManager{
         return fi.removeEntry(userID);
     }
 
+    @Override
     public User getUserByID(String userID) throws IOException{
         /**
          * get a user by userid.
@@ -186,7 +193,7 @@ public class CloudUserData implements UserDataManager{
         return null;
     }
 
-    //    this method should be in matcher? not database! for clean architecture?
+    @Override
     public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
         /**
          * get a list of common session between two users.
@@ -206,6 +213,7 @@ public class CloudUserData implements UserDataManager{
         return commonSessions;
     }
 
+    @Override
     public boolean exist(User user){
         /**
          * @return whether a user exists in the database.
@@ -214,8 +222,7 @@ public class CloudUserData implements UserDataManager{
         return fi.getDocumentList().contains(user.getUserID());
     }
 
-
-
+    @Override
     public boolean existByID(String ID){
         /**
          * @return whether a user exists in the database.
@@ -225,18 +232,23 @@ public class CloudUserData implements UserDataManager{
     }
 
     // FriendList Methods
+    @Override
     public void updateFriendList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend list", student.getFriendList().toString());
 //        System.out.println(student.getFullName() + "friend list has been updated on Firebase");
     }
+
+    @Override
     public void updateFriendRequestList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend request list", student.getFriendListRequest().toString());
 //        System.out.println(student.getFullName() + "friend request list has been updated on Firebase");
     }
+
+    @Override
     public void updateFriendRequestsSentList(Student student) {
         fi.initialize("users");
         String studentID = student.getUserID();
@@ -244,6 +256,7 @@ public class CloudUserData implements UserDataManager{
 //        System.out.println(student.getFullName() + "friend request sent list has been updated on Firebase");
     }
 
+    @Override
     public ArrayList<String> getAdminIDs() {
         fi.initialize("users");
         ArrayList<String> userIDs = this.getUserIDList();

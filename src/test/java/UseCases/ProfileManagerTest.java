@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProfileManagerTest extends Tests {
+public class ProfileManagerTest extends TestDataFactory {
     ArrayList<?> managers;
 
     {

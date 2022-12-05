@@ -7,7 +7,7 @@ import Entities.Student;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tests {
+public class TestDataFactory {
 
     protected Course COURSEA = new Course(
             "999",

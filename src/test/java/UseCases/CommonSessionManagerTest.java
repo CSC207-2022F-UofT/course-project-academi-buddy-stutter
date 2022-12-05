@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 
-class CommonSessionManagerTest extends Tests{
+class CommonSessionManagerTest extends TestDataFactory {
 
     ArrayList<?> managers;
 
@@ -22,8 +22,9 @@ class CommonSessionManagerTest extends Tests{
 
     LocalUserData ub = (LocalUserData) managers.get(0);
     LocalCourseData cb = (LocalCourseData) managers.get(1);
+    LocalTagData tb = (LocalTagData) managers.get(2);
 
-    CommonSessionManager commonSessionManager = new CommonSessionManager(cb, ub);
+    CommonSessionManager commonSessionManager = new CommonSessionManager(cb, ub, tb);
 
     @Test
     void getName() {

@@ -142,6 +142,13 @@ public class HomeFrame extends JFrame implements ActionListener {
             }
             this.setCursor(Cursor.getDefaultCursor());
         } else if (e.getSource() == friendsBTN) {
+            this.setCursor(waitCursor);
+            try {
+                uiController.toFriendList();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            this.setCursor(Cursor.getDefaultCursor());
             try {
                 uiController.toFriendList();
             } catch (IOException ex) {

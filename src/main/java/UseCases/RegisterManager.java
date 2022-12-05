@@ -49,6 +49,19 @@ public class RegisterManager extends UseCase{
         return strengthChecker.checkStrength(password);
     }
 
+    public String getSwarningString(String password){
+        List<String> warnings = getWarnings(password);
+        StringBuilder warningString= new StringBuilder();
+        warningString.append("<html><pre>");
+        for(int i = 0; i < 3 && i < warnings.size() ; i++) {
+            warningString.append(warnings.get(i));
+            warningString.append("\n");
+        }
+        warningString.deleteCharAt(warningString.length() - 1);
+        warningString.append("</pre></html>");
+        return warningString.toString();
+    }
+
     /**
      * Register and add a new user to the user database.
      * @param fullName The full name String of the student.

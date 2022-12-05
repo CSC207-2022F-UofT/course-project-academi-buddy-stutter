@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-class AdminActionsManagerTest extends Tests{
+class AdminActionsManagerTest extends TestDataFactory {
 
     ArrayList<?> managers;
 

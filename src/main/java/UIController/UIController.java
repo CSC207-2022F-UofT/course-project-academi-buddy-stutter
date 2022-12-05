@@ -20,7 +20,7 @@ public class UIController{
     public static int FROM_REGISTER = 0;
     public static int FROM_PROFILE = 1;
 
-    private String self;
+    private String selfID;
     private CourseDataManager courseManager;
     private UserDataManager userManager;
     private TagDataManager tagManager;
@@ -133,7 +133,7 @@ public class UIController{
      * @param tagManager instance of tagManager class
      */
     public UIController(String userID, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager) throws IOException {
-        this.self = userID;
+        this.selfID = userID;
         this.courseManager = courseManager;
         this.userManager = userManager;
         this.tagManager = tagManager;
@@ -148,21 +148,21 @@ public class UIController{
      * updates user by calling the getUser() method from loginUIControl
      */
     public void updateUser(){
-        this.self = this.loginUIControl.self;
+        this.selfID = this.loginUIControl.self;
     }
 
     /**
-     * set self user to null
+     * set selfID user to null
      */
     public void unloadUser() {
-        this.self = null;
+        this.selfID = null;
     }
 
     /**
      * returns whether the user is logged in or not
      */
     public boolean loggedIn(){
-        return this.self != null;
+        return this.selfID != null;
     }
 
     /**
@@ -177,7 +177,7 @@ public class UIController{
      * takes user to HomeFrame
      */
     public void toHome() throws IOException {
-        User user = (Student)loginManager.getUserByID(this.self);
+        User user = (Student)loginManager.getUserByID(this.selfID);
         if(user instanceof Student){
             initializeAfterLogin();
             HomeFrame HomeFrame = new HomeFrame(this);
@@ -249,7 +249,7 @@ public class UIController{
      * takes user to CalendarUploadFrame
      */
     public void toCalendarUpload() {
-        this.fileUploadUIControl = new FileUploadUIControl(self, courseManager, userManager, tagManager);
+        this.fileUploadUIControl = new FileUploadUIControl(selfID, courseManager, userManager, tagManager);
         CalendarUploadFrame fileUploadFrame = new CalendarUploadFrame(this, STATUS);
     }
 
@@ -279,23 +279,23 @@ public class UIController{
      * initializes all controllers after user(student) logged in
      */
     private void initializeAfterLogin(){
-        this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
-        this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
-        this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager, tagManager);
-        this.profileUIControl = new ProfileUIControl(self, courseManager, userManager, tagManager);
-        this.profileDisplayUIControl = new ProfileDisplayUIControl(self, courseManager, userManager, tagManager);
-        this.homeUIControl = new HomeUIControl(self, courseManager,userManager, tagManager);
-        this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager, tagManager);
-        this.matchUIControl = new CourseMatchUIControl(self, courseManager, userManager, tagManager);
-        this.commonSessionUIControl = new CommonSessionUIControl(self, courseManager, userManager, tagManager);
-        this.allStudentsUIControl = new AllStudentsUIControl(self, courseManager, userManager, tagManager);
+        this.tagMatchUIControl = new TagMatchUIControl(selfID, courseManager, userManager, tagManager);
+        this.tagSelectUIControl = new TagSelectUIControl(selfID, courseManager, userManager, tagManager);
+        this.labelSelectUIControl = new LabelSelectUIControl(selfID, courseManager, userManager, tagManager);
+        this.profileUIControl = new ProfileUIControl(selfID, courseManager, userManager, tagManager);
+        this.profileDisplayUIControl = new ProfileDisplayUIControl(selfID, courseManager, userManager, tagManager);
+        this.homeUIControl = new HomeUIControl(selfID, courseManager,userManager, tagManager);
+        this.friendListUIControl = new FriendListUIControl(selfID, courseManager, userManager, tagManager);
+        this.matchUIControl = new CourseMatchUIControl(selfID, courseManager, userManager, tagManager);
+        this.commonSessionUIControl = new CommonSessionUIControl(selfID, courseManager, userManager, tagManager);
+        this.allStudentsUIControl = new AllStudentsUIControl(selfID, courseManager, userManager, tagManager);
     }
 
     /**
      * initializes adminUIControl after an admin user logged in
      */
     private void initializeAdminAfterLogin(){
-        this.adminUIControl = new AdminUIControl(self, courseManager, userManager, tagManager);
+        this.adminUIControl = new AdminUIControl(selfID, courseManager, userManager, tagManager);
     }
 
 }

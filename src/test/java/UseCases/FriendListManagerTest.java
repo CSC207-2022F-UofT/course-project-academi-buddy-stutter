@@ -1,6 +1,5 @@
 package UseCases;
 
-import Entities.InterestTag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-class FriendListManagerTest extends Tests {
+class FriendListManagerTest extends TestDataFactory {
 
     ArrayList<?> managers;
 
@@ -24,7 +23,7 @@ class FriendListManagerTest extends Tests {
     LocalCourseData cb = (LocalCourseData) managers.get(1);
     LocalTagData tb = (LocalTagData) managers.get(2);
 
-    FriendListManager friendListManager = new FriendListManager(cb,ub);
+    FriendListManager friendListManager = new FriendListManager(cb, ub, tb);
 
     @Test
     void acceptFriendRequest() throws Exception {

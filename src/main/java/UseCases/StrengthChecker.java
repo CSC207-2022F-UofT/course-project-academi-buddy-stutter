@@ -20,7 +20,7 @@ public class StrengthChecker {
 
         // Check if password contains empty spaces;
         if (password.matches("(\\s)*")) {
-            warnings.add("EMPTY SPACES");
+            warnings.add("Empty space not allowed");
         }
         // Check if password has whitespaces
         if (password.matches("(.)*(\\s)+(.)*")) {
@@ -28,15 +28,15 @@ public class StrengthChecker {
         }
         // Check if password is greater than or equal to 8 chars
         if (password.length() < 8) {
-            warnings.add("Add more characters");
+            warnings.add("Password too short");
         }
         // Check if password is lesser than 30 chars
         if (password.length() > 30) {
-            warnings.add("Password too long, max char is 30");
+            warnings.add("Password too long");
         }
         // Check if password has no numbers
         if (!password.matches("(.)*(\\d)(.)*")) {
-            warnings.add("Add any digit");
+            warnings.add("Add a number");
         }
         // Check if password has symbols
         if (!password.matches("(.)*[\\*\\!\\@\\#\\$\\%\\^\\&\\_\\-\\+\\=\\.\\'\\~\\,\\(\\)\\:\\;\\<\\>\\[\\]\\|\\}\\{\\/]+(.)*")) {

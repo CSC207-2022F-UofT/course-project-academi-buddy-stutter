@@ -1,8 +1,8 @@
 package controllers;
 
 import entities.Student;
-import externaladapters.BiweeklyAPI;
-import externaladapters.JavaxAPI;
+import apis.BiweeklyAPI;
+import apis.JavaxAPI;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import usecases.UploadManager;

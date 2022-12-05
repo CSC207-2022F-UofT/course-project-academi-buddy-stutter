@@ -2,7 +2,7 @@ import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
-import externaladapters.FirebaseAPI;
+import apis.FirebaseAPI;
 import controllers.UIController;
 import database.cloud.CloudCourseData;
 import database.cloud.CloudTagData;
@@ -19,7 +19,7 @@ public class main {
     private static int CLOUD = 0;
     private static int LOCAL = 1;
     
-    public static void initializeFirebase() throws IOException {
+    private static void initializeFirebase() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("service-account-file.json");
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -51,7 +51,7 @@ public class main {
     }
 
     public static void main(String[] args) throws IOException{
-        launch(LOCAL);
+        launch(CLOUD);
     }
 
 }

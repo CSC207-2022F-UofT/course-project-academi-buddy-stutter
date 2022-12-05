@@ -1,4 +1,4 @@
-package externaladapters;
+package apis;
 
 import gateways.UploaderInterface;
 

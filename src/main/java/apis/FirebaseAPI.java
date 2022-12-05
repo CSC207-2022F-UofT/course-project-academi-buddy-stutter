@@ -1,4 +1,4 @@
-package externaladapters;
+package apis;
 
 import gateways.DatabaseInterface;
 import utilities.ReadCounter;

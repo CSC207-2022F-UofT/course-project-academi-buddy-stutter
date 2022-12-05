@@ -196,6 +196,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             friendID = friendID.trim().strip();
             Object[] row = new Object[3];
             ArrayList<String> stringRow = new ArrayList<>();
+            System.out.println(friendID);
             stringRow.add(uiController.getFriendListUIControl().getFriendFullName(friendID));
             stringRow.add("Accept");
             stringRow.add(friendID);

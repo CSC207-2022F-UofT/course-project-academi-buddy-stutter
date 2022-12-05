@@ -21,7 +21,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     JButton backBTN = new JButton("Back");
 
     JButton profileBTN = new JButton("Profile");
-    String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
+    String[] tagType = {"Movies", "Video Games", "Beer", "Music", "Writing Javadocs", "Cat", "Books", "Adventure", "Beer", "Photography"};
     JComboBox<String> tagComboBox = new JComboBox<>(tagType);
 
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
@@ -36,7 +36,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     public TagMatchFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
 
-        this.setTitle("Match by TagDataManager"); // sets frame's title
+        this.setTitle("Match by Tag"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

@@ -32,10 +32,12 @@ public class main {
         UIController uiController = null;
         if (databaseLocation == CLOUD){
             initializeFirebase();
-            FirebaseAPI fi = new FirebaseAPI();
-            CloudUserData ub = new CloudUserData(fi);
-            CloudCourseData cb = new CloudCourseData(fi, ub);
-            CloudTagData tb = new CloudTagData(fi, ub);
+            FirebaseAPI cbc = new FirebaseAPI();
+            FirebaseAPI ubc = new FirebaseAPI();
+            FirebaseAPI tbc = new FirebaseAPI();
+            CloudUserData ub = new CloudUserData(ubc);
+            CloudCourseData cb = new CloudCourseData(cbc, ub);
+            CloudTagData tb = new CloudTagData(tbc, ub);
             uiController = new UIController(null, cb, ub, tb);
         } 
         else if (databaseLocation == LOCAL){

@@ -18,7 +18,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     JCheckBox adventureCB = new JCheckBox("Adventure");
     JCheckBox musicCB = new JCheckBox("Music");
     JCheckBox catCB = new JCheckBox("Cat");
-    JCheckBox outdoorCB = new JCheckBox("Outdoors");
+    JCheckBox outdoorCB = new JCheckBox("Writing Javadocs");
     JCheckBox bookCB = new JCheckBox("Books");
     JCheckBox movieCB = new JCheckBox("Movies");
     JCheckBox beerCB = new JCheckBox("Beer");
@@ -26,7 +26,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     JCheckBox photoCB = new JCheckBox("Photography");
     JButton backBTN = new JButton("Back");
     JButton applyBTN = new JButton("Apply");
-    String[] tagType = {"Adventure", "Music", "Cat", "Outdoors", "Books", "Movies", "Beer", "Video Games", "Photography"};
+    String[] tagType = {"Adventure", "Music", "Cat", "Writing Javadocs", "Books", "Movies", "Beer", "Video Games", "Photography"};
     UIController uiController;
     private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -37,19 +37,19 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     public TagSelectFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
 
-        this.setTitle("Interest TagDataManager Selection"); // sets frame's title
+        this.setTitle("Interest Tag Selection"); // sets frame's title
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
-        this.setSize(330, 230);
+        this.setSize(370, 230);
         this.setLocationRelativeTo(null); // centers the frame relative to the monitor
 
         // places objects inside frame
         // buttons
-        backBTN.setBounds(170, 150, 100, 20);
+        backBTN.setBounds(190, 150, 100, 20);
         backBTN.addActionListener(this);
         backBTN.setFocusable(false);
-        applyBTN.setBounds(50, 150, 100, 20);
+        applyBTN.setBounds(70, 150, 100, 20);
         applyBTN.addActionListener(this);
         applyBTN.setFocusable(false);
         applyBTN.setEnabled(false);
@@ -58,12 +58,12 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         adventureCB.setBounds(10, 30, 100,50);
         musicCB.setBounds(10, 60, 100, 50);
         catCB.setBounds(10, 90, 100, 50);
-        outdoorCB.setBounds(110, 30, 100, 50);
+        outdoorCB.setBounds(110, 30, 150, 50);
         bookCB.setBounds(110, 60, 100, 50);
         movieCB.setBounds(110, 90, 100, 50);
-        beerCB.setBounds(210, 30, 100, 50);
-        gameCB.setBounds(210, 60, 150, 50);
-        photoCB.setBounds(210, 90, 150, 50);
+        beerCB.setBounds(240, 30, 100, 50);
+        gameCB.setBounds(240, 60, 150, 50);
+        photoCB.setBounds(240, 90, 150, 50);
         boxList.add(adventureCB);
         boxList.add(musicCB);
         boxList.add(catCB);

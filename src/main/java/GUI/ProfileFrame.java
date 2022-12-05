@@ -5,6 +5,7 @@ import UIController.UIController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 /**
  * This class implements ProfileFrame that allows user to view and modify personal information.
@@ -39,7 +40,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
     /**
      * This constructor method implements all UI components for ProfileFrame.
      */
-    public ProfileFrame(UIController uiController){
+    public ProfileFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
         // Labels
         nameLabel.setBounds(10, 10, 100, 20);
@@ -129,13 +130,21 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         if(e.getSource() == backBTN){
             this.dispose();
         } else if (e.getSource() == changeEmail) {
-            uiController.getProfileUIControl().updateEmail(emailText.getText());
+            try {
+                uiController.getProfileUIControl().updateEmail(emailText.getText());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             currentEmail = emailText.getText();
             changeEmail.setEnabled(false);
         }
         else if (e.getSource() == changeInfo) {
             System.out.println(infoText.getText() + currentInfo);
-            uiController.getProfileUIControl().updateInfo(infoText.getText());
+            try {
+                uiController.getProfileUIControl().updateInfo(infoText.getText());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             currentInfo = infoText.getText();
             changeInfo.setEnabled(false);
         }

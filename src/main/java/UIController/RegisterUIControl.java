@@ -1,6 +1,8 @@
 package UIController;
 
+import Entities.User;
 import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import UseCases.RegisterManager;
 
@@ -18,8 +20,8 @@ public class RegisterUIControl {
      * @param courseDatabase an instance of CourseDataManager
      * @param userDatabase an instance of UserDataManager
      */
-    public RegisterUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase) {
-        this.registerManager = new RegisterManager(courseDatabase, userDatabase);
+    public RegisterUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager) {
+        this.registerManager = new RegisterManager(courseDataManager, userDataManager, tagDataManager);
     }
 
     /**

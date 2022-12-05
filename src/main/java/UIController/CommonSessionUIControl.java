@@ -1,16 +1,20 @@
 package UIController;
 
+import Entities.Student;
 import Entities.User;
 import UseCases.CommonSessionManager;
 import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
+
+import java.io.IOException;
 
 /**
  * Implements CommonSessionUIControl for CommonSessionFrame
  */
 public class CommonSessionUIControl {
     private CommonSessionManager commonSessionManager;
-    private User self;
+    private String self;
 
     /**
      * Constructs CommonSessionUIControl
@@ -18,9 +22,9 @@ public class CommonSessionUIControl {
      * @param courseDataManager an instance of CourseDataManager
      * @param userDataManager an instance of UserDataManager
      */
-    public CommonSessionUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager){
-        this.self = self;
-        this.commonSessionManager = new CommonSessionManager(courseDataManager, userDataManager);
+    public CommonSessionUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.self = userID;
+        this.commonSessionManager = new CommonSessionManager(courseDataManager, userDataManager, tagDataManager);
     }
 
     /**
@@ -28,8 +32,9 @@ public class CommonSessionUIControl {
      * @param targetUserID the user that we want to compare to
      * @return Common sessions with targetUserID
      */
-    public String getCommonSessions(String targetUserID){
-        return commonSessionManager.getCommonSessions(self.getUserID(), targetUserID);
+    public String getCommonSessions(String targetUserID) throws IOException {
+        Student stu = (Student) commonSessionManager.getUserByID(this.self);
+        return commonSessionManager.getCommonSessions(stu.getUserID(), targetUserID);
     }
 
     /**

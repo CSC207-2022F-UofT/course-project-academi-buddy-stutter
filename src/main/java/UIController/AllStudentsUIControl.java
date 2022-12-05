@@ -3,6 +3,7 @@ package UIController;
 import Entities.User;
 import UseCases.AllStudentsManager;
 import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AllStudentsUIControl {
     private AllStudentsManager allStudentsManager;
-    private User user;
+    private String self;
 
     /**
      * Constructs AllStudentsUIControl
@@ -20,9 +21,9 @@ public class AllStudentsUIControl {
      * @param courseManager an instance of CourseDataManager
      * @param userManager an instance of UserDataManager
      */
-    public AllStudentsUIControl(User user, CourseDataManager courseManager, UserDataManager userManager) {
-        this.allStudentsManager = new AllStudentsManager(courseManager, userManager);
-        this.user = user;
+    public AllStudentsUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager) {
+        this.allStudentsManager = new AllStudentsManager(courseDataManager, userDataManager, tagDataManager);
+        this.self = userID;
     }
 
     /**

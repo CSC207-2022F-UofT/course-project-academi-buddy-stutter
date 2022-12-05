@@ -1,7 +1,9 @@
 package UIController;
 
+import Entities.User;
 import UseCases.CourseDataManager;
 import UseCases.ProfileManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
 /**
@@ -15,8 +17,8 @@ public class ProfileDisplayUIControl {
      * @param courseDataManager an instance of CourseDataManager
      * @param userDataManager an instance of UserDataManager
      */
-    public ProfileDisplayUIControl(CourseDataManager courseDataManager, UserDataManager userDataManager){
-        this.profileManager = new ProfileManager(courseDataManager, userDataManager);
+    public ProfileDisplayUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.profileManager = new ProfileManager(courseDataManager, userDataManager, tagDataManager);
     }
 
     /**

@@ -2,6 +2,7 @@ package UIController;
 
 import UseCases.CourseDataManager;
 import UseCases.LoginManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import Entities.User;
 
@@ -12,15 +13,15 @@ import java.io.IOException;
  */
 public class LoginUIControl{
     private LoginManager loginManager;
-    public User self;
+    public String self;
 
     /**
      * Constructs LoginUIControl
      * @param courseDatabase an instance of CourseDataManager
      * @param userDatabase an instance of UserDataManager
      */
-    public LoginUIControl(CourseDataManager courseDatabase, UserDataManager userDatabase){
-        this.loginManager = new LoginManager(courseDatabase, userDatabase);
+    public LoginUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.loginManager = new LoginManager(courseDataManager, userDataManager, tagDataManager);
     }
 
     /**
@@ -45,13 +46,13 @@ public class LoginUIControl{
      * @param user an instance of Student
      */
     private void loadUser(User user){
-        this.self = user;
+        this.self = user.getUserID();
     }
 
     /**
      * @return current user
      */
-    public User getUser(){
-        return this.self;
+    public String getUserID() throws IOException {
+        return self;
     }
 }

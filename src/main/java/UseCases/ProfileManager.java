@@ -13,8 +13,8 @@ public class ProfileManager extends UseCase{
      * @param courseDatabase The course database.
      * @param userDatabase The user database.
      */
-    public ProfileManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
-        super(courseDatabase, userDatabase);
+    public ProfileManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

@@ -4,12 +4,14 @@ import UseCases.*;
 import Entities.Student;
 import Entities.User;
 
+import java.io.IOException;
+
 /**
  * Implements TagSelectUIControl for TagSelectFrame
  */
 public class TagSelectUIControl {
     private TagSelectManager tagSelectManager;
-    private User self;
+    private String self;
 
     /**
      * Constructs TagSelectUIControl
@@ -18,9 +20,9 @@ public class TagSelectUIControl {
      * @param userManager an instance of UserDataManager
      * @param tagManager an instance of TagDataManager
      */
-    public TagSelectUIControl(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
-        this.tagSelectManager = new TagSelectManager(courseManager, userManager, tagManager);
-        this.self = self;
+    public TagSelectUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.tagSelectManager = new TagSelectManager(courseDataManager, userDataManager, tagDataManager);
+        this.self = userID;
     }
 
     /**
@@ -28,8 +30,9 @@ public class TagSelectUIControl {
      * @param tagName name of tags
      * @return whether a tag is selected or not
      */
-    public boolean getStudentTagState(String tagName){
-        return tagSelectManager.getStudentTagState((Student) self, tagName);
+    public boolean getStudentTagState(String tagName) throws IOException {
+        Student stu = (Student) tagSelectManager.getUserByID(this.self);
+        return tagSelectManager.getStudentTagState(stu, tagName);
     }
 
     /**
@@ -37,7 +40,8 @@ public class TagSelectUIControl {
      * @param tagName name of tags
      * @param selected whether the tags are selected or not
      */
-    public void updateStudentTag(String tagName, boolean selected){
-        tagSelectManager.updateStudentTag((Student) self, tagName, selected);
+    public void updateStudentTag(String tagName, boolean selected) throws IOException {
+        Student stu = (Student) tagSelectManager.getUserByID(this.self);
+        tagSelectManager.updateStudentTag(stu, tagName, selected);
     }
 }

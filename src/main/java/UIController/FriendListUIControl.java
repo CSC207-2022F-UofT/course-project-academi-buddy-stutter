@@ -1,11 +1,14 @@
 package UIController;
 
+import Entities.Student;
 import Entities.User;
 import UseCases.CourseDataManager;
 import UseCases.FriendListManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,29 +16,29 @@ import java.util.ArrayList;
  */
 public class FriendListUIControl {
     private FriendListManager friendListManager;
-    private User user;
-    public FriendListUIControl(User user, CourseDataManager courseManager, UserDataManager userManager) {
-        this.friendListManager = new FriendListManager(courseManager, userManager);
-        this.user = user;
+    private String self;
+    public FriendListUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager) {
+        this.friendListManager = new FriendListManager(courseDataManager, userDataManager, tagDataManager);
+        this.self = userID;
     }
 
     /**
      * @return user id
      */
     public String getUserId() {
-        return user.getUserID();
+        return self;
     }
 
     /**
      * @return a list of friends
      */
-    public ArrayList<String> getFriendList() { return friendListManager.getFriendList(user.getUserID());}
+    public ArrayList<String> getFriendList() { return friendListManager.getFriendList(self);}
 
     /**
      * @return a list of requested friends
      */
-    public ArrayList<String> getFriendRequestList() {return friendListManager.getFriendRequestList(user.getUserID());}
-    public ArrayList<String> getFriendRequestSentList() {return friendListManager.getFriendRequestSentList(user.getUserID());}
+    public ArrayList<String> getFriendRequestList() {return friendListManager.getFriendRequestList(self);}
+    public ArrayList<String> getFriendRequestSentList() {return friendListManager.getFriendRequestSentList(self);}
 
     /**
      * Get friend's full name
@@ -48,7 +51,7 @@ public class FriendListUIControl {
      * @param friendID target user id that we want to determine from
      * @return whether friend request is sent to the target user id
      */
-    public boolean isRequestSent(String friendID) {return friendListManager.isRequestSent(user.getUserID(), friendID);}
+    public boolean isRequestSent(String friendID) {return friendListManager.isRequestSent(self, friendID);}
 
     /**
      * Accept a friend request

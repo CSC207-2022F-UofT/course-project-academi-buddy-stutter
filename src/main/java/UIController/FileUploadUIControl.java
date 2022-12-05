@@ -5,6 +5,7 @@ import Entities.User;
 import External.BiweeklyAPI;
 import External.JavaxAPI;
 import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
 import UseCases.UploadManager;
 import UseCases.UserDataManager;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 public class FileUploadUIControl {
     private UploadManager uploadManager;
-    private Student self;
+    private String self;
 
     /**
      * Constructs FileUploadUIControl
@@ -23,11 +24,11 @@ public class FileUploadUIControl {
      * @param courseDatabase an instance of CourseDataManager
      * @param userDatabase an instance of UserDataManager
      */
-    public FileUploadUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
-        this.self = (Student) self;
+    public FileUploadUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.self = userID;
         JavaxAPI javaxAPI = new JavaxAPI();
         BiweeklyAPI biweeklyAPI = new BiweeklyAPI();
-        this.uploadManager = new UploadManager(courseDatabase, userDatabase, javaxAPI, biweeklyAPI);
+        this.uploadManager = new UploadManager(courseDataManager, userDataManager, tagDataManager, javaxAPI, biweeklyAPI);
 
     }
 
@@ -43,7 +44,8 @@ public class FileUploadUIControl {
      * @throws IOException that it fails to update database
      */
     public void updateDatabase() throws IOException {
-        this.uploadManager.updateDatabase(this.self);
+        Student stu = (Student) uploadManager.getUserByID(this.self);
+        this.uploadManager.updateDatabase(stu);
     }
 
     /**
@@ -51,7 +53,8 @@ public class FileUploadUIControl {
      * @throws IOException that it fails to upload calendar
      */
     public void reuploadCalendar() throws IOException{
-        this.uploadManager.reuploadUpdateDatabase(this.self);
+        Student stu = (Student) uploadManager.getUserByID(this.self);
+        this.uploadManager.reuploadUpdateDatabase(stu);
     }
 
     /**

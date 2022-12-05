@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -46,7 +47,7 @@ public class HomeFrame extends JFrame implements ActionListener {
      * - insTagBTN: goes to TagSelectFrame
      * - profileBTN: goes to ProfileFrame
      */
-    public HomeFrame(UIController uiController){
+    public HomeFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
 
         // setting up labels
@@ -104,24 +105,48 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == insTagBTN) {
-            uiController.toTagSelect();
+            try {
+                uiController.toTagSelect();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         else if (e.getSource() == statusBTN) {
-            uiController.toLabelSelect();
+            try {
+                uiController.toLabelSelect();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         else if (e.getSource() == findInsBuddyBTN) {
-            uiController.toTagMatch();
+            try {
+                uiController.toTagMatch();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         else if (e.getSource() == profileBTN) {
             this.setCursor(waitCursor);
-            uiController.toProfile();
+            try {
+                uiController.toProfile();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             this.setCursor(Cursor.getDefaultCursor());
         } else if (e.getSource() == studentsBTN) {
             this.setCursor(waitCursor);
-            uiController.toAllStudents();
+            try {
+                uiController.toAllStudents();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             this.setCursor(Cursor.getDefaultCursor());
         } else if (e.getSource() == friendsBTN) {
-            uiController.toFriendList();
+            try {
+                uiController.toFriendList();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
         if (e.getSource() == logoutBTN) {

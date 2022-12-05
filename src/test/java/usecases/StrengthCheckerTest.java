@@ -1,6 +1,6 @@
 package usecases;
 
-import database.LocalTempDataFactory;
+import database.local.LocalTempDataFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

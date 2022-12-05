@@ -1,4 +1,4 @@
-package database;
+package database.local;
 
 import database.local.LocalCourseData;
 import database.local.LocalTagData;

@@ -1,11 +1,8 @@
-import database.LocalTempDataFactory;
-import database.accessinterfaces.CourseDataAccess;
+import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
-import entities.Student;
 import externaladapters.FirebaseAPI;
-import views.*;
 import controllers.UIController;
 import database.cloud.CloudCourseData;
 import database.cloud.CloudTagData;

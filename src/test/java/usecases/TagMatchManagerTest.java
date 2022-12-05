@@ -1,6 +1,6 @@
 package usecases;
 
-import database.LocalTempDataFactory;
+import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;

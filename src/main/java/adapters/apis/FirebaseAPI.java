@@ -23,7 +23,7 @@ public class FirebaseAPI implements DatabaseInterface {
         db = FirestoreClient.getFirestore();
     }
 
-    public void initialize(String collectionName){
+    public void openCollection(String collectionName){
         this.collectionName = collectionName;
     }
     public List<QueryDocumentSnapshot> getDocumentList(){

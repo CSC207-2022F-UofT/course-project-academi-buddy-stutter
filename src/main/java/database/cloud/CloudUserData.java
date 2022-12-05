@@ -16,12 +16,12 @@ public class CloudUserData implements UserDataAccess {
 
     public CloudUserData(DatabaseInterface ub){
         this.fi = ub;
-        fi.initialize("users");
+        fi.openCollection("users");
     }
 
     @Override
     public ArrayList<String> getUserIDList(){
-        fi.initialize("users");
+        fi.openCollection("users");
         return fi.getDocumentStringList();
     }
 
@@ -31,7 +31,7 @@ public class CloudUserData implements UserDataAccess {
          * add a user to the database.
          * @return whether a user is added. If returned false, then the user already exists.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         String userID = user.getUserID();
         fi.addEntry(userID, "account type", "user");
         fi.addEntry(userID, "account password", user.getUserPassword());
@@ -46,7 +46,7 @@ public class CloudUserData implements UserDataAccess {
          * add a student user to the database.
          * @return whether a student user is added. If returned false, then the student user already exists.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         String studentID = student.getUserID();
         addUser(student);
         fi.addEntry(studentID, "account type", "student");
@@ -78,6 +78,7 @@ public class CloudUserData implements UserDataAccess {
 
     @Override
     public void updateStudentCourses(Student student){
+        fi.openCollection("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
     }
@@ -87,7 +88,7 @@ public class CloudUserData implements UserDataAccess {
         /**
          * remove a user from database.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         return fi.removeEntry(userID);
     }
 
@@ -96,7 +97,7 @@ public class CloudUserData implements UserDataAccess {
         /**
          * get a user by userid.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
         String uPass = (String) userData.get("account password");
@@ -186,7 +187,7 @@ public class CloudUserData implements UserDataAccess {
         /**
          * get a list of common session between two users.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
         Student s = (Student) getUserByID(selfUserID);
@@ -206,7 +207,7 @@ public class CloudUserData implements UserDataAccess {
         /**
          * @return whether a user exists in the database.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         return fi.getDocumentList().contains(user.getUserID());
     }
 
@@ -215,14 +216,14 @@ public class CloudUserData implements UserDataAccess {
         /**
          * @return whether a user exists in the database.
          */
-        fi.initialize("users");
+        fi.openCollection("users");
         return fi.getDocumentStringList().contains(ID);
     }
 
     // FriendList Methods
     @Override
     public void updateFriendList(Student student) {
-        fi.initialize("users");
+        fi.openCollection("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend list", student.getFriendList().toString());
 //        System.out.println(student.getFullName() + "friend list has been updated on Firebase");
@@ -230,7 +231,7 @@ public class CloudUserData implements UserDataAccess {
 
     @Override
     public void updateFriendRequestList(Student student) {
-        fi.initialize("users");
+        fi.openCollection("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend request list", student.getFriendListRequest().toString());
 //        System.out.println(student.getFullName() + "friend request list has been updated on Firebase");
@@ -238,7 +239,7 @@ public class CloudUserData implements UserDataAccess {
 
     @Override
     public void updateFriendRequestsSentList(Student student) {
-        fi.initialize("users");
+        fi.openCollection("users");
         String studentID = student.getUserID();
         fi.addEntry(studentID, "friend request sent list", student.getFriendRequestSentList().toString());
 //        System.out.println(student.getFullName() + "friend request sent list has been updated on Firebase");
@@ -246,7 +247,7 @@ public class CloudUserData implements UserDataAccess {
 
     @Override
     public ArrayList<String> getAdminIDs() {
-        fi.initialize("users");
+        fi.openCollection("users");
         ArrayList<String> userIDs = this.getUserIDList();
         ArrayList<String> adminIDs = new ArrayList<>();
         for (String id: userIDs) {

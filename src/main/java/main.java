@@ -18,7 +18,7 @@ public class main {
 
     private static int CLOUD = 0;
     private static int LOCAL = 1;
-    
+
     private static void initializeFirebase() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("service-account-file.json");
         FirebaseOptions options = new FirebaseOptions.Builder()
@@ -32,12 +32,10 @@ public class main {
         UIController uiController = null;
         if (databaseLocation == CLOUD){
             initializeFirebase();
-            FirebaseAPI cbc = new FirebaseAPI();
-            FirebaseAPI ubc = new FirebaseAPI();
-            FirebaseAPI tbc = new FirebaseAPI();
-            CloudUserData ub = new CloudUserData(ubc);
-            CloudCourseData cb = new CloudCourseData(cbc, ub);
-            CloudTagData tb = new CloudTagData(tbc, ub);
+            FirebaseAPI fi = new FirebaseAPI();
+            CloudUserData ub = new CloudUserData(fi);
+            CloudCourseData cb = new CloudCourseData(fi, ub);
+            CloudTagData tb = new CloudTagData(fi, ub);
             uiController = new UIController(null, cb, ub, tb);
         } 
         else if (databaseLocation == LOCAL){

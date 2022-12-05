@@ -14,19 +14,19 @@ public class CloudTagData implements TagDataAccess {
 
     public CloudTagData(DatabaseInterface tb, CloudUserData ud){
         this.fi = tb;
-        this.fi.initialize("tags");
+        this.fi.openCollection("tags");
         this.ud = ud;
     }
 
     @Override
     public ArrayList<String> getTagNameList(){
-        fi.initialize("tags");
+        fi.openCollection("tags");
         return fi.getDocumentStringList();
     }
 
     @Override
     public ArrayList<String> getStudentList(InterestTag tag){
-        fi.initialize("tags");
+        fi.openCollection("tags");
         String tagName = tag.getName();
         Map<String, Object> tagEntry = fi.getEntry(tagName);
         Set<String> studentsSet = tagEntry.keySet();
@@ -37,20 +37,20 @@ public class CloudTagData implements TagDataAccess {
 
     @Override
     public void addStudent(InterestTag tag, Student student) throws IOException {
-        fi.initialize("tags");
+        fi.openCollection("tags");
         ArrayList<String> students = getStudentList(tag);
         if(!students.contains(student.getUserID())){
-            fi.initialize("tags");
+            fi.openCollection("tags");
             fi.addEntry(tag.getName(), student.getUserID(), 1);
         }
     }
 
     @Override
     public boolean removeStudent(InterestTag tag, Student student) throws IOException {
-        fi.initialize("tags");
+        fi.openCollection("tags");
         ArrayList<String> students = getStudentList(tag);
         if(students.contains(student.getUserID())){
-            fi.initialize("tags");
+            fi.openCollection("tags");
             fi.removeDocField(tag.getName(), student.getUserID());
             return true;
         }

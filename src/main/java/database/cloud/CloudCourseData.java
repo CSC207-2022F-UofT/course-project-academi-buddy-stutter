@@ -15,7 +15,7 @@ public class CloudCourseData implements CourseDataAccess {
     private CloudUserData ud;
     public CloudCourseData(DatabaseInterface cb, CloudUserData ud){
         this.fi = cb;
-        this.fi.initialize("courses");
+        this.fi.openCollection("courses");
         this.ud = ud;
     }
 
@@ -25,7 +25,7 @@ public class CloudCourseData implements CourseDataAccess {
          * get a list of course code that is currently documented in the database.
          * @return an Arraylist of course code.
          */
-        fi.initialize("courses");
+        fi.openCollection("courses");
         return fi.getDocumentStringList();
     }
 
@@ -34,6 +34,7 @@ public class CloudCourseData implements CourseDataAccess {
         /**
          * add a course to the database. Note that this will overwrite any course of the same course code in database.
          */
+        fi.openCollection("courses");
         String courseCode = course.getCourseCode() + course.getCourseType();
         fi.addEntry(courseCode, "session type", course.getCourseType());
         fi.addEntry(courseCode, "session number", course.getSessionNumber());
@@ -46,7 +47,7 @@ public class CloudCourseData implements CourseDataAccess {
 
     @Override
     public void updateCourse(Course course){
-        fi.initialize("courses");
+        fi.openCollection("courses");
         String courseIdentifier = course.getCourseCode() + course.getCourseType();
 
         if(!courseExists(courseIdentifier)){
@@ -59,7 +60,7 @@ public class CloudCourseData implements CourseDataAccess {
         /**
          * add a student to a course. It also updates in user database as well.
          */
-        fi.initialize("courses");
+        fi.openCollection("courses");
         System.out.println(courseCode + courseType);
         Course course = this.getCourse(courseCode, courseType);
 
@@ -78,7 +79,7 @@ public class CloudCourseData implements CourseDataAccess {
         /**
          * remove a student to a course. It also updates in user database as well.
          */
-        fi.initialize("courses");
+        fi.openCollection("courses");
         Course course = this.getCourse(courseCode, courseType);
         boolean removed = course.removeStudent(student);
         if(removed){
@@ -95,7 +96,7 @@ public class CloudCourseData implements CourseDataAccess {
         /**
          * get a lecture course by course code.
          */
-        fi.initialize("courses");
+        fi.openCollection("courses");
         System.out.println(courseCode + courseType);
         if(!courseExists(courseCode + courseType)){
 
@@ -121,7 +122,7 @@ public class CloudCourseData implements CourseDataAccess {
     }
 
     private boolean courseExists(String courseIdentifier){
-        fi.initialize("courses");
+        fi.openCollection("courses");
         return this.getCourseCodeList().contains(courseIdentifier);
     }
 

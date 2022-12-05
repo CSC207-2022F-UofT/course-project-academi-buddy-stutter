@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 public interface DatabaseInterface {
-    void initialize(String collectionName);
+    void openCollection(String collectionName);
 
     List<?> getDocumentList();
 

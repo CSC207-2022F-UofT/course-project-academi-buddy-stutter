@@ -1,5 +1,6 @@
 package UIController;
 
+import Entities.Student;
 import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
@@ -7,6 +8,7 @@ import Entities.User;
 import UseCases.TagMatchManager;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  */
 public class TagMatchUIControl{
     private TagMatchManager tagMatchManager;
-    private User self;
+    private String self;
     private TagDataManager tagManager;
 
     /**
@@ -25,17 +27,18 @@ public class TagMatchUIControl{
      * @param userManager an instance of UserDataManager
      * @param tagManager an instance of TagDataManager
      */
-    public TagMatchUIControl(User self, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
-        this.self = self;
-        this.tagMatchManager = new TagMatchManager(courseManager, userManager, tagManager);
+    public TagMatchUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.self = userID;
+        this.tagMatchManager = new TagMatchManager(courseDataManager, userDataManager, tagDataManager);
     }
 
     /**
      * @return a list of matched users
      */
-    public DefaultListModel<String> getNameList(){
+    public DefaultListModel<String> getNameList() throws IOException {
         List<String> nameList = new ArrayList<>();
-        for(String s: tagMatchManager.getStudentName(self)){
+        Student stu = (Student) tagMatchManager.getUserByID(this.self);
+        for(String s: tagMatchManager.getStudentName(stu)){
             nameList.add(s);
         }
         DefaultListModel<String> nameModel = new DefaultListModel<>();

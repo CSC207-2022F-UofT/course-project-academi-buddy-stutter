@@ -16,8 +16,8 @@ public class LoginManager extends UseCase{
      * @param courseDatabase the course database.
      * @param userDatabase the user database.
      */
-    public LoginManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
-        super(courseDatabase, userDatabase);
+    public LoginManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase){
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

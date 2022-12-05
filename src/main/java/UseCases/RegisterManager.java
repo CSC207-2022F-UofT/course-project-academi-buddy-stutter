@@ -16,8 +16,8 @@ public class RegisterManager extends UseCase{
      * @param courseDatabase The course database.
      * @param userDatabase The user database.
      */
-    public RegisterManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
-        super(courseDatabase, userDatabase);
+    public RegisterManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase){
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

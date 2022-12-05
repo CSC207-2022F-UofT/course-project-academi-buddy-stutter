@@ -11,19 +11,15 @@ import java.util.HashMap;
 /**
  * Use case operations for course matcher.
  */
-public class CourseMatchManager {
-
-    private CourseDataManager cb;
-    private UserDataManager ub;
+public class CourseMatchManager extends UseCase{
 
     /**
      * Initializer
      * @param courseDatabase the course database.
      * @param userDatabase the user database.
      */
-    public CourseMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase){
-        this.cb = courseDatabase;
-        this.ub = userDatabase;
+    public CourseMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase){
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     private final int maxSameCourses = 17;

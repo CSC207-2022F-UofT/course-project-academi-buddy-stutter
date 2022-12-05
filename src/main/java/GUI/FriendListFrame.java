@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     /**
      * implements all UI components
      */
-    public FriendListFrame(UIController uiController){
+    public FriendListFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
 
         this.setTitle("Friend List and Requests"); // sets frame's title
@@ -139,7 +140,11 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
                     uiController.getFriendListUIControl().acceptFriendRequest(userID, friendID);
                     uiController.getFriendListUIControl().acceptedRequest(friendID, userID);
-                    refreshFriendListTable();
+                    try {
+                        refreshFriendListTable();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     refreshFriendRequestListTable();
 
                 } else {
@@ -176,7 +181,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     /**
      * refreshes friend list table
      */
-    public void refreshFriendListTable() {
+    public void refreshFriendListTable() throws IOException {
         friendModel.setRowCount(0);
         friendList = uiController.getFriendListUIControl().getFriendList();
 

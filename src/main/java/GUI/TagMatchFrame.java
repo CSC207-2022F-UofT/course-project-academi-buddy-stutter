@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 
 import UIController.UIController;
 
@@ -32,7 +33,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     /**
      * Implements all UI components.
      */
-    public TagMatchFrame(UIController uiController){
+    public TagMatchFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
 
         this.setTitle("Match by TagDataManager"); // sets frame's title
@@ -123,7 +124,11 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     public void itemStateChanged(ItemEvent e) {
         this.setCursor(waitCursor);
         uiController.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
-        matchedStu = uiController.getTagMatchUIControl().getNameList();
+        try {
+            matchedStu = uiController.getTagMatchUIControl().getNameList();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
         matchedList.setModel(matchedStu);
         profileBTN.setEnabled(false);
         this.setCursor(Cursor.getDefaultCursor());

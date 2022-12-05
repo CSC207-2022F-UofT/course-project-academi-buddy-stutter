@@ -5,6 +5,7 @@ import UIController.UIController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * This class implements ProfileDisplayFrame that displays the profile of a user.
@@ -106,8 +107,13 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         }
         else if (e.getSource() == addFriendBTN) {
 //            if (!uiController.getFriendListUIControl().isRequestSent(userID)) {
-                String viewerID = uiController.getProfileUIControl().getUserID();
-                uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
+            String viewerID = null;
+            try {
+                viewerID = uiController.getProfileUIControl().getUserID();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            uiController.getFriendListUIControl().sendFriendRequest(viewerID, userID);
                 uiController.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
                 System.out.println("Sending friend request to: " + viewerID);
                 addFriendBTN.setEnabled(false);

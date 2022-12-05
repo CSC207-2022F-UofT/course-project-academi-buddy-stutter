@@ -6,11 +6,13 @@ import UseCases.CourseDataManager;
 import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
+import java.io.IOException;
+
 /**
  * Implements AdminUIControl for AdminFrame
  */
 public class AdminUIControl {
-    private User self;
+    private String self;
     private AdminActionsManager adminActionsManager;
 
     /**
@@ -20,8 +22,8 @@ public class AdminUIControl {
      * @param userDataManager instance of UserDataManager
      * @param tagDataManager instance of TagDataManager
      */
-    public AdminUIControl(User self, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
-        this.self = self;
+    public AdminUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.self = userID;
         this.adminActionsManager = new AdminActionsManager(courseDataManager, userDataManager, tagDataManager);
 
     }
@@ -32,7 +34,7 @@ public class AdminUIControl {
      * @return whether the user is successfully removed from database
      */
     public boolean removeUser(String userID){
-        if(!self.getUserID().equals(userID)){
+        if(!self.equals(userID)){
             return adminActionsManager.removeUser(userID);
         }
         return false;
@@ -42,7 +44,7 @@ public class AdminUIControl {
      * gets user's full name
      * @return user's full name
      */
-    public String getName(){
-        return self.getFullName();
+    public String getName() throws IOException {
+        return adminActionsManager.getUserByID(self).getFullName();
     }
 }

@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * This class allows user to upload an ics calendar by clicking the "Upload" button.
@@ -75,7 +76,11 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
             uiController.toProfileCompleteFrame();
         } else if (e.getSource() == nextBTN && status == UIController.FROM_PROFILE) {
             this.dispose();
-            uiController.toProfile();
+            try {
+                uiController.toProfile();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource() == uploadBTN && status == UIController.FROM_REGISTER) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading...");

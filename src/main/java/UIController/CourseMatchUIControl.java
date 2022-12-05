@@ -4,6 +4,7 @@ import Entities.User;
 import Entities.Student;
 import UseCases.CourseDataManager;
 import UseCases.CourseMatchManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 
 import java.io.IOException;
@@ -15,11 +16,11 @@ import java.util.ArrayList;
 public class CourseMatchUIControl {
     private CourseMatchManager courseMatchManager;
 
-    public Student self;
+    public String self;
     private ArrayList<Student> matches = new ArrayList();
-    public CourseMatchUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
-        this.self = (Student)self;
-        this.courseMatchManager = new CourseMatchManager(courseDatabase, userDatabase);
+    public CourseMatchUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.self = userID;
+        this.courseMatchManager = new CourseMatchManager(courseDataManager, userDataManager, tagDataManager);
     }
 
     /**
@@ -30,7 +31,8 @@ public class CourseMatchUIControl {
      */
     public ArrayList<Student> getMatches(int min_numCommon) throws IOException {
         this.matches = new ArrayList();
-        this.matches = this.courseMatchManager.getTopSameSessionStudents(this.self, min_numCommon);
+        Student stu = (Student) courseMatchManager.getUserByID(this.self);
+        this.matches = this.courseMatchManager.getTopSameSessionStudents(stu, min_numCommon);
         return this.matches;
     }
 

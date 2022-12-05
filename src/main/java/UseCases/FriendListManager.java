@@ -15,8 +15,8 @@ public class FriendListManager extends UseCase{
      * @param courseDatabase the course database
      * @param userDatabase the user database
      */
-    public FriendListManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
-        super(courseDatabase, userDatabase);
+    public FriendListManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

@@ -14,7 +14,6 @@ import java.util.List;
 public class TagMatchManager extends UseCase{
 
     private InterestTag selectedTag;
-    private TagDataManager tagManager;
 
     private ArrayList<String> idList = new ArrayList<>();
 
@@ -23,11 +22,10 @@ public class TagMatchManager extends UseCase{
      * Initializer.
      * @param courseDatabase The course database.
      * @param userDatabase The user database.
-     * @param tagManager The tag manager.
+     * @param tagDatabase The tag manager.
      */
-    public TagMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
-        super(courseDatabase, userDatabase);
-        this.tagManager = tagManager;
+    public TagMatchManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**
@@ -45,7 +43,7 @@ public class TagMatchManager extends UseCase{
      * @return An ArrayList of students that are matched.
      */
     public ArrayList<Student> match(){
-        List<String> idList = tagManager.getStudentList(selectedTag);
+        List<String> idList = tb.getStudentList(selectedTag);
         ArrayList<Student> matchedStudents = new ArrayList<>();
         for(String id: idList){
             Student student;

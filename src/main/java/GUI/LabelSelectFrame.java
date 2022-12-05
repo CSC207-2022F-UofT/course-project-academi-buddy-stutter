@@ -8,6 +8,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +38,7 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
     /**
      * This constructor method implements all UI components for LabelSelectFrame
      */
-    public LabelSelectFrame(UIController uiController){
+    public LabelSelectFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
         this.setTitle("Status Label Selection"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
@@ -99,7 +100,11 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
             this.setCursor(waitCursor);
             ArrayList<Boolean> newState = new ArrayList<>();
             for (JCheckBox box: boxList){
-                uiController.getLabelSelectUIControl().updateStudentLabel(box.getText(), box.isSelected());
+                try {
+                    uiController.getLabelSelectUIControl().updateStudentLabel(box.getText(), box.isSelected());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 newState.add(box.isSelected());
             }
             initialState = newState;

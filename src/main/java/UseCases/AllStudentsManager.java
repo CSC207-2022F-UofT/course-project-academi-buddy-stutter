@@ -8,9 +8,10 @@ public class AllStudentsManager extends UseCase{
      * Initiator
      * @param courseDatabase the course database
      * @param userDatabase the user database
+     * @param tagDatabase the tag database
      */
-    public AllStudentsManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
-        super(courseDatabase, userDatabase);
+    public AllStudentsManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

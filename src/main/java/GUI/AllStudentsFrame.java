@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +28,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     /**
      * Constructs all UI components
      */
-    public AllStudentsFrame(UIController uiController) {
+    public AllStudentsFrame(UIController uiController) throws IOException {
         this.uiController = uiController;
         this.setTitle("All Students");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
@@ -103,7 +104,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     /**
      * refreshes student table
      */
-    public void refreshStudentsTable() {
+    public void refreshStudentsTable() throws IOException {
         studentModel.setRowCount(0);
         studentList = uiController.getAllStudentsUIControl().getAllStudents();
 
@@ -116,7 +117,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
      * @param uiController an instance of UIController
      * @param studentModel an instance of DefaultTableModel
      */
-    static void addStudentsToList(ArrayList<String> studentList, UIController uiController, DefaultTableModel studentModel) {
+    static void addStudentsToList(ArrayList<String> studentList, UIController uiController, DefaultTableModel studentModel) throws IOException {
         System.out.println(studentList.toString());
         String userID = uiController.getProfileUIControl().getUserID();
         ArrayList<String> adminIDs = uiController.getAllStudentsUIControl().getAdminIDs();

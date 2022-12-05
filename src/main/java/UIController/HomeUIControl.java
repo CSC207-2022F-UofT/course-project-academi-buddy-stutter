@@ -1,10 +1,10 @@
 package UIController;
 
 import Entities.Student;
-import Entities.User;
 import External.BiweeklyAPI;
 import External.JavaxAPI;
 import UseCases.CourseDataManager;
+import UseCases.TagDataManager;
 import UseCases.UserDataManager;
 import UseCases.UploadManager;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class HomeUIControl {
     private UploadManager uploadManager;
-    private Student self;
+    private String self;
 
     /**
      * Constructs HomeUIControl
@@ -23,18 +23,18 @@ public class HomeUIControl {
      * @param courseDatabase an instance of CourseDataManager
      * @param userDatabase an instance of UserDataManager
      */
-    public HomeUIControl(User self, CourseDataManager courseDatabase, UserDataManager userDatabase){
-        this.self = (Student) self;
+    public HomeUIControl(String userID, CourseDataManager courseDataManager, UserDataManager userDataManager, TagDataManager tagDataManager){
+        this.self = userID;
         JavaxAPI javaxAPI = new JavaxAPI();
         BiweeklyAPI biweeklyAPI = new BiweeklyAPI();
-        this.uploadManager = new UploadManager(courseDatabase, userDatabase, javaxAPI, biweeklyAPI);
+        this.uploadManager = new UploadManager(courseDataManager, userDataManager, tagDataManager, javaxAPI, biweeklyAPI);
 
     }
 
     /**
      * @return user's full name
      */
-    public String getName(){
-        return self.getFullName();
+    public String getName() throws IOException {
+        return uploadManager.getUserByID(self).getFullName();
     }
 }

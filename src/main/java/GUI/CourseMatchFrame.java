@@ -178,7 +178,11 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         else if (e.getSource() == commonSessionBTN) {
             this.setCursor(waitCursor);
             String selectedID = uiController.getMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
-            uiController.toCommonSession(selectedID);
+            try {
+                uiController.toCommonSession(selectedID);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             this.setCursor(Cursor.getDefaultCursor());
 
         }

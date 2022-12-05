@@ -21,7 +21,7 @@ public class ProfileManagerTest extends Tests {
     LocalCourseData cb = (LocalCourseData) managers.get(1);
     LocalTagData tb = (LocalTagData) managers.get(2);
 
-    ProfileManager profileManager = new ProfileManager(cb, ub);
+    ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
 
     @Test

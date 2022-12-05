@@ -15,8 +15,8 @@ public class LabelSelectManager extends UseCase{
      * @param courseDatabase the course database.
      * @param userDatabase the user database.
      */
-    public LabelSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
-        super(courseDatabase, userDatabase);
+    public LabelSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

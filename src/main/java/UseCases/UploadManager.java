@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class UploadManager extends UseCase {
     UploaderInterface uploaderInterface;
     CalendarInterface calendarInterface;
-    CourseDataManager courseDataManager;
 
     /**
      * Initializer.
@@ -23,12 +22,12 @@ public class UploadManager extends UseCase {
      * @param calendarInterface The calendar interface.
      */
     public UploadManager(CourseDataManager courseDatabase, UserDataManager userDatabase,
+                         TagDataManager tagDatabase,
                          UploaderInterface uploaderInterface,
                          CalendarInterface calendarInterface){
-        super(courseDatabase, userDatabase);
+        super(courseDatabase, userDatabase, tagDatabase);
         this.uploaderInterface = uploaderInterface;
         this.calendarInterface = calendarInterface;
-        this.courseDataManager = courseDatabase;
     }
 
     /**
@@ -66,7 +65,20 @@ public class UploadManager extends UseCase {
      * @param student The student to operate on.
      */
     public void reuploadUpdateDatabase(Student student) throws IOException {
-        AdminActionsManager.removeStudentFromCourse(student, courseDataManager);
+
+        for(String c: student.getEnrolledCourseCodes()){
+            Course course = this.cb.getCourse(c, "LEC");
+            this.cb.removeStudent(course.getCourseCode(), course.getCourseType(), student);
+            student.removeCourse(course);
+        }
+        if(!student.getEnrolledCourseCodes().isEmpty()){
+            for(String c: student.getEnrolledCourseCodes()){
+                Course course = this.cb.getCourse(c, "TUT");
+                this.cb.removeStudent(course.getCourseCode(), course.getCourseType(), student);
+                student.removeCourse(course);
+            }
+        }
+
         updateDatabase(student);
     }
 

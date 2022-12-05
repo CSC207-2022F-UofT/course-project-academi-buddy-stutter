@@ -15,11 +15,10 @@ public class TagSelectManager extends UseCase {
      * Initializer
      * @param courseDatabase The course database.
      * @param userDatabase The user database.
-     * @param tagManager The tag manager.
+     * @param tagDatabase The tag manager.
      */
-    public TagSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagManager) {
-        super(courseDatabase, userDatabase);
-        this.tb = tagManager;
+    public TagSelectManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

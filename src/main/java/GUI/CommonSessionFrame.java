@@ -4,6 +4,7 @@ import UIController.UIController;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 /**
  * Implements JFrame that shows common courses between 2 registered users
@@ -24,7 +25,7 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
      * constructs all UI components
      * @param targetUserID user id of the target user we want to compare
      */
-    public CommonSessionFrame(UIController uiController, String targetUserID){
+    public CommonSessionFrame(UIController uiController, String targetUserID) throws IOException {
         this.uiController = uiController;
         this.targetUserID = targetUserID;
         // Labels

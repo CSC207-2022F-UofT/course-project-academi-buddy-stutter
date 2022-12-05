@@ -14,9 +14,10 @@ public class CommonSessionManager extends UseCase{
      * Initiator
      * @param courseDatabase the course database
      * @param userDatabase the user database
+     * @param tagDatabase the tag database
      */
-    public CommonSessionManager(CourseDataManager courseDatabase, UserDataManager userDatabase) {
-        super(courseDatabase, userDatabase);
+    public CommonSessionManager(CourseDataManager courseDatabase, UserDataManager userDatabase, TagDataManager tagDatabase) {
+        super(courseDatabase, userDatabase, tagDatabase);
     }
 
     /**

@@ -20,7 +20,7 @@ public class UIController{
     public static int FROM_REGISTER = 0;
     public static int FROM_PROFILE = 1;
 
-    private User self;
+    private String self;
     private CourseDataManager courseManager;
     private UserDataManager userManager;
     private TagDataManager tagManager;
@@ -47,6 +47,8 @@ public class UIController{
     private AllStudentsUIControl allStudentsUIControl;
 
     private AdminUIControl adminUIControl;
+
+    private LoginManager loginManager;
 
     /**
      * returns adminUIControl
@@ -125,27 +127,28 @@ public class UIController{
 
     /**
      * Constructs a UIController with 4 parameters
-     * @param user represents a user
+     * @param userID represents a userID
      * @param courseManager instance of courseManager class
      * @param userManager instance of userManager class
      * @param tagManager instance of tagManager class
      */
-    public UIController(User user, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager){
-        this.self = user;
+    public UIController(String userID, CourseDataManager courseManager, UserDataManager userManager, TagDataManager tagManager) throws IOException {
+        this.self = userID;
         this.courseManager = courseManager;
         this.userManager = userManager;
         this.tagManager = tagManager;
 
         // UseCases
-        this.loginUIControl = new LoginUIControl(courseManager, userManager);
-        this.registerUIControl = new RegisterUIControl(courseManager, userManager);
+        this.loginUIControl = new LoginUIControl(userID, courseManager, userManager, tagManager);
+        this.registerUIControl = new RegisterUIControl(userID, courseManager, userManager, tagManager);
+        this.loginManager = new LoginManager(courseManager, userManager, tagManager);
     }
 
     /**
      * updates user by calling the getUser() method from loginUIControl
      */
     public void updateUser(){
-        this.self = this.loginUIControl.getUser();
+        this.self = this.loginUIControl.self;
     }
 
     /**
@@ -173,12 +176,12 @@ public class UIController{
     /**
      * takes user to HomeFrame
      */
-    public void toHome(){
-        System.out.println(self.getClass());
-        if(self instanceof Student){
+    public void toHome() throws IOException {
+        User user = (Student)loginManager.getUserByID(this.self);
+        if(user instanceof Student){
             initializeAfterLogin();
             HomeFrame HomeFrame = new HomeFrame(this);
-        }else if(self instanceof Admin){
+        }else if(user instanceof Admin){
             initializeAdminAfterLogin();
             AdminFrame adminFrame = new AdminFrame(this);
         }
@@ -209,7 +212,7 @@ public class UIController{
     /**
      * takes user to ProfileFrame
      */
-    public void toProfile(){
+    public void toProfile() throws IOException {
         STATUS = FROM_PROFILE;
         ProfileFrame profileFrame = new ProfileFrame(this);
     }
@@ -224,21 +227,21 @@ public class UIController{
     /**
      * takes user to TagMatchFrame
      */
-    public void toTagMatch(){
+    public void toTagMatch() throws IOException {
         TagMatchFrame tagMatchFrame = new TagMatchFrame(this);
     }
 
     /**
      * takes user to TagSelectFrame
      */
-    public void toTagSelect(){
+    public void toTagSelect() throws IOException {
         TagSelectFrame tagSelectFrame = new TagSelectFrame(this);
     }
 
     /**
      * takes user to LabelSelectFrame
      */
-    public void toLabelSelect(){
+    public void toLabelSelect() throws IOException {
         LabelSelectFrame LabelSelectFrame = new LabelSelectFrame(this);
     }
 
@@ -246,7 +249,7 @@ public class UIController{
      * takes user to CalendarUploadFrame
      */
     public void toCalendarUpload() {
-        this.fileUploadUIControl = new FileUploadUIControl(self, courseManager, userManager);
+        this.fileUploadUIControl = new FileUploadUIControl(self, courseManager, userManager, tagManager);
         CalendarUploadFrame fileUploadFrame = new CalendarUploadFrame(this, STATUS);
     }
 
@@ -259,18 +262,18 @@ public class UIController{
     /**
      * takes user to friendListFrame
      */
-    public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
+    public void toFriendList() throws IOException {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
     /**
      * takes user to commonSessionFrame
      * @param targetUserID shows common sessions with targetUserID
      */
-    public void toCommonSession(String targetUserID) {CommonSessionFrame commonSessionFrame = new CommonSessionFrame(this, targetUserID);}
+    public void toCommonSession(String targetUserID) throws IOException {CommonSessionFrame commonSessionFrame = new CommonSessionFrame(this, targetUserID);}
 
     /**
      * takes user to AllStudentsFrame
      */
-    public void toAllStudents() {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
+    public void toAllStudents() throws IOException {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
 
     /**
      * initializes all controllers after user(student) logged in
@@ -278,14 +281,14 @@ public class UIController{
     private void initializeAfterLogin(){
         this.tagMatchUIControl = new TagMatchUIControl(self, courseManager, userManager, tagManager);
         this.tagSelectUIControl = new TagSelectUIControl(self, courseManager, userManager, tagManager);
-        this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager);
-        this.profileUIControl = new ProfileUIControl(self, courseManager, userManager);
-        this.profileDisplayUIControl = new ProfileDisplayUIControl(courseManager, userManager);
-        this.homeUIControl = new HomeUIControl(self, courseManager,userManager);
-        this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager);
-        this.matchUIControl = new CourseMatchUIControl(self, courseManager, userManager);
-        this.commonSessionUIControl = new CommonSessionUIControl(self, courseManager, userManager);
-        this.allStudentsUIControl = new AllStudentsUIControl(self, courseManager, userManager);
+        this.labelSelectUIControl = new LabelSelectUIControl(self, courseManager, userManager, tagManager);
+        this.profileUIControl = new ProfileUIControl(self, courseManager, userManager, tagManager);
+        this.profileDisplayUIControl = new ProfileDisplayUIControl(self, courseManager, userManager, tagManager);
+        this.homeUIControl = new HomeUIControl(self, courseManager,userManager, tagManager);
+        this.friendListUIControl = new FriendListUIControl(self, courseManager, userManager, tagManager);
+        this.matchUIControl = new CourseMatchUIControl(self, courseManager, userManager, tagManager);
+        this.commonSessionUIControl = new CommonSessionUIControl(self, courseManager, userManager, tagManager);
+        this.allStudentsUIControl = new AllStudentsUIControl(self, courseManager, userManager, tagManager);
     }
 
     /**

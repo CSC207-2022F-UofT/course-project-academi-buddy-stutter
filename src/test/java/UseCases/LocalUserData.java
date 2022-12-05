@@ -121,6 +121,17 @@ public class LocalUserData implements UserDataManager{
         updateArrayListOfUser(student);
     }
 
+    @Override
+    public ArrayList<String> getAdminIDs() {
+        ArrayList<String> adminIDs = new ArrayList<>();
+        for (User user: this.allUsers) {
+            if (user instanceof Admin) {
+                adminIDs.add(user.getUserID());
+            }
+        }
+        return adminIDs;
+    }
+
     private void updateArrayListOfUser(Student student){
         ArrayList<User> newUserList = new ArrayList<>();
         for (User user: allUsers){

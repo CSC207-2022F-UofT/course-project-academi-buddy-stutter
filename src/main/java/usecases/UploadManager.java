@@ -4,8 +4,8 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 import entities.Course;
 import entities.Student;
-import gateways.CalendarInterface;
-import gateways.UploaderInterface;
+import adapters.gateways.CalendarInterface;
+import adapters.gateways.UploaderInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;

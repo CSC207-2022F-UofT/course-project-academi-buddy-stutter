@@ -1,6 +1,6 @@
-package apis;
+package adapters.apis;
 
-import gateways.CalendarInterface;
+import adapters.gateways.CalendarInterface;
 import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;

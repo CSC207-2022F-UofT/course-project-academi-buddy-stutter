@@ -1,4 +1,4 @@
-package gateways;
+package adapters.gateways;
 
 
 import java.util.ArrayList;

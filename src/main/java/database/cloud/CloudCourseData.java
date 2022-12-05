@@ -1,6 +1,6 @@
 package database.cloud;
 import database.accessinterfaces.CourseDataAccess;
-import gateways.DatabaseInterface;
+import adapters.gateways.DatabaseInterface;
 import entities.Course;
 import entities.Student;
 

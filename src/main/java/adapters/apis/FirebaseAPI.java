@@ -1,6 +1,6 @@
-package apis;
+package adapters.apis;
 
-import gateways.DatabaseInterface;
+import adapters.gateways.DatabaseInterface;
 import utilities.ReadCounter;
 import utilities.WriteCounter;
 import com.google.api.core.ApiFuture;

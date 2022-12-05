@@ -2,7 +2,7 @@ import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
-import apis.FirebaseAPI;
+import adapters.apis.FirebaseAPI;
 import controllers.UIController;
 import database.cloud.CloudCourseData;
 import database.cloud.CloudTagData;

@@ -1,6 +1,6 @@
 package usecases;
 
-import gateways.CalendarInterface;
+import adapters.gateways.CalendarInterface;
 import entities.Course;
 
 import java.io.*;

@@ -1,6 +1,6 @@
-package apis;
+package adapters.apis;
 
-import gateways.UploaderInterface;
+import adapters.gateways.UploaderInterface;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

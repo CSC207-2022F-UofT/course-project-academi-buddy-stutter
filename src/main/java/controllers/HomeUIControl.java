@@ -1,7 +1,7 @@
 package controllers;
 
-import apis.BiweeklyAPI;
-import apis.JavaxAPI;
+import adapters.apis.BiweeklyAPI;
+import adapters.apis.JavaxAPI;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;

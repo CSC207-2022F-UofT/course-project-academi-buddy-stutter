@@ -1,7 +1,7 @@
 package database.cloud;
 
 import database.accessinterfaces.TagDataAccess;
-import gateways.DatabaseInterface;
+import adapters.gateways.DatabaseInterface;
 import entities.InterestTag;
 import entities.Student;
 

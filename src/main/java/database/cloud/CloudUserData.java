@@ -1,7 +1,7 @@
 package database.cloud;
 
 import database.accessinterfaces.UserDataAccess;
-import gateways.DatabaseInterface;
+import adapters.gateways.DatabaseInterface;
 import entities.*;
 
 import java.io.IOException;

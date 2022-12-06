@@ -3,7 +3,7 @@ import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
 import adapters.apis.FirebaseAPI;
-import controllers.UIController;
+import ui.FrameNavigator;
 import database.cloud.CloudCourseData;
 import database.cloud.CloudTagData;
 import database.cloud.CloudUserData;
@@ -29,7 +29,7 @@ public class main {
     }
 
     private static void launch(int databaseLocation) throws IOException{
-        UIController uiController = null;
+        FrameNavigator frameNavigator = null;
         if (databaseLocation == CLOUD){
             initializeFirebase();
             FirebaseAPI cbc = new FirebaseAPI();
@@ -38,16 +38,16 @@ public class main {
             CloudUserData ub = new CloudUserData(ubc);
             CloudCourseData cb = new CloudCourseData(cbc, ub);
             CloudTagData tb = new CloudTagData(tbc, ub);
-            uiController = new UIController(null, cb, ub, tb);
+            frameNavigator = new FrameNavigator(null, cb, ub, tb);
         } 
         else if (databaseLocation == LOCAL){
             LocalTempDataFactory localTempDataFactory = new LocalTempDataFactory();
             LocalUserData ub = (LocalUserData) localTempDataFactory.getLocalDatabase().get(0);
             LocalCourseData cb = (LocalCourseData) localTempDataFactory.getLocalDatabase().get(1);
             LocalTagData tb = (LocalTagData) localTempDataFactory.getLocalDatabase().get(2);
-            uiController = new UIController(null, cb, ub, tb);
+            frameNavigator = new FrameNavigator(null, cb, ub, tb);
         }
-        uiController.toLogin();
+        frameNavigator.toLogin();
     }
 
     public static void main(String[] args) throws IOException{

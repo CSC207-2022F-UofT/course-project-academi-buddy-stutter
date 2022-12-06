@@ -4,10 +4,10 @@ on: [push]
 
 jobs:
   build:
+    name : Run JUnit tests
     runs-on: ubuntu-latest
     steps:
-      - name: Run JUnit tests
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         run: mvn test
       - name: Check test results
         if: steps.test.outputs.num_tests_passed < 5

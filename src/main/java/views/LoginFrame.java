@@ -98,13 +98,13 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
                 String id = userIDText.getText();
                 String password = new String(passwordText.getPassword());
 
-                if(this.frameNavigator.getLoginUIControl().attemptLogin(id, password)){
+                if(this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password)){
                     this.dispose();
                     this.frameNavigator.updateUser();
-                    if(frameNavigator.getLoginUIControl().getUserType() == frameNavigator.getLoginUIControl().STUDENT){
+                    if(frameNavigator.getLoginUIPresenter().getUserType() == frameNavigator.getLoginUIPresenter().STUDENT){
                         this.frameNavigator.toHome();
                     }
-                    else if(frameNavigator.getLoginUIControl().getUserType() == frameNavigator.getLoginUIControl().ADMIN){
+                    else if(frameNavigator.getLoginUIPresenter().getUserType() == frameNavigator.getLoginUIPresenter().ADMIN){
                         this.frameNavigator.toAdmin();
                     }
                 }

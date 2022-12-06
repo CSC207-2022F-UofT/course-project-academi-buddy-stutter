@@ -83,12 +83,12 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == uploadBTN && status == frameNavigator.FROM_REGISTER) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading...");
-            if (frameNavigator.getFileUploadUIControl().upload()) {
+            if (frameNavigator.getFileUploadUIPresenter().upload()) {
                 try {
-                    frameNavigator.getFileUploadUIControl().copyFileToPath();
+                    frameNavigator.getFileUploadUIPresenter().copyFileToPath();
                     completedLabel.setForeground(Color.green);
                     completedLabel.setText("Uploaded!");
-                    frameNavigator.getFileUploadUIControl().updateDatabase();
+                    frameNavigator.getFileUploadUIPresenter().updateDatabase();
                 } catch (Exception ex) {
                     completedLabel.setForeground(Color.red);
                     completedLabel.setText("Error!");
@@ -101,12 +101,12 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == uploadBTN && status == frameNavigator.FROM_PROFILE) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading. This may take a while...");
-            if (frameNavigator.getFileUploadUIControl().upload()) {
+            if (frameNavigator.getFileUploadUIPresenter().upload()) {
                 try {
-                    frameNavigator.getFileUploadUIControl().copyFileToPath();
+                    frameNavigator.getFileUploadUIPresenter().copyFileToPath();
                     completedLabel.setForeground(Color.green);
                     completedLabel.setText("Uploaded!");
-                    frameNavigator.getFileUploadUIControl().reuploadCalendar();
+                    frameNavigator.getFileUploadUIPresenter().reuploadCalendar();
                 } catch (Exception ex) {
                     completedLabel.setForeground(Color.red);
                     completedLabel.setText("Error!");

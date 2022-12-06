@@ -55,15 +55,15 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         nameText.setEditable(false);
         emailText.setEditable(true);
         infoText.setEditable(true);
-        nameText.setText(frameNavigator.getProfileUIControl().getName());
-        currentEmail = frameNavigator.getProfileUIControl().getEmail();
+        nameText.setText(frameNavigator.getProfileUIPresenter().getName());
+        currentEmail = frameNavigator.getProfileUIPresenter().getEmail();
         if(currentEmail == null){
             currentEmail = "";
         }
         emailText.setText(currentEmail);
-        currentInfo = frameNavigator.getProfileUIControl().getInfo();
+        currentInfo = frameNavigator.getProfileUIPresenter().getInfo();
         infoText.setText(currentInfo);
-        courseText.setText(frameNavigator.getProfileUIControl().getCourse());
+        courseText.setText(frameNavigator.getProfileUIPresenter().getCourse());
         courseTextScoll.setViewportView(courseText);
         courseTextScoll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         courseTextScoll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -129,7 +129,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
             this.dispose();
         } else if (e.getSource() == changeEmail) {
             try {
-                frameNavigator.getProfileUIControl().updateEmail(emailText.getText());
+                frameNavigator.getProfileUIPresenter().updateEmail(emailText.getText());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -139,7 +139,7 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         else if (e.getSource() == changeInfo) {
             System.out.println(infoText.getText() + currentInfo);
             try {
-                frameNavigator.getProfileUIControl().updateInfo(infoText.getText());
+                frameNavigator.getProfileUIPresenter().updateInfo(infoText.getText());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

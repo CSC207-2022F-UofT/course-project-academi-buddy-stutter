@@ -117,7 +117,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
                 if(registered){
                     this.frameNavigator.toRegisterProfile();
                     this.dispose();
-                    this.frameNavigator.getLoginUIControl().attemptLogin(id, password);
+                    this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password);
                     this.frameNavigator.updateUser();
                 }
                 else if (strength == 23){

@@ -1,6 +1,5 @@
 package database.accessinterfaces;
 
-import entities.*;
 import model.entities.Student;
 import model.entities.User;
 

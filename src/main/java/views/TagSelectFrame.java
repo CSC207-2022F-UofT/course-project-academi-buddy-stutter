@@ -74,8 +74,8 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         boxList.add(gameCB);
         boxList.add(photoCB);
         for(JCheckBox box: boxList){
-            box.setSelected(frameNavigator.getTagSelectUIControl().getStudentTagState(box.getText()));
-            initialState.add(frameNavigator.getTagSelectUIControl().getStudentTagState(box.getText()));
+            box.setSelected(frameNavigator.getTagSelectPresenter().getStudentTagState(box.getText()));
+            initialState.add(frameNavigator.getTagSelectPresenter().getStudentTagState(box.getText()));
         }
         adventureCB.addChangeListener(this);
         musicCB.addChangeListener(this);
@@ -120,7 +120,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
                 newState.add(selection);
                 if(selection != initialState.get(i)){
                     try {
-                        frameNavigator.getTagSelectUIControl().updateStudentTag(boxList.get(i).getText(), boxList.get(i).isSelected());
+                        frameNavigator.getTagSelectPresenter().updateStudentTag(boxList.get(i).getText(), boxList.get(i).isSelected());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

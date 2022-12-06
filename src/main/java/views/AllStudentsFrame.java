@@ -46,7 +46,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
         studentScroll.setBounds(50, 40, 150, 150);
 
         //Set Table
-        studentList = frameNavigator.getAllStudentsUIControl().getAllStudents();
+        studentList = frameNavigator.getAllStudentsUIPresenter().getAllStudents();
 
         studentModel.setColumnIdentifiers(studentColumnNames);
         studentTable = new JTable(studentModel);
@@ -104,7 +104,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
      */
     public void refreshStudentsTable() throws IOException {
         studentModel.setRowCount(0);
-        studentList = frameNavigator.getAllStudentsUIControl().getAllStudents();
+        studentList = frameNavigator.getAllStudentsUIPresenter().getAllStudents();
 
         addStudentsToList(studentList, frameNavigator, studentModel);
     }
@@ -117,13 +117,13 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
      */
     static void addStudentsToList(ArrayList<String> studentList, FrameNavigator frameNavigator, DefaultTableModel studentModel) throws IOException {
         System.out.println(studentList.toString());
-        String userID = frameNavigator.getProfileUIControl().getUserID();
-        ArrayList<String> adminIDs = frameNavigator.getAllStudentsUIControl().getAdminIDs();
+        String userID = frameNavigator.getProfileUIPresenter().getUserID();
+        ArrayList<String> adminIDs = frameNavigator.getAllStudentsUIPresenter().getAdminIDs();
         for (String studentID : studentList) {
             studentID = studentID.trim().strip();
             Object[] row = new Object[2];
             ArrayList<String> stringRow = new ArrayList<>();
-            stringRow.add(frameNavigator.getFriendListUIControl().getFriendFullName(studentID));
+            stringRow.add(frameNavigator.getFriendListUIPresenter().getFriendFullName(studentID));
             stringRow.add(studentID);
             if (!userID.equals(studentID) && !adminIDs.contains(studentID)) {
                 row = stringRow.toArray(row);

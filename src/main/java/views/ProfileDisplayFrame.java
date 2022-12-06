@@ -46,9 +46,9 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         nameText.setEditable(false);
         emailText.setEditable(false);
         infoText.setEditable(false);
-        nameText.setText(frameNavigator.getProfileDisplayUIControl().getName(userID));
-        emailText.setText(frameNavigator.getProfileDisplayUIControl().getEmail(userID));
-        infoText.setText(frameNavigator.getProfileDisplayUIControl().getInfo(userID));
+        nameText.setText(frameNavigator.getProfileDisplayUIPresenter().getName(userID));
+        emailText.setText(frameNavigator.getProfileDisplayUIPresenter().getEmail(userID));
+        infoText.setText(frameNavigator.getProfileDisplayUIPresenter().getInfo(userID));
 
 
         addFriendBTN.setBounds(280, 30, 100, 20);
@@ -56,12 +56,12 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         addFriendBTN.setFocusable(false);
 
         // Update addFriend button clickable status
-        boolean canAdd = frameNavigator.getFriendListUIControl().isRequestSent(userID);
+        boolean canAdd = frameNavigator.getFriendListUIPresenter().isRequestSent(userID);
         addFriendBTN.setEnabled(canAdd);
 
 //        addFriendBTN.setFocusable(false);
-//        if (FrameNavigator.getFriendListUIControl().getFriendList().contains(userID) &&
-//            FrameNavigator.getFriendListUIControl().getFriendRequestSentList().contains(userID)) {
+//        if (FrameNavigator.getFriendListUIPresenter().getFriendList().contains(userID) &&
+//            FrameNavigator.getFriendListUIPresenter().getFriendRequestSentList().contains(userID)) {
 //            addFriendBTN.setEnabled(false);
 //        } else {
 //            addFriendBTN.setEnabled(true);
@@ -84,7 +84,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         this.add(closeBTN);
 
 
-        this.setTitle(frameNavigator.getProfileDisplayUIControl().getName(userID)+ "'s Profile"); // sets frame's title
+        this.setTitle(frameNavigator.getProfileDisplayUIPresenter().getName(userID)+ "'s Profile"); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
@@ -104,15 +104,15 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
             this.dispose();
         }
         else if (e.getSource() == addFriendBTN) {
-//            if (!FrameNavigator.getFriendListUIControl().isRequestSent(userID)) {
+//            if (!FrameNavigator.getFriendListUIPresenter().isRequestSent(userID)) {
             String viewerID = null;
             try {
-                viewerID = frameNavigator.getProfileUIControl().getUserID();
+                viewerID = frameNavigator.getProfileUIPresenter().getUserID();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            frameNavigator.getFriendListUIControl().sendFriendRequest(viewerID, userID);
-                frameNavigator.getFriendListUIControl().receiveFriendRequest(viewerID, userID);
+            frameNavigator.getFriendListUIPresenter().sendFriendRequest(viewerID, userID);
+                frameNavigator.getFriendListUIPresenter().receiveFriendRequest(viewerID, userID);
                 System.out.println("Sending friend request to: " + viewerID);
                 addFriendBTN.setEnabled(false);
 //            }

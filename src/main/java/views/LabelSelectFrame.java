@@ -63,8 +63,8 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
         boxList.add(collaborateCB);
         boxList.add(discussCB);
         for(JCheckBox box: boxList){
-            box.setSelected(frameNavigator.getLabelSelectUIControl().getStudentLabelState(box.getText()));
-            initialState.add(frameNavigator.getLabelSelectUIControl().getStudentLabelState(box.getText()));
+            box.setSelected(frameNavigator.getLabelSelectPresenter().getStudentLabelState(box.getText()));
+            initialState.add(frameNavigator.getLabelSelectPresenter().getStudentLabelState(box.getText()));
         }
         System.out.println(initialState);
         meetCB.addChangeListener(this);
@@ -99,7 +99,7 @@ public class LabelSelectFrame extends JFrame implements ActionListener, ChangeLi
             ArrayList<Boolean> newState = new ArrayList<>();
             for (JCheckBox box: boxList){
                 try {
-                    frameNavigator.getLabelSelectUIControl().updateStudentLabel(box.getText(), box.isSelected());
+                    frameNavigator.getLabelSelectPresenter().updateStudentLabel(box.getText(), box.isSelected());
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

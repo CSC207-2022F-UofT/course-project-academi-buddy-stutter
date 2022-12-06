@@ -61,7 +61,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         requestsScroll.setBounds(215,40,180,100);
 
         //friend list table
-        friendList = frameNavigator.getFriendListUIControl().getFriendList();
+        friendList = frameNavigator.getFriendListUIPresenter().getFriendList();
 
         friendModel.setColumnIdentifiers(friendColumnNames);
         friendListTable = new JTable( friendModel );
@@ -97,7 +97,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         });
 
         //friend request table
-        friendRequestList = frameNavigator.getFriendListUIControl().getFriendRequestList();
+        friendRequestList = frameNavigator.getFriendListUIPresenter().getFriendRequestList();
 
         requestsModel.setColumnIdentifiers(requestColumnNames);
         friendRequestTable = new JTable( requestsModel );
@@ -130,11 +130,11 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
                     System.out.println("Accepted " + name + " userID: " + friendID);
 
-                    String userID = frameNavigator.getFriendListUIControl().getUserId();
+                    String userID = frameNavigator.getFriendListUIPresenter().getUserId();
                     userID = userID.trim().strip();
 
-                    frameNavigator.getFriendListUIControl().acceptFriendRequest(userID, friendID);
-                    frameNavigator.getFriendListUIControl().acceptedRequest(friendID, userID);
+                    frameNavigator.getFriendListUIPresenter().acceptFriendRequest(userID, friendID);
+                    frameNavigator.getFriendListUIPresenter().acceptedRequest(friendID, userID);
                     try {
                         refreshFriendListTable();
                     } catch (IOException ex) {
@@ -178,7 +178,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
      */
     public void refreshFriendListTable() throws IOException {
         friendModel.setRowCount(0);
-        friendList = frameNavigator.getFriendListUIControl().getFriendList();
+        friendList = frameNavigator.getFriendListUIPresenter().getFriendList();
 
         AllStudentsFrame.addStudentsToList(friendList, (FrameNavigator) frameNavigator, friendModel);
     }
@@ -188,14 +188,14 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
      */
     private void refreshFriendRequestListTable() {
         requestsModel.setRowCount(0);
-        friendRequestList = frameNavigator.getFriendListUIControl().getFriendRequestList();
+        friendRequestList = frameNavigator.getFriendListUIPresenter().getFriendRequestList();
 
         for (String friendID : friendRequestList) {
             friendID = friendID.trim().strip();
             Object[] row = new Object[3];
             ArrayList<String> stringRow = new ArrayList<>();
             System.out.println(friendID);
-            stringRow.add(frameNavigator.getFriendListUIControl().getFriendFullName(friendID));
+            stringRow.add(frameNavigator.getFriendListUIPresenter().getFriendFullName(friendID));
             stringRow.add("Accept");
             stringRow.add(friendID);
             row = stringRow.toArray(row);

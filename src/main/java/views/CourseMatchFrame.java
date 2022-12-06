@@ -149,11 +149,11 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
             ArrayList<Student> matches;
             try {
                 if(labelBox.getSelectedItem().equals("None")){
-                    matches = this.frameNavigator.getMatchUIControl().getMatches(numCommon);
+                    matches = this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
                 }else{
 
-                    this.frameNavigator.getMatchUIControl().getMatches(numCommon);
-                    matches = frameNavigator.getMatchUIControl().
+                    this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
+                    matches = frameNavigator.getMatchUIPresenter().
                             getLabeledMatches((String)labelBox.getSelectedItem());
                 }
 
@@ -168,7 +168,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
             this.setCursor(waitCursor);
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
-                String selectedID = frameNavigator.getMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+                String selectedID = frameNavigator.getMatchUIPresenter().getSelectedUserID(matchedList.getSelectedIndex());
                 System.out.println(selectedName + selectedID);
                 frameNavigator.toProfileDisplay(selectedID);
             }
@@ -176,7 +176,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         }
         else if (e.getSource() == commonSessionBTN) {
             this.setCursor(waitCursor);
-            String selectedID = frameNavigator.getMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+            String selectedID = frameNavigator.getMatchUIPresenter().getSelectedUserID(matchedList.getSelectedIndex());
             try {
                 frameNavigator.toCommonSession(selectedID);
             } catch (IOException ex) {
@@ -199,7 +199,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
         if(e.getSource() == labelBox){
 
-            ArrayList<Student> filteredStudents = frameNavigator.getMatchUIControl().
+            ArrayList<Student> filteredStudents = frameNavigator.getMatchUIPresenter().
                     getLabeledMatches((String)labelBox.getSelectedItem());
 
             addMatches(filteredStudents);

@@ -31,8 +31,8 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
 
         courseTextScoll.setBounds(10,20, 280, 150);
         courseText.setEditable(false);
-        courseText.setText(frameNavigator.getCommonSessionUIControl().getCommonSessions(targetUserID));
-        numberOfCommonSession = frameNavigator.getCommonSessionUIControl().getNumberOfCommonSessions();
+        courseText.setText(frameNavigator.getCommonSessionUIPresenter().getCommonSessions(targetUserID));
+        numberOfCommonSession = frameNavigator.getCommonSessionUIPresenter().getNumberOfCommonSessions();
 
         courseTextScoll.setViewportView(courseText);
         courseTextScoll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -51,7 +51,7 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
         this.getContentPane().add(courseTextScoll);
         this.add(backBTN);
 
-        this.setTitle("Your Common Sessions with " + frameNavigator.getCommonSessionUIControl().getName(targetUserID)); // sets frame's title
+        this.setTitle("Your Common Sessions with " + frameNavigator.getCommonSessionUIPresenter().getName(targetUserID)); // sets frame's title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);

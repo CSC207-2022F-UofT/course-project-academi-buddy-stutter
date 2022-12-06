@@ -47,7 +47,7 @@ public class HomeFrame extends JFrame implements ActionListener {
         // setting up labels
         titleLabel.setBounds(10, 0, 200, 50);
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        titleLabel.setText("Welcome, " + frameNavigator.getHomeUIControl().getName().split("\\s+")[0]);
+        titleLabel.setText("Welcome, " + frameNavigator.getHomeUIPresenter().getName().split("\\s+")[0]);
         completedLabel.setBounds(222, 62, 110, 20);
         completedLabel.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 

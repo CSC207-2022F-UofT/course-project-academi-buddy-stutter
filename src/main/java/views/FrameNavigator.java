@@ -3,17 +3,15 @@ package views;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
-import model.usecases.LoginManager;
 import presenters.*;
-import usecases.*;
 
 
 import java.io.IOException;
 
 /**
- * parent class of all controllers
- * creates instances of all controller classes
- * creates instances of all JFrames in the gui package
+ * parent class of all UI presenters
+ * creates instances of all presenter classes
+ * creates instances of all JFrames in the views package
  */
 public class FrameNavigator {
 
@@ -49,83 +47,6 @@ public class FrameNavigator {
 
     private AdminUIPresenter adminUIPresenter;
 
-    private LoginManager loginManager;
-
-    /**
-     * returns adminUIControl
-     */
-    public AdminUIPresenter getAdminUIPresenter() {return adminUIPresenter;}
-
-    /**
-     * returns loginUIPresenter
-     */
-    public LoginUIPresenter getLoginUIControl() {
-        return loginUIPresenter;
-    }
-
-    /**
-     * returns registerUIPresenter
-     */
-    public RegisterUIPresenter getRegisterUIControl() {
-        return registerUIPresenter;
-    }
-
-    /**
-     * returns tagMatchUIPresenter
-     */
-    public TagMatchUIPresenter getTagMatchUIControl() {
-        return tagMatchUIPresenter;
-    }
-
-    /**
-     * returns tagSelectUIPresenter
-     */
-    public TagSelectUIPresenter getTagSelectUIControl() {
-        return tagSelectUIPresenter;
-    }
-
-    /**
-     * returns labelSelectUIPresenter
-     */
-    public LabelSelectUIPresenter getLabelSelectUIControl() {return labelSelectUIPresenter;}
-
-    /**
-     * returns profileUIPresenter
-     */
-    public ProfileUIPresenter getProfileUIControl(){return profileUIPresenter;}
-
-    /**
-     * returns profileDisplayUIPresenter
-     */
-    public ProfileDisplayUIPresenter getProfileDisplayUIControl(){return profileDisplayUIPresenter;}
-
-    /**
-     * returns homeUIPresenter
-     */
-    public HomeUIPresenter getHomeUIControl(){return homeUIPresenter;}
-
-    /**
-     * returns friendListUIPresenter
-     */
-    public FriendListUIPresenter getFriendListUIControl(){return friendListUIPresenter;}
-
-    /**
-     * returns matchUIControl
-     */
-    public CourseMatchUIPresenter getMatchUIControl(){return matchUIControl;}
-
-    /**
-     * returns fileUploadUIPresenter
-     */
-    public FileUploadUIPresenter getFileUploadUIControl(){return fileUploadUIPresenter;}
-
-    /**
-     * returns commonSessionUIPresenter
-     */
-    public CommonSessionUIPresenter getCommonSessionUIControl() {return commonSessionUIPresenter;}
-
-    public AllStudentsUIPresenter getAllStudentsUIControl() {return allStudentsUIPresenter;}
-
     /**
      * Constructs a FrameNavigator with 4 parameters
      * @param userID represents a userID
@@ -142,8 +63,82 @@ public class FrameNavigator {
         // UseCases
         this.loginUIPresenter = new LoginUIPresenter(userID, courseManager, userManager, tagManager);
         this.registerUIPresenter = new RegisterUIPresenter(userID, courseManager, userManager, tagManager);
-        this.loginManager = new LoginManager(courseManager, userManager, tagManager);
     }
+
+    /**
+     * returns adminUIControl
+     */
+    public AdminUIPresenter getAdminUIPresenter() {return adminUIPresenter;}
+
+    /**
+     * returns loginUIPresenter
+     */
+    public LoginUIPresenter getLoginUIPresenter() {
+        return loginUIPresenter;
+    }
+
+    /**
+     * returns registerUIPresenter
+     */
+    public RegisterUIPresenter getRegisterUIControl() {
+        return registerUIPresenter;
+    }
+
+    /**
+     * returns tagMatchUIPresenter
+     */
+    public TagMatchUIPresenter getTagMatchUIPresenter() {
+        return tagMatchUIPresenter;
+    }
+
+    /**
+     * returns tagSelectUIPresenter
+     */
+    public TagSelectUIPresenter getTagSelectPresenter() {
+        return tagSelectUIPresenter;
+    }
+
+    /**
+     * returns labelSelectUIPresenter
+     */
+    public LabelSelectUIPresenter getLabelSelectPresenter() {return labelSelectUIPresenter;}
+
+    /**
+     * returns profileUIPresenter
+     */
+    public ProfileUIPresenter getProfileUIPresenter(){return profileUIPresenter;}
+
+    /**
+     * returns profileDisplayUIPresenter
+     */
+    public ProfileDisplayUIPresenter getProfileDisplayUIPresenter(){return profileDisplayUIPresenter;}
+
+    /**
+     * returns homeUIPresenter
+     */
+    public HomeUIPresenter getHomeUIPresenter(){return homeUIPresenter;}
+
+    /**
+     * returns friendListUIPresenter
+     */
+    public FriendListUIPresenter getFriendListUIPresenter(){return friendListUIPresenter;}
+
+    /**
+     * returns matchUIControl
+     */
+    public CourseMatchUIPresenter getMatchUIPresenter(){return matchUIControl;}
+
+    /**
+     * returns fileUploadUIPresenter
+     */
+    public FileUploadUIPresenter getFileUploadUIPresenter(){return fileUploadUIPresenter;}
+
+    /**
+     * returns commonSessionUIPresenter
+     */
+    public CommonSessionUIPresenter getCommonSessionUIPresenter() {return commonSessionUIPresenter;}
+
+    public AllStudentsUIPresenter getAllStudentsUIPresenter() {return allStudentsUIPresenter;}
 
     /**
      * updates user by calling the getUser() method from loginUIPresenter

@@ -66,8 +66,8 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         //list
         matchedList.setBounds(135, 35, 200, 150);
 
-        frameNavigator.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
-        matchedStu = frameNavigator.getTagMatchUIControl().getNameList();
+        frameNavigator.getTagMatchUIPresenter().setSelectedtag((String) tagComboBox.getSelectedItem());
+        matchedStu = frameNavigator.getTagMatchUIPresenter().getNameList();
         matchedList.setModel(matchedStu);
         matchedList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -103,7 +103,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
             this.setCursor(waitCursor);
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
-                String selectedID = frameNavigator.getTagMatchUIControl().getSelectedUserID(matchedList.getSelectedIndex());
+                String selectedID = frameNavigator.getTagMatchUIPresenter().getSelectedUserID(matchedList.getSelectedIndex());
                 System.out.println(selectedName + selectedID);
                 frameNavigator.toProfileDisplay(selectedID);
             }
@@ -121,9 +121,9 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     @Override
     public void itemStateChanged(ItemEvent e) {
         this.setCursor(waitCursor);
-        frameNavigator.getTagMatchUIControl().setSelectedtag((String) tagComboBox.getSelectedItem());
+        frameNavigator.getTagMatchUIPresenter().setSelectedtag((String) tagComboBox.getSelectedItem());
         try {
-            matchedStu = frameNavigator.getTagMatchUIControl().getNameList();
+            matchedStu = frameNavigator.getTagMatchUIPresenter().getNameList();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

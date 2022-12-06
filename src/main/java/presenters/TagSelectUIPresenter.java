@@ -1,7 +1,6 @@
 package presenters;
 
 import model.usecases.TagSelectManager;
-import usecases.*;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;

@@ -102,7 +102,12 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
                 if(this.uiController.getLoginUIControl().attemptLogin(id, password)){
                     this.dispose();
                     this.uiController.updateUser();
-                    this.uiController.toHome();
+                    if(uiController.getLoginUIControl().getUserType() == uiController.getLoginUIControl().STUDENT){
+                        this.uiController.toHome();
+                    }
+                    else if(uiController.getLoginUIControl().getUserType() == uiController.getLoginUIControl().ADMIN){
+                        this.uiController.toAdmin();
+                    }
                 }
                 else{
                     this.errorLabel.setVisible(true);

@@ -73,7 +73,6 @@ public class AdminFrame extends JFrame implements ActionListener {
         if(e.getSource() == removeUserBTN){
             String userID = userIDField.getText();
             boolean removed = uiController.getAdminUIControl().removeUser(userID);
-            System.out.println("r:" + removed);
             if(removed){
                 resultLabel.setForeground(Color.GREEN);
                 resultLabel.setText("Successful");
@@ -82,6 +81,10 @@ public class AdminFrame extends JFrame implements ActionListener {
                 resultLabel.setText("Failed");
             }
             userIDField.setText("");
+        }
+        else if (e.getSource() == logoutBTN){
+            this.dispose();
+            uiController.toLogin();
         }
 
     }

@@ -3,10 +3,7 @@ package controllers;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
-import entities.Admin;
-import entities.Student;
 import usecases.*;
-import entities.User;
 import views.*;
 
 
@@ -162,13 +159,6 @@ public class UIController{
     }
 
     /**
-     * returns whether the user is logged in or not
-     */
-    public boolean loggedIn(){
-        return this.selfID != null;
-    }
-
-    /**
      * takes user to LoginFrame
      */
     public void toLogin(){
@@ -180,14 +170,17 @@ public class UIController{
      * takes user to HomeFrame
      */
     public void toHome() throws IOException {
-        User user = (Student)loginManager.getUserByID(this.selfID);
-        if(user instanceof Student){
             initializeAfterLogin();
             HomeFrame HomeFrame = new HomeFrame(this);
-        }else if(user instanceof Admin){
-            initializeAdminAfterLogin();
-            AdminFrame adminFrame = new AdminFrame(this);
-        }
+    }
+
+
+    /**
+     * takes user to Admin Frame
+     */
+    public void toAdmin() throws IOException {
+        initializeAdminAfterLogin();
+        AdminFrame adminFrame = new AdminFrame(this);
     }
 
     /**
@@ -278,6 +271,7 @@ public class UIController{
      */
     public void toAllStudents() throws IOException {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
 
+
     /**
      * initializes all controllers after user(student) logged in
      */
@@ -300,5 +294,4 @@ public class UIController{
     private void initializeAdminAfterLogin(){
         this.adminUIControl = new AdminUIControl(selfID, courseManager, userManager, tagManager);
     }
-
 }

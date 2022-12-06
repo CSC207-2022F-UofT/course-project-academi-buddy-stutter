@@ -1,7 +1,7 @@
 package database.accessinterfaces;
 
-import entities.InterestTag;
-import entities.Student;
+import model.entities.InterestTag;
+import model.entities.Student;
 
 import java.io.IOException;
 import java.util.*;

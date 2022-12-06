@@ -4,7 +4,7 @@ import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
-import org.junit.jupiter.api.Assertions;
+import model.usecases.LabelSelectManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

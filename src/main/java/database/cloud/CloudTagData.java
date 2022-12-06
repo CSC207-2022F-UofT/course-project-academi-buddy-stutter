@@ -2,8 +2,8 @@ package database.cloud;
 
 import database.accessinterfaces.TagDataAccess;
 import adapters.gateways.DatabaseInterface;
-import entities.InterestTag;
-import entities.Student;
+import model.entities.InterestTag;
+import model.entities.Student;
 
 import java.io.IOException;
 import java.util.*;

@@ -3,7 +3,7 @@ import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
 import adapters.apis.FirebaseAPI;
-import ui.FrameNavigator;
+import views.FrameNavigator;
 import database.cloud.CloudCourseData;
 import database.cloud.CloudTagData;
 import database.cloud.CloudUserData;

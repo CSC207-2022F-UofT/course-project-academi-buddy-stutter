@@ -4,7 +4,8 @@ import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
-import entities.InterestTag;
+import model.entities.InterestTag;
+import model.usecases.TagSelectManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

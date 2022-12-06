@@ -1,8 +1,8 @@
 package database.local;
 
 import database.accessinterfaces.CourseDataAccess;
-import entities.Course;
-import entities.Student;
+import model.entities.Course;
+import model.entities.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -4,8 +4,9 @@ import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalTempDataFactory;
 import database.local.LocalUserData;
+import model.entities.Course;
 import org.junit.jupiter.api.Test;
-import usecases.ProfileManager;
+import model.usecases.ProfileManager;
 
 import java.io.IOException;
 import java.util.ArrayList;

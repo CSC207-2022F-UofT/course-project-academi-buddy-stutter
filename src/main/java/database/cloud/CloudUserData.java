@@ -3,6 +3,7 @@ package database.cloud;
 import database.accessinterfaces.UserDataAccess;
 import adapters.gateways.DatabaseInterface;
 import entities.*;
+import model.entities.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package database.accessinterfaces;
 
-import entities.Course;
-import entities.Student;
+import model.entities.Course;
+import model.entities.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;

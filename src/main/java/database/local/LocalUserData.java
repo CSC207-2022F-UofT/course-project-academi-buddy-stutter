@@ -1,9 +1,9 @@
 package database.local;
 
 import database.accessinterfaces.UserDataAccess;
-import entities.Admin;
-import entities.Student;
-import entities.User;
+import model.entities.Admin;
+import model.entities.Student;
+import model.entities.User;
 
 import java.util.ArrayList;
 

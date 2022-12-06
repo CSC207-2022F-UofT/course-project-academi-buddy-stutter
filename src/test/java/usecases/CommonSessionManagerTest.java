@@ -4,6 +4,7 @@ import database.local.LocalTempDataFactory;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
+import model.usecases.CommonSessionManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

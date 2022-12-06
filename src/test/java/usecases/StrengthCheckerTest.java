@@ -1,6 +1,7 @@
 package usecases;
 
 import database.local.LocalTempDataFactory;
+import model.usecases.StrengthChecker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

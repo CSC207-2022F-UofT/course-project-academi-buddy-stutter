@@ -1,17 +1,12 @@
 package database.local;
 
-import database.local.LocalCourseData;
-import database.local.LocalTagData;
-import database.local.LocalUserData;
-import entities.Course;
-import entities.InterestTag;
-import entities.Label;
-import entities.Student;
+import model.entities.Course;
+import model.entities.InterestTag;
+import model.entities.Label;
+import model.entities.Student;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LocalTempDataFactory {
 

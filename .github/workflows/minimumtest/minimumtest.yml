@@ -6,12 +6,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run JUnit tests
-      run: mvn test
-    - name: Check test results
-      if: steps.test.outputs.num_tests_passed >= 5
-      run: echo "Tests passed"
-    - name: Allow commit if tests passed
-      if: steps.test.outputs.num_tests_passed >= 5
-      run: git commit -a -m "Tests passed"
+      - name: Run JUnit tests
+        uses: actions/checkout@v2
+        run: mvn test
+      - name: Check test results
+        if: steps.test.outputs.num_tests_passed < 5
+        run: echo "less than 5 tests passed"
+      - name: Allow commit if tests passed
+        if: steps.test.outputs.num_tests_passed >= 5
+        run: git commit -a -m "Tests passed"

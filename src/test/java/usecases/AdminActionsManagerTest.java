@@ -5,6 +5,7 @@ import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
 import entities.InterestTag;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +43,9 @@ class AdminActionsManagerTest extends LocalTempDataFactory {
         for(InterestTag tag: tags){
             Assertions.assertTrue(tb.allTags.get(tag.getName()).containsKey(STUDENTA.getUserID()));
         }
+        Assertions.assertTrue(STUDENTB.getFriendList().contains(STUDENTA.getUserID()));
+        Assertions.assertTrue(STUDENTC.getFriendRequestSentList().contains(STUDENTA.getUserID()));
+
         Assertions.assertTrue(ub.getUserIDList().contains(STUDENTA.getUserID()));
 
         adminActionsManager.removeUser(STUDENTA.getUserID());
@@ -53,6 +57,9 @@ class AdminActionsManagerTest extends LocalTempDataFactory {
         for(InterestTag tag: tags){
             Assertions.assertFalse(tb.allTags.get(tag.getName()).containsKey(STUDENTA.getUserID()));
         }
+        Assertions.assertFalse(STUDENTB.getFriendList().contains(STUDENTA.getUserID()));
+        Assertions.assertFalse(STUDENTC.getFriendRequestSentList().contains(STUDENTA.getUserID()));
+
         Assertions.assertFalse(ub.getUserIDList().contains(STUDENTA.getUserID()));
     }
 

@@ -6,8 +6,11 @@ import database.accessinterfaces.UserDataAccess;
 import entities.Course;
 import entities.InterestTag;
 import entities.Student;
+import entities.User;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Use case class for Admin operations on the database. Specifically, removing students from courses.
@@ -40,6 +43,7 @@ public class AdminActionsManager extends UseCase{
             Student student = (Student) this.ub.getUserByID(userID);
             removeStudentFromCourse(student);
             removeStudentFromTag(student);
+            removeStudentFromFriends(student);
             this.ub.removeUser(userID);
             System.out.println("true");
             return true;
@@ -64,6 +68,40 @@ public class AdminActionsManager extends UseCase{
                 Course course = this.cb.getCourse(c, "TUT");
                 this.cb.removeStudent(course.getCourseCode(), course.getCourseType(), student);
                 student.removeCourse(course);
+            }
+        }
+    }
+
+    public void removeStudentFromFriends(Student student) throws IOException {
+        ArrayList<String> allStudents = this.ub.getUserIDList();
+        ArrayList<String> allAdmins = this.ub.getAdminIDs();
+        String studentID = student.getUserID();
+        for (String id: this.ub.getUserIDList()) {
+            if (!allAdmins.contains(id)) {
+                // remove from friend list
+                if (student.getFriendList().contains(id)) {
+                    Student friend = (Student) this.ub.getUserByID(id);
+                    boolean removeFriend = student.removeFriendList(friend.getUserID());
+                    boolean removeStudent = friend.removeFriendList(student.getUserID());
+                    if (removeFriend && removeStudent) {this.ub.removeFromFriendList(student, friend);}
+                    System.out.println("Removed " + id + " from " + student.getUserID());
+                }
+                // remove friend from friend request list
+                else if (student.getFriendListRequest().contains(id)) {
+                    Student friend = (Student) this.ub.getUserByID(id);
+                    boolean removeFriend = student.removeFriendRequestList(friend.getUserID());
+                    boolean removeStudent = friend.removeFriendRequestSentList(student.getUserID());
+                    if (removeFriend && removeStudent) {this.ub.removeFromFriendRequestSentList(student, friend);}
+                    System.out.println("Removed " + id + " from " + student.getUserID());
+                }
+                // remove from friend request sent list
+                else if (student.getFriendRequestSentList().contains(id)) {
+                    Student friend = (Student) this.ub.getUserByID(id);
+                    boolean removeFriend = student.removeFriendRequestSentList(friend.getUserID());
+                    boolean removeStudent = friend.removeFriendRequestList(student.getUserID());
+                    if (removeFriend && removeStudent) {this.ub.removeFromFriendRequestList(student, friend);}
+                    System.out.println("Removed " + id + " from " + student.getUserID());
+                }
             }
         }
     }

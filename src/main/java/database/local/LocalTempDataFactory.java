@@ -118,6 +118,8 @@ public class LocalTempDataFactory {
 
         STUDENTA.setFriendList(studentAFriendList);
         STUDENTB.setFriendList(studentBFriendList);
+        STUDENTA.setFriendRequestList(studentAFriendRequestList);
+        STUDENTC.setFriendRequestSentList(studentCFriendRequestSentList);
 
         ub.addStudentUser(STUDENTA);
         ub.addStudentUser(STUDENTB);

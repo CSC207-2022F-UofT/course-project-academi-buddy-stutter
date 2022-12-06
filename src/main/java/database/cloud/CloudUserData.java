@@ -259,4 +259,21 @@ public class CloudUserData implements UserDataAccess {
         } return adminIDs;
     }
 
+    @Override
+    public void removeFromFriendList(Student student, Student friend) {
+        fi.openCollection("users");
+        fi.addEntry(friend.getUserID(), "friend list", "[]");
+    }
+
+    @Override
+    public void removeFromFriendRequestSentList(Student student, Student friend) {
+        fi.openCollection("users");
+        fi.addEntry(friend.getUserID(), "friend request sent list", "[]");
+    }
+
+    @Override
+    public void removeFromFriendRequestList(Student student, Student friend) {
+        fi.openCollection("users");
+        fi.addEntry(friend.getUserID(), "friend request list", "[]");
+    }
 }

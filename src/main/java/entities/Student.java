@@ -249,4 +249,16 @@ public class Student extends User{
         }
         return tagNames.contains(tag.getName());
     }
+
+    public boolean removeFriendList(String id) {
+        return this.friendList.remove(id);
+    }
+
+    public boolean removeFriendRequestList(String id) {
+        return this.friend_request_list.remove(id);
+    }
+
+    public boolean removeFriendRequestSentList (String id) {
+        return this.friendRequestSentList.remove(id);
+    }
 }

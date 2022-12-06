@@ -24,6 +24,9 @@ public interface UserDataAccess {
     void updateFriendList(Student student);
     void updateFriendRequestList(Student student);
     void updateFriendRequestsSentList(Student student);
+    void removeFromFriendList(Student student, Student friend);
+    void removeFromFriendRequestSentList(Student student, Student friend);
+    void removeFromFriendRequestList(Student student, Student friend);
     ArrayList<String> getAdminIDs();
 }
 

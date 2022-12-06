@@ -114,6 +114,24 @@ public class LocalUserData implements UserDataAccess {
     }
 
     @Override
+    public void removeFromFriendList(Student student, Student friend) {
+        student.removeFriendList(friend.getUserID());
+        friend.removeFriendList(student.getUserID());
+    }
+
+    @Override
+    public void removeFromFriendRequestSentList(Student student, Student friend) {
+        student.removeFriendRequestSentList(friend.getUserID());
+        friend.removeFriendRequestList(student.getUserID());
+    }
+
+    @Override
+    public void removeFromFriendRequestList(Student student, Student friend) {
+        student.removeFriendRequestList(friend.getUserID());
+        friend.removeFriendRequestSentList(student.getUserID());
+    }
+
+    @Override
     public ArrayList<String> getAdminIDs() {
         ArrayList<String> adminIDs = new ArrayList<>();
         for (User user: this.allUsers) {

@@ -3,6 +3,7 @@ package usecases;
 import database.local.LocalTempDataFactory;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class StrengthCheckerTest extends LocalTempDataFactory {
 
     @Test
-    void Strengthcheck() {
+    void StrengthCheckTest() {
 
         String password = "hello";
 
@@ -19,7 +20,13 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
 
         List<String> actual = x.checkStrength(password);
 
-        assertEquals(actual, actual);
+        List<String> expected = new ArrayList<>();
+        expected.add("Password too short");
+        expected.add("Add a number");
+        expected.add("Add a symbol");
+
+
+        assertEquals(expected , actual);
 
     }
 

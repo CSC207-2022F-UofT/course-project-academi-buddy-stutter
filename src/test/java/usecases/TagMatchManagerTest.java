@@ -57,7 +57,7 @@ class TagMatchManagerTest extends LocalTempDataFactory {
                 selectedStudentNames.add(ub.getUserByID(studentID).getFullName());
             }
             selectedStudentNames.remove(STUDENTA.getFullName());
-            List<String> matchedNameList = tagmatchManager.getStudentName(STUDENTA);
+            List<String> matchedNameList = tagmatchManager.getStudentName(STUDENTA.getUserID());
             Assertions.assertIterableEquals(selectedStudentNames, matchedNameList);
         }
     }

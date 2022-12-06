@@ -4,7 +4,6 @@ import usecases.*;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
-import entities.Student;
 
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ import java.io.IOException;
  */
 public class TagSelectUIControl {
     private TagSelectManager tagSelectManager;
-    private String self;
+    private String selfID;
 
     /**
      * Constructs TagSelectUIControl
@@ -24,7 +23,7 @@ public class TagSelectUIControl {
      */
     public TagSelectUIControl(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.tagSelectManager = new TagSelectManager(courseDataAccess, userDataAccess, tagDataAccess);
-        this.self = userID;
+        this.selfID = userID;
     }
 
     /**
@@ -33,8 +32,7 @@ public class TagSelectUIControl {
      * @return whether a tag is selected or not
      */
     public boolean getStudentTagState(String tagName) throws IOException {
-        Student stu = (Student) tagSelectManager.getUserByID(this.self);
-        return tagSelectManager.getStudentTagState(stu, tagName);
+        return tagSelectManager.getStudentTagState(selfID, tagName);
     }
 
     /**
@@ -43,7 +41,6 @@ public class TagSelectUIControl {
      * @param selected whether the tags are selected or not
      */
     public void updateStudentTag(String tagName, boolean selected) throws IOException {
-        Student stu = (Student) tagSelectManager.getUserByID(this.self);
-        tagSelectManager.updateStudentTag(stu, tagName, selected);
+        tagSelectManager.updateStudentTag(selfID, tagName, selected);
     }
 }

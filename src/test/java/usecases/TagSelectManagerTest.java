@@ -33,18 +33,18 @@ class TagSelectManagerTest extends LocalTempDataFactory {
     @Test
     void getStudentState(){
         for(InterestTag tag: STUDENTA.getTags()){
-            Assertions.assertTrue(tagSelectManager.getStudentTagState(STUDENTA, tag.getName()));
+            Assertions.assertTrue(tagSelectManager.getStudentTagState(STUDENTA.getUserID(), tag.getName()));
         }
     }
 
     @Test
     void updateStudentTag(){
         for(InterestTag tag: STUDENTA.getTags()){
-            Assertions.assertTrue(tagSelectManager.getStudentTagState(STUDENTA, tag.getName()));
-            tagSelectManager.updateStudentTag(STUDENTA, tag.getName(), false);
-            Assertions.assertFalse(tagSelectManager.getStudentTagState(STUDENTA, tag.getName()));
-            tagSelectManager.updateStudentTag(STUDENTA, tag.getName(), true);
-            Assertions.assertTrue(tagSelectManager.getStudentTagState(STUDENTA, tag.getName()));
+            Assertions.assertTrue(tagSelectManager.getStudentTagState(STUDENTA.getUserID(), tag.getName()));
+            tagSelectManager.updateStudentTag(STUDENTA.getUserID(), tag.getName(), false);
+            Assertions.assertFalse(tagSelectManager.getStudentTagState(STUDENTA.getUserID(), tag.getName()));
+            tagSelectManager.updateStudentTag(STUDENTA.getUserID(), tag.getName(), true);
+            Assertions.assertTrue(tagSelectManager.getStudentTagState(STUDENTA.getUserID(), tag.getName()));
         }
     }
 

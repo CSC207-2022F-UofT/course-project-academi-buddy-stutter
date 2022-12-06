@@ -18,7 +18,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     JCheckBox adventureCB = new JCheckBox("Adventure");
     JCheckBox musicCB = new JCheckBox("Music");
     JCheckBox catCB = new JCheckBox("Cat");
-    JCheckBox outdoorCB = new JCheckBox("Writing Javadocs");
+    JCheckBox javadocCB = new JCheckBox("Writing Javadocs");
     JCheckBox bookCB = new JCheckBox("Books");
     JCheckBox movieCB = new JCheckBox("Movies");
     JCheckBox beerCB = new JCheckBox("Beer");
@@ -58,7 +58,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         adventureCB.setBounds(10, 30, 100,50);
         musicCB.setBounds(10, 60, 100, 50);
         catCB.setBounds(10, 90, 100, 50);
-        outdoorCB.setBounds(110, 30, 150, 50);
+        javadocCB.setBounds(110, 30, 130, 50);
         bookCB.setBounds(110, 60, 100, 50);
         movieCB.setBounds(110, 90, 100, 50);
         beerCB.setBounds(240, 30, 100, 50);
@@ -67,7 +67,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         boxList.add(adventureCB);
         boxList.add(musicCB);
         boxList.add(catCB);
-        boxList.add(outdoorCB);
+        boxList.add(javadocCB);
         boxList.add(bookCB);
         boxList.add(movieCB);
         boxList.add(beerCB);
@@ -80,7 +80,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         adventureCB.addChangeListener(this);
         musicCB.addChangeListener(this);
         catCB.addChangeListener(this);
-        outdoorCB.addChangeListener(this);
+        javadocCB.addChangeListener(this);
         bookCB.addChangeListener(this);
         movieCB.addChangeListener(this);
         beerCB.addChangeListener(this);
@@ -96,7 +96,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
         this.add(adventureCB);
         this.add(musicCB);
         this.add(catCB);
-        this.add(outdoorCB);
+        this.add(javadocCB);
         this.add(bookCB);
         this.add(movieCB);
         this.add(beerCB);

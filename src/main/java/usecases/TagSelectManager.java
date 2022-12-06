@@ -29,7 +29,8 @@ public class TagSelectManager extends UseCase {
      * @param tagName The name of the tag to look at.
      * @return True if the tag is selected, false otherwise.
      */
-    public boolean getStudentTagState(Student self, String tagName){
+    public boolean getStudentTagState(String selfID, String tagName){
+        Student self = (Student) this.getUserByID(selfID);
         InterestTag tag = new InterestTag(tagName);
         return (self.isTagSelected(tag));
     }
@@ -40,11 +41,11 @@ public class TagSelectManager extends UseCase {
      * @param tagName The current tag that is being updated.
      * @param selected If the tag is selected then true, false otherwise.
      */
-    public void updateStudentTag(Student self, String tagName, boolean selected){
+    public void updateStudentTag(String selfID, String tagName, boolean selected){
+        Student self = (Student) this.getUserByID(selfID);
         InterestTag tag = new InterestTag(tagName);
         if(selected){
             try {
-                System.out.println("selected");
                 tb.addStudent(tag, self);
                 self.updateStudentTOI(tag, true);
                 ub.addStudentUser(self);
@@ -54,7 +55,6 @@ public class TagSelectManager extends UseCase {
         }
         else {
             try {
-                System.out.println("unselected");
                 tb.removeStudent(tag, self);
                 self.updateStudentTOI(tag, false);
                 ub.addStudentUser(self);

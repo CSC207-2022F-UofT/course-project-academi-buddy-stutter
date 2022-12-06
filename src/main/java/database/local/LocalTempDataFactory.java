@@ -5,8 +5,10 @@ import database.local.LocalTagData;
 import database.local.LocalUserData;
 import entities.Course;
 import entities.InterestTag;
+import entities.Label;
 import entities.Student;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +106,18 @@ public class LocalTempDataFactory {
         STUDENTA.setTabs_of_interests(tagA);
         STUDENTB.setTabs_of_interests(tagB);
         STUDENTC.setTabs_of_interests(tagC);
+
+        Label meetLabel = new Label("Want to Meet");
+        Label collaborateLabel = new Label("Want to Collaborate");
+        Label discussLabel = new Label("Want to Discuss");
+
+        STUDENTA.updateLabel(meetLabel, true);
+        STUDENTB.updateLabel(meetLabel, true);
+
+        STUDENTA.updateLabel(collaborateLabel, true);
+
+        STUDENTB.updateLabel(discussLabel, true);
+        STUDENTC.updateLabel(discussLabel, true);
 
         ArrayList<String> studentAFriendList = new ArrayList<>();
         ArrayList<String> studentBFriendList = new ArrayList<>();

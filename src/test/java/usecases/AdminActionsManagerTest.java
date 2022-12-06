@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-class AdminActionsManagerTest extends LocalTempDataFactory {
-
+class AdminActionsManagerTest extends LocalTempDataFactory{
     ArrayList<?> managers;
 
     {
@@ -32,6 +31,7 @@ class AdminActionsManagerTest extends LocalTempDataFactory {
     AdminActionsManager adminActionsManager = new AdminActionsManager(cb, ub, tb);
 
     @Test
+    //It also tests the private helper methods removeStudentFromCourse(), removeStudentFromTag() and removeStudentFromFriend() as well.
     void removeUser() throws Exception {
         ArrayList<String> courses = STUDENTA.getEnrolledCourseCodes();
         ArrayList<InterestTag> tags = STUDENTA.getTags();

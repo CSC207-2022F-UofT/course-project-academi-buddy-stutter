@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class AdminActionsManager extends UseCase{
 
-
     /**
      * Initializer
      * @param courseDatabase The Course Database.
@@ -40,12 +39,11 @@ public class AdminActionsManager extends UseCase{
             return false;
         }
         try {
-            Student student = (Student) this.ub.getUserByID(userID);
+            Student student = (Student) this.getUserByID(userID);
             removeStudentFromCourse(student);
             removeStudentFromTag(student);
             removeStudentFromFriends(student);
             this.ub.removeUser(userID);
-            System.out.println("true");
             return true;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -80,7 +78,7 @@ public class AdminActionsManager extends UseCase{
             if (!allAdmins.contains(id)) {
                 // remove from friend list
                 if (student.getFriendList().contains(id)) {
-                    Student friend = (Student) this.ub.getUserByID(id);
+                    Student friend = (Student) this.getUserByID(id);
                     boolean removeFriend = student.removeFriendList(friend.getUserID());
                     boolean removeStudent = friend.removeFriendList(student.getUserID());
                     if (removeFriend && removeStudent) {this.ub.removeFromFriendList(student, friend);}
@@ -88,7 +86,7 @@ public class AdminActionsManager extends UseCase{
                 }
                 // remove friend from friend request list
                 else if (student.getFriendListRequest().contains(id)) {
-                    Student friend = (Student) this.ub.getUserByID(id);
+                    Student friend = (Student) this.getUserByID(id);
                     boolean removeFriend = student.removeFriendRequestList(friend.getUserID());
                     boolean removeStudent = friend.removeFriendRequestSentList(student.getUserID());
                     if (removeFriend && removeStudent) {this.ub.removeFromFriendRequestSentList(student, friend);}
@@ -96,7 +94,7 @@ public class AdminActionsManager extends UseCase{
                 }
                 // remove from friend request sent list
                 else if (student.getFriendRequestSentList().contains(id)) {
-                    Student friend = (Student) this.ub.getUserByID(id);
+                    Student friend = (Student) this.getUserByID(id);
                     boolean removeFriend = student.removeFriendRequestSentList(friend.getUserID());
                     boolean removeStudent = friend.removeFriendRequestList(student.getUserID());
                     if (removeFriend && removeStudent) {this.ub.removeFromFriendRequestList(student, friend);}

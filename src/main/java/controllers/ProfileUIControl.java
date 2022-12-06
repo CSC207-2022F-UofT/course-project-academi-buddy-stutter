@@ -1,6 +1,5 @@
 package controllers;
 
-import entities.Student;
 import database.accessinterfaces.CourseDataAccess;
 import usecases.ProfileManager;
 import database.accessinterfaces.TagDataAccess;
@@ -13,7 +12,7 @@ import java.io.IOException;
  */
 public class ProfileUIControl {
     private ProfileManager profileManager;
-    private String self;
+    private String selfID;
 
     /**
      * Constructs ProfileUIControl
@@ -22,7 +21,7 @@ public class ProfileUIControl {
      * @param userDataAccess an instance of UserDataManager
      */
     public ProfileUIControl(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
-        this.self = userID;
+        this.selfID = userID;
         this.profileManager = new ProfileManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 
@@ -30,38 +29,30 @@ public class ProfileUIControl {
      * @return user's full name
      */
 
-    private Student getStudent() throws IOException {
-        Student stu = (Student) profileManager.getUserByID(this.self);
-        return stu;
-    }
 
     public String getName() throws IOException {
-        String userID = getStudent().getUserID();
-        return profileManager.getName(userID);
+        return profileManager.getName(selfID);
     }
 
     /**
      * @return user's Email
      */
-    public String getEmail() throws IOException {
-        String userID = getStudent().getUserID();
-        return profileManager.getUserEmail(userID);
+    public String getEmail(){
+        return profileManager.getUserEmail(selfID);
     }
 
     /**
      * @return user's courses
      */
     public String getCourse() throws IOException {
-        String userID = getStudent().getUserID();
-        return profileManager.getCourseString(userID);
+        return profileManager.getCourseString(selfID);
     }
 
     /**
      * @return user's info
      */
-    public String getInfo() throws IOException {
-        String userID = getStudent().getUserID();
-        return profileManager.getUserInfo(userID);
+    public String getInfo() {
+        return profileManager.getUserInfo(selfID);
     }
 
     /**
@@ -69,8 +60,7 @@ public class ProfileUIControl {
      * @param email new Email
      */
     public void updateEmail(String email) throws IOException {
-        String userID = getStudent().getUserID();
-        profileManager.updateEmail(userID, email);
+        profileManager.updateEmail(selfID, email);
     }
 
     /**
@@ -78,14 +68,13 @@ public class ProfileUIControl {
      * @param info new info
      */
     public void updateInfo(String info) throws IOException {
-        String userID = getStudent().getUserID();
-        profileManager.updateInfo(userID, info);
+        profileManager.updateInfo(selfID, info);
     }
 
     /**
      * @return user's id
      */
     public String getUserID() throws IOException {
-        return self;
+        return selfID;
     }
 }

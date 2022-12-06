@@ -148,7 +148,7 @@ public class UIController{
      * updates user by calling the getUser() method from loginUIControl
      */
     public void updateUser(){
-        this.selfID = this.loginUIControl.self;
+        this.selfID = this.loginUIControl.selfID;
     }
 
     /**

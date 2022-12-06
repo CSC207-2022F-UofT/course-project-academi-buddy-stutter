@@ -50,11 +50,7 @@ public class TagMatchManager extends UseCase{
         ArrayList<Student> matchedStudents = new ArrayList<>();
         for(String id: idList){
             Student student;
-            try {
-                student = (Student) ub.getUserByID(id);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            student = (Student) this.getUserByID(id);
             matchedStudents.add(student);
         }
         return matchedStudents;
@@ -65,7 +61,8 @@ public class TagMatchManager extends UseCase{
      * @param self The current user.
      * @return A List of Strings of other usernames matched.
      */
-    public List<String> getStudentName(User self){
+    public List<String> getStudentName(String selfID) throws IOException {
+        User self = this.getUserByID(selfID);
         List<String> nameList = new ArrayList<>();
         ArrayList<Student> students = match();
         if(students.contains(null)){

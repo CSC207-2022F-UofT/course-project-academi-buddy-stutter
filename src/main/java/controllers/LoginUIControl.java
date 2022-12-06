@@ -1,12 +1,9 @@
 package controllers;
 
 import database.accessinterfaces.CourseDataAccess;
-import entities.Admin;
-import entities.Student;
 import usecases.LoginManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
-import entities.User;
 
 import java.io.IOException;
 
@@ -15,7 +12,8 @@ import java.io.IOException;
  */
 public class LoginUIControl{
     private LoginManager loginManager;
-    public String self;
+
+    public String selfID;
     private int userType;
     public static int STUDENT = 0;
     public static int ADMIN = 1;
@@ -39,8 +37,9 @@ public class LoginUIControl{
     public boolean attemptLogin(String id, String password) throws IOException {
 
         boolean loggedIn =  loginManager.login(id, password);
+        selfID = loginManager.getActiveUserID();
         if(loggedIn){
-            loadUser(loginManager.getActiveUser());
+            loadUser();
         }
 
         return loggedIn;
@@ -48,14 +47,13 @@ public class LoginUIControl{
 
     /**
      * set UIController's self to user
-     * @param user an instance of Student
      */
-    private void loadUser(User user){
-        this.self = user.getUserID();
-        if(user instanceof Student){
+    private void loadUser(){
+        String userTypeString = loginManager.getUserTypeString();
+        if(userTypeString.equals("Student")){
             this.userType = STUDENT;
         }
-        else if(user instanceof Admin){
+        else if(userTypeString.equals("Admin")){
             this.userType = ADMIN;
         }
     }
@@ -64,7 +62,7 @@ public class LoginUIControl{
      * @return current user
      */
     public String getUserID() throws IOException {
-        return self;
+        return selfID;
     }
 
     public int getUserType(){

@@ -50,7 +50,7 @@ public class RegisterUIControl {
      * @return Warning messages according to strength of user's original password
      */
     public String getWarningString(String password){
-        return registerManager.getSwarningString(password);
+        return registerManager.getWarningString(password);
     }
 
 }

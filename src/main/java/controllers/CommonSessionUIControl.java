@@ -1,6 +1,5 @@
 package controllers;
 
-import entities.Student;
 import usecases.CommonSessionManager;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
@@ -13,16 +12,16 @@ import java.io.IOException;
  */
 public class CommonSessionUIControl {
     private CommonSessionManager commonSessionManager;
-    private String self;
+    private String selfID;
 
     /**
      * Constructs CommonSessionUIControl
-     * @param self a suer
+     * @param selfID ID of the user
      * @param courseDataAccess an instance of CourseDataManager
      * @param userDataAccess an instance of UserDataManager
      */
     public CommonSessionUIControl(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
-        this.self = userID;
+        this.selfID = userID;
         this.commonSessionManager = new CommonSessionManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 
@@ -31,9 +30,8 @@ public class CommonSessionUIControl {
      * @param targetUserID the user that we want to compare to
      * @return Common sessions with targetUserID
      */
-    public String getCommonSessions(String targetUserID) throws IOException {
-        Student stu = (Student) commonSessionManager.getUserByID(this.self);
-        return commonSessionManager.getCommonSessions(stu.getUserID(), targetUserID);
+    public String getCommonSessions(String targetUserID){
+        return commonSessionManager.getCommonSessions(selfID, targetUserID);
     }
 
     /**

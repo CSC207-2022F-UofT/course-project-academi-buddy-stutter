@@ -52,7 +52,7 @@ public class RegisterManager extends UseCase{
         return strengthChecker.checkStrength(password);
     }
 
-    public String getSwarningString(String password){
+    public String getWarningString(String password){
         List<String> warnings = getWarnings(password);
         StringBuilder warningString= new StringBuilder();
         warningString.append("<html><pre>");

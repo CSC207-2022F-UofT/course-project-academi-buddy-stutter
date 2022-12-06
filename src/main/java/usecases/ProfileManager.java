@@ -26,12 +26,8 @@ public class ProfileManager extends UseCase{
      * @return The String name of the user.
      */
     public String getName(String userID){
-        try {
-            User user = this.ub.getUserByID(userID);
-            return user.getFullName();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        User user = this.getUserByID(userID);
+        return user.getFullName();
     }
 
     /**
@@ -40,12 +36,8 @@ public class ProfileManager extends UseCase{
      * @return The String of the user's email.
      */
     public String getUserEmail(String userID){
-        try {
-            User user = this.ub.getUserByID(userID);
-            return ((Student) user).getEmail();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        User user = this.getUserByID(userID);
+        return ((Student) user).getEmail();
     }
 
     /**
@@ -54,12 +46,8 @@ public class ProfileManager extends UseCase{
      * @return The String of the user's info.
      */
     public String getUserInfo(String userID){
-        try {
-            User user = this.ub.getUserByID(userID);
-            return user.getUserInfo();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        User user = this.getUserByID(userID);
+        return user.getUserInfo();
     }
 
     /**
@@ -69,7 +57,7 @@ public class ProfileManager extends UseCase{
      */
     public String getCourseString(String userID){
         try {
-            User user = this.ub.getUserByID(userID);
+            User user = this.getUserByID(userID);
             ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
             ArrayList<String> lectureList = new ArrayList<>();
             ArrayList<String> tutorialList = new ArrayList<>();
@@ -123,7 +111,7 @@ public class ProfileManager extends UseCase{
      */
     public void updateEmail(String userID, String email){
         try {
-            Student student = (Student) ub.getUserByID(userID);
+            Student student = (Student) this.getUserByID(userID);
             student.setEmail(email);
             ub.addStudentUser(student);
         } catch (IOException e) {
@@ -138,7 +126,7 @@ public class ProfileManager extends UseCase{
      */
     public void updateInfo(String userID, String info){
         try {
-            Student student = (Student) ub.getUserByID(userID);
+            Student student = (Student) this.getUserByID(userID);
             student.setUserInfo(info);
             ub.addStudentUser(student);
         } catch (IOException e) {

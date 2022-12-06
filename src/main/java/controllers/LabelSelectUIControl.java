@@ -1,6 +1,5 @@
 package controllers;
 
-import entities.Student;
 import database.accessinterfaces.CourseDataAccess;
 import usecases.LabelSelectManager;
 import database.accessinterfaces.TagDataAccess;
@@ -12,17 +11,17 @@ import java.io.IOException;
  * Implements LabelSelectUIControl
  */
 public class LabelSelectUIControl {
-    private String self;
+    private String selfID;
     private LabelSelectManager labelSelectManager;
 
     /**
      * Constructs LabelSelectUIControl
-     * @param self a user
+     * @param selfID a user
      * @param courseDataAccess an instance of CourseDataManager
      * @param userDataAccess an instance of UserDataManager
      */
     public LabelSelectUIControl(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
-        this.self = userID;
+        this.selfID = userID;
         this.labelSelectManager = new LabelSelectManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 
@@ -32,8 +31,7 @@ public class LabelSelectUIControl {
      * @return label selected by user
      */
     public boolean getStudentLabelState(String labelName) throws IOException {
-        Student stu = (Student) labelSelectManager.getUserByID(this.self);
-        return labelSelectManager.getStudentLabelState(stu, labelName);
+        return labelSelectManager.getStudentLabelState(selfID, labelName);
     }
 
     /**
@@ -42,7 +40,6 @@ public class LabelSelectUIControl {
      * @param selected determines whether label is selected
      */
     public void updateStudentLabel(String labelName, boolean selected) throws IOException {
-        Student stu = (Student) labelSelectManager.getUserByID(this.self);
-        labelSelectManager.updateStudentLabel(stu, labelName, selected);
+        labelSelectManager.updateStudentLabel(selfID, labelName, selected);
     }
 }

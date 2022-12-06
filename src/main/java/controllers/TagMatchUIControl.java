@@ -1,6 +1,5 @@
 package controllers;
 
-import entities.Student;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public class TagMatchUIControl{
     private TagMatchManager tagMatchManager;
-    private String self;
+    private String selfID;
     private TagDataAccess tagManager;
 
     /**
@@ -27,7 +26,7 @@ public class TagMatchUIControl{
      * @param tagManager an instance of TagDataManager
      */
     public TagMatchUIControl(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
-        this.self = userID;
+        this.selfID = userID;
         this.tagMatchManager = new TagMatchManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 
@@ -36,8 +35,7 @@ public class TagMatchUIControl{
      */
     public DefaultListModel<String> getNameList() throws IOException {
         List<String> nameList = new ArrayList<>();
-        Student stu = (Student) tagMatchManager.getUserByID(this.self);
-        for(String s: tagMatchManager.getStudentName(stu)){
+        for(String s: tagMatchManager.getStudentName(selfID)){
             nameList.add(s);
         }
         DefaultListModel<String> nameModel = new DefaultListModel<>();

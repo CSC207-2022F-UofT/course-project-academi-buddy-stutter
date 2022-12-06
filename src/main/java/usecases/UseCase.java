@@ -27,8 +27,12 @@ public class UseCase {
         this.tb = tagDatabase;
     }
 
-    public User getUserByID(String id) throws IOException {
-        return this.ub.getUserByID(id);
+    public User getUserByID(String id){
+        try {
+            return this.ub.getUserByID(id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

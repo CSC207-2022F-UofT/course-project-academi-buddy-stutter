@@ -3,6 +3,8 @@ package usecases;
 import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
+import entities.Admin;
+import entities.Student;
 import entities.User;
 
 import java.io.IOException;
@@ -48,12 +50,17 @@ public class LoginManager extends UseCase{
         }
     }
 
-    /**
-     * Get the active user.
-     * @return the active user.
-     */
-    public User getActiveUser(){
-        return activeUser;
+    public String getActiveUserID(){
+        return activeUser.getUserID();
+    }
+    public String getUserTypeString(){
+        if(activeUser instanceof Student){
+            return "Student";
+        }
+        else if(activeUser instanceof Admin){
+            return "Admin";
+        }
+        return null;
     }
 
 }

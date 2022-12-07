@@ -7,6 +7,7 @@ import model.entities.Label;
 import model.entities.Student;
 import org.apache.commons.lang3.ArrayUtils;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,9 +29,11 @@ public class CourseMatchManager extends UseCase{
 
     private final int maxSameCourses = 17;
 
-    private int resultLimit = 5;
+    private final int resultLimit = 5;
 
     private HashMap<String, Integer> matchCount = new HashMap<>();
+
+    private ArrayList<String> matchedID = new ArrayList<>();
 
     /**
      * Private helper method.
@@ -172,4 +175,55 @@ public class CourseMatchManager extends UseCase{
         }
         return filtered;
     }
+
+    /**
+     * Finds student matches
+     * @param min_numCommon minimum number of common sessions
+     * @return a list of matched students
+     * @throws IOException fails to find matching students
+     */
+    public ArrayList<Student> getMatches(String studentID, int min_numCommon) throws IOException {
+        Student stu = (Student) this.getUserByID(studentID);
+        ArrayList<Student> matches = this.getTopSameSessionStudents(stu, min_numCommon);
+        return matches;
+    }
+
+    /**
+     * Find list of users by filtering labels
+     * @param label labels we want to have commons with
+     * @return a list of users that share common labels
+     */
+    public ArrayList<Student> getLabeledMatches(ArrayList<Student> allMatches, String label){
+
+        if(!(allMatches.size() == 0)){
+            return this.filterByLabel(allMatches, label);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public DefaultListModel<String> createModelByLabel(String studentID, String label, int numCommon) throws IOException {
+        DefaultListModel<String> matchedStu = new DefaultListModel<>();
+        ArrayList<Student> currMatches;
+        if(label.equals("None")){
+            currMatches = this.getMatches(studentID, numCommon);
+        }else{
+            currMatches = this.getMatches(studentID, numCommon);
+            currMatches = this.getLabeledMatches(currMatches, label);
+        }
+        for(Student s: currMatches){
+            matchedID = new ArrayList<>();
+            matchedID.add(s.getUserID());
+            matchedStu.addElement(s.getFullName());
+        }
+        return matchedStu;
+    }
+
+    public ArrayList<String> getMatchedID(){
+        return this.matchedID;
+    }
+
 }
+
+
+

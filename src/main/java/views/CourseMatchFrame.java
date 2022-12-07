@@ -116,11 +116,8 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
      * This method appends matched study buddies to the JList, displaying their full names instead of User ID.
      * @param students this list contains matched study buddies for the user
      */
-    private void addMatches(ArrayList<Student> students){
-        clearMatches();
-        for(Student s: students){
-            matchedStu.addElement(s.getFullName());
-        }
+    private void addMatches(){
+//        clearMatches();
         matchedList.setModel(matchedStu);
         matchedList.clearSelection();
         profileBTN.setEnabled(false);
@@ -146,21 +143,14 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         if(e.getSource() == findBTN){
             this.setCursor(waitCursor);
             int numCommon = numBox.getSelectedIndex();
-            ArrayList<Student> matches;
+
             try {
-                if(labelBox.getSelectedItem().equals("None")){
-                    matches = this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
-                }else{
-
-                    this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
-                    matches = frameNavigator.getMatchUIPresenter().
-                            getLabeledMatches((String)labelBox.getSelectedItem());
-                }
-
+                matchedStu = frameNavigator.getMatchUIPresenter().createModelByLabel((String) labelBox.getSelectedItem(), numCommon);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            addMatches(matches);
+
+            addMatches();
             this.setCursor(Cursor.getDefaultCursor());
         }
 
@@ -199,12 +189,16 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
         if(e.getSource() == labelBox){
 
-            ArrayList<Student> filteredStudents = frameNavigator.getMatchUIPresenter().
-                    getLabeledMatches((String)labelBox.getSelectedItem());
+            int numCommon = numBox.getSelectedIndex();
 
-            addMatches(filteredStudents);
+            try {
+                matchedStu = frameNavigator.getMatchUIPresenter().createModelByLabel((String) labelBox.getSelectedItem(), numCommon);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            addMatches();
 
-            if(filteredStudents.size() == 0){
+            if(matchedStu.size() == 0){
                 profileBTN.setEnabled(false);
                 commonSessionBTN.setEnabled(false);
             }

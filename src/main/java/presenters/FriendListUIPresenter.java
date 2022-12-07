@@ -86,16 +86,4 @@ public class FriendListUIPresenter {
     public void receiveFriendRequest(String userID, String friendID) {
         friendListManager.receiveFriendRequest(userID, friendID);
     }
-    // FriendListFrame Helper Function
-
-    public String[] IdsToFullNames(@NotNull ArrayList<String> ids) {
-        ArrayList<String> fullNames = new ArrayList<>();
-        String[] fullNamesArr = new String[ids.size()];
-        for (String id: ids) {
-            fullNames.add(friendListManager.getFriendFullName(id.trim().strip()));
-        }
-        fullNamesArr = fullNames.toArray(fullNamesArr);
-        return fullNamesArr;
-    }
-
 }

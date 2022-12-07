@@ -202,20 +202,4 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
             requestsModel.addRow(row);
         }
     }
-
-    /**
-     * Convert accepted student arraylist to string array with only student full name
-     * @param students a list of Student objects
-     * @return student name array
-     */
-    public String[] convertToArray(ArrayList<Student> students) {
-        String[] stringArray = new String[students.size()];
-        ArrayList<String> temp = new ArrayList<>();
-        // convert ArrayList to String Array for JList
-        for (Student friend: students) {
-            temp.add(friend.getFullName());
-        }
-        stringArray = temp.toArray(stringArray);
-        return stringArray;
-    }
 }

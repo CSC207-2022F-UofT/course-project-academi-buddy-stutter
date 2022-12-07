@@ -4,14 +4,10 @@ import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalTempDataFactory;
 import database.local.LocalUserData;
-import model.entities.User;
-import org.junit.jupiter.api.Test;
 import model.usecases.ProfileManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest extends LocalTempDataFactory {
     ArrayList<?> managers;
@@ -30,16 +26,14 @@ public class UserTest extends LocalTempDataFactory {
 
     ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
-    @Test
+    /*@Test
     void GetUserIDTest() {
         String expected = "222";
          User x = new User();
          x.user_id = "222";
          String actual = x.getUserID();
         assertEquals(expected , actual);
-    }
-
-
+    }*/
 
 
 }

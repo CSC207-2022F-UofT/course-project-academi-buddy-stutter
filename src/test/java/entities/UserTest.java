@@ -5,7 +5,6 @@ import database.local.LocalTagData;
 import database.local.LocalTempDataFactory;
 import database.local.LocalUserData;
 import model.usecases.ProfileManager;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,28 +29,28 @@ public class UserTest extends LocalTempDataFactory {
     ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
     @Test
-    void getUserIDTest() {Assertions.assertEquals("111", STUDENTA.getUserID());}
+    void getUserIDTest() {Assertions.assertEquals("111", STUDENT_A.getUserID());}
     @Test
     void getFullNameTest() {
-        Assertions.assertEquals("studenta", STUDENTA.getFullName());
+        Assertions.assertEquals("studenta", STUDENT_A.getFullName());
     }
     @Test
     void getUserInfoTest(){
-        Assertions.assertEquals("", STUDENTA.getUserInfo());
+        Assertions.assertEquals("", STUDENT_A.getUserInfo());
     }
     @Test
     void setUserInfoTest(){
         String infoUpdate = "HI";
-        Assertions.assertEquals("", STUDENTA.getUserInfo());
-        STUDENTA.setUserInfo(infoUpdate);
-        Assertions.assertEquals(infoUpdate, STUDENTA.getUserInfo());
+        Assertions.assertEquals("", STUDENT_A.getUserInfo());
+        STUDENT_A.setUserInfo(infoUpdate);
+        Assertions.assertEquals(infoUpdate, STUDENT_A.getUserInfo());
     }
     @Test
     void setUserIDTest(){
         String idUpdate = "11111";
-        Assertions.assertEquals("111", STUDENTA.getUserID());
-        STUDENTA.setUserID(idUpdate);
-        Assertions.assertEquals(idUpdate, STUDENTA.getUserID());
+        Assertions.assertEquals("111", STUDENT_A.getUserID());
+        STUDENT_A.setUserID(idUpdate);
+        Assertions.assertEquals(idUpdate, STUDENT_A.getUserID());
     }
 
 }

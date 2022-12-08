@@ -53,6 +53,7 @@ public class LoginManager extends UseCase{
     public String getActiveUserID(){
         return activeUser.getUserID();
     }
+
     public String getUserTypeString(){
         if(activeUser instanceof Student){
             return "Student";

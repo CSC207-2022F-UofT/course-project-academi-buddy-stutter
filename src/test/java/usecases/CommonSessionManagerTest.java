@@ -33,39 +33,39 @@ class CommonSessionManagerTest extends LocalTempDataFactory {
 
     @Test
     void getName() {
-        Assertions.assertEquals(STUDENTA.getFullName(), commonSessionManager.getName(STUDENTA.getUserID()));
-        Assertions.assertEquals(STUDENTB.getFullName(), commonSessionManager.getName(STUDENTB.getUserID()));
-        Assertions.assertEquals(STUDENTC.getFullName(), commonSessionManager.getName(STUDENTC.getUserID()));
+        Assertions.assertEquals(STUDENT_A.getFullName(), commonSessionManager.getName(STUDENT_A.getUserID()));
+        Assertions.assertEquals(STUDENT_B.getFullName(), commonSessionManager.getName(STUDENT_B.getUserID()));
+        Assertions.assertEquals(STUDENT_C.getFullName(), commonSessionManager.getName(STUDENT_C.getUserID()));
 
     }
 
     @Test
     void getNumberOfCommonSessions(){
-        commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTB.getUserID());
+        commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_B.getUserID());
         Assertions.assertEquals(2, commonSessionManager.getNumberOfCommonSessions());
-        commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTC.getUserID());
+        commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_C.getUserID());
         Assertions.assertEquals(1, commonSessionManager.getNumberOfCommonSessions());
-        commonSessionManager.getCommonSessions(STUDENTB.getUserID(), STUDENTC.getUserID());
+        commonSessionManager.getCommonSessions(STUDENT_B.getUserID(), STUDENT_C.getUserID());
         Assertions.assertEquals(2, commonSessionManager.getNumberOfCommonSessions());
 
     }
 
     @Test
     void getCommonSessions(){
-        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTB.getUserID()).contains("999"));
-        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTB.getUserID()).contains("888"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTB.getUserID()).contains("777"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTB.getUserID()).contains("666"));
+        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_B.getUserID()).contains("999"));
+        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_B.getUserID()).contains("888"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_B.getUserID()).contains("777"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_B.getUserID()).contains("666"));
 
-        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTC.getUserID()).contains("999"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTC.getUserID()).contains("888"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTC.getUserID()).contains("777"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTA.getUserID(), STUDENTC.getUserID()).contains("666"));
+        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_C.getUserID()).contains("999"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_C.getUserID()).contains("888"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_C.getUserID()).contains("777"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_A.getUserID(), STUDENT_C.getUserID()).contains("666"));
 
-        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENTB.getUserID(), STUDENTC.getUserID()).contains("999"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTB.getUserID(), STUDENTC.getUserID()).contains("888"));
-        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENTB.getUserID(), STUDENTC.getUserID()).contains("777"));
-        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENTB.getUserID(), STUDENTC.getUserID()).contains("666"));
+        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENT_B.getUserID(), STUDENT_C.getUserID()).contains("999"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_B.getUserID(), STUDENT_C.getUserID()).contains("888"));
+        Assertions.assertFalse(commonSessionManager.getCommonSessions(STUDENT_B.getUserID(), STUDENT_C.getUserID()).contains("777"));
+        Assertions.assertTrue(commonSessionManager.getCommonSessions(STUDENT_B.getUserID(), STUDENT_C.getUserID()).contains("666"));
 
     }
 

@@ -79,7 +79,7 @@ public class RegisterManager extends UseCase{
             return false;
         }else {
             List<String> warnings = getWarnings(password);
-            if (warnings.size() != 0) {
+            if (!warnings.isEmpty()) {
                 return false;
             }
             if(passwordConfirmation(password, confirm)) {

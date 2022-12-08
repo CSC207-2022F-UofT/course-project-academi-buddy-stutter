@@ -145,7 +145,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
         if(e.getSource() == findBTN){
             this.setCursor(waitCursor);
-            int numCommon = numBox.getSelectedIndex();
+            int numCommon = numBox.getSelectedIndex() + 1; // index starts at 0, numbox starts at 1.
             ArrayList<Student> matches;
             try {
                 if(labelBox.getSelectedItem().equals("None")){

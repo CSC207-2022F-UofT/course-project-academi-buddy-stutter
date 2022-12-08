@@ -2,15 +2,14 @@ package usecases;
 
 import database.local.LocalTempDataFactory;
 import model.usecases.StrengthChecker;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 
-
-public class StrengthCheckerTest extends LocalTempDataFactory {
+class StrengthCheckerTest extends LocalTempDataFactory {
 
 
     @Test
@@ -29,7 +28,7 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
         expected.add("Add a number");
         expected.add("Add a symbol");
 
-        assertEquals(expected , actual);
+        Assertions.assertEquals(expected, actual);
 
     }
     @Test
@@ -44,7 +43,7 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
         List<String> expected = new ArrayList<>();
         expected.add("Whitespace not allowed");
 
-        assertEquals(expected , actual);
+        Assertions.assertEquals(expected , actual);
 
     }
     @Test
@@ -60,7 +59,7 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
         expected.add("Password too short");
 
 
-        assertEquals(expected , actual);
+        Assertions.assertEquals(expected , actual);
 
     }
 
@@ -76,7 +75,7 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
         List<String> expected = new ArrayList<>();
         expected.add("Password too long");
 
-        assertEquals(expected , actual);
+        Assertions.assertEquals(expected , actual);
 
     }
     @Test
@@ -93,7 +92,7 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
 
 
 
-        assertEquals(expected , actual);
+        Assertions.assertEquals(expected , actual);
 
     }
     @Test
@@ -109,7 +108,7 @@ public class StrengthCheckerTest extends LocalTempDataFactory {
         expected.add("Add a symbol");
 
 
-        assertEquals(expected , actual);
+        Assertions.assertEquals(expected , actual);
 
     }
 

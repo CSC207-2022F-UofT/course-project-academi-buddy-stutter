@@ -50,7 +50,7 @@ public class UploadManager extends UseCase {
 
     /**
      * Updating the database by adding corresponding courses and students.
-     * @param student The student that is being updated.
+     * @param studentID The student that is being updated.
      */
     public void updateDatabase(String studentID) throws IOException {
         Student student = (Student) this.getUserByID(studentID);
@@ -66,7 +66,7 @@ public class UploadManager extends UseCase {
 
     /**
      * Takes out the original database info and replaces it with new ones.
-     * @param student The student to operate on.
+     * @param studentID The student to operate on.
      */
     public void reUploadUpdateDatabase(String studentID) throws IOException {
         Student student = (Student) this.getUserByID(studentID);

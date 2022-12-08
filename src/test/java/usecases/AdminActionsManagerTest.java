@@ -31,36 +31,36 @@ class AdminActionsManagerTest extends LocalTempDataFactory{
     AdminActionsManager adminActionsManager = new AdminActionsManager(cb, ub, tb);
 
     @Test
-    //It also tests the private helper methods removeStudentFromCourse(), removeStudentFromTag() and removeStudentFromFriend() as well.
+    //It also tests private helper methods removeStudentFromCourse(), removeStudentFromTag() and removeStudentFromFriend() as well.
     void removeUser() throws Exception {
-        ArrayList<String> courses = STUDENTA.getEnrolledCourseCodes();
-        ArrayList<InterestTag> tags = STUDENTA.getTags();
+        ArrayList<String> courses = STUDENT_A.getEnrolledCourseCodes();
+        ArrayList<InterestTag> tags = STUDENT_A.getTags();
 
         //before removing user
         for (String courseCode: courses){
-            Assertions.assertTrue(cb.getCourse(courseCode, "LEC").getEnrolledIDList().contains(STUDENTA.getUserID()));
+            Assertions.assertTrue(cb.getCourse(courseCode, "LEC").getEnrolledIDList().contains(STUDENT_A.getUserID()));
         }
         for(InterestTag tag: tags){
-            Assertions.assertTrue(tb.allTags.get(tag.getName()).containsKey(STUDENTA.getUserID()));
+            Assertions.assertTrue(tb.allTags.get(tag.getName()).containsKey(STUDENT_A.getUserID()));
         }
-        Assertions.assertTrue(STUDENTB.getFriendList().contains(STUDENTA.getUserID()));
-        Assertions.assertTrue(STUDENTC.getFriendRequestSentList().contains(STUDENTA.getUserID()));
+        Assertions.assertTrue(STUDENT_B.getFriendList().contains(STUDENT_A.getUserID()));
+        Assertions.assertTrue(STUDENT_C.getFriendRequestSentList().contains(STUDENT_A.getUserID()));
 
-        Assertions.assertTrue(ub.getUserIDList().contains(STUDENTA.getUserID()));
+        Assertions.assertTrue(ub.getUserIDList().contains(STUDENT_A.getUserID()));
 
-        adminActionsManager.removeUser(STUDENTA.getUserID());
+        adminActionsManager.removeUser(STUDENT_A.getUserID());
 
         //after removing user
         for (String courseCode: courses){
-            Assertions.assertFalse(cb.getCourse(courseCode, "LEC").getEnrolledIDList().contains(STUDENTA.getUserID()));
+            Assertions.assertFalse(cb.getCourse(courseCode, "LEC").getEnrolledIDList().contains(STUDENT_A.getUserID()));
         }
         for(InterestTag tag: tags){
-            Assertions.assertFalse(tb.allTags.get(tag.getName()).containsKey(STUDENTA.getUserID()));
+            Assertions.assertFalse(tb.allTags.get(tag.getName()).containsKey(STUDENT_A.getUserID()));
         }
-        Assertions.assertFalse(STUDENTB.getFriendList().contains(STUDENTA.getUserID()));
-        Assertions.assertFalse(STUDENTC.getFriendRequestSentList().contains(STUDENTA.getUserID()));
+        Assertions.assertFalse(STUDENT_B.getFriendList().contains(STUDENT_A.getUserID()));
+        Assertions.assertFalse(STUDENT_C.getFriendRequestSentList().contains(STUDENT_A.getUserID()));
 
-        Assertions.assertFalse(ub.getUserIDList().contains(STUDENTA.getUserID()));
+        Assertions.assertFalse(ub.getUserIDList().contains(STUDENT_A.getUserID()));
     }
 
 }

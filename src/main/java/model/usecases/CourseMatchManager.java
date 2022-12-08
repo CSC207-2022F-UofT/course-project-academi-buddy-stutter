@@ -116,7 +116,7 @@ public class CourseMatchManager extends UseCase{
         ArrayList<String>[] matchedList = this.getMatchedArray();
         int maxCommonCount = maxCommon(matchedList);
 
-        ArrayList<String>[] targetMatchedList = Arrays.copyOfRange(matchedList, minNumOfCommon + 1, maxCommonCount + 1);
+        ArrayList<String>[] targetMatchedList = Arrays.copyOfRange(matchedList, minNumOfCommon, maxCommonCount + 1);
         ArrayUtils.reverse(targetMatchedList);
 
         ArrayList<String> ids = new ArrayList<>();
@@ -136,13 +136,7 @@ public class CourseMatchManager extends UseCase{
             idCounts = resultLimit;
         }
 
-        System.out.println(idCounts);
-        System.out.println(ids);
-
-        for(int i=0; i<idCounts; i++){
-
-            System.out.println("id = " + ids.get(i));
-
+        for(int i = 0; i<idCounts; i++){
             if(!(ids.get(i).equals(student.getUserID()))){
 
                 Student stu = (Student) this.ub.getUserByID(ids.get(i));

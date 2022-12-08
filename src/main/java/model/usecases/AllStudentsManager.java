@@ -23,7 +23,6 @@ public class AllStudentsManager extends UseCase{
      * @return An ArrayList of Strings of user ids in the database.
      */
     public ArrayList<String> getAllStudents() {
-        System.out.println("Requesting for student list");
         return this.ub.getUserIDList();
     }
 

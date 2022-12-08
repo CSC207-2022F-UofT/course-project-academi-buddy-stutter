@@ -1,16 +1,13 @@
 package database.local;
 
-import model.entities.Course;
-import model.entities.InterestTag;
-import model.entities.Label;
-import model.entities.Student;
+import model.entities.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class LocalTempDataFactory {
 
-    protected Course COURSEA = new Course(
+    protected Course COURSE_A = new Course(
             "999",
             "LEC",
             "909",
@@ -20,7 +17,7 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Course COURSEB = new Course(
+    protected Course COURSE_B = new Course(
             "888",
             "LEC",
             "808",
@@ -30,7 +27,7 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Course COURSEC = new Course(
+    protected Course COURSE_C = new Course(
             "777",
             "LEC",
             "707",
@@ -40,7 +37,7 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Course COURSED = new Course(
+    protected Course COURSE_D = new Course(
             "666",
             "LEC",
             "606",
@@ -50,16 +47,20 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Student STUDENTA = new Student(
+    protected Student STUDENT_A = new Student(
             "111", "pass", "studenta", ""
     );
 
-    protected Student STUDENTB = new Student(
+    protected Student STUDENT_B = new Student(
             "222", "pass", "studentb", ""
     );
 
-    protected Student STUDENTC = new Student(
+    protected Student STUDENT_C = new Student(
             "333", "pass", "studentc", ""
+    );
+
+    protected Admin ADMIN = new Admin(
+            "444", "pass", "admin", ""
     );
 
 
@@ -70,10 +71,10 @@ public class LocalTempDataFactory {
         LocalTagData tb = new LocalTagData(ub);
         ArrayList<Object> managers = new ArrayList<>();
 
-        cb.addCourse(COURSEA);
-        cb.addCourse(COURSEB);
-        cb.addCourse(COURSEC);
-        cb.addCourse(COURSED);
+        cb.addCourse(COURSE_A);
+        cb.addCourse(COURSE_B);
+        cb.addCourse(COURSE_C);
+        cb.addCourse(COURSE_D);
 
         InterestTag adventure = new InterestTag("Adventure");
         InterestTag music = new InterestTag("Music");
@@ -81,70 +82,72 @@ public class LocalTempDataFactory {
         InterestTag cat = new InterestTag("Cat");
 
         ArrayList<InterestTag> tagA = new ArrayList<>();
-        tb.addStudent(adventure, STUDENTA);
-        tb.addStudent(beer, STUDENTA);
+        tb.addStudent(adventure, STUDENT_A);
+        tb.addStudent(beer, STUDENT_A);
         tagA.add(adventure);
         tagA.add(beer);
 
         ArrayList<InterestTag> tagB = new ArrayList<>();
-        tb.addStudent(adventure, STUDENTB);
-        tb.addStudent(music, STUDENTB);
+        tb.addStudent(adventure, STUDENT_B);
+        tb.addStudent(music, STUDENT_B);
         tagB.add(adventure);
         tagB.add(music);
 
         ArrayList<InterestTag> tagC = new ArrayList<>();
-        tb.addStudent(music, STUDENTC);
-        tb.addStudent(cat, STUDENTC);
+        tb.addStudent(music, STUDENT_C);
+        tb.addStudent(cat, STUDENT_C);
         tagC.add(music);
         tagC.add(cat);
 
-        STUDENTA.setTabs_of_interests(tagA);
-        STUDENTB.setTabs_of_interests(tagB);
-        STUDENTC.setTabs_of_interests(tagC);
+        STUDENT_A.setTabs_of_interests(tagA);
+        STUDENT_B.setTabs_of_interests(tagB);
+        STUDENT_C.setTabs_of_interests(tagC);
 
         Label meetLabel = new Label("Want to Meet");
         Label collaborateLabel = new Label("Want to Collaborate");
         Label discussLabel = new Label("Want to Discuss");
 
-        STUDENTA.updateLabel(meetLabel, true);
-        STUDENTB.updateLabel(meetLabel, true);
+        STUDENT_A.updateLabel(meetLabel, true);
+        STUDENT_B.updateLabel(meetLabel, true);
 
-        STUDENTA.updateLabel(collaborateLabel, true);
+        STUDENT_A.updateLabel(collaborateLabel, true);
 
-        STUDENTB.updateLabel(discussLabel, true);
-        STUDENTC.updateLabel(discussLabel, true);
+        STUDENT_B.updateLabel(discussLabel, true);
+        STUDENT_C.updateLabel(discussLabel, true);
 
         ArrayList<String> studentAFriendList = new ArrayList<>();
         ArrayList<String> studentBFriendList = new ArrayList<>();
         ArrayList<String> studentAFriendRequestList = new ArrayList<>();
         ArrayList<String> studentCFriendRequestSentList = new ArrayList<>();
 
-        studentAFriendList.add(STUDENTB.getUserID());
-        studentBFriendList.add(STUDENTA.getUserID());
+        studentAFriendList.add(STUDENT_B.getUserID());
+        studentBFriendList.add(STUDENT_A.getUserID());
 
-        studentAFriendRequestList.add(STUDENTC.getUserID());
-        studentCFriendRequestSentList.add(STUDENTA.getUserID());
+        studentAFriendRequestList.add(STUDENT_C.getUserID());
+        studentCFriendRequestSentList.add(STUDENT_A.getUserID());
 
-        STUDENTA.setFriendList(studentAFriendList);
-        STUDENTB.setFriendList(studentBFriendList);
-        STUDENTA.setFriendRequestList(studentAFriendRequestList);
-        STUDENTC.setFriendRequestSentList(studentCFriendRequestSentList);
+        STUDENT_A.setFriendList(studentAFriendList);
+        STUDENT_B.setFriendList(studentBFriendList);
+        STUDENT_A.setFriendRequestList(studentAFriendRequestList);
+        STUDENT_C.setFriendRequestSentList(studentCFriendRequestSentList);
 
-        ub.addStudentUser(STUDENTA);
-        ub.addStudentUser(STUDENTB);
-        ub.addStudentUser(STUDENTC);
+        ub.addStudentUser(STUDENT_A);
+        ub.addStudentUser(STUDENT_B);
+        ub.addStudentUser(STUDENT_C);
 
-        cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTA);
-        cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTB);
-        cb.addStudent(COURSEA.getCourseCode(), "LEC", STUDENTC);
+        ub.addUser(ADMIN);
 
-        cb.addStudent(COURSEB.getCourseCode(), "LEC", STUDENTA);
-        cb.addStudent(COURSEB.getCourseCode(), "LEC", STUDENTB);
+        cb.addStudent(COURSE_A.getCourseCode(), "LEC", STUDENT_A);
+        cb.addStudent(COURSE_A.getCourseCode(), "LEC", STUDENT_B);
+        cb.addStudent(COURSE_A.getCourseCode(), "LEC", STUDENT_C);
 
-        cb.addStudent(COURSEC.getCourseCode(), "LEC", STUDENTB);
+        cb.addStudent(COURSE_B.getCourseCode(), "LEC", STUDENT_A);
+        cb.addStudent(COURSE_B.getCourseCode(), "LEC", STUDENT_B);
 
-        cb.addStudent(COURSED.getCourseCode(), "LEC", STUDENTB);
-        cb.addStudent(COURSED.getCourseCode(), "LEC", STUDENTC);
+        cb.addStudent(COURSE_C.getCourseCode(), "LEC", STUDENT_B);
+
+        cb.addStudent(COURSE_D.getCourseCode(), "LEC", STUDENT_B);
+        cb.addStudent(COURSE_D.getCourseCode(), "LEC", STUDENT_C);
 
 
         managers.add(ub);

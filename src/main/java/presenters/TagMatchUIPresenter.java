@@ -20,10 +20,10 @@ public class TagMatchUIPresenter {
 
     /**
      * Constructs TagMatchUIPresenter
-     * @param self a user
-     * @param courseManager an instance of CourseDataManager
-     * @param userManager an instance of UserDataManager
-     * @param tagManager an instance of TagDataManager
+     * @param userID a user
+     * @param courseDataAccess an instance of CourseDataManager
+     * @param userDataAccess an instance of UserDataManager
+     * @param tagDataAccess an instance of TagDataManager
      */
     public TagMatchUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.selfID = userID;

@@ -15,10 +15,11 @@ public class RegisterUIPresenter {
 
     /**
      * Constructs RegisterUIPresenter
-     * @param courseDatabase an instance of CourseDataManager
-     * @param userDatabase an instance of UserDataManager
+     *
+     * @param courseDataAccess an instance of CourseDataManager
+     * @param userDataAccess   an instance of UserDataManager
      */
-    public RegisterUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess) {
+    public RegisterUIPresenter(CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess) {
         this.registerManager = new RegisterManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 

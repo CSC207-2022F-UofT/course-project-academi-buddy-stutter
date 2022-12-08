@@ -26,9 +26,9 @@ public class CourseMatchManager extends UseCase{
         super(courseDatabase, userDatabase, tagDatabase);
     }
 
-    private final int maxSameCourses = 17;
+    private static final int MAX_SAME_COURSE = 17;
 
-    private int resultLimit = 5;
+    private static final int RESULT_LIMIT = 5;
 
     private HashMap<String, Integer> matchCount = new HashMap<>();
 
@@ -69,7 +69,7 @@ public class CourseMatchManager extends UseCase{
     private ArrayList<String>[] getMatchedArray(){
         String[] keys = this.matchCount.keySet().toArray(new String[0]);
 
-        ArrayList<String>[] matchedList = new ArrayList[this.maxSameCourses];
+        ArrayList<String>[] matchedList = new ArrayList[this.MAX_SAME_COURSE];
 
     //initialize matched list to be an array of empty arrayLists...
         for(int i = 0; i < matchedList.length; i++){
@@ -91,14 +91,14 @@ public class CourseMatchManager extends UseCase{
 
         int latestEmpty = -1;
 
-        for(int i = 0; i<this.maxSameCourses; i++){
+        for(int i = 0; i<this.MAX_SAME_COURSE; i++){
             if(matchedArray[i].isEmpty()){
                 latestEmpty = i;
             }
         }
 
         if(latestEmpty < 0){
-            return this.maxSameCourses;
+            return this.MAX_SAME_COURSE;
         }else{
             return latestEmpty - 1;
         }
@@ -132,8 +132,8 @@ public class CourseMatchManager extends UseCase{
         ArrayList<Student> students = new ArrayList<>();
         int idCounts = ids.size();
 
-        if(idCounts > resultLimit){
-            idCounts = resultLimit;
+        if(idCounts > RESULT_LIMIT){
+            idCounts = RESULT_LIMIT;
         }
 
         for(int i = 0; i<idCounts; i++){

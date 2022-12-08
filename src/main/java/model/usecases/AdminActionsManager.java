@@ -51,7 +51,6 @@ public class AdminActionsManager extends UseCase{
     /**
      * Helper method for removeUser, removes user from Course Database.
      * @param student the student that is being removed.
-     * @param courseDataManager Use cases of operations on course database.
      */
     public void removeStudentFromCourse(Student student) throws IOException {
         for(String c: student.getEnrolledCourseCodes()){
@@ -105,7 +104,6 @@ public class AdminActionsManager extends UseCase{
     /**
      * Helper method for removeUser, removes user from Tag Database.
      * @param student the student that is being removed.
-     * @param tagDataManager Use cases of operations on tag database.
      */
     private void removeStudentFromTag(Student student) throws IOException{
         for(InterestTag t: student.getTags()){

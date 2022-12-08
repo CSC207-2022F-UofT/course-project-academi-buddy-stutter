@@ -8,6 +8,7 @@ import com.google.cloud.firestore.*;
 
 import com.google.firebase.cloud.FirestoreClient;
 
+import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,13 +89,10 @@ public class FirebaseAPI implements DatabaseInterface {
         DocumentSnapshot doc = null;
         try {
             doc = future.get();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
-        Map<String, Object> entry = doc.getData();
-        return entry;
+        return doc.getData();
     }
 
 

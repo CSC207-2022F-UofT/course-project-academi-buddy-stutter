@@ -17,7 +17,7 @@ public class StrengthChecker {
      * @return The List of Strings of warnings if any.
      */
     public List<String> checkStrength(String password) {
-        List<String> warnings = new ArrayList<String>();
+        List<String> warnings = new ArrayList<>();
 
         // Check if password contains empty spaces;
         if (password.matches("(\\s)*")) {

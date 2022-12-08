@@ -24,7 +24,7 @@ public class LabelSelectManager extends UseCase{
 
     /**
      * To show the state of all labels for a student.
-     * @param self the student to access.
+     * @param selfID the student to access.
      * @param labelName the name String of the label to access.
      * @return true if the label for the student is selected.
      */
@@ -41,7 +41,7 @@ public class LabelSelectManager extends UseCase{
 
     /**
      * Updates the student's corresponding label.
-     * @param self The Student to access.
+     * @param selfID The Student to access.
      * @param labelName The label to check.
      * @param selected To see if the label is selected or not.
      */

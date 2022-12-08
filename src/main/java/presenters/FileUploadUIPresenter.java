@@ -18,9 +18,9 @@ public class FileUploadUIPresenter {
 
     /**
      * Constructs FileUploadUIPresenter
-     * @param self a user
-     * @param courseDatabase an instance of CourseDataManager
-     * @param userDatabase an instance of UserDataManager
+     * @param userID a user
+     * @param courseDataAccess an instance of CourseDataManager
+     * @param userDataAccess an instance of UserDataManager
      */
     public FileUploadUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.selfID = userID;

@@ -25,7 +25,7 @@ public class TagSelectManager extends UseCase {
 
     /**
      * Get the current state of the tag on current student.
-     * @param self The current student.
+     * @param selfID The current student.
      * @param tagName The name of the tag to look at.
      * @return True if the tag is selected, false otherwise.
      */
@@ -37,7 +37,7 @@ public class TagSelectManager extends UseCase {
 
     /**
      * Change the status of current tag for current student.
-     * @param self The current student.
+     * @param selfID The current student.
      * @param tagName The current tag that is being updated.
      * @param selected If the tag is selected then true, false otherwise.
      */

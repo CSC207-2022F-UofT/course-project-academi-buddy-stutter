@@ -16,9 +16,9 @@ public class AllStudentsUIPresenter {
 
     /**
      * Constructs AllStudentsUIPresenter
-     * @param user a user
-     * @param courseManager an instance of CourseDataManager
-     * @param userManager an instance of UserDataManager
+     * @param userID a user
+     * @param courseDataAccess an instance of CourseDataManager
+     * @param userDataAccess an instance of UserDataManager
      */
     public AllStudentsUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess) {
         this.allStudentsManager = new AllStudentsManager(courseDataAccess, userDataAccess, tagDataAccess);

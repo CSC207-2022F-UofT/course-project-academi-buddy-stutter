@@ -6,17 +6,19 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Implements AdminUIPresenter for AdminFrame
  */
-public class AdminUIPresenter {
+public class AdminUIPresenter implements Serializable {
+    private final long serialVersionUID = 2L;
     private String self;
     private AdminActionsManager adminActionsManager;
 
     /**
      * Constructs AdminUIPresenter
-     * @param self a user
+     * @param userID a user
      * @param courseDataAccess instance of CourseDataManager
      * @param userDataAccess instance of UserDataManager
      * @param tagDataAccess instance of TagDataManager

@@ -16,7 +16,7 @@ public class LabelSelectUIPresenter {
 
     /**
      * Constructs LabelSelectUIPresenter
-     * @param selfID a user
+     * @param userID a user
      * @param courseDataAccess an instance of CourseDataManager
      * @param userDataAccess an instance of UserDataManager
      */
@@ -30,7 +30,7 @@ public class LabelSelectUIPresenter {
      * @param labelName name of label
      * @return label selected by user
      */
-    public boolean getStudentLabelState(String labelName) throws IOException {
+    public boolean getStudentLabelState(String labelName)  {
         return labelSelectManager.getStudentLabelState(selfID, labelName);
     }
 

@@ -7,14 +7,16 @@ import presenters.*;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * parent class of all UI presenters
  * creates instances of all presenter classes
  * creates instances of all JFrames in the views package
  */
-public class FrameNavigator {
+public class FrameNavigator implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     public int STATUS;
     public static int FROM_REGISTER = 0;
     public static int FROM_PROFILE = 1;
@@ -61,8 +63,8 @@ public class FrameNavigator {
         this.tagManager = tagManager;
 
         // UseCases
-        this.loginUIPresenter = new LoginUIPresenter(userID, courseManager, userManager, tagManager);
-        this.registerUIPresenter = new RegisterUIPresenter(userID, courseManager, userManager, tagManager);
+        this.loginUIPresenter = new LoginUIPresenter(courseManager, userManager, tagManager);
+        this.registerUIPresenter = new RegisterUIPresenter(courseManager, userManager, tagManager);
     }
 
     /**
@@ -276,7 +278,7 @@ public class FrameNavigator {
         this.tagSelectUIPresenter = new TagSelectUIPresenter(selfID, courseManager, userManager, tagManager);
         this.labelSelectUIPresenter = new LabelSelectUIPresenter(selfID, courseManager, userManager, tagManager);
         this.profileUIPresenter = new ProfileUIPresenter(selfID, courseManager, userManager, tagManager);
-        this.profileDisplayUIPresenter = new ProfileDisplayUIPresenter(selfID, courseManager, userManager, tagManager);
+        this.profileDisplayUIPresenter = new ProfileDisplayUIPresenter(courseManager, userManager, tagManager);
         this.homeUIPresenter = new HomeUIPresenter(selfID, courseManager,userManager, tagManager);
         this.friendListUIPresenter = new FriendListUIPresenter(selfID, courseManager, userManager, tagManager);
         this.matchUIControl = new CourseMatchUIPresenter(selfID, courseManager, userManager, tagManager);

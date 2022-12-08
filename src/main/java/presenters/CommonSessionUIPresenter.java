@@ -14,7 +14,7 @@ public class CommonSessionUIPresenter {
 
     /**
      * Constructs CommonSessionUIPresenter
-     * @param selfID ID of the user
+     * @param userID ID of the user
      * @param courseDataAccess an instance of CourseDataManager
      * @param userDataAccess an instance of UserDataManager
      */

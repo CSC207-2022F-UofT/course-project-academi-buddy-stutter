@@ -15,15 +15,16 @@ public class LoginUIPresenter {
 
     public String selfID;
     private int userType;
-    public static int STUDENT = 0;
-    public static int ADMIN = 1;
+    public static final int STUDENT = 0;
+    public static final int ADMIN = 1;
 
     /**
      * Constructs LoginUIPresenter
-     * @param courseDatabase an instance of CourseDataManager
-     * @param userDatabase an instance of UserDataManager
+     *
+     * @param courseDataAccess an instance of CourseDataManager
+     * @param userDataAccess   an instance of UserDataManager
      */
-    public LoginUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
+    public LoginUIPresenter(CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.loginManager = new LoginManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 

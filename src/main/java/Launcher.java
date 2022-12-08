@@ -29,7 +29,7 @@ public class Launcher {
     }
 
     private static void launch(int databaseLocation) throws IOException{
-        FrameNavigator frameNavigator = null;
+        FrameNavigator frameNavigator;
         if (databaseLocation == CLOUD){
             initializeFirebase();
             FirebaseAPI cbc = new FirebaseAPI();
@@ -39,6 +39,7 @@ public class Launcher {
             CloudCourseData cb = new CloudCourseData(cbc, ub);
             CloudTagData tb = new CloudTagData(tbc, ub);
             frameNavigator = new FrameNavigator(null, cb, ub, tb);
+            frameNavigator.toLogin();
         } 
         else if (databaseLocation == LOCAL){
             LocalTempDataFactory localTempDataFactory = new LocalTempDataFactory();
@@ -46,8 +47,8 @@ public class Launcher {
             LocalCourseData cb = (LocalCourseData) localTempDataFactory.getLocalDatabase().get(1);
             LocalTagData tb = (LocalTagData) localTempDataFactory.getLocalDatabase().get(2);
             frameNavigator = new FrameNavigator(null, cb, ub, tb);
+            frameNavigator.toLogin();
         }
-        frameNavigator.toLogin();
     }
 
     public static void main(String[] args) throws IOException{

@@ -10,16 +10,15 @@ import database.accessinterfaces.UserDataAccess;
  */
 public class ProfileDisplayUIPresenter {
 
-    private String userID;
     private ProfileManager profileManager;
 
     /**
      * Constructs ProfileDisplayUIPresenter
+     *
      * @param courseDataAccess an instance of CourseDataManager
-     * @param userDataAccess an instance of UserDataManager
+     * @param userDataAccess   an instance of UserDataManager
      */
-    public ProfileDisplayUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
-        this.userID = userID;
+    public ProfileDisplayUIPresenter(CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.profileManager = new ProfileManager(courseDataAccess, userDataAccess, tagDataAccess);
     }
 

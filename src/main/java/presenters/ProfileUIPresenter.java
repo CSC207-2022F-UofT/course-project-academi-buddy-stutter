@@ -16,7 +16,7 @@ public class ProfileUIPresenter {
 
     /**
      * Constructs ProfileUIPresenter
-     * @param user a user
+     * @param userID a user
      * @param courseDataAccess an instance of CourseDataManager
      * @param userDataAccess an instance of UserDataManager
      */

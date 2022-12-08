@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * This class implements a AdminFrame that only displays to Administrative Users.
@@ -34,7 +35,6 @@ public class AdminFrame extends JFrame implements ActionListener {
         titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         titleLabel.setText("Welcome, " + frameNavigator.getAdminUIPresenter().getName().split("\\s+")[0]);
         resultLabel.setBounds(270, 50, 100, 20);
-        // resultLabel.setBounds(80, 100, 200, 50);
         enterLabel.setBounds(10, 50, 100, 20);
 
         // setting up buttons

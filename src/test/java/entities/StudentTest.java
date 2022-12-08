@@ -4,6 +4,10 @@ import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalTempDataFactory;
 import database.local.LocalUserData;
+import model.entities.Course;
+import model.entities.InterestTag;
+import model.entities.Label;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,6 +37,89 @@ public class StudentTest extends LocalTempDataFactory {
 
     ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
+    @Test
+    void setAndGetTabsOfInterestsTest() {
+        ArrayList<InterestTag> tags = new ArrayList<>();
+        InterestTag tag1 = new InterestTag("tag1");
+        InterestTag tag2 = new InterestTag("tag2");
+
+        tags.add(tag1);
+        tags.add(tag2);
+
+        STUDENTA.setTabs_of_interests(new ArrayList<>());
+        Assertions.assertEquals(new ArrayList<>(), STUDENTA.getTags());
+        STUDENTA.setTabs_of_interests(tags);
+        Assertions.assertEquals(tags, STUDENTA.getTags());
+    }
+
+    @Test
+    void setAndGetEnrolledCoursesTest() {
+        ArrayList<String> courses = new ArrayList<>();
+        String code = "CSC207";
+        String code2 = "CSC777";
+        courses.add(code);
+        courses.add(code2);
+        STUDENTA.setEnrolledCourses(courses);
+        Assertions.assertEquals(courses, STUDENTA.getEnrolledCourseCodes());
+    }
+
+    @Test
+    void updateStudentTOITest() {
+        InterestTag tag1 = new InterestTag("tag1");
+        ArrayList<InterestTag> tags = STUDENTA.getTags();
+        tags.add(tag1);
+        // Add this tag from list because it's selected
+        STUDENTA.updateStudentTOI(tag1, true);
+        Assertions.assertEquals(tags, STUDENTA.getTags());
+
+        // Remove this tag from list because it's not selected
+        STUDENTA.updateStudentTOI(tag1, false);
+        tags.remove(tag1);
+        Assertions.assertEquals(tags, STUDENTA.getTags());
+    }
+
+    @Test
+    void getAndUpdateLabelTest() {
+        Label label1 = new Label("label 1");
+        ArrayList<Label> lables = STUDENTA.getLabels();
+        // Add label to label list
+        lables.add(label1);
+        STUDENTA.updateLabel(label1, true);
+        Assertions.assertTrue(STUDENTA.getLabels().contains(label1));
+
+        // Remove label from label list
+        STUDENTA.updateLabel(label1, false);
+        lables.remove(label1);
+        Assertions.assertFalse(STUDENTA.getLabels().contains(label1));
+    }
+
+    @Test
+    void addCourseTest() {
+        ArrayList<String> courses = new ArrayList<>();
+        courses.add("999");
+        courses.add("888");
+        // Check current courses
+        Assertions.assertEquals(courses, STUDENTA.getEnrolledCourseCodes());
+
+        // Add new course
+        courses.add("777");
+        STUDENTA.addCourse(COURSEC);
+        Assertions.assertEquals(courses, STUDENTA.getEnrolledCourseCodes());
+    }
+
+    @Test
+    void removeCourseTest() {
+        ArrayList<String> courses = new ArrayList<>();
+        courses.add("999");
+        courses.add("888");
+        // Check current courses
+        Assertions.assertEquals(courses, STUDENTA.getEnrolledCourseCodes());
+
+        // Remove COURSEB from the list
+        STUDENTA.removeCourse(COURSEB);
+        courses.remove("888");
+        Assertions.assertEquals(courses, STUDENTA.getEnrolledCourseCodes());
+    }
 
     @Test
     void GetEmailTest() {

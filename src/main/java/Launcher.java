@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class Launcher {
 
-    private static int CLOUD = 0;
-    private static int LOCAL = 1;
+    private static final int CLOUD = 0;
+    private static final int LOCAL = 1;
 
     private static void initializeFirebase() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("service-account-file.json");
@@ -37,7 +37,7 @@ public class Launcher {
             FirebaseAPI tbc = new FirebaseAPI();
             CloudUserData ub = new CloudUserData(ubc);
             CloudCourseData cb = new CloudCourseData(cbc, ub);
-            CloudTagData tb = new CloudTagData(tbc, ub);
+            CloudTagData tb = new CloudTagData(tbc);
             frameNavigator = new FrameNavigator(null, cb, ub, tb);
             frameNavigator.toLogin();
         } 

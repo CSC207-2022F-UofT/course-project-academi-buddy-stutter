@@ -9,8 +9,8 @@ import database.accessinterfaces.UserDataAccess;
  * Implements CommonSessionUIPresenter for CommonSessionFrame
  */
 public class CommonSessionUIPresenter {
-    private CommonSessionManager commonSessionManager;
-    private String selfID;
+    private final CommonSessionManager commonSessionManager;
+    private final String selfID;
 
     /**
      * Constructs CommonSessionUIPresenter

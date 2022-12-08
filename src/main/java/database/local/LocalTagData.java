@@ -11,12 +11,9 @@ import java.util.Set;
 
 public class LocalTagData implements TagDataAccess {
 
-    private LocalUserData userDataLocal;
+    public final HashMap<String, HashMap> allTags;
 
-    public HashMap<String, HashMap> allTags;
-
-    public LocalTagData(LocalUserData userDataLocal){
-        this.userDataLocal = userDataLocal;
+    public LocalTagData(){
         allTags = new HashMap<>();
         allTags.put("Adventure", new HashMap<>());
         allTags.put("Beer", new HashMap<>());
@@ -32,9 +29,7 @@ public class LocalTagData implements TagDataAccess {
     @Override
     public ArrayList<String> getTagNameList() {
         ArrayList<String> tagNameList = new ArrayList<>();
-        for (String tagName: allTags.keySet()){
-            tagNameList.add(tagName);
-        }
+        tagNameList.addAll(allTags.keySet());
         return tagNameList;
     }
 
@@ -42,9 +37,7 @@ public class LocalTagData implements TagDataAccess {
     public ArrayList<String> getStudentList(InterestTag tag) {
         ArrayList<String> studentIDArrayList = new ArrayList<>();
         Set<String> studentIDList = allTags.get(tag.getName()).keySet();
-        for (String s: studentIDList){
-            studentIDArrayList.add(s);
-        }
+        studentIDArrayList.addAll(studentIDList);
         return studentIDArrayList;
     }
 
@@ -56,8 +49,6 @@ public class LocalTagData implements TagDataAccess {
 
     @Override
     public boolean removeStudent(InterestTag tag, Student student) throws IOException {
-        System.out.println(getStudentList(tag));
-        System.out.println(tag.getName() + student.getUserID());
         if(!allTags.get(tag.getName()).containsKey(student.getUserID())){
             return false;
         }

@@ -18,20 +18,20 @@ import java.util.ArrayList;
 public class LabelSelectFrame extends JFrame implements ActionListener, ChangeListener {
 
 
-    JLabel LabelSelectLabel = new JLabel("Select label:");
+    final JLabel LabelSelectLabel = new JLabel("Select label:");
 
-    ArrayList<JCheckBox> boxList = new ArrayList<>();
+    final ArrayList<JCheckBox> boxList = new ArrayList<>();
 
-    JCheckBox meetCB = new JCheckBox("Want to Meet");
-    JCheckBox collaborateCB = new JCheckBox("Want to Collaborate");
-    JCheckBox discussCB = new JCheckBox("Want to Discuss");
+    final JCheckBox meetCB = new JCheckBox("Want to Meet");
+    final JCheckBox collaborateCB = new JCheckBox("Want to Collaborate");
+    final JCheckBox discussCB = new JCheckBox("Want to Discuss");
 
-    JButton backBTN = new JButton("Back");
-    JButton applyBTN = new JButton("Apply");
+    final JButton backBTN = new JButton("Back");
+    final JButton applyBTN = new JButton("Apply");
 
-    FrameNavigator frameNavigator;
-    private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final FrameNavigator frameNavigator;
+    private ArrayList<Boolean> initialState = new ArrayList<>();
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     /**
      * This constructor method implements all UI components for LabelSelectFrame

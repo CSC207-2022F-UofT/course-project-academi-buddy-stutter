@@ -13,8 +13,8 @@ import java.io.IOException;
  * Implements FileUploadUIPresenter for FileUploadFrame
  */
 public class FileUploadUIPresenter {
-    private UploadManager uploadManager;
-    private String selfID;
+    private final UploadManager uploadManager;
+    private final String selfID;
 
     /**
      * Constructs FileUploadUIPresenter

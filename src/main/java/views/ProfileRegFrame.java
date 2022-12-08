@@ -10,18 +10,18 @@ import java.awt.event.ActionListener;
  */
 public class ProfileRegFrame extends JFrame implements ActionListener {
     // creating labels
-    JLabel proTitleLabel = new JLabel("Profile");
-    JLabel emailLabel = new JLabel("UofT Email:");
-    JLabel infoLabel = new JLabel("About:");
+    final JLabel proTitleLabel = new JLabel("Profile");
+    final JLabel emailLabel = new JLabel("UofT Email:");
+    final JLabel infoLabel = new JLabel("About:");
 
     // creating textfields
-    JTextField emailText = new JTextField();
+    final JTextField emailText = new JTextField();
 
     // creating textarea
-    JTextArea infoText = new JTextArea();
-    JButton completeBTN = new JButton("Next");
+    final JTextArea infoText = new JTextArea();
+    final JButton completeBTN = new JButton("Next");
 
-    FrameNavigator frameNavigator;
+    final FrameNavigator frameNavigator;
 
     /**
      * This constructor method implements all UI components for ProfileRegFrame.

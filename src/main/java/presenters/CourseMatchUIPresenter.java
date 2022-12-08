@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * Implements CourseMatchUIPresenter for CourseMatchFrame
  */
 public class CourseMatchUIPresenter {
-    private CourseMatchManager courseMatchManager;
+    private final CourseMatchManager courseMatchManager;
 
-    public String self;
-    private ArrayList<Student> matches = new ArrayList();
+    public final String self;
+    private ArrayList<Student> matches = new ArrayList<>();
     public CourseMatchUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.self = userID;
         this.courseMatchManager = new CourseMatchManager(courseDataAccess, userDataAccess, tagDataAccess);
@@ -29,7 +29,7 @@ public class CourseMatchUIPresenter {
      * @throws IOException fails to find matching students
      */
     public ArrayList<Student> getMatches(int min_numCommon) throws IOException {
-        this.matches = new ArrayList();
+        this.matches = new ArrayList<>();
         Student stu = (Student) courseMatchManager.getUserByID(this.self);
         this.matches = this.courseMatchManager.getTopSameSessionStudents(stu, min_numCommon);
         return this.matches;

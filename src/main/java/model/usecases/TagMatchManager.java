@@ -7,7 +7,6 @@ import model.entities.InterestTag;
 import model.entities.Student;
 import model.entities.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +35,7 @@ public class TagMatchManager extends UseCase{
      * @param selected The interest tag to be selected.
      */
     public void setSelectedTag(String selected){
-        InterestTag selectedTag = new InterestTag(selected);
-        this.selectedTag = selectedTag;
+        this.selectedTag = new InterestTag(selected);
         idList = new ArrayList<>();
     }
 

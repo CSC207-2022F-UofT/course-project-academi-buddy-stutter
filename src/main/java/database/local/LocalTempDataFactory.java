@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class LocalTempDataFactory {
 
-    protected Course COURSE_A = new Course(
+    protected final Course COURSE_A = new Course(
             "999",
             "LEC",
             "909",
@@ -17,7 +17,7 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Course COURSE_B = new Course(
+    protected final Course COURSE_B = new Course(
             "888",
             "LEC",
             "808",
@@ -27,7 +27,7 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Course COURSE_C = new Course(
+    protected final Course COURSE_C = new Course(
             "777",
             "LEC",
             "707",
@@ -37,7 +37,7 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Course COURSE_D = new Course(
+    protected final Course COURSE_D = new Course(
             "666",
             "LEC",
             "606",
@@ -47,19 +47,19 @@ public class LocalTempDataFactory {
             "2003"
     );
 
-    protected Student STUDENT_A = new Student(
+    protected final Student STUDENT_A = new Student(
             "111", "pass", "studenta", ""
     );
 
-    protected Student STUDENT_B = new Student(
+    protected final Student STUDENT_B = new Student(
             "222", "pass", "studentb", ""
     );
 
-    protected Student STUDENT_C = new Student(
+    protected final Student STUDENT_C = new Student(
             "333", "pass", "studentc", ""
     );
 
-    protected Admin ADMIN = new Admin(
+    protected final Admin ADMIN = new Admin(
             "444", "pass", "admin", ""
     );
 
@@ -68,7 +68,7 @@ public class LocalTempDataFactory {
 
         LocalUserData ub = new LocalUserData();
         LocalCourseData cb = new LocalCourseData(ub);
-        LocalTagData tb = new LocalTagData(ub);
+        LocalTagData tb = new LocalTagData();
         ArrayList<Object> managers = new ArrayList<>();
 
         cb.addCourse(COURSE_A);

@@ -3,8 +3,6 @@ package views;
 import model.entities.Student;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,24 +18,24 @@ import java.util.ArrayList;
  */
 
 public class CourseMatchFrame extends JFrame implements ActionListener, ItemListener{
-    JLabel numCommonLabel = new JLabel("Minimum Number of Common Sessions:");
-    JLabel selectLabel = new JLabel("Label:");
-    JLabel matchLabel = new JLabel("Matched Students:");
-    String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
-    JComboBox<String> numBox = new JComboBox<>(userType);
-    String[] labels = {"None", "Want to Meet", "Want to Collaborate", "Want to Discuss"};
-    JComboBox<String> labelBox = new JComboBox<>(labels);
+    final JLabel numCommonLabel = new JLabel("Minimum Number of Common Sessions:");
+    final JLabel selectLabel = new JLabel("Label:");
+    final JLabel matchLabel = new JLabel("Matched Students:");
+    final String[] userType = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+    final JComboBox<String> numBox = new JComboBox<>(userType);
+    final String[] labels = {"None", "Want to Meet", "Want to Collaborate", "Want to Discuss"};
+    final JComboBox<String> labelBox = new JComboBox<>(labels);
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
-    JList<String> matchedList = new JList<>(matchedStu);
-    JButton returnBTN = new JButton("Back");
-    JButton findBTN = new JButton("Find");
-    JButton profileBTN = new JButton("Go to Profile");
+    final JList<String> matchedList = new JList<>(matchedStu);
+    final JButton returnBTN = new JButton("Back");
+    final JButton findBTN = new JButton("Find");
+    final JButton profileBTN = new JButton("Go to Profile");
 
-    JButton commonSessionBTN = new JButton("Common Sessions");
+    final JButton commonSessionBTN = new JButton("Common Sessions");
 
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
-    FrameNavigator frameNavigator;
+    final FrameNavigator frameNavigator;
     /**
      * This constructor method implements all UI components for CourseMatchFrame.
      */
@@ -77,15 +75,12 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
         // setting up textareas
         matchedList.setBounds(155, 60, 265, 120);
-        matchedList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(matchedList.isSelectionEmpty()){
-                    profileBTN.setEnabled(false);
-                }
-                profileBTN.setEnabled(true);
-                commonSessionBTN.setEnabled(true);
+        matchedList.addListSelectionListener(e -> {
+            if(matchedList.isSelectionEmpty()){
+                profileBTN.setEnabled(false);
             }
+            profileBTN.setEnabled(true);
+            commonSessionBTN.setEnabled(true);
         });
 
         // adding elements to frame

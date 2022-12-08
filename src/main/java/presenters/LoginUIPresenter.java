@@ -11,7 +11,7 @@ import java.io.IOException;
  * Implements LoginUIPresenter for LoginFrame
  */
 public class LoginUIPresenter {
-    private LoginManager loginManager;
+    private final LoginManager loginManager;
 
     public String selfID;
     private int userType;

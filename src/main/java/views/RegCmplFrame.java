@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
  */
 
 public class RegCmplFrame extends JFrame implements ActionListener {
-    JLabel titleLabel = new JLabel("Your Registration is Complete!");
-    JButton returnBTN = new JButton("Return to Login Page");
+    final JLabel titleLabel = new JLabel("Your Registration is Complete!");
+    final JButton returnBTN = new JButton("Return to Login Page");
 
-    FrameNavigator frameNavigator;
+    final FrameNavigator frameNavigator;
     public RegCmplFrame(FrameNavigator frameNavigator){
         this.frameNavigator = frameNavigator;
         // setting labels

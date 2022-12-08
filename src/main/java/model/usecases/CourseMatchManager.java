@@ -69,7 +69,7 @@ public class CourseMatchManager extends UseCase{
     private ArrayList<String>[] getMatchedArray(){
         String[] keys = this.matchCount.keySet().toArray(new String[0]);
 
-        ArrayList<String>[] matchedList = new ArrayList[this.MAX_SAME_COURSE];
+        ArrayList<String>[] matchedList = new ArrayList[MAX_SAME_COURSE];
 
     //initialize matched list to be an array of empty arrayLists...
         for(int i = 0; i < matchedList.length; i++){
@@ -91,14 +91,14 @@ public class CourseMatchManager extends UseCase{
 
         int latestEmpty = -1;
 
-        for(int i = 0; i<this.MAX_SAME_COURSE; i++){
+        for(int i = 0; i< MAX_SAME_COURSE; i++){
             if(matchedArray[i].isEmpty()){
                 latestEmpty = i;
             }
         }
 
         if(latestEmpty < 0){
-            return this.MAX_SAME_COURSE;
+            return MAX_SAME_COURSE;
         }else{
             return latestEmpty - 1;
         }
@@ -120,10 +120,10 @@ public class CourseMatchManager extends UseCase{
         ArrayUtils.reverse(targetMatchedList);
 
         ArrayList<String> ids = new ArrayList<>();
-        for(int i = 0; i<targetMatchedList.length; i++){
-            for(int j = 0; j < targetMatchedList[i].size(); j++){
-                if(!targetMatchedList[i].get(j).isEmpty()){
-                    ids.add(targetMatchedList[i].get(j));
+        for (ArrayList<String> strings : targetMatchedList) {
+            for (int j = 0; j < strings.size(); j++) {
+                if (!strings.get(j).isEmpty()) {
+                    ids.add(strings.get(j));
                 }
 
             }

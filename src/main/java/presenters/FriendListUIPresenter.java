@@ -4,7 +4,6 @@ import database.accessinterfaces.CourseDataAccess;
 import model.usecases.FriendListManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -12,8 +11,8 @@ import java.util.ArrayList;
  * Implements FriendListUIPresenter for FriendListFrame
  */
 public class FriendListUIPresenter {
-    private FriendListManager friendListManager;
-    private String self;
+    private final FriendListManager friendListManager;
+    private final String self;
     public FriendListUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess) {
         this.friendListManager = new FriendListManager(courseDataAccess, userDataAccess, tagDataAccess);
         this.self = userID;

@@ -10,7 +10,7 @@ import database.accessinterfaces.UserDataAccess;
  */
 public class ProfileDisplayUIPresenter {
 
-    private ProfileManager profileManager;
+    private final ProfileManager profileManager;
 
     /**
      * Constructs ProfileDisplayUIPresenter

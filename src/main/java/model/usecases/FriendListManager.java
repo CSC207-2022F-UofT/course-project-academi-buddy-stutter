@@ -173,11 +173,7 @@ public class FriendListManager extends UseCase{
             Student friend = (Student) this.ub.getUserByID(friendID);
             if (user.getFriendList().contains(friendID)) {
                 return false;
-            } else if (user.getFriendListRequest().contains(friendID) || friend.getFriendListRequest().contains(userID))
-            {
-                return false;
-            }
-            return true;
+            } else return !user.getFriendListRequest().contains(friendID) && !friend.getFriendListRequest().contains(userID);
         }catch (IOException e) {
             System.out.println("Cannot access friend list/request/sent list");
             throw new RuntimeException(e);

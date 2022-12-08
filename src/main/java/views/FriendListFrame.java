@@ -1,9 +1,6 @@
 package views;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -13,11 +10,11 @@ import java.util.ArrayList;
  * Implements JFrame that shows accepted friends and pending accepting friends to user
  */
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
-    FrameNavigator frameNavigator;
-    JLabel friendLabel = new JLabel("Friend List");
-    JLabel friendRequestLabel = new JLabel("Friend Requests");
-    String[] requestColumnNames = {"Full Name", "Requests", "userID"};
-    DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
+    final FrameNavigator frameNavigator;
+    final JLabel friendLabel = new JLabel("Friend List");
+    final JLabel friendRequestLabel = new JLabel("Friend Requests");
+    final String[] requestColumnNames = {"Full Name", "Requests", "userID"};
+    final DefaultTableModel requestsModel = new DefaultTableModel(0, 3) {
         @Override
         public boolean isCellEditable(int row, int column) {return false;}
     };
@@ -25,13 +22,13 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     ArrayList<String> friendRequestList;
     JTable friendListTable;
     JTable friendRequestTable;
-    String[] friendColumnNames = {"Full Name", "userID"};
-    DefaultTableModel friendModel = new DefaultTableModel(0, 2) {
+    final String[] friendColumnNames = {"Full Name", "userID"};
+    final DefaultTableModel friendModel = new DefaultTableModel(0, 2) {
         @Override
         public boolean isCellEditable(int row, int column) {return false;}
     };
-    JScrollPane friendsScroll = new JScrollPane(friendListTable);
-    JScrollPane requestsScroll = new JScrollPane(friendRequestTable);
+    final JScrollPane friendsScroll = new JScrollPane(friendListTable);
+    final JScrollPane requestsScroll = new JScrollPane(friendRequestTable);
 
 
     /**
@@ -179,7 +176,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
         friendModel.setRowCount(0);
         friendList = frameNavigator.getFriendListUIPresenter().getFriendList();
 
-        AllStudentsFrame.addStudentsToList(friendList, (FrameNavigator) frameNavigator, friendModel);
+        AllStudentsFrame.addStudentsToList(friendList, frameNavigator, friendModel);
     }
 
     /**

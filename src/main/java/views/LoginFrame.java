@@ -1,5 +1,7 @@
 package views;
 
+import presenters.LoginUIPresenter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,17 +20,17 @@ import java.io.IOException;
 
 public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
-    JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
-    JLabel userLabel = new JLabel("USER ID:");
-    JLabel passwordLabel = new JLabel("Password:");
-    JLabel errorLabel = new JLabel("Error: Incorrect login info");
-    JButton loginBTN = new JButton("LOGIN");
-    JButton registerBTN = new JButton("REGISTER");
-    JTextField userIDText = new JTextField("");
-    JPasswordField passwordText = new JPasswordField("");
+    final JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
+    final JLabel userLabel = new JLabel("USER ID:");
+    final JLabel passwordLabel = new JLabel("Password:");
+    final JLabel errorLabel = new JLabel("Error: Incorrect login info");
+    final JButton loginBTN = new JButton("LOGIN");
+    final JButton registerBTN = new JButton("REGISTER");
+    final JTextField userIDText = new JTextField("");
+    final JPasswordField passwordText = new JPasswordField("");
 
-    FrameNavigator frameNavigator;
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final FrameNavigator frameNavigator;
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     /**
      * This is the constructor method. Creates LoginFrame,
@@ -101,10 +103,10 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
                 if(this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password)){
                     this.dispose();
                     this.frameNavigator.updateUser();
-                    if(frameNavigator.getLoginUIPresenter().getUserType() == frameNavigator.getLoginUIPresenter().STUDENT){
+                    if(frameNavigator.getLoginUIPresenter().getUserType() == LoginUIPresenter.STUDENT){
                         this.frameNavigator.toHome();
                     }
-                    else if(frameNavigator.getLoginUIPresenter().getUserType() == frameNavigator.getLoginUIPresenter().ADMIN){
+                    else if(frameNavigator.getLoginUIPresenter().getUserType() == LoginUIPresenter.ADMIN){
                         this.frameNavigator.toAdmin();
                     }
                 }

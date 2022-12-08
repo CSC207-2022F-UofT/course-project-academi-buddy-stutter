@@ -6,65 +6,65 @@ import java.util.*;
  * Implements course with course information
  */
 public class Course{
-    private String course_code;
-    private String course_type;
-    private String session_number;
-    private String course_name;
-    private String day_of_week;
-    private String start_time;
-    private ArrayList<String> enrolled_student_id;
+    private String courseCode;
+    private String courseType;
+    private String sessionNumber;
+    private final String courseName;
+    private String dayOfWeek;
+    private String startTime;
+    private ArrayList<String> enrolledStudentID;
     private String year;
 
     /**
      * Constructs a course
-     * @param course_code Course code
-     * @param course_type Course type [lec, tut]
-     * @param session_number Session number
-     * @param course_name Course title
-     * @param day_of_week What day in the week does this course take place?
-     * @param start_time Time that the course starts
+     * @param courseCode Course code
+     * @param courseType Course type [lec, tut]
+     * @param sessionNumber Session number
+     * @param courseName Course title
+     * @param dayOfWeek What day in the week does this course take place?
+     * @param startTime Time that the course starts
      * @param year Year this course is taken
      */
-    public Course(String course_code, String course_type, String session_number, String course_name, String day_of_week, String start_time, String year){
-        this.course_code = course_code;
-        this.course_type = course_type;
-        this.session_number = session_number;
-        this.course_name = course_name;
-        this.day_of_week = day_of_week;
-        this.start_time = start_time;
+    public Course(String courseCode, String courseType, String sessionNumber, String courseName, String dayOfWeek, String startTime, String year){
+        this.courseCode = courseCode;
+        this.courseType = courseType;
+        this.sessionNumber = sessionNumber;
+        this.courseName = courseName;
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
         this.year = year;
-        enrolled_student_id = new ArrayList<>();
+        enrolledStudentID = new ArrayList<>();
     }
 
     /**
      * @return Course code
      */
-    public String getCourseCode(){return course_code;}
+    public String getCourseCode(){return courseCode;}
 
     /**
      * @return Course type [lec, tut]
      */
-    public String getCourseType(){return course_type;}
+    public String getCourseType(){return courseType;}
 
     /**
      * @return Course title
      */
-    public String getCourseName(){return course_name;}
+    public String getCourseName(){return courseName;}
 
     /**
      * @return Course session number
      */
-    public String getSessionNumber(){return session_number;}
+    public String getSessionNumber(){return sessionNumber;}
 
     /**
      * @return Day in the week this course takes place in
      */
-    public String getDayOfWeek(){return day_of_week;}
+    public String getDayOfWeek(){return dayOfWeek;}
 
     /**
      * @return Course start time
      */
-    public String getStartTime(){return start_time;}
+    public String getStartTime(){return startTime;}
 
     /**
      * @return The year of the course is taken
@@ -72,25 +72,12 @@ public class Course{
     public String getYear(){return year;}
 
     /**
-     * @return A list of users that are enrolled in this course
-     */
-    public ArrayList<String> getEnrolledStudentID(){return enrolled_student_id;}
-
-    public void setCourseCode(String course_code){this.course_code = course_code;}
-    public void setCourseType(String course_type){this.course_type = course_code;}
-    public void setSessionNumber(String session_number){this.session_number = course_code;}
-    public void setDayOfWeek(String day_of_week){this.day_of_week = day_of_week;}
-    public void setStartTime(String start_time){this.start_time = start_time;}
-    public void setYear(String year){this.year = year;}
-
-    /**
      * Append users in studentList to course
      * @param studentList a list of users to be appended to course
      */
     public void setEnrolledStudents(ArrayList<String> studentList){
-        ArrayList<String> studentIDs = new ArrayList<>();
-        studentIDs.addAll(studentList);
-        this.enrolled_student_id = studentIDs;
+        ArrayList<String> studentIDs = new ArrayList<>(studentList);
+        this.enrolledStudentID = studentIDs;
     }
 
     /**
@@ -98,14 +85,7 @@ public class Course{
      * @return whether the user is enrolled in this course
      */
     public boolean isEnrolled(Student student){
-        if(enrolled_student_id.contains(student.getUserID())){
-            return true;
-        }
-        return false;
-    }
-
-    public int enrolledSize(){
-        return enrolled_student_id.size();
+        return enrolledStudentID.contains(student.getUserID());
     }
 
     /**
@@ -116,7 +96,7 @@ public class Course{
         if(isEnrolled(student)){
             return false;
         }
-        enrolled_student_id.add(student.getUserID());
+        enrolledStudentID.add(student.getUserID());
         return true;
     }
 
@@ -126,7 +106,7 @@ public class Course{
      */
     public boolean removeStudent(Student student){
         if(isEnrolled(student)){
-            enrolled_student_id.remove(student.getUserID());
+            enrolledStudentID.remove(student.getUserID());
             return true;
         }
         return false;
@@ -136,8 +116,7 @@ public class Course{
      * @return a list of user ids that are enrolled in this course
      */
     public ArrayList<String> getEnrolledIDList(){
-        ArrayList<String> IDList = new ArrayList<>();
-        IDList.addAll(this.enrolled_student_id);
+        ArrayList<String> IDList = new ArrayList<>(this.enrolledStudentID);
         return IDList;
     }
 }

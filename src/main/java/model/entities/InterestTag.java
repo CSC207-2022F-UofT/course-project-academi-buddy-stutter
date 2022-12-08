@@ -4,7 +4,7 @@ package model.entities;
  * Implements InterestTag that user can choose from
  */
 public class InterestTag {
-    private String name;
+    private final String name;
 
     /**
      * Constructs an interest tag

@@ -9,27 +9,27 @@ import java.io.IOException;
  * This class implements ProfileFrame that allows user to view and modify personal information.
  */
 public class ProfileFrame extends JFrame implements ActionListener, MouseListener, KeyListener {
-    JLabel nameLabel = new JLabel("Name:");
-    JLabel emailLabel = new JLabel("Email:");
-    JLabel classLabel = new JLabel("Enrolled Courses:");
-    JLabel infoLabel = new JLabel("About:");
+    final JLabel nameLabel = new JLabel("Name:");
+    final JLabel emailLabel = new JLabel("Email:");
+    final JLabel classLabel = new JLabel("Enrolled Courses:");
+    final JLabel infoLabel = new JLabel("About:");
 
     // creating textfields
-    JTextField nameText = new JTextField();
-    JTextField emailText = new JTextField();
+    final JTextField nameText = new JTextField();
+    final JTextField emailText = new JTextField();
 
     // creating textarea
-    JTextArea infoText = new JTextArea();
+    final JTextArea infoText = new JTextArea();
 
-    JTextArea courseText = new JTextArea(10, 10);
-    JScrollPane courseTextScoll = new JScrollPane(courseText);
-    FrameNavigator frameNavigator;
+    final JTextArea courseText = new JTextArea(10, 10);
+    final JScrollPane courseTextScoll = new JScrollPane(courseText);
+    final FrameNavigator frameNavigator;
 
-    JButton changeEmail = new JButton("Change");
-    JButton changeInfo = new JButton("Change");
-    JButton backBTN = new JButton("Back");
+    final JButton changeEmail = new JButton("Change");
+    final JButton changeInfo = new JButton("Change");
+    final JButton backBTN = new JButton("Back");
 
-    JButton updateCourse = new JButton("Reupload");
+    final JButton updateCourse = new JButton("Reupload");
 
 
     String currentEmail;
@@ -192,19 +192,9 @@ public class ProfileFrame extends JFrame implements ActionListener, MouseListene
         if(e.getSource() == emailText){
             System.out.println(emailText.getText());
             System.out.println(currentEmail);
-            if(!emailText.getText().equals(currentEmail)){
-                changeEmail.setEnabled(true);
-            }
-            else{
-                changeEmail.setEnabled(false);
-            }
+            changeEmail.setEnabled(!emailText.getText().equals(currentEmail));
         } else if (e.getSource() == infoText) {
-            if(!infoText.getText().equals(currentInfo)){
-                changeInfo.setEnabled(true);
-            }
-            else{
-                changeInfo.setEnabled(false);
-            }
+            changeInfo.setEnabled(!infoText.getText().equals(currentInfo));
         }
     }
 }

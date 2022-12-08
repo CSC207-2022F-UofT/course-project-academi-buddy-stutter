@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserTest extends LocalTempDataFactory {
-    ArrayList<?> managers;
+    final ArrayList<?> managers;
 
     {
         try {
@@ -22,11 +22,10 @@ public class UserTest extends LocalTempDataFactory {
         }
     }
 
-    LocalUserData ub = (LocalUserData) managers.get(0);
-    LocalCourseData cb = (LocalCourseData) managers.get(1);
-    LocalTagData tb = (LocalTagData) managers.get(2);
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
     @Test
     void getUserIDTest() {Assertions.assertEquals("111", STUDENT_A.getUserID());}

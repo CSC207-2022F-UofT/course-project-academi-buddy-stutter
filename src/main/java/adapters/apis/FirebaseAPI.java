@@ -8,7 +8,6 @@ import com.google.cloud.firestore.*;
 
 import com.google.firebase.cloud.FirestoreClient;
 
-import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 
 public class FirebaseAPI implements DatabaseInterface {
     private String collectionName;
-    private Firestore db;
+    private final Firestore db;
     private List<QueryDocumentSnapshot> currentDocuments;
     public FirebaseAPI(){
         this.collectionName = "temp";
@@ -42,10 +41,10 @@ public class FirebaseAPI implements DatabaseInterface {
         return null;
     }
 
+    /**
+     * update document list.
+     */
     public void updateDocuments(){
-        /**
-         * update document list.
-         */
         currentDocuments = getDocumentList();
     }
 

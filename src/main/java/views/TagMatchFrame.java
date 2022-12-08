@@ -1,8 +1,6 @@
 package views;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,19 +12,19 @@ import java.io.IOException;
  * This class implements TagMatchFrame so that user can find buddies by matching same interest tags.
  */
 public class TagMatchFrame extends JFrame implements ActionListener, ItemListener {
-    JLabel listLabel = new JLabel("Matched Students:");
-    JLabel tagSelectLabel = new JLabel("Select TagDataManager:");
-    JButton backBTN = new JButton("Back");
+    final JLabel listLabel = new JLabel("Matched Students:");
+    final JLabel tagSelectLabel = new JLabel("Select TagDataManager:");
+    final JButton backBTN = new JButton("Back");
 
-    JButton profileBTN = new JButton("Profile");
-    String[] tagType = {"Movies", "Video Games", "Beer", "Music", "Writing Javadocs", "Cat", "Books", "Adventure", "Beer", "Photography"};
-    JComboBox<String> tagComboBox = new JComboBox<>(tagType);
+    final JButton profileBTN = new JButton("Profile");
+    final String[] tagType = {"Movies", "Video Games", "Beer", "Music", "Writing Javadocs", "Cat", "Books", "Adventure", "Beer", "Photography"};
+    final JComboBox<String> tagComboBox = new JComboBox<>(tagType);
 
     DefaultListModel<String> matchedStu = new DefaultListModel<>();
-    JList<String> matchedList = new JList<>(matchedStu);
+    final JList<String> matchedList = new JList<>(matchedStu);
 
-    FrameNavigator frameNavigator;
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final FrameNavigator frameNavigator;
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     /**
      * Implements all UI components.
@@ -69,14 +67,11 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
         frameNavigator.getTagMatchUIPresenter().setSelectedtag((String) tagComboBox.getSelectedItem());
         matchedStu = frameNavigator.getTagMatchUIPresenter().getNameList();
         matchedList.setModel(matchedStu);
-        matchedList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(matchedList.isSelectionEmpty()){
-                    profileBTN.setEnabled(false);
-                }
-                profileBTN.setEnabled(true);
+        matchedList.addListSelectionListener(e -> {
+            if(matchedList.isSelectionEmpty()){
+                profileBTN.setEnabled(false);
             }
+            profileBTN.setEnabled(true);
         });
 
         // adds objects to the frame

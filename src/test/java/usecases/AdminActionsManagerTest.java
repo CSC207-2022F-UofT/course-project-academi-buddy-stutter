@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 class AdminActionsManagerTest extends LocalTempDataFactory{
-    ArrayList<?> managers;
+    final ArrayList<?> managers;
 
     {
         try {
@@ -24,11 +24,11 @@ class AdminActionsManagerTest extends LocalTempDataFactory{
         }
     }
 
-    LocalUserData ub = (LocalUserData) managers.get(0);
-    LocalCourseData cb = (LocalCourseData) managers.get(1);
-    LocalTagData tb = (LocalTagData) managers.get(2);
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    AdminActionsManager adminActionsManager = new AdminActionsManager(cb, ub, tb);
+    final AdminActionsManager adminActionsManager = new AdminActionsManager(cb, ub, tb);
 
     @Test
     //It also tests private helper methods removeStudentFromCourse(), removeStudentFromTag() and removeStudentFromFriend() as well.

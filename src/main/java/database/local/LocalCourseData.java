@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class LocalCourseData implements CourseDataAccess {
 
-    private LocalUserData userDataLocal;
+    private final LocalUserData userDataLocal;
 
     private ArrayList<Course> allCourses;
 

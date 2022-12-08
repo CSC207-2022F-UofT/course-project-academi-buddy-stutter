@@ -13,23 +13,22 @@ import java.util.ArrayList;
  * This class implements TagSelectFrame so that user can choose different interest tags.
  */
 public class TagSelectFrame extends JFrame implements ActionListener, ChangeListener {
-    JLabel tagSelectLabel = new JLabel("Select Interest Tags:");
-    ArrayList<JCheckBox> boxList = new ArrayList<>();
-    JCheckBox adventureCB = new JCheckBox("Adventure");
-    JCheckBox musicCB = new JCheckBox("Music");
-    JCheckBox catCB = new JCheckBox("Cat");
-    JCheckBox javadocCB = new JCheckBox("Writing Javadocs");
-    JCheckBox bookCB = new JCheckBox("Books");
-    JCheckBox movieCB = new JCheckBox("Movies");
-    JCheckBox beerCB = new JCheckBox("Beer");
-    JCheckBox gameCB = new JCheckBox("Video Games");
-    JCheckBox photoCB = new JCheckBox("Photography");
-    JButton backBTN = new JButton("Back");
-    JButton applyBTN = new JButton("Apply");
-    String[] tagType = {"Adventure", "Music", "Cat", "Writing Javadocs", "Books", "Movies", "Beer", "Video Games", "Photography"};
-    FrameNavigator frameNavigator;
-    private ArrayList<Boolean> initialState = new ArrayList<Boolean>();
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final JLabel tagSelectLabel = new JLabel("Select Interest Tags:");
+    final ArrayList<JCheckBox> boxList = new ArrayList<>();
+    final JCheckBox adventureCB = new JCheckBox("Adventure");
+    final JCheckBox musicCB = new JCheckBox("Music");
+    final JCheckBox catCB = new JCheckBox("Cat");
+    final JCheckBox javadocCB = new JCheckBox("Writing Javadocs");
+    final JCheckBox bookCB = new JCheckBox("Books");
+    final JCheckBox movieCB = new JCheckBox("Movies");
+    final JCheckBox beerCB = new JCheckBox("Beer");
+    final JCheckBox gameCB = new JCheckBox("Video Games");
+    final JCheckBox photoCB = new JCheckBox("Photography");
+    final JButton backBTN = new JButton("Back");
+    final JButton applyBTN = new JButton("Apply");
+    final FrameNavigator frameNavigator;
+    private ArrayList<Boolean> initialState = new ArrayList<>();
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
     /**
      * Implements all UI components

@@ -12,16 +12,16 @@ import java.util.ArrayList;
  */
 public class AllStudentsFrame extends JFrame implements ActionListener, ItemListener {
 
-    FrameNavigator frameNavigator;
-    JLabel allStudentLabel = new JLabel("All Students");
-    String[] studentColumnNames = {"Full Name", "userID"};
-    DefaultTableModel studentModel = new DefaultTableModel(0, 2) {
+    final FrameNavigator frameNavigator;
+    final JLabel allStudentLabel = new JLabel("All Students");
+    final String[] studentColumnNames = {"Full Name", "userID"};
+    final DefaultTableModel studentModel = new DefaultTableModel(0, 2) {
         @Override
         public boolean isCellEditable(int row, int column) {return false;}
     };
     ArrayList<String> studentList;
     JTable studentTable;
-    JScrollPane studentScroll = new JScrollPane(studentTable);
+    final JScrollPane studentScroll = new JScrollPane(studentTable);
 
     /**
      * Constructs all UI components

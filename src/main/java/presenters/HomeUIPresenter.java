@@ -13,8 +13,8 @@ import java.io.IOException;
  * Implements HomeUIPresenter for HomeFrame
  */
 public class HomeUIPresenter {
-    private UploadManager uploadManager;
-    private String self;
+    private final UploadManager uploadManager;
+    private final String self;
 
     /**
      * Constructs HomeUIPresenter

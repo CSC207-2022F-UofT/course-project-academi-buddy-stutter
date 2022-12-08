@@ -84,11 +84,6 @@ public class LocalUserData implements UserDataAccess {
     }
 
     @Override
-    public boolean exist(User user) {
-        return existByID(user.getUserID());
-    }
-
-    @Override
     public boolean existByID(String ID) {
         for(User user: allUsers){
             if(user.getUserID().equals(ID)){

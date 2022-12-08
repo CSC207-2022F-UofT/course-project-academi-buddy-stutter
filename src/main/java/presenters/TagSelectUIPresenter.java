@@ -11,8 +11,8 @@ import java.io.IOException;
  * Implements TagSelectUIPresenter for TagSelectFrame
  */
 public class TagSelectUIPresenter {
-    private TagSelectManager tagSelectManager;
-    private String selfID;
+    private final TagSelectManager tagSelectManager;
+    private final String selfID;
 
     /**
      * Constructs TagSelectUIPresenter

@@ -9,22 +9,22 @@ import java.io.IOException;
  * This class implements ProfileDisplayFrame that displays the profile of a user.
  */
 public class ProfileDisplayFrame extends JFrame implements ActionListener {
-    JLabel nameLabel = new JLabel("Name:");
-    JLabel emailLabel = new JLabel("Email:");
-    JLabel infoLabel = new JLabel("About:");
+    final JLabel nameLabel = new JLabel("Name:");
+    final JLabel emailLabel = new JLabel("Email:");
+    final JLabel infoLabel = new JLabel("About:");
 
     // creating textfields
-    JTextField nameText = new JTextField();
-    JTextField emailText = new JTextField();
+    final JTextField nameText = new JTextField();
+    final JTextField emailText = new JTextField();
 
     // creating textarea
-    JTextArea infoText = new JTextArea();
-    FrameNavigator frameNavigator;
+    final JTextArea infoText = new JTextArea();
+    final FrameNavigator frameNavigator;
 
-    JButton closeBTN = new JButton("Close");
-    JButton addFriendBTN = new JButton("Add Friend");
+    final JButton closeBTN = new JButton("Close");
+    final JButton addFriendBTN = new JButton("Add Friend");
 
-    String userID;
+    final String userID;
 
     /**
      * This constructor method implements all UI components for ProfileDisplayFrame.
@@ -58,18 +58,8 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         // Update addFriend button clickable status
         boolean canAdd = frameNavigator.getFriendListUIPresenter().isRequestSent(userID);
         addFriendBTN.setEnabled(canAdd);
-
-//        addFriendBTN.setFocusable(false);
-//        if (FrameNavigator.getFriendListUIPresenter().getFriendList().contains(userID) &&
-//            FrameNavigator.getFriendListUIPresenter().getFriendRequestSentList().contains(userID)) {
-//            addFriendBTN.setEnabled(false);
-//        } else {
-//            addFriendBTN.setEnabled(true);
-//        }
-
         closeBTN.setBounds(310, 165, 70, 20);
         closeBTN.addActionListener(this);
-//        closeBTN.setFocusable(false);
 
         // adding elements to frame
         this.add(nameLabel);

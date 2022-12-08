@@ -12,9 +12,9 @@ import java.io.IOException;
  */
 public class UseCase {
 
-    protected CourseDataAccess cb;
-    protected UserDataAccess ub;
-    protected TagDataAccess tb;
+    protected final CourseDataAccess cb;
+    protected final UserDataAccess ub;
+    protected final TagDataAccess tb;
 
     /**
      * Initializer.

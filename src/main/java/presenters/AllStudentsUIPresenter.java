@@ -11,18 +11,16 @@ import java.util.ArrayList;
  * Implements AllStudentsUIPresenter for AllStudentsFrame
  */
 public class AllStudentsUIPresenter {
-    private AllStudentsManager allStudentsManager;
-    private String self;
+    private final AllStudentsManager allStudentsManager;
 
     /**
      * Constructs AllStudentsUIPresenter
-     * @param userID a user
+     *
      * @param courseDataAccess an instance of CourseDataManager
-     * @param userDataAccess an instance of UserDataManager
+     * @param userDataAccess   an instance of UserDataManager
      */
-    public AllStudentsUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess) {
+    public AllStudentsUIPresenter(CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess) {
         this.allStudentsManager = new AllStudentsManager(courseDataAccess, userDataAccess, tagDataAccess);
-        this.self = userID;
     }
 
     /**

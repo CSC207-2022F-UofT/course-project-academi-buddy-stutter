@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 class CourseMatchManagerTest extends LocalTempDataFactory {
 
-    ArrayList<?> managers;
+    final ArrayList<?> managers;
 
     {
         try {
@@ -25,11 +25,11 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
         }
     }
 
-    LocalUserData ub = (LocalUserData) managers.get(0);
-    LocalCourseData cb = (LocalCourseData) managers.get(1);
-    LocalTagData tb = (LocalTagData) managers.get(2);
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    CourseMatchManager courseMatchManager = new CourseMatchManager(cb, ub, tb);
+    final CourseMatchManager courseMatchManager = new CourseMatchManager(cb, ub, tb);
 
     @Test
     void getTopCommonSessionStudentTestA() throws IOException {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /** Reading from uploaded calendar and converting into information to store into database.
 Download calendar from acorn */
 public class CalendarInterpreter {
-    CalendarInterface ci;
+    final CalendarInterface ci;
 
     public CalendarInterpreter(CalendarInterface ci){
         this.ci = ci;

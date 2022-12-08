@@ -11,8 +11,8 @@ import java.io.IOException;
  * Implements LabelSelectUIPresenter
  */
 public class LabelSelectUIPresenter {
-    private String selfID;
-    private LabelSelectManager labelSelectManager;
+    private final String selfID;
+    private final LabelSelectManager labelSelectManager;
 
     /**
      * Constructs LabelSelectUIPresenter

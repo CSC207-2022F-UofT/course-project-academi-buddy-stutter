@@ -71,31 +71,31 @@ public class AdminActionsManager extends UseCase{
         ArrayList<String> allStudents = this.ub.getUserIDList();
         ArrayList<String> allAdmins = this.ub.getAdminIDs();
         String studentID = student.getUserID();
-        for (String id: this.ub.getUserIDList()) {
+        for (String id: allStudents) {
             if (!allAdmins.contains(id)) {
                 // remove from friend list
                 if (student.getFriendList().contains(id)) {
                     Student friend = (Student) this.getUserByID(id);
                     boolean removeFriend = student.removeFriendList(friend.getUserID());
-                    boolean removeStudent = friend.removeFriendList(student.getUserID());
+                    boolean removeStudent = friend.removeFriendList(studentID);
                     if (removeFriend && removeStudent) {this.ub.removeFromFriendList(student, friend);}
-                    System.out.println("Removed " + id + " from " + student.getUserID());
+                    System.out.println("Removed " + id + " from " + studentID);
                 }
                 // remove friend from friend request list
                 else if (student.getFriendListRequest().contains(id)) {
                     Student friend = (Student) this.getUserByID(id);
                     boolean removeFriend = student.removeFriendRequestList(friend.getUserID());
-                    boolean removeStudent = friend.removeFriendRequestSentList(student.getUserID());
+                    boolean removeStudent = friend.removeFriendRequestSentList(studentID);
                     if (removeFriend && removeStudent) {this.ub.removeFromFriendRequestSentList(student, friend);}
-                    System.out.println("Removed " + id + " from " + student.getUserID());
+                    System.out.println("Removed " + id + " from " + studentID);
                 }
                 // remove from friend request sent list
                 else if (student.getFriendRequestSentList().contains(id)) {
                     Student friend = (Student) this.getUserByID(id);
                     boolean removeFriend = student.removeFriendRequestSentList(friend.getUserID());
-                    boolean removeStudent = friend.removeFriendRequestList(student.getUserID());
+                    boolean removeStudent = friend.removeFriendRequestList(studentID);
                     if (removeFriend && removeStudent) {this.ub.removeFromFriendRequestList(student, friend);}
-                    System.out.println("Removed " + id + " from " + student.getUserID());
+                    System.out.println("Removed " + id + " from " + studentID);
                 }
             }
         }

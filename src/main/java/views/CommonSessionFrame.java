@@ -9,23 +9,19 @@ import java.io.IOException;
  */
 public class CommonSessionFrame extends JFrame implements ActionListener{
 
-    JLabel numberOfCommonSessionLabel = new JLabel("");
-    JTextArea courseText = new JTextArea(10, 10);
-    JScrollPane courseTextScoll = new JScrollPane(courseText);
-    FrameNavigator frameNavigator;
-    JButton backBTN = new JButton("Back");
+    final JLabel numberOfCommonSessionLabel = new JLabel("");
+    final JTextArea courseText = new JTextArea(10, 10);
+    final JScrollPane courseTextScoll = new JScrollPane(courseText);
+    final JButton backBTN = new JButton("Back");
 
-    String targetUserID;
 
-    int numberOfCommonSession;
+    final int numberOfCommonSession;
 
     /**
      * constructs all UI components
      * @param targetUserID user id of the target user we want to compare
      */
-    public CommonSessionFrame(FrameNavigator frameNavigator, String targetUserID) throws IOException {
-        this.frameNavigator = frameNavigator;
-        this.targetUserID = targetUserID;
+    public CommonSessionFrame(FrameNavigator frameNavigator, String targetUserID) {
         // Labels
         numberOfCommonSessionLabel.setBounds(30,180, 300, 20);
 
@@ -35,8 +31,8 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
         numberOfCommonSession = frameNavigator.getCommonSessionUIPresenter().getNumberOfCommonSessions();
 
         courseTextScoll.setViewportView(courseText);
-        courseTextScoll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        courseTextScoll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        courseTextScoll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        courseTextScoll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         numberOfCommonSessionLabel.setText("You have " + numberOfCommonSession + " sessions in common.");
 
@@ -52,7 +48,7 @@ public class CommonSessionFrame extends JFrame implements ActionListener{
         this.add(backBTN);
 
         this.setTitle("Your Common Sessions with " + frameNavigator.getCommonSessionUIPresenter().getName(targetUserID)); // sets frame's title
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // closes the frame
         this.setResizable(false); // fixed size for frame
         this.setLayout(null);
         this.setSize(400, 290);

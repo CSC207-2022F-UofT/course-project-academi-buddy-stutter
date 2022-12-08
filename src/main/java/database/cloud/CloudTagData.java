@@ -9,13 +9,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class CloudTagData implements TagDataAccess {
-    private DatabaseInterface fi;
-    private CloudUserData ud;
+    private final DatabaseInterface fi;
 
-    public CloudTagData(DatabaseInterface tb, CloudUserData ud){
+    public CloudTagData(DatabaseInterface tb){
         this.fi = tb;
         this.fi.openCollection("tags");
-        this.ud = ud;
     }
 
     @Override
@@ -30,8 +28,7 @@ public class CloudTagData implements TagDataAccess {
         String tagName = tag.getName();
         Map<String, Object> tagEntry = fi.getEntry(tagName);
         Set<String> studentsSet = tagEntry.keySet();
-        ArrayList<String> students = new ArrayList<>();
-        students.addAll(studentsSet);
+        ArrayList<String> students = new ArrayList<>(studentsSet);
         return students;
     }
 

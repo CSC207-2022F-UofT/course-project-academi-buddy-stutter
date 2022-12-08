@@ -5,21 +5,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * This class implements a AdminFrame that only displays to Administrative Users.
  * Administrative user can remove user by searching User ID.
  */
 public class AdminFrame extends JFrame implements ActionListener {
-    JLabel titleLabel = new JLabel();
-    JLabel resultLabel = new JLabel();
-    JButton logoutBTN = new JButton("LOG OUT");
-    JButton removeUserBTN = new JButton("remove");
-    JLabel enterLabel = new JLabel("Enter User ID:");
-    JTextField userIDField = new JTextField();
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
-    FrameNavigator frameNavigator;
+    final JLabel titleLabel = new JLabel();
+    final JLabel resultLabel = new JLabel();
+    final JButton logoutBTN = new JButton("LOG OUT");
+    final JButton removeUserBTN = new JButton("remove");
+    final JLabel enterLabel = new JLabel("Enter User ID:");
+    final JTextField userIDField = new JTextField();
+    final FrameNavigator frameNavigator;
 
 
 

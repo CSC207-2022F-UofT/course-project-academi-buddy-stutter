@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StudentTest extends LocalTempDataFactory {
 
-    ArrayList<?> managers;
+    final ArrayList<?> managers;
 
     {
         try {
@@ -27,11 +27,10 @@ public class StudentTest extends LocalTempDataFactory {
         }
     }
 
-    LocalUserData ub = (LocalUserData) managers.get(0);
-    LocalCourseData cb = (LocalCourseData) managers.get(1);
-    LocalTagData tb = (LocalTagData) managers.get(2);
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
     @Test
     void setAndGetTabsOfInterestsTest() {

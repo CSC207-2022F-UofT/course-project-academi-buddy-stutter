@@ -18,16 +18,16 @@ public class FrameNavigator implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public int STATUS;
-    public static int FROM_REGISTER = 0;
-    public static int FROM_PROFILE = 1;
+    public static final int FROM_REGISTER = 0;
+    public static final int FROM_PROFILE = 1;
 
     private String selfID;
-    private CourseDataAccess courseManager;
-    private UserDataAccess userManager;
-    private TagDataAccess tagManager;
+    private final CourseDataAccess courseManager;
+    private final UserDataAccess userManager;
+    private final TagDataAccess tagManager;
 
-    protected LoginUIPresenter loginUIPresenter;
-    protected RegisterUIPresenter registerUIPresenter;
+    protected final LoginUIPresenter loginUIPresenter;
+    protected final RegisterUIPresenter registerUIPresenter;
     private LabelSelectUIPresenter labelSelectUIPresenter;
 
     private ProfileUIPresenter profileUIPresenter;
@@ -283,7 +283,7 @@ public class FrameNavigator implements Serializable {
         this.friendListUIPresenter = new FriendListUIPresenter(selfID, courseManager, userManager, tagManager);
         this.matchUIControl = new CourseMatchUIPresenter(selfID, courseManager, userManager, tagManager);
         this.commonSessionUIPresenter = new CommonSessionUIPresenter(selfID, courseManager, userManager, tagManager);
-        this.allStudentsUIPresenter = new AllStudentsUIPresenter(selfID, courseManager, userManager, tagManager);
+        this.allStudentsUIPresenter = new AllStudentsUIPresenter(courseManager, userManager, tagManager);
     }
 
     /**

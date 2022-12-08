@@ -40,9 +40,7 @@ public class Student extends User{
      */
     public void setEnrolledCourses(ArrayList<String> enrolled_courses) {
         ArrayList<String> courseCodeList = new ArrayList<>();
-        for (String course: enrolled_courses){
-            courseCodeList.add(course);
-        }
+        courseCodeList.addAll(enrolled_courses);
         this.enrolled_course_codes = courseCodeList;
     }
 
@@ -71,8 +69,7 @@ public class Student extends User{
      * @return a list of course codes from courses that the user is enrolled in
      */
     public ArrayList<String> getEnrolledCourseCodes() {
-        ArrayList<String> courseCodes = new ArrayList<>();
-        courseCodes.addAll(this.enrolled_course_codes);
+        ArrayList<String> courseCodes = new ArrayList<>(this.enrolled_course_codes);
         return courseCodes;
     }
 
@@ -153,7 +150,7 @@ public class Student extends User{
      * Updates friend request sent list
      * @param userID a user id to be added to user's friend request sent list
      */
-    public void updateFriendRequestSentList(String userID) {this.friendRequestSentList.add(userID);};
+    public void updateFriendRequestSentList(String userID) {this.friendRequestSentList.add(userID);}
 
     /**
      * Accept a friend request

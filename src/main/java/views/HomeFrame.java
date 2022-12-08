@@ -17,20 +17,20 @@ import java.io.IOException;
  * by clicking buttons on the JFrame.
  */
 public class HomeFrame extends JFrame implements ActionListener {
-    JLabel titleLabel = new JLabel();
-    JLabel completedLabel = new JLabel("");
-    JButton logoutBTN = new JButton("LOG OUT");
-    JButton findStudyBuddyBTN = new JButton("Find Study Buddy");
-    JButton findInsBuddyBTN = new JButton("Find Interest Buddy");
-    JButton statusBTN = new JButton("Status Labels");
-    JButton insTagBTN = new JButton("Interest Tags");
-    JButton profileBTN = new JButton("Profile");
-    JButton uploadBTN = new JButton("Upload Courses");
-    JButton studentsBTN = new JButton("All Students");
-    JButton friendsBTN = new JButton("Friends");
+    final JLabel titleLabel = new JLabel();
+    final JLabel completedLabel = new JLabel("");
+    final JButton logoutBTN = new JButton("LOG OUT");
+    final JButton findStudyBuddyBTN = new JButton("Find Study Buddy");
+    final JButton findInsBuddyBTN = new JButton("Find Interest Buddy");
+    final JButton statusBTN = new JButton("Status Labels");
+    final JButton insTagBTN = new JButton("Interest Tags");
+    final JButton profileBTN = new JButton("Profile");
+    final JButton uploadBTN = new JButton("Upload Courses");
+    final JButton studentsBTN = new JButton("All Students");
+    final JButton friendsBTN = new JButton("Friends");
 
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
-    FrameNavigator frameNavigator;
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final FrameNavigator frameNavigator;
 
     /**
      * Constructor Method: generates HomeFrame and positions the UI components

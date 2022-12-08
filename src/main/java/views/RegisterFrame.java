@@ -15,28 +15,28 @@ import java.io.IOException;
  */
 public class RegisterFrame extends JFrame implements ActionListener {
     // creating labels
-    JLabel regTitleLabel = new JLabel("Registration");
-    JLabel fullNameLabel = new JLabel("Full Name:");
-    JLabel userIDLabel = new JLabel("User ID:");
-    JLabel passwordLabel = new JLabel("Password:");
-    JLabel confirmLabel = new JLabel("Confirm Password:");
-    JLabel errorLabel = new JLabel("Error: User Exists/Passwords Doesn't Match");
+    final JLabel regTitleLabel = new JLabel("Registration");
+    final JLabel fullNameLabel = new JLabel("Full Name:");
+    final JLabel userIDLabel = new JLabel("User ID:");
+    final JLabel passwordLabel = new JLabel("Password:");
+    final JLabel confirmLabel = new JLabel("Confirm Password:");
+    final JLabel errorLabel = new JLabel("Error: User Exists/Passwords Doesn't Match");
 
-    JLabel strengthLabel = new JLabel();
+    final JLabel strengthLabel = new JLabel();
 
     // creating textfields
-    JTextField fullNameText = new JTextField();
-    JTextField userIDText = new JTextField();
-    JPasswordField passwordText = new JPasswordField();
-    JPasswordField confirmText = new JPasswordField();
+    final JTextField fullNameText = new JTextField();
+    final JTextField userIDText = new JTextField();
+    final JPasswordField passwordText = new JPasswordField();
+    final JPasswordField confirmText = new JPasswordField();
 
     // creating button
-    JButton registerBTN = new JButton("Next");
-    JButton cancelBTN = new JButton("Cancel");
+    final JButton registerBTN = new JButton("Next");
+    final JButton cancelBTN = new JButton("Cancel");
 
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
+    final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
 
-    FrameNavigator frameNavigator;
+    final FrameNavigator frameNavigator;
 
     /**
      * This method implements all UI components for RegisterFrame.

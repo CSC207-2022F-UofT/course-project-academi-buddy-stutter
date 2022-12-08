@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class CloudUserData implements UserDataAccess {
 
-    private DatabaseInterface fi;
+    private final DatabaseInterface fi;
 
     public CloudUserData(DatabaseInterface ub){
         this.fi = ub;
@@ -25,12 +25,12 @@ public class CloudUserData implements UserDataAccess {
         return fi.getDocumentStringList();
     }
 
+    /**
+     * add a user to the database.
+     * @return whether a user is added. If returned false, then the user already exists.
+     */
     @Override
     public boolean addUser(User user){
-        /**
-         * add a user to the database.
-         * @return whether a user is added. If returned false, then the user already exists.
-         */
         fi.openCollection("users");
         String userID = user.getUserID();
         fi.addEntry(userID, "account type", "user");
@@ -40,12 +40,12 @@ public class CloudUserData implements UserDataAccess {
         return true;
     }
 
+    /**
+     * add a student user to the database.
+     * @return whether a student user is added. If returned false, then the student user already exists.
+     */
     @Override
     public boolean addStudentUser(Student student) {
-        /**
-         * add a student user to the database.
-         * @return whether a student user is added. If returned false, then the student user already exists.
-         */
         fi.openCollection("users");
         String studentID = student.getUserID();
         addUser(student);
@@ -83,20 +83,20 @@ public class CloudUserData implements UserDataAccess {
         fi.addEntry(studentID, "enrolled courses", student.getEnrolledCourseCodes().toString());
     }
 
+    /**
+     * remove a user from database.
+     */
     @Override
     public boolean removeUser(String userID){
-        /**
-         * remove a user from database.
-         */
         fi.openCollection("users");
         return fi.removeEntry(userID);
     }
 
+    /**
+     * get a user by userid.
+     */
     @Override
     public User getUserByID(String userID) throws IOException{
-        /**
-         * get a user by userid.
-         */
         fi.openCollection("users");
         Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
@@ -113,11 +113,8 @@ public class CloudUserData implements UserDataAccess {
                 //parsing ArrayList from String.
                 String courseCodesString = (String) userData.get("enrolled courses");
                 List<String> courseCodes = Arrays.asList(courseCodesString.substring(1, courseCodesString.length() - 1).split(", "));
-                ArrayList<String> courseList = new ArrayList<>();
-                courseList.addAll(courseCodes);
-                if(courseList.contains("")){
-                    courseList.remove("");
-                }
+                ArrayList<String> courseList = new ArrayList<>(courseCodes);
+                courseList.remove("");
                 retrievedUser.setEnrolledCourses(courseList);
 
                 //
@@ -135,7 +132,7 @@ public class CloudUserData implements UserDataAccess {
                 String tagString = (String) userData.get("tags of interests");
                 List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
                 for(String t: tags) {
-                    if(!tags.equals("")){
+                    if(!t.equals("")){
                         InterestTag tag = new InterestTag(t);
                         retrievedUser.updateStudentTOI(tag, true);
                     }
@@ -182,11 +179,11 @@ public class CloudUserData implements UserDataAccess {
         return null;
     }
 
+    /**
+     * get a list of common session between two users.
+     */
     @Override
     public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
-        /**
-         * get a list of common session between two users.
-         */
         fi.openCollection("users");
         ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.
@@ -202,20 +199,11 @@ public class CloudUserData implements UserDataAccess {
         return commonSessions;
     }
 
-    @Override
-    public boolean exist(User user){
-        /**
-         * @return whether a user exists in the database.
-         */
-        fi.openCollection("users");
-        return fi.getDocumentList().contains(user.getUserID());
-    }
-
+    /**
+     * @return whether a user exists in the database.
+     */
     @Override
     public boolean existByID(String ID){
-        /**
-         * @return whether a user exists in the database.
-         */
         fi.openCollection("users");
         return fi.getDocumentStringList().contains(ID);
     }

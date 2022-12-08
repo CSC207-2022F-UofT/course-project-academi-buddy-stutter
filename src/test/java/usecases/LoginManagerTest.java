@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 class LoginManagerTest extends LocalTempDataFactory {
 
-    ArrayList<?> managers;
+    final ArrayList<?> managers;
 
     {
         try {
@@ -24,11 +24,11 @@ class LoginManagerTest extends LocalTempDataFactory {
         }
     }
 
-    LocalUserData ub = (LocalUserData) managers.get(0);
-    LocalCourseData cb = (LocalCourseData) managers.get(1);
-    LocalTagData tb = (LocalTagData) managers.get(2);
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    LoginManager loginManager = new LoginManager(cb, ub, tb);
+    final LoginManager loginManager = new LoginManager(cb, ub, tb);
 
     @Test
     void userExists() throws IOException {

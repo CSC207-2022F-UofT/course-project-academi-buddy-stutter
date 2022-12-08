@@ -11,7 +11,7 @@ import java.io.IOException;
  * Implements RegisterUIPresenter for RegisterFrame
  */
 public class RegisterUIPresenter {
-    private RegisterManager registerManager;
+    private final RegisterManager registerManager;
 
     /**
      * Constructs RegisterUIPresenter

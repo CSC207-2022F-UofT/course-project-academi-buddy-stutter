@@ -11,8 +11,8 @@ import java.io.IOException;
  * Implements ProfileUIPresenter for ProfileFrame
  */
 public class ProfileUIPresenter {
-    private ProfileManager profileManager;
-    private String selfID;
+    private final ProfileManager profileManager;
+    private final String selfID;
 
     /**
      * Constructs ProfileUIPresenter

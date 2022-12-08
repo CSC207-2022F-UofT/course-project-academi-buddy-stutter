@@ -11,10 +11,9 @@ import java.io.Serializable;
 /**
  * Implements AdminUIPresenter for AdminFrame
  */
-public class AdminUIPresenter implements Serializable {
-    private final long serialVersionUID = 2L;
-    private String self;
-    private AdminActionsManager adminActionsManager;
+public class AdminUIPresenter {
+    private final String self;
+    private final AdminActionsManager adminActionsManager;
 
     /**
      * Constructs AdminUIPresenter

@@ -10,18 +10,15 @@ import java.io.IOException;
  * This class allows user to upload an ics calendar by clicking the "Upload" button.
  */
 public class CalendarUploadFrame extends JFrame implements ActionListener {
-    JLabel titleLabel = new JLabel("Upload Your Calendar:");
-    JLabel completedLabel = new JLabel();
-    JButton uploadBTN = new JButton("Upload");
-    JButton nextBTN = new JButton("Next");
+    final JLabel titleLabel = new JLabel("Upload Your Calendar:");
+    final JLabel completedLabel = new JLabel();
+    final JButton uploadBTN = new JButton("Upload");
+    final JButton nextBTN = new JButton("Next");
 
-    JButton backBTN = new JButton("Back");
+    final JButton backBTN = new JButton("Back");
+    private final int status;
 
-    Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
-
-    private int status;
-
-    FrameNavigator frameNavigator;
+    final FrameNavigator frameNavigator;
 
     /**
      * This constructor method implments all UI components for FileUploadFrame.
@@ -70,17 +67,17 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == nextBTN && status == frameNavigator.FROM_REGISTER){
+        if (e.getSource() == nextBTN && status == FrameNavigator.FROM_REGISTER){
             this.dispose();
             frameNavigator.toProfileCompleteFrame();
-        } else if (e.getSource() == nextBTN && status == frameNavigator.FROM_PROFILE) {
+        } else if (e.getSource() == nextBTN && status == FrameNavigator.FROM_PROFILE) {
             this.dispose();
             try {
                 frameNavigator.toProfile();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-        } else if (e.getSource() == uploadBTN && status == frameNavigator.FROM_REGISTER) {
+        } else if (e.getSource() == uploadBTN && status == FrameNavigator.FROM_REGISTER) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading...");
             if (frameNavigator.getFileUploadUIPresenter().upload()) {
@@ -98,7 +95,7 @@ public class CalendarUploadFrame extends JFrame implements ActionListener {
             else {
                 completedLabel.setText("");
             }
-        } else if (e.getSource() == uploadBTN && status == frameNavigator.FROM_PROFILE) {
+        } else if (e.getSource() == uploadBTN && status == FrameNavigator.FROM_PROFILE) {
             completedLabel.setForeground(Color.black);
             completedLabel.setText("Uploading. This may take a while...");
             if (frameNavigator.getFileUploadUIPresenter().upload()) {

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * Use case operations for uploading a calendar.
  */
 public class UploadManager extends UseCase {
-    UploaderInterface uploaderInterface;
-    CalendarInterface calendarInterface;
+    final UploaderInterface uploaderInterface;
+    final CalendarInterface calendarInterface;
 
     /**
      * Initializer.

@@ -5,7 +5,7 @@ package model.entities;
  */
 public class User {
     String user_id;
-    String full_name;
+    final String full_name;
     private String user_password;
     String user_info;
 

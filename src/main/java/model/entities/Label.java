@@ -4,7 +4,7 @@ package model.entities;
  * Implements labels
  */
 public class Label {
-    String name;
+    final String name;
 
     /**
      * Constructs a label

@@ -14,9 +14,8 @@ import java.util.List;
  * Implements TagMatchUIPresenter for TagMatchFrame
  */
 public class TagMatchUIPresenter {
-    private TagMatchManager tagMatchManager;
-    private String selfID;
-    private TagDataAccess tagManager;
+    private final TagMatchManager tagMatchManager;
+    private final String selfID;
 
     /**
      * Constructs TagMatchUIPresenter
@@ -35,9 +34,7 @@ public class TagMatchUIPresenter {
      */
     public DefaultListModel<String> getNameList() throws IOException {
         List<String> nameList = new ArrayList<>();
-        for(String s: tagMatchManager.getStudentName(selfID)){
-            nameList.add(s);
-        }
+        nameList.addAll(tagMatchManager.getStudentName(selfID));
         DefaultListModel<String> nameModel = new DefaultListModel<>();
         for (String s: nameList){
             nameModel.addElement(s);

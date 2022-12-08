@@ -17,7 +17,7 @@ import java.util.List;
 
 class TagMatchManagerTest extends LocalTempDataFactory {
 
-    ArrayList<?> managers;
+    final ArrayList<?> managers;
 
     {
         try {
@@ -27,11 +27,11 @@ class TagMatchManagerTest extends LocalTempDataFactory {
         }
     }
 
-    LocalUserData ub = (LocalUserData) managers.get(0);
-    LocalCourseData cb = (LocalCourseData) managers.get(1);
-    LocalTagData tb = (LocalTagData) managers.get(2);
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    TagMatchManager tagmatchManager = new TagMatchManager(cb, ub, tb);
+    final TagMatchManager tagmatchManager = new TagMatchManager(cb, ub, tb);
 
     @Test
     //it tests setSelectTag() as well.

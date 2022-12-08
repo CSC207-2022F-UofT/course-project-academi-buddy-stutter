@@ -3,7 +3,6 @@ package database.accessinterfaces;
 import model.entities.Course;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public interface CourseDataAccess {
@@ -12,10 +11,10 @@ public interface CourseDataAccess {
 
     void updateCourse(Course course);
 
-    boolean addStudent(String courseCode, String courseType, Student student) throws IOException;
+    void addStudent(String courseCode, String courseType, Student student);
 
-    boolean removeStudent(String courseCode, String courseType, Student student) throws IOException;
+    void removeStudent(String courseCode, String courseType, Student student);
 
-    Course getCourse(String courseCode, String courseType) throws IOException;
+    Course getCourse(String courseCode, String courseType);
 
 }

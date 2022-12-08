@@ -5,8 +5,6 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 import model.entities.User;
 
-import java.io.IOException;
-
 /**
  * Parent class for other use cases.
  */
@@ -28,11 +26,7 @@ public class UseCase {
     }
 
     public User getUserByID(String id){
-        try {
-            return this.ub.getUserByID(id);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return this.ub.getUserByID(id);
     }
 
 }

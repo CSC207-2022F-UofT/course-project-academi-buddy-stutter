@@ -3,7 +3,6 @@ package database.accessinterfaces;
 import model.entities.Student;
 import model.entities.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public interface UserDataAccess {
@@ -11,15 +10,15 @@ public interface UserDataAccess {
 
     boolean addUser(User user);
 
-    boolean addStudentUser(Student student) throws IOException;
+    void addStudentUser(Student student);
 
     void updateStudentCourses(Student student);
 
-    boolean removeUser(String userID);
+    void removeUser(String userID);
 
-    User getUserByID(String userID) throws IOException;
+    User getUserByID(String userID);
 
-    ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException;
+    ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID);
 
     boolean existByID(String ID);
 

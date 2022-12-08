@@ -21,13 +21,14 @@ public class Launcher {
 
     private static void initializeFirebase() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("service-account-file.json");
-        FirebaseOptions options = new FirebaseOptions.Builder()
+        @SuppressWarnings("deprecation") FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setProjectId("group-106-project")
                 .build();
         FirebaseApp.initializeApp(options);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static void launch(int databaseLocation) throws IOException{
         FrameNavigator frameNavigator;
         if (databaseLocation == CLOUD){

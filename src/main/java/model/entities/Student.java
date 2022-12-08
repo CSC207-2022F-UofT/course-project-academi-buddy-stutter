@@ -39,9 +39,7 @@ public class Student extends User{
      * @param enrolled_courses a list of courses to be added to student
      */
     public void setEnrolledCourses(ArrayList<String> enrolled_courses) {
-        ArrayList<String> courseCodeList = new ArrayList<>();
-        courseCodeList.addAll(enrolled_courses);
-        this.enrolled_course_codes = courseCodeList;
+        this.enrolled_course_codes = new ArrayList<>(enrolled_courses);
     }
 
     /**
@@ -69,8 +67,7 @@ public class Student extends User{
      * @return a list of course codes from courses that the user is enrolled in
      */
     public ArrayList<String> getEnrolledCourseCodes() {
-        ArrayList<String> courseCodes = new ArrayList<>(this.enrolled_course_codes);
-        return courseCodes;
+        return new ArrayList<>(this.enrolled_course_codes);
     }
 
     /**
@@ -193,28 +190,25 @@ public class Student extends User{
 
     /**
      * Add a course to user's enrolled course list
+     *
      * @param course a course
-     * @return whether the course successfully added
      */
-    public boolean addCourse(Course course){
+    public void addCourse(Course course){
         if(enrolled_course_codes.contains(course.getCourseCode())){
-            return false;
+            return;
         }
         enrolled_course_codes.add(course.getCourseCode());
-        return true;
     }
 
     /**
      * Remove a course from user's enrolled course list
+     *
      * @param course a course
-     * @return whether the course is successfully removed from user's enrolled course list
      */
-    public boolean removeCourse(Course course){
+    public void removeCourse(Course course){
         if(enrolled_course_codes.contains(course.getCourseCode())){
             enrolled_course_codes.remove(course.getCourseCode());
-            return true;
         }
-        return false;
     }
 
     /**

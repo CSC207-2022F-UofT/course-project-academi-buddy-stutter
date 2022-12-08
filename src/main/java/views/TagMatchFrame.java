@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 
 /**
  * This class implements TagMatchFrame so that user can find buddies by matching same interest tags.
@@ -29,7 +28,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     /**
      * Implements all UI components.
      */
-    public TagMatchFrame(FrameNavigator frameNavigator) throws IOException {
+    public TagMatchFrame(FrameNavigator frameNavigator) {
         this.frameNavigator = frameNavigator;
 
         this.setTitle("Match by Tag"); // sets frame's title
@@ -117,11 +116,7 @@ public class TagMatchFrame extends JFrame implements ActionListener, ItemListene
     public void itemStateChanged(ItemEvent e) {
         this.setCursor(waitCursor);
         frameNavigator.getTagMatchUIPresenter().setSelectedtag((String) tagComboBox.getSelectedItem());
-        try {
-            matchedStu = frameNavigator.getTagMatchUIPresenter().getNameList();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        matchedStu = frameNavigator.getTagMatchUIPresenter().getNameList();
         matchedList.setModel(matchedStu);
         profileBTN.setEnabled(false);
         this.setCursor(Cursor.getDefaultCursor());

@@ -4,7 +4,6 @@ import database.accessinterfaces.CourseDataAccess;
 import model.entities.Course;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class LocalCourseData implements CourseDataAccess {
@@ -42,7 +41,7 @@ public class LocalCourseData implements CourseDataAccess {
     }
 
     @Override
-    public boolean addStudent(String courseCode, String courseType, Student student) throws IOException {
+    public void addStudent(String courseCode, String courseType, Student student) {
         Course course = getCourse(courseCode, courseType);
         boolean added = course.addStudent(student);
         if(added){
@@ -58,13 +57,11 @@ public class LocalCourseData implements CourseDataAccess {
             }
             userDataLocal.updateStudentCourses(student);
             allCourses = newCourseList;
-            return true;
         }
-        return false;
     }
 
     @Override
-    public boolean removeStudent(String courseCode, String courseType, Student student) throws IOException {
+    public void removeStudent(String courseCode, String courseType, Student student) {
         Course course = this.getCourse(courseCode, courseType);
         boolean removed = course.removeStudent(student);
         if(removed){
@@ -80,13 +77,11 @@ public class LocalCourseData implements CourseDataAccess {
             }
             userDataLocal.updateStudentCourses(student);
             allCourses = newCourseList;
-            return true;
         }
-        return false;
     }
 
     @Override
-    public Course getCourse(String courseCode, String courseType) throws IOException {
+    public Course getCourse(String courseCode, String courseType) {
         for(Course c: allCourses){
             if (c.getCourseCode().equals(courseCode) && c.getCourseType().equals(courseType)){
                 return c;

@@ -2,7 +2,6 @@ package database.local;
 
 import model.entities.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class LocalTempDataFactory {
@@ -64,7 +63,7 @@ public class LocalTempDataFactory {
     );
 
 
-    protected ArrayList<Object> initializeStaticDatabase() throws IOException {
+    protected ArrayList<Object> initializeStaticDatabase() {
 
         LocalUserData ub = new LocalUserData();
         LocalCourseData cb = new LocalCourseData(ub);
@@ -158,7 +157,7 @@ public class LocalTempDataFactory {
         return managers;
     }
 
-    public ArrayList<Object> getLocalDatabase() throws IOException {
+    public ArrayList<Object> getLocalDatabase() {
         return initializeStaticDatabase();
     }
 }

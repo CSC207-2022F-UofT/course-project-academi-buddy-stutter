@@ -1,31 +1,10 @@
 package entities;
 
-import database.local.LocalCourseData;
-import database.local.LocalTagData;
 import database.local.LocalTempDataFactory;
-import database.local.LocalUserData;
-import model.usecases.ProfileManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class UserTest extends LocalTempDataFactory {
-    final ArrayList<?> managers;
-
-    {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    final LocalUserData ub = (LocalUserData) managers.get(0);
-    final LocalCourseData cb = (LocalCourseData) managers.get(1);
-    final LocalTagData tb = (LocalTagData) managers.get(2);
-
 
     @Test
     void getUserIDTest() {Assertions.assertEquals("111", STUDENT_A.getUserID());}

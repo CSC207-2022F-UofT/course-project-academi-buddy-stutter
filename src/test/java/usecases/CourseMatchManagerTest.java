@@ -9,7 +9,6 @@ import model.usecases.CourseMatchManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -18,11 +17,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);
@@ -32,7 +27,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     final CourseMatchManager courseMatchManager = new CourseMatchManager(cb, ub, tb);
 
     @Test
-    void getTopCommonSessionStudentTestA() throws IOException {
+    void getTopCommonSessionStudentTestA() {
         //COURSE_A: A, B, C
         //COURSE_B: A, B
         //COURSE_C:    B
@@ -57,7 +52,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void getTopCommonSessionStudentTestB() throws IOException {
+    void getTopCommonSessionStudentTestB() {
         //COURSE_A: A, B, C
         //COURSE_B: A, B
         //COURSE_C:    B
@@ -83,7 +78,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void getTopCommonSessionStudentTestC() throws IOException {
+    void getTopCommonSessionStudentTestC() {
         //COURSE_A: A, B, C
         //COURSE_B: A, B
         //COURSE_C:    B
@@ -108,7 +103,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void filterByLabelTestA() throws IOException {
+    void filterByLabelTestA() {
         //Meet: A, B
         //Collaborate: A
         //Discuss: B, C
@@ -131,7 +126,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void filterByLabelTestB() throws IOException {
+    void filterByLabelTestB() {
         //Meet: A, B
         //Collaborate: A
         //Discuss: B, C
@@ -154,7 +149,7 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void filterByLabelTestC() throws IOException {
+    void filterByLabelTestC() {
         //Meet: A, B
         //Collaborate: A
         //Discuss: B, C

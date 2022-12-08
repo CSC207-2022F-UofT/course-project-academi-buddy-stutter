@@ -56,7 +56,7 @@ public class FirebaseAPI implements DatabaseInterface {
         }
         return documentList;
     }
-    public boolean addEntry(String documentName, String key, Object value){
+    public void addEntry(String documentName, String key, Object value){
         DocumentReference docRef = getDocRef(documentName);
         Map<String, Object> currentData = getEntry(documentName);
         Map<String, Object> data;
@@ -69,13 +69,14 @@ public class FirebaseAPI implements DatabaseInterface {
             if(data.containsKey(key)){
                 result = docRef.update(key, value);
                 WriteCounter.addCount();
-                return printUpdateResult(result);
+                printUpdateResult(result);
+                return;
             }
         }
         data.put(key, value);
         result = docRef.set(data);
         WriteCounter.addCount();
-        return printUpdateResult(result);
+        printUpdateResult(result);
     }
 
 
@@ -101,33 +102,30 @@ public class FirebaseAPI implements DatabaseInterface {
         return docRef;
     }
 
-    public boolean removeEntry(String documentName){
+    public void removeEntry(String documentName){
         DocumentReference docRef = getDocRef(documentName);
         ApiFuture<WriteResult> result = docRef.delete();
-        return printUpdateResult(result);
+        printUpdateResult(result);
     }
 
-    public boolean removeDocField(String documentName, String key){
+    public void removeDocField(String documentName, String key){
         DocumentReference docRef = getDocRef(documentName);
         Map<String, Object> data = getEntry(documentName);
         data.remove(key);
         ApiFuture<WriteResult> result = docRef.set(data);
         WriteCounter.addCount();
-        return printUpdateResult(result);
+        printUpdateResult(result);
     }
 
-    private boolean printUpdateResult(ApiFuture<WriteResult> result) {
+    private void printUpdateResult(ApiFuture<WriteResult> result) {
         try{
             System.out.println("Update time : " + result.get().getUpdateTime());
-            return true;
         }
         catch (InterruptedException e){
             System.out.println("Write failed: InterruptedException");
-            return false;
         }
         catch (ExecutionException e2){
             System.out.println("Write failed: ExecutionException");
-            return false;
         }
     }
 

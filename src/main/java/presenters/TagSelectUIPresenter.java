@@ -5,8 +5,6 @@ import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
-import java.io.IOException;
-
 /**
  * Implements TagSelectUIPresenter for TagSelectFrame
  */
@@ -31,7 +29,7 @@ public class TagSelectUIPresenter {
      * @param tagName name of tags
      * @return whether a tag is selected or not
      */
-    public boolean getStudentTagState(String tagName) throws IOException {
+    public boolean getStudentTagState(String tagName) {
         return tagSelectManager.getStudentTagState(selfID, tagName);
     }
 
@@ -40,7 +38,7 @@ public class TagSelectUIPresenter {
      * @param tagName name of tags
      * @param selected whether the tags are selected or not
      */
-    public void updateStudentTag(String tagName, boolean selected) throws IOException {
+    public void updateStudentTag(String tagName, boolean selected) {
         tagSelectManager.updateStudentTag(selfID, tagName, selected);
     }
 }

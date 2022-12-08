@@ -9,7 +9,6 @@ import model.usecases.RegisterManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +18,7 @@ class RegisterManagerTest extends LocalTempDataFactory {
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);
@@ -57,7 +52,7 @@ class RegisterManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void register() throws IOException {
+    void register() {
         //test when id exists
         Assertions.assertFalse(registerManager.register("STUDENT_TEMP", "111", "a.1234567890", "a.1234567890"));
         Assertions.assertFalse(registerManager.register("STUDENT_TEMP", "222", "a.1234567890", "a.1234567890"));
@@ -86,7 +81,7 @@ class RegisterManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void update() throws IOException {
+    void update() {
         registerManager.register("STUDENT_TEMP_ANOTHER", "777", "a.1234567890", "a.1234567890");
         Student STUDENT_TEMP_ANOTHER = (Student) ub.getUserByID("777");
         Assertions.assertNull(STUDENT_TEMP_ANOTHER.getEmail());

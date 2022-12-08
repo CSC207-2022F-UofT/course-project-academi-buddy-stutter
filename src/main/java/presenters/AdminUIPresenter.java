@@ -5,9 +5,6 @@ import database.accessinterfaces.CourseDataAccess;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
-import java.io.IOException;
-import java.io.Serializable;
-
 /**
  * Implements AdminUIPresenter for AdminFrame
  */
@@ -44,7 +41,7 @@ public class AdminUIPresenter {
      * gets user's full name
      * @return user's full name
      */
-    public String getName() throws IOException {
+    public String getName() {
         return adminActionsManager.getUserByID(self).getFullName();
     }
 

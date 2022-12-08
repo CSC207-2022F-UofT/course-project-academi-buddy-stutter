@@ -60,12 +60,12 @@ public class FriendListUIPresenter {
 
     /**
      * Accept Friend Request
-     * @param userID user id of one user
+     *
+     * @param userID   user id of one user
      * @param friendID user id of another user
-     * @return whether the two users are friends
      */
-    public boolean acceptFriendRequest(String userID, String friendID) {
-        return friendListManager.acceptFriendRequest(userID, friendID);
+    public void acceptFriendRequest(String userID, String friendID) {
+        friendListManager.acceptFriendRequest(userID, friendID);
     }
 
     /**

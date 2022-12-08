@@ -5,7 +5,6 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -28,14 +27,10 @@ public class FriendListManager extends UseCase{
      * @return An ArrayList of Strings of friends ids.
      */
     public ArrayList<String> getFriendList(String userID) {
-        try {
-            ArrayList<String> friendList;
-            Student user = (Student) this.ub.getUserByID(userID);
-            friendList = user.getFriendList();
-            return friendList;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<String> friendList;
+        Student user = (Student) this.ub.getUserByID(userID);
+        friendList = user.getFriendList();
+        return friendList;
     }
 
     /**
@@ -44,14 +39,10 @@ public class FriendListManager extends UseCase{
      * @return An ArrayList of Strings of friend requests for the user.
      */
     public ArrayList<String> getFriendRequestList(String userID) {
-        try {
-            ArrayList<String> friendRequestList;
-            Student user = (Student) this.ub.getUserByID(userID);
-            friendRequestList = user.getFriendListRequest();
-            return friendRequestList;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<String> friendRequestList;
+        Student user = (Student) this.ub.getUserByID(userID);
+        friendRequestList = user.getFriendListRequest();
+        return friendRequestList;
     }
 
     /**
@@ -60,14 +51,10 @@ public class FriendListManager extends UseCase{
      * @return An ArrayList of Strings of friend request sent
      */
     public ArrayList<String> getFriendRequestSentList(String userID) {
-        try {
-            ArrayList<String> friendRequestSentList;
-            Student user = (Student) this.ub.getUserByID(userID);
-            friendRequestSentList = user.getFriendRequestSentList();
-            return friendRequestSentList;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<String> friendRequestSentList;
+        Student user = (Student) this.ub.getUserByID(userID);
+        friendRequestSentList = user.getFriendRequestSentList();
+        return friendRequestSentList;
     }
 
     /**
@@ -76,36 +63,27 @@ public class FriendListManager extends UseCase{
      * @return the full name of the user.
      */
     public String getFriendFullName(String userID) {
-        try {
-            return this.ub.getUserByID(userID).getFullName();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return this.ub.getUserByID(userID).getFullName();
     }
 
     /**
      * To accept someone's friend request
-     * @param userId the user to accept the friend request
+     *
+     * @param userId   the user to accept the friend request
      * @param friendID the friend id to accept
-     * @return True if the friend request has been accepted, false otherwise.
      */
-    public boolean acceptFriendRequest(String userId, String friendID) {
+    public void acceptFriendRequest(String userId, String friendID) {
         //Updates Student entity data
-        try {
-            Student user = (Student) this.ub.getUserByID(userId);
-            Student friend = (Student) this.ub.getUserByID(friendID);
-            System.out.println(user.getFullName() + " accepted " + friend.getFullName());
+        Student user = (Student) this.ub.getUserByID(userId);
+        Student friend = (Student) this.ub.getUserByID(friendID);
+        System.out.println(user.getFullName() + " accepted " + friend.getFullName());
 
-            user.acceptFriendRequest(friendID);
+        user.acceptFriendRequest(friendID);
 
-            this.ub.updateFriendRequestList(user);
+        this.ub.updateFriendRequestList(user);
 
-            this.ub.updateFriendList(user);
-            return true;
+        this.ub.updateFriendList(user);
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
@@ -115,15 +93,11 @@ public class FriendListManager extends UseCase{
      */
     public void acceptedRequest(String friendID, String userID) {
         //Updates Student entity data
-        try{
-            Student friend = (Student) this.ub.getUserByID(friendID);
-            friend.acceptedRequest(userID);
-            this.ub.updateFriendRequestsSentList(friend);
-            this.ub.updateFriendList(friend);
+        Student friend = (Student) this.ub.getUserByID(friendID);
+        friend.acceptedRequest(userID);
+        this.ub.updateFriendRequestsSentList(friend);
+        this.ub.updateFriendList(friend);
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
@@ -133,14 +107,9 @@ public class FriendListManager extends UseCase{
      */
     public void sendFriendRequest(String userID, String friendID) {
         // Send friend requests to friendID
-        try {
-            Student user = (Student) this.ub.getUserByID(userID);
-            user.sendFriendRequest(friendID);
-            this.ub.updateFriendRequestsSentList(user);
-        } catch (IOException e) {
-            System.out.println("Friend request failed to send.");
-            throw new RuntimeException(e);
-        }
+        Student user = (Student) this.ub.getUserByID(userID);
+        user.sendFriendRequest(friendID);
+        this.ub.updateFriendRequestsSentList(user);
     }
 
     /**
@@ -150,14 +119,9 @@ public class FriendListManager extends UseCase{
      */
     public void receiveFriendRequest(String userID, String friendID) {
         // receive friend requests to friendID
-        try {
-            Student friend = (Student) this.ub.getUserByID(friendID);
-            friend.receiveFriendRequest(userID);
-            this.ub.updateFriendRequestList(friend);
-        } catch (IOException e) {
-            System.out.println("Friend request failed to receive.");
-            throw new RuntimeException(e);
-        }
+        Student friend = (Student) this.ub.getUserByID(friendID);
+        friend.receiveFriendRequest(userID);
+        this.ub.updateFriendRequestList(friend);
     }
 
     /**
@@ -168,16 +132,11 @@ public class FriendListManager extends UseCase{
      */
     public boolean isRequestSent(String userID, String friendID) {
         // check if friend request is sent or is friend already
-        try{
-            Student user = (Student) this.ub.getUserByID(userID);
-            Student friend = (Student) this.ub.getUserByID(friendID);
-            if (user.getFriendList().contains(friendID)) {
-                return false;
-            } else return !user.getFriendListRequest().contains(friendID) && !friend.getFriendListRequest().contains(userID);
-        }catch (IOException e) {
-            System.out.println("Cannot access friend list/request/sent list");
-            throw new RuntimeException(e);
-        }
+        Student user = (Student) this.ub.getUserByID(userID);
+        Student friend = (Student) this.ub.getUserByID(friendID);
+        if (user.getFriendList().contains(friendID)) {
+            return false;
+        } else return !user.getFriendListRequest().contains(friendID) && !friend.getFriendListRequest().contains(userID);
 
     }
 }

@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -142,19 +141,15 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
             this.setCursor(waitCursor);
             int numCommon = numBox.getSelectedIndex() + 1; // index starts at 0, numbox starts at 1.
             ArrayList<Student> matches;
-            try {
-                if(labelBox.getSelectedItem().equals("None")){
-                    matches = this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
-                }else{
+            if(labelBox.getSelectedItem().equals("None")){
+                matches = this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
+            }else{
 
-                    this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
-                    matches = frameNavigator.getMatchUIPresenter().
-                            getLabeledMatches((String)labelBox.getSelectedItem());
-                }
-
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                this.frameNavigator.getMatchUIPresenter().getMatches(numCommon);
+                matches = frameNavigator.getMatchUIPresenter().
+                        getLabeledMatches((String)labelBox.getSelectedItem());
             }
+
             addMatches(matches);
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -172,11 +167,7 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
         else if (e.getSource() == commonSessionBTN) {
             this.setCursor(waitCursor);
             String selectedID = frameNavigator.getMatchUIPresenter().getSelectedUserID(matchedList.getSelectedIndex());
-            try {
-                frameNavigator.toCommonSession(selectedID);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toCommonSession(selectedID);
             this.setCursor(Cursor.getDefaultCursor());
 
         }

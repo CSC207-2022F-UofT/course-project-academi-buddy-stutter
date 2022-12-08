@@ -7,8 +7,6 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 import model.usecases.UploadManager;
 
-import java.io.IOException;
-
 /**
  * Implements HomeUIPresenter for HomeFrame
  */
@@ -33,7 +31,7 @@ public class HomeUIPresenter {
     /**
      * @return user's full name
      */
-    public String getName() throws IOException {
+    public String getName() {
         return uploadManager.getUserByID(self).getFullName();
     }
 }

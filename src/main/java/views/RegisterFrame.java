@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * This class implements the RegisterFrame that allows user to enter:
@@ -104,29 +103,25 @@ public class RegisterFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == registerBTN){
-            try {
 
-                String fullName = fullNameText.getText();
-                String id = userIDText.getText();
-                String password = new String(passwordText.getPassword());
-                String confirm = new String(confirmText.getPassword());
-                this.setCursor(waitCursor);
-                boolean registered = frameNavigator.getRegisterUIControl().attemptRegister(fullName, id, password, confirm);
-                this.strengthLabel.setText(frameNavigator.getRegisterUIControl().getWarningString(password));
-                int strength = frameNavigator.getRegisterUIControl().getWarningString(password).length();
-                if(registered){
-                    this.frameNavigator.toRegisterProfile();
-                    this.dispose();
-                    this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password);
-                    this.frameNavigator.updateUser();
-                }
-                else if (strength == 23){
-                    this.errorLabel.setVisible(true);
-                }
-
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+            String fullName = fullNameText.getText();
+            String id = userIDText.getText();
+            String password = new String(passwordText.getPassword());
+            String confirm = new String(confirmText.getPassword());
+            this.setCursor(waitCursor);
+            boolean registered = frameNavigator.getRegisterUIControl().attemptRegister(fullName, id, password, confirm);
+            this.strengthLabel.setText(frameNavigator.getRegisterUIControl().getWarningString(password));
+            int strength = frameNavigator.getRegisterUIControl().getWarningString(password).length();
+            if(registered){
+                this.frameNavigator.toRegisterProfile();
+                this.dispose();
+                this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password);
+                this.frameNavigator.updateUser();
             }
+            else if (strength == 23){
+                this.errorLabel.setVisible(true);
+            }
+
             this.setCursor(Cursor.getDefaultCursor());
         }
 

@@ -32,12 +32,10 @@ public class LocalUserData implements UserDataAccess {
     }
 
     @Override
-    public boolean addStudentUser(Student student){
+    public void addStudentUser(Student student){
         if(!existByID(student.getUserID())){
             allUsers.add(student);
-            return true;
         }
-        return false;
     }
 
     @Override
@@ -46,16 +44,15 @@ public class LocalUserData implements UserDataAccess {
     }
 
     @Override
-    public boolean removeUser(String userID) {
+    public void removeUser(String userID) {
         if(existByID(userID)){
             for (User user:allUsers){
                 if (user.getUserID().equals(userID)){
                     allUsers.remove(user);
-                    return true;
+                    return;
                 }
             }
         }
-        return false;
     }
 
     @Override

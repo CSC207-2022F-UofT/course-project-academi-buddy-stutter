@@ -5,8 +5,6 @@ import model.usecases.LabelSelectManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
-import java.io.IOException;
-
 /**
  * Implements LabelSelectUIPresenter
  */
@@ -39,7 +37,7 @@ public class LabelSelectUIPresenter {
      * @param labelName name of label
      * @param selected determines whether label is selected
      */
-    public void updateStudentLabel(String labelName, boolean selected) throws IOException {
+    public void updateStudentLabel(String labelName, boolean selected) {
         labelSelectManager.updateStudentLabel(selfID, labelName, selected);
     }
 }

@@ -5,8 +5,6 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 import model.usecases.RegisterManager;
 
-import java.io.IOException;
-
 /**
  * Implements RegisterUIPresenter for RegisterFrame
  */
@@ -30,9 +28,8 @@ public class RegisterUIPresenter {
      * @param password user's password
      * @param confirm user reenters password
      * @return whether user has been successfully register into database
-     * @throws IOException fails to register user
      */
-    public boolean attemptRegister(String fullName, String id, String password, String confirm) throws IOException {
+    public boolean attemptRegister(String fullName, String id, String password, String confirm) {
         return registerManager.register(fullName, id, password, confirm);
     }
 

@@ -6,7 +6,6 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +32,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
     /**
      * Implements all UI components
      */
-    public TagSelectFrame(FrameNavigator frameNavigator) throws IOException {
+    public TagSelectFrame(FrameNavigator frameNavigator) {
         this.frameNavigator = frameNavigator;
 
         this.setTitle("Interest Tag Selection"); // sets frame's title
@@ -118,11 +117,7 @@ public class TagSelectFrame extends JFrame implements ActionListener, ChangeList
                 boolean selection = boxList.get(i).isSelected();
                 newState.add(selection);
                 if(selection != initialState.get(i)){
-                    try {
-                        frameNavigator.getTagSelectPresenter().updateStudentTag(boxList.get(i).getText(), boxList.get(i).isSelected());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    frameNavigator.getTagSelectPresenter().updateStudentTag(boxList.get(i).getText(), boxList.get(i).isSelected());
                 }
             }
             initialState = newState;

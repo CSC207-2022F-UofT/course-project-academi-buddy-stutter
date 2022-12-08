@@ -6,7 +6,6 @@ import database.accessinterfaces.UserDataAccess;
 import presenters.*;
 
 
-import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -56,7 +55,7 @@ public class FrameNavigator implements Serializable {
      * @param userManager instance of userManager class
      * @param tagManager instance of tagManager class
      */
-    public FrameNavigator(String userID, CourseDataAccess courseManager, UserDataAccess userManager, TagDataAccess tagManager) throws IOException {
+    public FrameNavigator(String userID, CourseDataAccess courseManager, UserDataAccess userManager, TagDataAccess tagManager) {
         this.selfID = userID;
         this.courseManager = courseManager;
         this.userManager = userManager;
@@ -167,7 +166,7 @@ public class FrameNavigator implements Serializable {
     /**
      * takes user to HomeFrame
      */
-    public void toHome() throws IOException {
+    public void toHome() {
             initializeAfterLogin();
             HomeFrame HomeFrame = new HomeFrame(this);
     }
@@ -176,7 +175,7 @@ public class FrameNavigator implements Serializable {
     /**
      * takes user to Admin Frame
      */
-    public void toAdmin() throws IOException {
+    public void toAdmin() {
         initializeAdminAfterLogin();
         AdminFrame adminFrame = new AdminFrame(this);
     }
@@ -206,7 +205,7 @@ public class FrameNavigator implements Serializable {
     /**
      * takes user to ProfileFrame
      */
-    public void toProfile() throws IOException {
+    public void toProfile() {
         STATUS = FROM_PROFILE;
         ProfileFrame profileFrame = new ProfileFrame(this);
     }
@@ -221,21 +220,21 @@ public class FrameNavigator implements Serializable {
     /**
      * takes user to TagMatchFrame
      */
-    public void toTagMatch() throws IOException {
+    public void toTagMatch() {
         TagMatchFrame tagMatchFrame = new TagMatchFrame(this);
     }
 
     /**
      * takes user to TagSelectFrame
      */
-    public void toTagSelect() throws IOException {
+    public void toTagSelect() {
         TagSelectFrame tagSelectFrame = new TagSelectFrame(this);
     }
 
     /**
      * takes user to LabelSelectFrame
      */
-    public void toLabelSelect() throws IOException {
+    public void toLabelSelect() {
         LabelSelectFrame LabelSelectFrame = new LabelSelectFrame(this);
     }
 
@@ -256,18 +255,18 @@ public class FrameNavigator implements Serializable {
     /**
      * takes user to friendListFrame
      */
-    public void toFriendList() throws IOException {FriendListFrame friendListFrame = new FriendListFrame(this);}
+    public void toFriendList() {FriendListFrame friendListFrame = new FriendListFrame(this);}
 
     /**
      * takes user to commonSessionFrame
      * @param targetUserID shows common sessions with targetUserID
      */
-    public void toCommonSession(String targetUserID) throws IOException {CommonSessionFrame commonSessionFrame = new CommonSessionFrame(this, targetUserID);}
+    public void toCommonSession(String targetUserID) {CommonSessionFrame commonSessionFrame = new CommonSessionFrame(this, targetUserID);}
 
     /**
      * takes user to AllStudentsFrame
      */
-    public void toAllStudents() throws IOException {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
+    public void toAllStudents() {AllStudentsFrame allStudentsFrame = new AllStudentsFrame(this);}
 
 
     /**

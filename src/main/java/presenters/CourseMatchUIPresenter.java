@@ -6,7 +6,6 @@ import model.usecases.CourseMatchManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -26,9 +25,8 @@ public class CourseMatchUIPresenter {
      * Finds student matches
      * @param min_numCommon minimum number of common sessions
      * @return a list of matched students
-     * @throws IOException fails to find matching students
      */
-    public ArrayList<Student> getMatches(int min_numCommon) throws IOException {
+    public ArrayList<Student> getMatches(int min_numCommon) {
         this.matches = new ArrayList<>();
         Student stu = (Student) courseMatchManager.getUserByID(this.self);
         this.matches = this.courseMatchManager.getTopSameSessionStudents(stu, min_numCommon);

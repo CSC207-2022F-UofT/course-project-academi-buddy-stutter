@@ -5,8 +5,6 @@ import model.usecases.ProfileManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
-import java.io.IOException;
-
 /**
  * Implements ProfileUIPresenter for ProfileFrame
  */
@@ -30,7 +28,7 @@ public class ProfileUIPresenter {
      */
 
 
-    public String getName() throws IOException {
+    public String getName() {
         return profileManager.getName(selfID);
     }
 
@@ -44,7 +42,7 @@ public class ProfileUIPresenter {
     /**
      * @return user's courses
      */
-    public String getCourse() throws IOException {
+    public String getCourse() {
         return profileManager.getCourseString(selfID);
     }
 
@@ -59,7 +57,7 @@ public class ProfileUIPresenter {
      * updates Email
      * @param email new Email
      */
-    public void updateEmail(String email) throws IOException {
+    public void updateEmail(String email) {
         profileManager.updateEmail(selfID, email);
     }
 
@@ -67,14 +65,14 @@ public class ProfileUIPresenter {
      * updates user's info
      * @param info new info
      */
-    public void updateInfo(String info) throws IOException {
+    public void updateInfo(String info) {
         profileManager.updateInfo(selfID, info);
     }
 
     /**
      * @return user's id
      */
-    public String getUserID() throws IOException {
+    public String getUserID() {
         return selfID;
     }
 }

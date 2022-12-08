@@ -52,7 +52,7 @@ public class UploadManager extends UseCase {
      * Updating the database by adding corresponding courses and students.
      * @param studentID The student that is being updated.
      */
-    public void updateDatabase(String studentID) throws IOException {
+    public void updateDatabase(String studentID) {
         Student student = (Student) this.getUserByID(studentID);
         CalendarInterpreter ci = new CalendarInterpreter(this.calendarInterface);
         ArrayList<Course> courses = ci.getCourses("coursesCalendar.ics");
@@ -68,7 +68,7 @@ public class UploadManager extends UseCase {
      * Takes out the original database info and replaces it with new ones.
      * @param studentID The student to operate on.
      */
-    public void reUploadUpdateDatabase(String studentID) throws IOException {
+    public void reUploadUpdateDatabase(String studentID) {
         Student student = (Student) this.getUserByID(studentID);
         for(String c: student.getEnrolledCourseCodes()){
             Course course = this.cb.getCourse(c, "LEC");

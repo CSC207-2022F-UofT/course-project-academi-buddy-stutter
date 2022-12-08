@@ -10,7 +10,6 @@ import model.usecases.TagMatchManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +19,7 @@ class TagMatchManagerTest extends LocalTempDataFactory {
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);
@@ -49,7 +44,7 @@ class TagMatchManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void getNameList() throws IOException {
+    void getNameList() {
         for(String tagName: tb.getTagNameList()){
             tagmatchManager.setSelectedTag(tagName);
             ArrayList<String> selectedStudents = tb.getStudentList(new InterestTag(tagName));

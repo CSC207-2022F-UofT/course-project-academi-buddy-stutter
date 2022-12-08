@@ -5,7 +5,6 @@ import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -73,7 +72,7 @@ public class RegisterManager extends UseCase{
      * @param confirm The password confirmation String of the student.
      * @return True if the user is successfully registered and uploaded to user database, false otherwise.
      */
-    public boolean register(String fullName, String id, String password, String confirm) throws IOException {
+    public boolean register(String fullName, String id, String password, String confirm) {
 
         if(userAlreadyExists(id)){
             return false;
@@ -100,11 +99,7 @@ public class RegisterManager extends UseCase{
     public void updateEmailAndInfo(String email, String info){
         student.setEmail(email);
         student.setUserInfo(info);
-        try {
-            ub.addStudentUser(student);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ub.addStudentUser(student);
     }
 
 

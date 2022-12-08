@@ -39,17 +39,15 @@ public class FileUploadUIPresenter {
 
     /**
      * updates database with imported calendar (updates courses)
-     * @throws IOException that it fails to update database
      */
-    public void updateDatabase() throws IOException {
+    public void updateDatabase() {
         this.uploadManager.updateDatabase(selfID);
     }
 
     /**
      * allows registered users to re-upload their calendars
-     * @throws IOException that it fails to upload calendar
      */
-    public void reuploadCalendar() throws IOException{
+    public void reuploadCalendar() {
         this.uploadManager.reUploadUpdateDatabase(selfID);
     }
 

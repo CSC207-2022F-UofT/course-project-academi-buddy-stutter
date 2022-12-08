@@ -8,7 +8,6 @@ import model.entities.Course;
 import org.junit.jupiter.api.Test;
 import model.usecases.ProfileManager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,11 +16,7 @@ public class CourseTest extends LocalTempDataFactory {
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);

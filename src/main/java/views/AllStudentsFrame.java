@@ -4,12 +4,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Implements JFrame that displays all registered users
  */
+@SuppressWarnings("CanBeFinal")
 public class AllStudentsFrame extends JFrame implements ActionListener, ItemListener {
 
     final FrameNavigator frameNavigator;
@@ -26,7 +26,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     /**
      * Constructs all UI components
      */
-    public AllStudentsFrame(FrameNavigator frameNavigator) throws IOException {
+    public AllStudentsFrame(FrameNavigator frameNavigator) {
         this.frameNavigator = frameNavigator;
         this.setTitle("All Students");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes the frame
@@ -102,7 +102,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
     /**
      * refreshes student table
      */
-    public void refreshStudentsTable() throws IOException {
+    public void refreshStudentsTable() {
         studentModel.setRowCount(0);
         studentList = frameNavigator.getAllStudentsUIPresenter().getAllStudents();
 
@@ -115,7 +115,7 @@ public class AllStudentsFrame extends JFrame implements ActionListener, ItemList
      * @param frameNavigator an instance of FrameNavigator
      * @param studentModel an instance of DefaultTableModel
      */
-    static void addStudentsToList(ArrayList<String> studentList, FrameNavigator frameNavigator, DefaultTableModel studentModel) throws IOException {
+    static void addStudentsToList(ArrayList<String> studentList, FrameNavigator frameNavigator, DefaultTableModel studentModel) {
         System.out.println(studentList.toString());
         String userID = frameNavigator.getProfileUIPresenter().getUserID();
         ArrayList<String> adminIDs = frameNavigator.getAllStudentsUIPresenter().getAdminIDs();

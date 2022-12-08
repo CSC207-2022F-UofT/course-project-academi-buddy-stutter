@@ -10,17 +10,17 @@ public interface DatabaseInterface {
 
     List<?> getDocumentList();
 
-    boolean addEntry(String documentName, String key, Object value);
+    void addEntry(String documentName, String key, Object value);
 
     Map<String, Object> getEntry(String documentName);
 
-    boolean removeEntry(String documentName);
+    void removeEntry(String documentName);
 
     void updateDocuments();
 
     ArrayList<String> getDocumentStringList();
 
-    boolean removeDocField(String documentName, String key);
+    void removeDocField(String documentName, String key);
 
 
 }

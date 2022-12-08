@@ -7,7 +7,6 @@ import model.entities.Label;
 import model.entities.Student;
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,24 +39,19 @@ public class CourseMatchManager extends UseCase{
         matchCount = new HashMap<>();
         ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
         for(String course: enrolledCourse){
-            try {
-                ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
+            ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
 
-                for(String id : studentIDs){
-                    if(!id.equals(student.getUserID())){
-                        if(matchCount.containsKey(id)){
-                            int currentCount = matchCount.get(id);
-                            currentCount ++;
-                            matchCount.put(id, currentCount);
-                        }else{
-                            matchCount.put(id, 1);
-                        }
+            for(String id : studentIDs){
+                if(!id.equals(student.getUserID())){
+                    if(matchCount.containsKey(id)){
+                        int currentCount = matchCount.get(id);
+                        currentCount ++;
+                        matchCount.put(id, currentCount);
+                    }else{
+                        matchCount.put(id, 1);
                     }
-
                 }
-            } catch (IOException e) {
-                System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getLecCourse()");
-                throw new RuntimeException(e);
+
             }
         }
     }
@@ -110,7 +104,7 @@ public class CourseMatchManager extends UseCase{
      * @param minNumOfCommon the minimum number of common courses.
      * @return Array list of students that are matched to the student parameter, in descending order by number of common.
      */
-    public ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) throws IOException {
+    public ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) {
 
         updateMatchCount(student);
         ArrayList<String>[] matchedList = this.getMatchedArray();
@@ -121,9 +115,9 @@ public class CourseMatchManager extends UseCase{
 
         ArrayList<String> ids = new ArrayList<>();
         for (ArrayList<String> strings : targetMatchedList) {
-            for (int j = 0; j < strings.size(); j++) {
-                if (!strings.get(j).isEmpty()) {
-                    ids.add(strings.get(j));
+            for (String string : strings) {
+                if (!string.isEmpty()) {
+                    ids.add(string);
                 }
 
             }

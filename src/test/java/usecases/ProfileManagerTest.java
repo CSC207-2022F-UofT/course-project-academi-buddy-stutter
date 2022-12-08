@@ -8,18 +8,13 @@ import model.usecases.ProfileManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileManagerTest extends LocalTempDataFactory {
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);
@@ -30,7 +25,7 @@ public class ProfileManagerTest extends LocalTempDataFactory {
 
 
     @Test
-    void GetNameTest() throws Exception {
+    void GetNameTest() {
         for(String userID: ub.getUserIDList()){
             Assertions.assertEquals(ub.getUserByID(userID).getFullName(), profileManager.getName(userID));
         }

@@ -4,7 +4,6 @@ import database.accessinterfaces.TagDataAccess;
 import model.entities.InterestTag;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -28,31 +27,26 @@ public class LocalTagData implements TagDataAccess {
 
     @Override
     public ArrayList<String> getTagNameList() {
-        ArrayList<String> tagNameList = new ArrayList<>();
-        tagNameList.addAll(allTags.keySet());
-        return tagNameList;
+        return new ArrayList<>(allTags.keySet());
     }
 
     @Override
     public ArrayList<String> getStudentList(InterestTag tag) {
-        ArrayList<String> studentIDArrayList = new ArrayList<>();
         Set<String> studentIDList = allTags.get(tag.getName()).keySet();
-        studentIDArrayList.addAll(studentIDList);
-        return studentIDArrayList;
+        return new ArrayList<>(studentIDList);
     }
 
     @Override
-    public void addStudent(InterestTag tag, Student student) throws IOException {
+    public void addStudent(InterestTag tag, Student student) {
         allTags.get(tag.getName()).put(student.getUserID(), 1);
 
     }
 
     @Override
-    public boolean removeStudent(InterestTag tag, Student student) throws IOException {
+    public void removeStudent(InterestTag tag, Student student) {
         if(!allTags.get(tag.getName()).containsKey(student.getUserID())){
-            return false;
+            return;
         }
         allTags.get(tag.getName()).remove(student.getUserID(), 1);
-        return true;
     }
 }

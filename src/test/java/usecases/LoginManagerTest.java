@@ -8,7 +8,6 @@ import model.usecases.LoginManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -17,11 +16,7 @@ class LoginManagerTest extends LocalTempDataFactory {
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);
@@ -31,7 +26,7 @@ class LoginManagerTest extends LocalTempDataFactory {
     final LoginManager loginManager = new LoginManager(cb, ub, tb);
 
     @Test
-    void userExists() throws IOException {
+    void userExists() {
         //Test non-exist user ids
         Assertions.assertFalse(loginManager.login("555", "pass"));
         Assertions.assertFalse(loginManager.login("", ""));
@@ -51,7 +46,7 @@ class LoginManagerTest extends LocalTempDataFactory {
 
     }
     @Test
-    void getActiveUserID() throws IOException {
+    void getActiveUserID() {
         loginManager.login("111", "pass");
         Assertions.assertEquals("111", loginManager.getActiveUserID());
         loginManager.login("222", "pass");
@@ -64,7 +59,7 @@ class LoginManagerTest extends LocalTempDataFactory {
     }
 
     @Test
-    void getUserTypeString() throws IOException {
+    void getUserTypeString() {
         loginManager.login("111", "pass");
         Assertions.assertEquals("Student", loginManager.getUserTypeString());
         loginManager.login("222", "pass");

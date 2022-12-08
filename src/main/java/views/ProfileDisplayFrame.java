@@ -3,7 +3,6 @@ package views;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * This class implements ProfileDisplayFrame that displays the profile of a user.
@@ -96,11 +95,7 @@ public class ProfileDisplayFrame extends JFrame implements ActionListener {
         else if (e.getSource() == addFriendBTN) {
 //            if (!FrameNavigator.getFriendListUIPresenter().isRequestSent(userID)) {
             String viewerID = null;
-            try {
-                viewerID = frameNavigator.getProfileUIPresenter().getUserID();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            viewerID = frameNavigator.getProfileUIPresenter().getUserID();
             frameNavigator.getFriendListUIPresenter().sendFriendRequest(viewerID, userID);
                 frameNavigator.getFriendListUIPresenter().receiveFriendRequest(viewerID, userID);
                 System.out.println("Sending friend request to: " + viewerID);

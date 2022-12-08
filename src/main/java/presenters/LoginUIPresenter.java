@@ -5,8 +5,6 @@ import model.usecases.LoginManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
-import java.io.IOException;
-
 /**
  * Implements LoginUIPresenter for LoginFrame
  */
@@ -33,9 +31,8 @@ public class LoginUIPresenter {
      * @param id user id entered by user
      * @param password password entered by user
      * @return whether user successfully logged in
-     * @throws IOException fails to log in
      */
-    public boolean attemptLogin(String id, String password) throws IOException {
+    public boolean attemptLogin(String id, String password) {
 
         boolean loggedIn =  loginManager.login(id, password);
         selfID = loginManager.getActiveUserID();
@@ -62,7 +59,7 @@ public class LoginUIPresenter {
     /**
      * @return current user
      */
-    public String getUserID() throws IOException {
+    public String getUserID() {
         return selfID;
     }
 

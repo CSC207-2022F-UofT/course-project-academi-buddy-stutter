@@ -5,7 +5,6 @@ import adapters.gateways.DatabaseInterface;
 import model.entities.InterestTag;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.*;
 
 public class CloudTagData implements TagDataAccess {
@@ -28,12 +27,11 @@ public class CloudTagData implements TagDataAccess {
         String tagName = tag.getName();
         Map<String, Object> tagEntry = fi.getEntry(tagName);
         Set<String> studentsSet = tagEntry.keySet();
-        ArrayList<String> students = new ArrayList<>(studentsSet);
-        return students;
+        return new ArrayList<>(studentsSet);
     }
 
     @Override
-    public void addStudent(InterestTag tag, Student student) throws IOException {
+    public void addStudent(InterestTag tag, Student student) {
         fi.openCollection("tags");
         ArrayList<String> students = getStudentList(tag);
         if(!students.contains(student.getUserID())){
@@ -43,15 +41,13 @@ public class CloudTagData implements TagDataAccess {
     }
 
     @Override
-    public boolean removeStudent(InterestTag tag, Student student) throws IOException {
+    public void removeStudent(InterestTag tag, Student student) {
         fi.openCollection("tags");
         ArrayList<String> students = getStudentList(tag);
         if(students.contains(student.getUserID())){
             fi.openCollection("tags");
             fi.removeDocField(tag.getName(), student.getUserID());
-            return true;
         }
-        return false;
     }
 
 

@@ -6,7 +6,6 @@ import database.accessinterfaces.UserDataAccess;
 import model.usecases.TagMatchManager;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +31,8 @@ public class TagMatchUIPresenter {
     /**
      * @return a list of matched users in DefaultListModel for GUI.
      */
-    public DefaultListModel<String> getNameList() throws IOException {
-        List<String> nameList = new ArrayList<>();
-        nameList.addAll(tagMatchManager.getStudentName(selfID));
+    public DefaultListModel<String> getNameList() {
+        List<String> nameList = new ArrayList<>(tagMatchManager.getStudentName(selfID));
         DefaultListModel<String> nameModel = new DefaultListModel<>();
         for (String s: nameList){
             nameModel.addElement(s);

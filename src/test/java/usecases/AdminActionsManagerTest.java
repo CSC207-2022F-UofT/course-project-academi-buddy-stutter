@@ -9,7 +9,6 @@ import model.usecases.AdminActionsManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -17,11 +16,7 @@ class AdminActionsManagerTest extends LocalTempDataFactory{
     final ArrayList<?> managers;
 
     {
-        try {
-            managers = super.initializeStaticDatabase();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        managers = super.initializeStaticDatabase();
     }
 
     final LocalUserData ub = (LocalUserData) managers.get(0);
@@ -32,7 +27,7 @@ class AdminActionsManagerTest extends LocalTempDataFactory{
 
     @Test
     //It also tests private helper methods removeStudentFromCourse(), removeStudentFromTag() and removeStudentFromFriend() as well.
-    void removeUser() throws Exception {
+    void removeUser() {
         ArrayList<String> courses = STUDENT_A.getEnrolledCourseCodes();
         ArrayList<InterestTag> tags = STUDENT_A.getTags();
 

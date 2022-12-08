@@ -7,7 +7,6 @@ import model.entities.Course;
 import model.entities.InterestTag;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -36,23 +35,19 @@ public class AdminActionsManager extends UseCase{
         if(!userExist(userID)){
             return false;
         }
-        try {
-            Student student = (Student) this.getUserByID(userID);
-            removeStudentFromCourse(student);
-            removeStudentFromTag(student);
-            removeStudentFromFriends(student);
-            this.ub.removeUser(userID);
-            return true;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Student student = (Student) this.getUserByID(userID);
+        removeStudentFromCourse(student);
+        removeStudentFromTag(student);
+        removeStudentFromFriends(student);
+        this.ub.removeUser(userID);
+        return true;
     }
 
     /**
      * Helper method for removeUser, removes user from Course Database.
      * @param student the student that is being removed.
      */
-    public void removeStudentFromCourse(Student student) throws IOException {
+    public void removeStudentFromCourse(Student student) {
         for(String c: student.getEnrolledCourseCodes()){
             Course course = this.cb.getCourse(c, "LEC");
             this.cb.removeStudent(course.getCourseCode(), course.getCourseType(), student);
@@ -67,7 +62,7 @@ public class AdminActionsManager extends UseCase{
         }
     }
 
-    public void removeStudentFromFriends(Student student) throws IOException {
+    public void removeStudentFromFriends(Student student) {
         ArrayList<String> allStudents = this.ub.getUserIDList();
         ArrayList<String> allAdmins = this.ub.getAdminIDs();
         String studentID = student.getUserID();
@@ -105,7 +100,7 @@ public class AdminActionsManager extends UseCase{
      * Helper method for removeUser, removes user from Tag Database.
      * @param student the student that is being removed.
      */
-    private void removeStudentFromTag(Student student) throws IOException{
+    private void removeStudentFromTag(Student student) {
         for(InterestTag t: student.getTags()){
             if(!t.getName().equals("")){
                 this.tb.removeStudent(t, student);

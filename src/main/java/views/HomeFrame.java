@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * This class constructs a home frame for the program. For which the user can access:
@@ -41,7 +40,7 @@ public class HomeFrame extends JFrame implements ActionListener {
      * - insTagBTN: goes to TagSelectFrame
      * - profileBTN: goes to ProfileFrame
      */
-    public HomeFrame(FrameNavigator frameNavigator) throws IOException {
+    public HomeFrame(FrameNavigator frameNavigator) {
         this.frameNavigator = frameNavigator;
 
         // setting up labels
@@ -99,49 +98,25 @@ public class HomeFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == insTagBTN) {
-            try {
-                frameNavigator.toTagSelect();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toTagSelect();
         }
         else if (e.getSource() == statusBTN) {
-            try {
-                frameNavigator.toLabelSelect();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toLabelSelect();
         }
         else if (e.getSource() == findInsBuddyBTN) {
-            try {
-                frameNavigator.toTagMatch();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toTagMatch();
         }
         else if (e.getSource() == profileBTN) {
             this.setCursor(waitCursor);
-            try {
-                frameNavigator.toProfile();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toProfile();
             this.setCursor(Cursor.getDefaultCursor());
         } else if (e.getSource() == studentsBTN) {
             this.setCursor(waitCursor);
-            try {
-                frameNavigator.toAllStudents();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toAllStudents();
             this.setCursor(Cursor.getDefaultCursor());
         } else if (e.getSource() == friendsBTN) {
             this.setCursor(waitCursor);
-            try {
-                frameNavigator.toFriendList();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            frameNavigator.toFriendList();
             this.setCursor(Cursor.getDefaultCursor());
         }
 

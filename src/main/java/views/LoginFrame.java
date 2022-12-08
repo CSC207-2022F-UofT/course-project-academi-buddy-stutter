@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 
 /**
  * This is the Login Frame. When the user launches the program, this is the first frame displayed to the user.
@@ -96,27 +95,23 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
         if (e.getSource() == loginBTN){
             this.setCursor(waitCursor);
-            try {
-                String id = userIDText.getText();
-                String password = new String(passwordText.getPassword());
+            String id = userIDText.getText();
+            String password = new String(passwordText.getPassword());
 
-                if(this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password)){
-                    this.dispose();
-                    this.frameNavigator.updateUser();
-                    if(frameNavigator.getLoginUIPresenter().getUserType() == LoginUIPresenter.STUDENT){
-                        this.frameNavigator.toHome();
-                    }
-                    else if(frameNavigator.getLoginUIPresenter().getUserType() == LoginUIPresenter.ADMIN){
-                        this.frameNavigator.toAdmin();
-                    }
+            if(this.frameNavigator.getLoginUIPresenter().attemptLogin(id, password)){
+                this.dispose();
+                this.frameNavigator.updateUser();
+                if(frameNavigator.getLoginUIPresenter().getUserType() == LoginUIPresenter.STUDENT){
+                    this.frameNavigator.toHome();
                 }
-                else{
-                    this.errorLabel.setVisible(true);
+                else if(frameNavigator.getLoginUIPresenter().getUserType() == LoginUIPresenter.ADMIN){
+                    this.frameNavigator.toAdmin();
                 }
-
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
             }
+            else{
+                this.errorLabel.setVisible(true);
+            }
+
             this.setCursor(Cursor.getDefaultCursor());
         }
 

@@ -4,7 +4,6 @@ import database.accessinterfaces.UserDataAccess;
 import adapters.gateways.DatabaseInterface;
 import model.entities.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,10 +41,9 @@ public class CloudUserData implements UserDataAccess {
 
     /**
      * add a student user to the database.
-     * @return whether a student user is added. If returned false, then the student user already exists.
      */
     @Override
-    public boolean addStudentUser(Student student) {
+    public void addStudentUser(Student student) {
         fi.openCollection("users");
         String studentID = student.getUserID();
         addUser(student);
@@ -73,7 +71,6 @@ public class CloudUserData implements UserDataAccess {
         fi.addEntry(studentID, "friend list", friendList.toString());
         fi.addEntry(studentID, "friend request list", friendRequests.toString());
         fi.addEntry(studentID, "friend request sent list", friendRequestsSent.toString());
-        return true;
     }
 
     @Override
@@ -87,16 +84,16 @@ public class CloudUserData implements UserDataAccess {
      * remove a user from database.
      */
     @Override
-    public boolean removeUser(String userID){
+    public void removeUser(String userID){
         fi.openCollection("users");
-        return fi.removeEntry(userID);
+        fi.removeEntry(userID);
     }
 
     /**
      * get a user by userid.
      */
     @Override
-    public User getUserByID(String userID) throws IOException{
+    public User getUserByID(String userID) {
         fi.openCollection("users");
         Map<String, Object> userData = fi.getEntry(userID);
         String type = (String) userData.get("account type");
@@ -183,7 +180,7 @@ public class CloudUserData implements UserDataAccess {
      * get a list of common session between two users.
      */
     @Override
-    public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) throws IOException {
+    public ArrayList<String> getCommonSessionCode(String selfUserID, String targetUserID) {
         fi.openCollection("users");
         ArrayList<String> commonSessions = new ArrayList<>();
         //accessing from database instead of directly from student class.

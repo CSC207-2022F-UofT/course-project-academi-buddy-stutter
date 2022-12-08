@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * This class implements a AdminFrame that only displays to Administrative Users.
@@ -25,7 +24,7 @@ public class AdminFrame extends JFrame implements ActionListener {
      * This constructor method implements all UI elements for the AdminFrame.
      */
 
-    public AdminFrame(FrameNavigator frameNavigator) throws IOException {
+    public AdminFrame(FrameNavigator frameNavigator) {
         this.frameNavigator = frameNavigator;
 
         // setting up labels

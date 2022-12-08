@@ -3,7 +3,6 @@ package database.accessinterfaces;
 import model.entities.InterestTag;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.*;
 
 public interface TagDataAccess {
@@ -12,9 +11,9 @@ public interface TagDataAccess {
 
     ArrayList<String> getStudentList(InterestTag tag);
 
-    void addStudent(InterestTag tag, Student student) throws IOException;
+    void addStudent(InterestTag tag, Student student);
 
-    boolean removeStudent(InterestTag tag, Student student) throws IOException;
+    void removeStudent(InterestTag tag, Student student);
 
 
 }

@@ -3,12 +3,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Implements JFrame that shows accepted friends and pending accepting friends to user
  */
+@SuppressWarnings("CanBeFinal")
 public class FriendListFrame extends JFrame implements ActionListener, ItemListener {
     final FrameNavigator frameNavigator;
     final JLabel friendLabel = new JLabel("Friend List");
@@ -34,7 +34,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     /**
      * implements all UI components
      */
-    public FriendListFrame(FrameNavigator frameNavigator) throws IOException {
+    public FriendListFrame(FrameNavigator frameNavigator) {
         this.frameNavigator = frameNavigator;
 
         this.setTitle("Friend List and Requests"); // sets frame's title
@@ -131,11 +131,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
 
                     frameNavigator.getFriendListUIPresenter().acceptFriendRequest(userID, friendID);
                     frameNavigator.getFriendListUIPresenter().acceptedRequest(friendID, userID);
-                    try {
-                        refreshFriendListTable();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    refreshFriendListTable();
                     refreshFriendRequestListTable();
 
                 } else {
@@ -172,7 +168,7 @@ public class FriendListFrame extends JFrame implements ActionListener, ItemListe
     /**
      * refreshes friend list table
      */
-    public void refreshFriendListTable() throws IOException {
+    public void refreshFriendListTable() {
         friendModel.setRowCount(0);
         friendList = frameNavigator.getFriendListUIPresenter().getFriendList();
 

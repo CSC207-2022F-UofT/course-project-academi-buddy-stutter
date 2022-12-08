@@ -6,14 +6,14 @@ import java.util.*;
  * Implements course with course information
  */
 public class Course{
-    private String courseCode;
-    private String courseType;
-    private String sessionNumber;
+    private final String courseCode;
+    private final String courseType;
+    private final String sessionNumber;
     private final String courseName;
-    private String dayOfWeek;
-    private String startTime;
+    private final String dayOfWeek;
+    private final String startTime;
     private ArrayList<String> enrolledStudentID;
-    private String year;
+    private final String year;
 
     /**
      * Constructs a course
@@ -76,8 +76,7 @@ public class Course{
      * @param studentList a list of users to be appended to course
      */
     public void setEnrolledStudents(ArrayList<String> studentList){
-        ArrayList<String> studentIDs = new ArrayList<>(studentList);
-        this.enrolledStudentID = studentIDs;
+        this.enrolledStudentID = new ArrayList<>(studentList);
     }
 
     /**
@@ -116,7 +115,6 @@ public class Course{
      * @return a list of user ids that are enrolled in this course
      */
     public ArrayList<String> getEnrolledIDList(){
-        ArrayList<String> IDList = new ArrayList<>(this.enrolledStudentID);
-        return IDList;
+        return new ArrayList<>(this.enrolledStudentID);
     }
 }

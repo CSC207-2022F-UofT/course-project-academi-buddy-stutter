@@ -7,8 +7,6 @@ import model.entities.Admin;
 import model.entities.Student;
 import model.entities.User;
 
-import java.io.IOException;
-
 /**
  * Use case of operations on login.
  */
@@ -40,7 +38,7 @@ public class LoginManager extends UseCase{
      * @param password The password to check
      * @return True if the id and password are established in the user database and matches, false otherwise.
      */
-    public boolean login(String id, String password) throws IOException {
+    public boolean login(String id, String password) {
 
         if(!userExists(id)){
             return false;

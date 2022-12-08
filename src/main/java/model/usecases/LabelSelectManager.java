@@ -6,8 +6,6 @@ import database.accessinterfaces.UserDataAccess;
 import model.entities.Label;
 import model.entities.Student;
 
-import java.io.IOException;
-
 /**
  * User Cases for operations on labels
  */
@@ -29,12 +27,7 @@ public class LabelSelectManager extends UseCase{
      * @return true if the label for the student is selected.
      */
     public boolean getStudentLabelState(String selfID, String labelName){
-        Student self = null;
-        try {
-            self = (Student) this.ub.getUserByID(selfID);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Student self = (Student) this.ub.getUserByID(selfID);
         Label label = new Label(labelName);
         return (self.isLabelSelected(label));
     }
@@ -46,20 +39,14 @@ public class LabelSelectManager extends UseCase{
      * @param selected To see if the label is selected or not.
      */
     public void updateStudentLabel(String selfID, String labelName, boolean selected){
-        Student self = null;
-        try {
-            self = (Student) this.getUserByID(selfID);
-            Label label = new Label(labelName);
-            if (selected) {
-                self.updateLabel(label, true);
-                ub.addStudentUser(self);
-            } else {
-                self.updateLabel(label, false);
-                ub.addStudentUser(self);
-            }
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
+        Student self = (Student) this.getUserByID(selfID);
+        Label label = new Label(labelName);
+        if (selected) {
+            self.updateLabel(label, true);
+            ub.addStudentUser(self);
+        } else {
+            self.updateLabel(label, false);
+            ub.addStudentUser(self);
         }
     }
 }

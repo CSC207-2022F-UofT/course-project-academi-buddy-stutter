@@ -4,7 +4,6 @@ import adapters.gateways.DatabaseInterface;
 import model.entities.Course;
 import model.entities.Student;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +58,7 @@ public class CloudCourseData implements CourseDataAccess {
      * add a student to a course. It also updates in user database as well.
      */
     @Override
-    public boolean addStudent(String courseCode, String courseType, Student student) throws IOException {
+    public void addStudent(String courseCode, String courseType, Student student) {
         fi.openCollection("courses");
         System.out.println(courseCode + courseType);
         Course course = this.getCourse(courseCode, courseType);
@@ -69,16 +68,14 @@ public class CloudCourseData implements CourseDataAccess {
             student.addCourse(course);
             fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledIDList());
             ud.updateStudentCourses(student);//update student's enrolled course in userdatabase.
-            return true;
         }
-        return false;
     }
 
     /**
      * remove a student to a course. It also updates in user database as well.
      */
     @Override
-    public boolean removeStudent(String courseCode, String courseType, Student student) throws IOException {
+    public void removeStudent(String courseCode, String courseType, Student student) {
         fi.openCollection("courses");
         Course course = this.getCourse(courseCode, courseType);
         boolean removed = course.removeStudent(student);
@@ -86,16 +83,14 @@ public class CloudCourseData implements CourseDataAccess {
             student.removeCourse(course);
             fi.addEntry(course.getCourseCode() + course.getCourseType(), "enrolled students id", course.getEnrolledIDList());
             ud.updateStudentCourses(student);//update student's enrolled course in userdatabase.
-            return true;
         }
-        return false;
     }
 
     /**
      * get a lecture course by course code.
      */
     @Override
-    public Course getCourse(String courseCode, String courseType) throws IOException {
+    public Course getCourse(String courseCode, String courseType) {
         fi.openCollection("courses");
         System.out.println(courseCode + courseType);
         if(!courseExists(courseCode + courseType)){
@@ -118,6 +113,7 @@ public class CloudCourseData implements CourseDataAccess {
         return course;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean courseExists(String courseIdentifier){
         fi.openCollection("courses");
         return this.getCourseCodeList().contains(courseIdentifier);

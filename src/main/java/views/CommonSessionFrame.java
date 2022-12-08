@@ -2,7 +2,6 @@ package views;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.IOException;
 
 /**
  * Implements JFrame that shows common courses between 2 registered users

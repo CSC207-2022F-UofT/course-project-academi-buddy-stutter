@@ -6,8 +6,6 @@ import database.accessinterfaces.UserDataAccess;
 import model.entities.InterestTag;
 import model.entities.Student;
 
-import java.io.IOException;
-
 /**
  * Use case operations for selecting a tag.
  */
@@ -45,22 +43,14 @@ public class TagSelectManager extends UseCase {
         Student self = (Student) this.getUserByID(selfID);
         InterestTag tag = new InterestTag(tagName);
         if(selected){
-            try {
-                tb.addStudent(tag, self);
-                self.updateStudentTOI(tag, true);
-                ub.addStudentUser(self);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            tb.addStudent(tag, self);
+            self.updateStudentTOI(tag, true);
+            ub.addStudentUser(self);
         }
         else {
-            try {
-                tb.removeStudent(tag, self);
-                self.updateStudentTOI(tag, false);
-                ub.addStudentUser(self);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            tb.removeStudent(tag, self);
+            self.updateStudentTOI(tag, false);
+            ub.addStudentUser(self);
         }
     }
 }

@@ -6,7 +6,6 @@ import database.accessinterfaces.UserDataAccess;
 import model.entities.Student;
 import model.entities.User;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProfileManager extends UseCase{
@@ -56,52 +55,48 @@ public class ProfileManager extends UseCase{
      * @return The String of courses of the student.
      */
     public String getCourseString(String userID){
-        try {
-            User user = this.getUserByID(userID);
-            ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
-            ArrayList<String> lectureList = new ArrayList<>();
-            ArrayList<String> tutorialList = new ArrayList<>();
-            for(String course: coursesList){
-                if (lectureList.contains(course)){
-                    tutorialList.add(course);
-                }
-                else{
-                    lectureList.add(course);
-                }
+        User user = this.getUserByID(userID);
+        ArrayList<String> coursesList = ((Student) user).getEnrolledCourseCodes();
+        ArrayList<String> lectureList = new ArrayList<>();
+        ArrayList<String> tutorialList = new ArrayList<>();
+        for(String course: coursesList){
+            if (lectureList.contains(course)){
+                tutorialList.add(course);
             }
-            StringBuilder courseString = new StringBuilder();
-            if(lectureList.isEmpty()){
-                return courseString.toString();
+            else{
+                lectureList.add(course);
             }
-            courseString.append("Lectures:\n");
-            for(String lecture: lectureList){
-                System.out.println(lecture);
-                if(cb.getCourse(lecture, "LEC") == null){
-                    tutorialList.add(lecture);
-                }
-                else{
-                    courseString.append(lecture);
-                    courseString.append(": ");
-                    courseString.append(cb.getCourse(lecture, "LEC").getCourseName());
-                    courseString.append("\n");
-                }
+        }
+        StringBuilder courseString = new StringBuilder();
+        if(lectureList.isEmpty()){
+            return courseString.toString();
+        }
+        courseString.append("Lectures:\n");
+        for(String lecture: lectureList){
+            System.out.println(lecture);
+            if(cb.getCourse(lecture, "LEC") == null){
+                tutorialList.add(lecture);
             }
-            if(tutorialList.isEmpty()){
-                return courseString.toString();
-            }
-            courseString.append("\n");
-            courseString.append("Tutorials:\n");
-            for(String tutorial: tutorialList){
-                courseString.append(tutorial);
+            else{
+                courseString.append(lecture);
                 courseString.append(": ");
-                courseString.append(cb.getCourse(tutorial, "TUT").getCourseName());
+                courseString.append(cb.getCourse(lecture, "LEC").getCourseName());
                 courseString.append("\n");
             }
-            courseString.deleteCharAt(courseString.length() - 1);
-            return courseString.toString();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+        if(tutorialList.isEmpty()){
+            return courseString.toString();
+        }
+        courseString.append("\n");
+        courseString.append("Tutorials:\n");
+        for(String tutorial: tutorialList){
+            courseString.append(tutorial);
+            courseString.append(": ");
+            courseString.append(cb.getCourse(tutorial, "TUT").getCourseName());
+            courseString.append("\n");
+        }
+        courseString.deleteCharAt(courseString.length() - 1);
+        return courseString.toString();
     }
 
     /**
@@ -110,13 +105,9 @@ public class ProfileManager extends UseCase{
      * @param email the new email that is being updated.
      */
     public void updateEmail(String userID, String email){
-        try {
-            Student student = (Student) this.getUserByID(userID);
-            student.setEmail(email);
-            ub.addStudentUser(student);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Student student = (Student) this.getUserByID(userID);
+        student.setEmail(email);
+        ub.addStudentUser(student);
     }
 
     /**
@@ -125,13 +116,9 @@ public class ProfileManager extends UseCase{
      * @param info The new information that is being updated.
      */
     public void updateInfo(String userID, String info){
-        try {
-            Student student = (Student) this.getUserByID(userID);
-            student.setUserInfo(info);
-            ub.addStudentUser(student);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Student student = (Student) this.getUserByID(userID);
+        student.setUserInfo(info);
+        ub.addStudentUser(student);
     }
 
 }

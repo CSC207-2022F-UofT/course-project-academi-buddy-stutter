@@ -1,36 +1,24 @@
 package presenters;
 
-import model.entities.Student;
 import database.accessinterfaces.CourseDataAccess;
 import model.usecases.CourseMatchManager;
 import database.accessinterfaces.TagDataAccess;
 import database.accessinterfaces.UserDataAccess;
 
+import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Implements CourseMatchUIPresenter for CourseMatchFrame
  */
 public class CourseMatchUIPresenter {
-    private final CourseMatchManager courseMatchManager;
+    private CourseMatchManager courseMatchManager;
 
-    public final String self;
-    private ArrayList<Student> matches = new ArrayList<>();
+    public String self;
     public CourseMatchUIPresenter(String userID, CourseDataAccess courseDataAccess, UserDataAccess userDataAccess, TagDataAccess tagDataAccess){
         this.self = userID;
         this.courseMatchManager = new CourseMatchManager(courseDataAccess, userDataAccess, tagDataAccess);
-    }
-
-    /**
-     * Finds student matches
-     * @param min_numCommon minimum number of common sessions
-     * @return a list of matched students
-     */
-    public ArrayList<Student> getMatches(int min_numCommon) {
-        this.matches = new ArrayList<>();
-        Student stu = (Student) courseMatchManager.getUserByID(this.self);
-        this.matches = this.courseMatchManager.getTopSameSessionStudents(stu, min_numCommon);
-        return this.matches;
     }
 
     /**
@@ -38,37 +26,18 @@ public class CourseMatchUIPresenter {
      * @param index which user id we want to get
      * @return user id of target index
      */
-    public String getSelectedUserID(int index){
-        return matches.get(index).getUserID();
-    }
-
-    /**
-     * Find list of users by filtering labels
-     * @param label labels we want to have commons with
-     * @return a list of users that share common labels
-     */
-    private ArrayList<Student> filterByLabel(String label){
-        return courseMatchManager.filterByLabel(this.matches, label);
-    }
-
-    /**
-     * @return whether there is atleast a match or not
-     */
-    private boolean noMatches(){
-        return matches.size() == 0;
+    public String getSelectedUserID(int index) {
+        return courseMatchManager.getSelectedUserID(index);
     }
 
     /**
      * Match students by labels
      * @param label labels that users should have common with
+     * @param numCommon the minimum of matches required for student to show up
      * @return a list of users that share the same labels
      */
-    public ArrayList<Student> getLabeledMatches(String label){
+    public DefaultListModel<String> createModelByLabel(String label, int numCommon) throws IOException {
 
-        if(!noMatches()){
-            return filterByLabel(label);
-        }else{
-            return new ArrayList<>();
-        }
+        return courseMatchManager.createModelByLabel(self, label, numCommon);
     }
 }

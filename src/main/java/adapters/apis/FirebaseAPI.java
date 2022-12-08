@@ -78,6 +78,9 @@ public class FirebaseAPI implements DatabaseInterface {
         return printUpdateResult(result);
     }
 
+
+
+
     public Map<String, Object> getEntry(String documentName){
         DocumentReference docRef = getDocRef(documentName);
         ApiFuture<DocumentSnapshot> future = docRef.get();

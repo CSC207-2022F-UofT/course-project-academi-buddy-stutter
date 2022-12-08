@@ -37,12 +37,14 @@ public class CommonSessionManager extends UseCase{
         }
     }
 
+
     /**
      * Getting common session between user and target.
      * @param selfUserID the user's id
      * @param targetUserID the target's id
      * @return The String of common sessions
      */
+
     public String getCommonSessions(String selfUserID, String targetUserID){
         ArrayList<String> commonCourseCode = new ArrayList<>();
         StringBuilder courseString = new StringBuilder();

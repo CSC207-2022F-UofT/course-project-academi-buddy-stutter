@@ -20,6 +20,8 @@ public class AdminFrame extends JFrame implements ActionListener {
     Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
     FrameNavigator frameNavigator;
 
+
+
     /**
      * This constructor method implements all UI elements for the AdminFrame.
      */
@@ -87,5 +89,6 @@ public class AdminFrame extends JFrame implements ActionListener {
         }
 
     }
+
 }
 

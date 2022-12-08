@@ -7,6 +7,7 @@ import java.util.List;
  * The strength checker for the password component in register.
  */
 public class StrengthChecker {
+
     public StrengthChecker() {
     }
 

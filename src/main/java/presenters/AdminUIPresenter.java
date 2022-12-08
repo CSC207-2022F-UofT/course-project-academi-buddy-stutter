@@ -46,4 +46,6 @@ public class AdminUIPresenter {
     public String getName() throws IOException {
         return adminActionsManager.getUserByID(self).getFullName();
     }
+
+
 }

@@ -14,7 +14,7 @@ import com.google.firebase.FirebaseOptions;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class main {
+public class Launcher {
 
     private static int CLOUD = 0;
     private static int LOCAL = 1;

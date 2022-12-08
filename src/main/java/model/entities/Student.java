@@ -156,19 +156,13 @@ public class Student extends User{
     public void updateFriendRequestSentList(String userID) {this.friendRequestSentList.add(userID);};
 
     /**
-     * Add a user as friend
-     * @param userID a user id to be added as user's friend
-     */
-    private void addFriend(String userID) {this.friendList.add(userID);}
-
-    /**
      * Accept a friend request
      * @param userID a user id to be accepted as a friend
      */
     public void acceptFriendRequest(String userID) {
         if (this.friend_request_list.contains(userID)) {
             this.friend_request_list.remove(userID);
-            this.addFriend(userID.trim().strip());
+            this.updateFriendList(userID.trim().strip());
         }
     }
 
@@ -180,7 +174,7 @@ public class Student extends User{
         userID = userID.trim().strip();
         if (this.friendRequestSentList.contains(userID)) {
             this.friendRequestSentList.remove(userID);
-            this.addFriend(userID);
+            this.updateFriendList(userID);
         }
     }
 

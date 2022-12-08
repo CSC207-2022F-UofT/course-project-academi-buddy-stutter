@@ -1,5 +1,4 @@
 package views;
-import model.entities.Student;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;

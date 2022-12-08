@@ -5,6 +5,9 @@ import database.local.LocalTagData;
 import database.local.LocalTempDataFactory;
 import database.local.LocalUserData;
 import model.usecases.ProfileManager;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,14 +29,29 @@ public class UserTest extends LocalTempDataFactory {
 
     ProfileManager profileManager = new ProfileManager(cb, ub, tb);
 
-    /*@Test
-    void GetUserIDTest() {
-        String expected = "222";
-         User x = new User();
-         x.user_id = "222";
-         String actual = x.getUserID();
-        assertEquals(expected , actual);
-    }*/
-
+    @Test
+    void getUserIDTest() {Assertions.assertEquals("111", STUDENTA.getUserID());}
+    @Test
+    void getFullNameTest() {
+        Assertions.assertEquals("studenta", STUDENTA.getFullName());
+    }
+    @Test
+    void getUserInfoTest(){
+        Assertions.assertEquals("", STUDENTA.getUserInfo());
+    }
+    @Test
+    void setUserInfoTest(){
+        String infoUpdate = "HI";
+        Assertions.assertEquals("", STUDENTA.getUserInfo());
+        STUDENTA.setUserInfo(infoUpdate);
+        Assertions.assertEquals(infoUpdate, STUDENTA.getUserInfo());
+    }
+    @Test
+    void setUserIDTest(){
+        String idUpdate = "11111";
+        Assertions.assertEquals("111", STUDENTA.getUserID());
+        STUDENTA.setUserID(idUpdate);
+        Assertions.assertEquals(idUpdate, STUDENTA.getUserID());
+    }
 
 }

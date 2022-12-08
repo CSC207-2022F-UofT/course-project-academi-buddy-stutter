@@ -113,7 +113,7 @@ public class CourseMatchManager extends UseCase{
      * @param minNumOfCommon the minimum number of common courses.
      * @return Array list of students that are matched to the student parameter, in descending order by number of common.
      */
-    public ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) throws IOException {
+    private ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) throws IOException {
 
         updateMatchCount(student);
         ArrayList<String>[] matchedList = this.getMatchedArray();
@@ -161,7 +161,7 @@ public class CourseMatchManager extends UseCase{
      * @param label The label to filter by.
      * @return The ArrayList of matched students that are of the same label.
      */
-    public ArrayList<Student> filterByLabel(ArrayList<Student> matches, String label){
+    private ArrayList<Student> filterByLabel(ArrayList<Student> matches, String label){
         ArrayList<Student> filtered = new ArrayList<>();
         for(Student s: matches){
             ArrayList<String> labelNames = new ArrayList<>();
@@ -178,11 +178,12 @@ public class CourseMatchManager extends UseCase{
 
     /**
      * Finds student matches
+     * @param studentID id of current student
      * @param min_numCommon minimum number of common sessions
      * @return a list of matched students
      * @throws IOException fails to find matching students
      */
-    public ArrayList<Student> getMatches(String studentID, int min_numCommon) throws IOException {
+    private ArrayList<Student> getMatches(String studentID, int min_numCommon) throws IOException {
         Student stu = (Student) this.getUserByID(studentID);
         ArrayList<Student> matches = this.getTopSameSessionStudents(stu, min_numCommon);
         return matches;
@@ -190,10 +191,11 @@ public class CourseMatchManager extends UseCase{
 
     /**
      * Find list of users by filtering labels
+     * @param allMatches list of all matched students
      * @param label labels we want to have commons with
      * @return a list of users that share common labels
      */
-    public ArrayList<Student> getLabeledMatches(ArrayList<Student> allMatches, String label){
+    private ArrayList<Student> getLabeledMatches(ArrayList<Student> allMatches, String label){
 
         if(!(allMatches.size() == 0)){
             return this.filterByLabel(allMatches, label);
@@ -202,6 +204,13 @@ public class CourseMatchManager extends UseCase{
         }
     }
 
+    /**
+     * Create model for JList depending on label
+     * @param studentID id of current student
+     * @param label labels we want to have commons with
+     * @param numCommon the minimum number of matched courses
+     * @return a Jlist model that can be used to up-dated the match results
+     */
     public DefaultListModel<String> createModelByLabel(String studentID, String label, int numCommon) throws IOException {
         DefaultListModel<String> matchedStu = new DefaultListModel<>();
         ArrayList<Student> currMatches;
@@ -211,18 +220,21 @@ public class CourseMatchManager extends UseCase{
             currMatches = this.getMatches(studentID, numCommon);
             currMatches = this.getLabeledMatches(currMatches, label);
         }
+        matchedID = new ArrayList<>();
         for(Student s: currMatches){
-            matchedID = new ArrayList<>();
             matchedID.add(s.getUserID());
             matchedStu.addElement(s.getFullName());
         }
         return matchedStu;
     }
 
-    public ArrayList<String> getMatchedID(){
-        return this.matchedID;
+    /**
+     * @param index helps get the index-th match
+     * @return a student id at that index of the JList
+     */
+    public String getSelectedUserID(int index){
+        return this.matchedID.get(index);
     }
-
 }
 
 

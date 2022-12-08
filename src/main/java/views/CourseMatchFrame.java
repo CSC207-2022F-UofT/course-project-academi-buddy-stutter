@@ -1,7 +1,5 @@
 package views;
 
-import model.entities.Student;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -12,7 +10,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * This class implements MatchFrame that allows user to find study buddy through matching same courses.
@@ -114,7 +111,6 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
 
     /**
      * This method appends matched study buddies to the JList, displaying their full names instead of User ID.
-     * @param students this list contains matched study buddies for the user
      */
     private void addMatches(){
 //        clearMatches();
@@ -159,7 +155,8 @@ public class CourseMatchFrame extends JFrame implements ActionListener, ItemList
             if(matchedList.getSelectedIndex() != -1){
                 String selectedName = matchedList.getSelectedValue();
                 String selectedID = frameNavigator.getMatchUIPresenter().getSelectedUserID(matchedList.getSelectedIndex());
-                System.out.println(selectedName + selectedID);
+
+//                System.out.println(selectedName + selectedID);
                 frameNavigator.toProfileDisplay(selectedID);
             }
             this.setCursor(Cursor.getDefaultCursor());

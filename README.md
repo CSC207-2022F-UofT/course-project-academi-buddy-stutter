@@ -147,7 +147,7 @@ user.
 
 
 ## Clean Architecture
-- Dependency Matrix. Inner layer classes has no dependency on outer layer classes, or through an interface when an dependency is necessary. Note that the left most column represents the test package, not Launcher.
+- Dependency Matrix. Inner layer classes has no dependency on outer layer classes, or through an interface when an dependency is necessary. Note that the left most column represents the test package, not Launcher. Also be aware that neither LocalData nor CloudData classes are database: LocalData only holds data temporarily in ArrayLists and HashMaps for testing, while CloudData classes are merely data IOs through the DatabaseInterface for the only real database class of our program, FireBaseAPI. One may say CloudData and LocalData classes are special use case classes in our program.
 
 ![image](images/Class_Dependency_Matrix.png)
 
@@ -155,7 +155,7 @@ user.
 
 ![image](images/Class_Dependency_Diagram.png)
 
-- Softawre architecture is structured in a way that code encapsulates the user logic but keeps it separate from the delivery mechanism.
+- Software architecture is structured in a way that code encapsulates the user logic but keeps it separate from the delivery mechanism.
 
 ## SOLID Principle
 

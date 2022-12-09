@@ -2,7 +2,7 @@ package entities;
 
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import database.local.LocalUserData;
 import model.entities.Course;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CourseTest extends LocalTempDataFactory {
+public class CourseTest extends LocalTempDataBuilder {
     final ArrayList<?> managers;
 
     {

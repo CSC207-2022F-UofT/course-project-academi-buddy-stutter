@@ -1,6 +1,6 @@
 package usecases;
 
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import model.usecases.StrengthChecker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class StrengthCheckerTest extends LocalTempDataFactory {
+class StrengthCheckerTest extends LocalTempDataBuilder {
 
 
     @Test

@@ -1,4 +1,4 @@
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
@@ -43,10 +43,10 @@ public class Launcher {
             frameNavigator.toLogin();
         } 
         else if (databaseLocation == LOCAL){
-            LocalTempDataFactory localTempDataFactory = new LocalTempDataFactory();
-            LocalUserData ub = (LocalUserData) localTempDataFactory.getLocalDatabase().get(0);
-            LocalCourseData cb = (LocalCourseData) localTempDataFactory.getLocalDatabase().get(1);
-            LocalTagData tb = (LocalTagData) localTempDataFactory.getLocalDatabase().get(2);
+            LocalTempDataBuilder localTempDataBuilder = new LocalTempDataBuilder();
+            LocalUserData ub = (LocalUserData) localTempDataBuilder.getLocalDatabase().get(0);
+            LocalCourseData cb = (LocalCourseData) localTempDataBuilder.getLocalDatabase().get(1);
+            LocalTagData tb = (LocalTagData) localTempDataBuilder.getLocalDatabase().get(2);
             frameNavigator = new FrameNavigator(null, cb, ub, tb);
             frameNavigator.toLogin();
         }

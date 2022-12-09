@@ -1,6 +1,6 @@
 package usecases;
 
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-class CourseMatchManagerTest extends LocalTempDataFactory {
+class CourseMatchManagerTest extends LocalTempDataBuilder {
 
     final ArrayList<?> managers;
 

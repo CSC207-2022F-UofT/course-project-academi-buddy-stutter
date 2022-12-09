@@ -19,7 +19,7 @@ import java.awt.event.KeyListener;
 
 public class LoginFrame extends JFrame implements ActionListener, KeyListener {
 
-    final JLabel programTitle = new JLabel("STUDY BUDDY FINDER");
+    final JLabel programTitle = new JLabel("AcademiBuddy");
     final JLabel userLabel = new JLabel("USER ID:");
     final JLabel passwordLabel = new JLabel("Password:");
     final JLabel errorLabel = new JLabel("Error: Incorrect login info");
@@ -27,6 +27,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
     final JButton registerBTN = new JButton("REGISTER");
     final JTextField userIDText = new JTextField("");
     final JPasswordField passwordText = new JPasswordField("");
+    final JLabel subTitle = new JLabel("Stutter");
 
     final FrameNavigator frameNavigator;
     final Cursor waitCursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -60,8 +61,10 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
         // labels
         userLabel.setBounds(10,75,100,20);
         passwordLabel.setBounds(10,100,100,20);
-        programTitle.setBounds(60, 0, 300, 50);
-        programTitle.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        programTitle.setBounds(73, 0, 300, 50);
+        programTitle.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        subTitle.setFont(new Font("Times New Roman", Font.PLAIN, 5));
+        subTitle.setBounds(160, 30, 300, 50);
         errorLabel.setBounds(110, 120,300,20);
         errorLabel.setVisible(false);
         errorLabel.setForeground(Color.red);
@@ -73,6 +76,7 @@ public class LoginFrame extends JFrame implements ActionListener, KeyListener {
         passwordText.addKeyListener(this);
 
         // adds objects to the frame
+        this.add(subTitle);
         this.add(loginBTN);
         this.add(registerBTN);
         this.add(userLabel);

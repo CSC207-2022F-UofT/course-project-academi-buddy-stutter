@@ -2,7 +2,7 @@ package adapters.apis;
 
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import database.local.LocalUserData;
 import org.junit.jupiter.api.Test;
 import model.usecases.ProfileManager;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BiweeklyapiTest extends LocalTempDataFactory {
+public class BiweeklyapiTest extends LocalTempDataBuilder {
     final ArrayList<?> managers;
 
     {

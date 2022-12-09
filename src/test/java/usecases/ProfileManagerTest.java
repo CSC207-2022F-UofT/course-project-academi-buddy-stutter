@@ -1,6 +1,6 @@
 package usecases;
 
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class ProfileManagerTest extends LocalTempDataFactory {
+public class ProfileManagerTest extends LocalTempDataBuilder {
     final ArrayList<?> managers;
 
     {

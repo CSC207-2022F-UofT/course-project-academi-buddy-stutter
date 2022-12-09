@@ -1,6 +1,6 @@
 package usecases;
 
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import database.local.LocalCourseData;
 import database.local.LocalTagData;
 import database.local.LocalUserData;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 
-class TagSelectManagerTest extends LocalTempDataFactory {
+class TagSelectManagerTest extends LocalTempDataBuilder {
 
     final ArrayList<?> managers;
 

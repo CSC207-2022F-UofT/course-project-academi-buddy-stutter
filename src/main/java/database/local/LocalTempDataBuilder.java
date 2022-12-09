@@ -4,7 +4,7 @@ import model.entities.*;
 
 import java.util.ArrayList;
 
-public class LocalTempDataFactory {
+public class LocalTempDataBuilder {
 
     protected final Course COURSE_A = new Course(
             "999",

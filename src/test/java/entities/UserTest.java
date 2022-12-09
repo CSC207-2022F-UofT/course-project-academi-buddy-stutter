@@ -1,10 +1,10 @@
 package entities;
 
-import database.local.LocalTempDataFactory;
+import database.local.LocalTempDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class UserTest extends LocalTempDataFactory {
+public class UserTest extends LocalTempDataBuilder {
 
     @Test
     void getUserIDTest() {Assertions.assertEquals("111", STUDENT_A.getUserID());}

@@ -20,7 +20,7 @@ public class CalendarInterpreter {
      * @param fileName the name of the file as a String.
      * @return calendar as a String.
      */
-    public String readCalendar(String fileName) {
+    private String readCalendar(String fileName) {
 
         try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
             StringBuilder builder = new StringBuilder();

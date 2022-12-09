@@ -20,12 +20,6 @@ public class StudentTest extends LocalTempDataBuilder {
     {
         managers = super.initializeStaticDatabase();
     }
-
-    final LocalUserData ub = (LocalUserData) managers.get(0);
-    final LocalCourseData cb = (LocalCourseData) managers.get(1);
-    final LocalTagData tb = (LocalTagData) managers.get(2);
-
-
     @Test
     void setAndGetTabsOfInterestsTest() {
         ArrayList<InterestTag> tags = new ArrayList<>();

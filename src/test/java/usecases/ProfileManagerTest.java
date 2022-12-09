@@ -29,7 +29,6 @@ public class ProfileManagerTest extends LocalTempDataBuilder {
         for(String userID: ub.getUserIDList()){
             Assertions.assertEquals(ub.getUserByID(userID).getFullName(), profileManager.getName(userID));
         }
-
     }
 
 }

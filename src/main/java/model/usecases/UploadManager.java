@@ -86,5 +86,9 @@ public class UploadManager extends UseCase {
         updateDatabase(studentID);
     }
 
+    public String getName(String userID){
+        return this.getUserByID(userID).getFullName();
+    }
+
 
 }

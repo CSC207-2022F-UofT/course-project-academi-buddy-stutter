@@ -32,6 +32,6 @@ public class HomeUIPresenter {
      * @return user's full name
      */
     public String getName() {
-        return uploadManager.getUserByID(self).getFullName();
+        return uploadManager.getName(self);
     }
 }

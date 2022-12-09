@@ -42,7 +42,7 @@ public class AdminUIPresenter {
      * @return user's full name
      */
     public String getName() {
-        return adminActionsManager.getUserByID(self).getFullName();
+        return adminActionsManager.getName(self);
     }
 
 

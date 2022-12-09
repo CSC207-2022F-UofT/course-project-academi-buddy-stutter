@@ -116,4 +116,8 @@ public class AdminActionsManager extends UseCase{
     public boolean userExist(String userID){
         return this.ub.existByID(userID);
     }
+
+    public String getName(String selfID) {
+        return this.getUserByID(selfID).getFullName();
+    }
 }

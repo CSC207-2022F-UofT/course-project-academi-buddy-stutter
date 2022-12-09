@@ -1,0 +1,61 @@
+package usecases;
+
+import database.local.LocalTempDataBuilder;
+import database.local.LocalCourseData;
+import database.local.LocalTagData;
+import database.local.LocalUserData;
+import model.entities.InterestTag;
+import model.entities.Student;
+import model.usecases.TagMatchManager;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+class TagMatchManagerTest extends LocalTempDataBuilder {
+
+    final ArrayList<?> managers;
+
+    {
+        managers = super.initializeStaticDatabase();
+    }
+
+    final LocalUserData ub = (LocalUserData) managers.get(0);
+    final LocalCourseData cb = (LocalCourseData) managers.get(1);
+    final LocalTagData tb = (LocalTagData) managers.get(2);
+
+    final TagMatchManager tagmatchManager = new TagMatchManager(cb, ub, tb);
+
+    @Test
+    //it tests setSelectTag() as well.
+    void match(){
+        for(String tagName: tb.getTagNameList()){
+            tagmatchManager.setSelectedTag(tagName);
+            ArrayList<String> selectedStudents = tb.getStudentList(new InterestTag(tagName));
+            ArrayList<Student> matchedStudents = tagmatchManager.match();
+            ArrayList<String> matchedStudentIDs = new ArrayList<>();
+            for (Student student: matchedStudents){
+                matchedStudentIDs.add(student.getUserID());
+            }
+            Assertions.assertIterableEquals(selectedStudents, matchedStudentIDs);
+        }
+    }
+
+    @Test
+    void getNameList() {
+        for(String tagName: tb.getTagNameList()){
+            tagmatchManager.setSelectedTag(tagName);
+            ArrayList<String> selectedStudents = tb.getStudentList(new InterestTag(tagName));
+            ArrayList<String> selectedStudentNames = new ArrayList<>();
+            for (String studentID: selectedStudents){
+                selectedStudentNames.add(ub.getUserByID(studentID).getFullName());
+            }
+            selectedStudentNames.remove(STUDENT_A.getFullName());
+            List<String> matchedNameList = tagmatchManager.getStudentName(STUDENT_A.getUserID());
+            Assertions.assertIterableEquals(selectedStudentNames, matchedNameList);
+        }
+    }
+}
+

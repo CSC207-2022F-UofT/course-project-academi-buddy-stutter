@@ -1,4 +1,4 @@
-# CSC207 Group-106 "STUDY BUDDY FINDER"
+# CSC207 Group-106 "AcademiBuddy"
 
 "ACADEMI BUDDY" is a program that allows similar interest users to connect with each other, based
 on each individual's course schedule.

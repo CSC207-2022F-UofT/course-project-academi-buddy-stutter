@@ -1,34 +1,36 @@
 package usecases;
 
+import adapters.apis.BiweeklyAPI;
 import database.local.LocalTempDataFactory;
+import model.entities.Course;
+import model.usecases.CalendarInterpreter;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalendarInterpreterTest extends LocalTempDataFactory {
-
- /*   @Test
-    void readCalendarTest() {
-
-        CalendarInterface y;
-        CalendarInterpreter x = new CalendarInterpreter(y);
-
-        String actual = x.readCalendar("courseCalendar.ics");
-
-        String expected = "1";
-        assertEquals(expected , actual);
-
-    }
 
     @Test
     void GetCoursesTest() {
 
-        CalendarInterface y;
-        CalendarInterpreter x = new CalendarInterpreter(y);
+        BiweeklyAPI x = new BiweeklyAPI();
+        CalendarInterpreter y = new CalendarInterpreter(x);
 
-        ArrayList<Course> actual = x.getCourses("calendar");
 
-        String expected = "1";
-        assertEquals(expected , actual);
+        ArrayList<Course>  actual = y.getCourses("coursesCalendar.ics");
 
-    } */
+        assertEquals("CSC207H1" , actual.get(0).getCourseCode());
+        assertEquals("LEC" , actual.get(0).getCourseType());
+        assertEquals("0301" , actual.get(0).getSessionNumber());
+        assertEquals("Software Design" , actual.get(0).getCourseName());
+        assertEquals("Tue" , actual.get(0).getDayOfWeek());
+        assertEquals("15:00" , actual.get(0).getStartTime());
+        assertEquals("2022" , actual.get(0).getYear());
+
+
+    }
 
 
 }

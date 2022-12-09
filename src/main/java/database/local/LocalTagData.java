@@ -32,12 +32,14 @@ public class LocalTagData implements TagDataAccess {
 
     @Override
     public ArrayList<String> getStudentList(InterestTag tag) {
+        //noinspection unchecked
         Set<String> studentIDList = allTags.get(tag.getName()).keySet();
         return new ArrayList<>(studentIDList);
     }
 
     @Override
     public void addStudent(InterestTag tag, Student student) {
+        //noinspection unchecked
         allTags.get(tag.getName()).put(student.getUserID(), 1);
 
     }

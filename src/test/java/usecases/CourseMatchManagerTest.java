@@ -9,7 +9,9 @@ import model.usecases.CourseMatchManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 class CourseMatchManagerTest extends LocalTempDataFactory {
@@ -24,151 +26,190 @@ class CourseMatchManagerTest extends LocalTempDataFactory {
     final LocalCourseData cb = (LocalCourseData) managers.get(1);
     final LocalTagData tb = (LocalTagData) managers.get(2);
 
-    final CourseMatchManager courseMatchManager = new CourseMatchManager(cb, ub, tb);
+    CourseMatchManager courseMatchManager = new CourseMatchManager(cb, ub, tb);
 
     @Test
-    void getTopCommonSessionStudentTestA() {
+    void createLabelByModelTestA() {
         //COURSE_A: A, B, C
         //COURSE_B: A, B
         //COURSE_C:    B
         //COURSE_D:    B, C
 
-        ArrayList<Student> actual = courseMatchManager.getTopSameSessionStudents(STUDENT_A, 1);
-        ArrayList<Student> expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        expected.add(STUDENT_C);
-        Assertions.assertIterableEquals(expected, actual);
+        DefaultListModel<String> actual = courseMatchManager.createModelByLabel(STUDENT_A.getUserID(), "None", 1);
+        DefaultListModel<String> expected = new DefaultListModel<>();
+        for (Student student : Arrays.asList(STUDENT_B, STUDENT_C)) {
+            expected.addElement(student.getFullName());
+        }
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        actual = courseMatchManager.getTopSameSessionStudents(STUDENT_A, 2);
-        expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        Assertions.assertIterableEquals(expected, actual);
+        actual = courseMatchManager.createModelByLabel(STUDENT_A.getUserID(), "None", 2);
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_B.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        expected = new ArrayList<>();
+        expected = new DefaultListModel<>();
         for(int i = 3; i < 12; i++){
-            actual = courseMatchManager.getTopSameSessionStudents(STUDENT_A, i);
-            Assertions.assertIterableEquals(expected, actual);
+            actual = courseMatchManager.createModelByLabel(STUDENT_A.getUserID(), "None", i);
+            for(int j = 0; j < actual.getSize(); j++){
+                Assertions.assertEquals(expected.get(j), actual.get(j));
+            }
         }
     }
 
     @Test
-    void getTopCommonSessionStudentTestB() {
+    void createLabelByModelTestB() {
         //COURSE_A: A, B, C
         //COURSE_B: A, B
         //COURSE_C:    B
         //COURSE_D:    B, C
 
-        ArrayList<Student> actual = courseMatchManager.getTopSameSessionStudents(STUDENT_B, 1);
-        ArrayList<Student> expected = new ArrayList<>();
-        expected.add(STUDENT_A);
-        expected.add(STUDENT_C);
-        Assertions.assertIterableEquals(expected, actual);
+        DefaultListModel<String> actual = courseMatchManager.createModelByLabel(STUDENT_B.getUserID(), "None", 1);
+        DefaultListModel<String> expected = new DefaultListModel<>();
+        for (Student student : Arrays.asList(STUDENT_A, STUDENT_C)) {
+            expected.addElement(student.getFullName());
+        }
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        expected = new ArrayList<>();
-        expected.add(STUDENT_A);
-        expected.add(STUDENT_C);
-        actual = courseMatchManager.getTopSameSessionStudents(STUDENT_B, 2);
-        Assertions.assertIterableEquals(expected, actual);
+        actual = courseMatchManager.createModelByLabel(STUDENT_B.getUserID(), "None", 2);
+        expected = new DefaultListModel<>();
+        for (Student student : Arrays.asList(STUDENT_A, STUDENT_C)) {
+            expected.addElement(student.getFullName());
+        }
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        expected = new ArrayList<>();
+        expected = new DefaultListModel<>();
         for(int i = 3; i < 12; i++){
-            actual = courseMatchManager.getTopSameSessionStudents(STUDENT_B, i);
-            Assertions.assertIterableEquals(expected, actual);
+            actual = courseMatchManager.createModelByLabel(STUDENT_B.getUserID(), "None", i);
+            for(int j = 0; j < actual.getSize(); j++){
+                Assertions.assertEquals(expected.get(j), actual.get(j));
+            }
         }
     }
 
     @Test
-    void getTopCommonSessionStudentTestC() {
+    void createLabelByModelTestC() {
         //COURSE_A: A, B, C
         //COURSE_B: A, B
         //COURSE_C:    B
         //COURSE_D:    B, C
+        DefaultListModel<String> actual = courseMatchManager.createModelByLabel(STUDENT_C.getUserID(), "None", 1);
+        DefaultListModel<String> expected = new DefaultListModel<>();
+        for (Student student : Arrays.asList(STUDENT_B, STUDENT_A)) {
+            expected.addElement(student.getFullName());
+        }
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        ArrayList<Student> actual = courseMatchManager.getTopSameSessionStudents(STUDENT_C, 1);
-        ArrayList<Student> expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        expected.add(STUDENT_A);//list should be sorted by number of common sessions in descending order. B has 2, A has 1.
-        Assertions.assertIterableEquals(expected, actual);
+        actual = courseMatchManager.createModelByLabel(STUDENT_C.getUserID(), "None", 2);
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_B.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        actual = courseMatchManager.getTopSameSessionStudents(STUDENT_C, 2);
-        expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        Assertions.assertIterableEquals(expected, actual);
-
-        expected = new ArrayList<>();
+        expected = new DefaultListModel<>();
         for(int i = 3; i < 12; i++){
-            actual = courseMatchManager.getTopSameSessionStudents(STUDENT_C, i);
-            Assertions.assertIterableEquals(expected, actual);
+            actual = courseMatchManager.createModelByLabel(STUDENT_C.getUserID(), "None", i);
+            for(int j = 0; j < actual.getSize(); j++){
+                Assertions.assertEquals(expected.get(j), actual.get(j));
+            }
         }
     }
 
     @Test
-    void filterByLabelTestA() {
+    void createLabelByModelLabelTestA() {
         //Meet: A, B
         //Collaborate: A
         //Discuss: B, C
-        ArrayList<Student> matchedList = courseMatchManager.getTopSameSessionStudents(STUDENT_A, 1);
+        DefaultListModel<String> actual = courseMatchManager.createModelByLabel(STUDENT_A.getUserID(), "Want to Meet", 1);
+        DefaultListModel<String> expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_B.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        ArrayList<Student> actual = courseMatchManager.filterByLabel(matchedList, "Want to Meet");
-        ArrayList<Student> expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        Assertions.assertIterableEquals(expected, actual);
+        actual = courseMatchManager.createModelByLabel(STUDENT_A.getUserID(), "Want to Collaborate", 2);
+        expected = new DefaultListModel<>();
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        actual = courseMatchManager.filterByLabel(matchedList, "Want to Collaborate");
-        expected = new ArrayList<>();
-        Assertions.assertIterableEquals(expected, actual);
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_B.getFullName());
+        expected.addElement(STUDENT_C.getFullName());
+        for(int i = 3; i < 12; i++){
+            actual = courseMatchManager.createModelByLabel(STUDENT_A.getUserID(), "Want to Discuss", i);
+            for(int j = 0; j < actual.getSize(); j++){
+                Assertions.assertEquals(expected.get(j), actual.get(j));
+            }
+        }
+    }
+    @Test
+    void createLabelByModelLabelTestB() {
+        //Meet: A, B
+        //Collaborate: A
+        //Discuss: B, C
+        DefaultListModel<String> actual = courseMatchManager.createModelByLabel(STUDENT_B.getUserID(), "Want to Meet", 1);
+        DefaultListModel<String> expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_A.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        actual = courseMatchManager.filterByLabel(matchedList, "Want to Discuss");
-        expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        expected.add(STUDENT_C);
-        Assertions.assertIterableEquals(expected, actual);
+        actual = courseMatchManager.createModelByLabel(STUDENT_B.getUserID(), "Want to Collaborate", 2);
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_A.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
+
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_C.getFullName());
+        for(int i = 3; i < 12; i++){
+            actual = courseMatchManager.createModelByLabel(STUDENT_B.getUserID(), "Want to Discuss", i);
+            for(int j = 0; j < actual.getSize(); j++){
+                Assertions.assertEquals(expected.get(j), actual.get(j));
+            }
+        }
     }
 
     @Test
-    void filterByLabelTestB() {
+    void createLabelByModelLabelTestC() {
         //Meet: A, B
         //Collaborate: A
         //Discuss: B, C
-        ArrayList<Student> matchedList = courseMatchManager.getTopSameSessionStudents(STUDENT_B, 1);
+        DefaultListModel<String> actual = courseMatchManager.createModelByLabel(STUDENT_C.getUserID(), "Want to Meet", 1);
+        DefaultListModel<String> expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_B.getFullName());
+        expected.addElement(STUDENT_A.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        ArrayList<Student> actual = courseMatchManager.filterByLabel(matchedList, "Want to Meet");
-        ArrayList<Student> expected = new ArrayList<>();
-        expected.add(STUDENT_A);
-        Assertions.assertIterableEquals(expected, actual);
+        actual = courseMatchManager.createModelByLabel(STUDENT_C.getUserID(), "Want to Collaborate", 2);
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_A.getFullName());
+        for(int i = 0; i < actual.getSize(); i++){
+            Assertions.assertEquals(expected.get(i), actual.get(i));
+        }
 
-        actual = courseMatchManager.filterByLabel(matchedList, "Want to Collaborate");
-        expected = new ArrayList<>();
-        expected.add(STUDENT_A);
-        Assertions.assertIterableEquals(expected, actual);
-
-        actual = courseMatchManager.filterByLabel(matchedList, "Want to Discuss");
-        expected = new ArrayList<>();
-        expected.add(STUDENT_C);
-        Assertions.assertIterableEquals(expected, actual);
+        expected = new DefaultListModel<>();
+        expected.addElement(STUDENT_B.getFullName());
+        for(int i = 3; i < 12; i++){
+            actual = courseMatchManager.createModelByLabel(STUDENT_C.getUserID(), "Want to Discuss", i);
+            for(int j = 0; j < actual.getSize(); j++){
+                Assertions.assertEquals(expected.get(j), actual.get(j));
+            }
+        }
     }
 
-    @Test
-    void filterByLabelTestC() {
-        //Meet: A, B
-        //Collaborate: A
-        //Discuss: B, C
-        ArrayList<Student> matchedList = courseMatchManager.getTopSameSessionStudents(STUDENT_C, 1);
-
-        ArrayList<Student> actual = courseMatchManager.filterByLabel(matchedList, "Want to Meet");
-        ArrayList<Student> expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        expected.add(STUDENT_A);
-        Assertions.assertIterableEquals(expected, actual);
-
-        actual = courseMatchManager.filterByLabel(matchedList, "Want to Collaborate");
-        expected = new ArrayList<>();
-        expected.add(STUDENT_A);
-        Assertions.assertIterableEquals(expected, actual);
-
-        actual = courseMatchManager.filterByLabel(matchedList, "Want to Discuss");
-        expected = new ArrayList<>();
-        expected.add(STUDENT_B);
-        Assertions.assertIterableEquals(expected, actual);
-    }
 }

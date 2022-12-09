@@ -127,7 +127,7 @@ public class CloudUserData implements UserDataAccess {
 
                 //
                 String tagString = (String) userData.get("tags of interests");
-                List<String> tags = Arrays.asList(tagString.substring(1, tagString.length() - 1).split(", "));
+                String[] tags = tagString.substring(1, tagString.length() - 1).split(", ");
                 for(String t: tags) {
                     if(!t.equals("")){
                         InterestTag tag = new InterestTag(t);

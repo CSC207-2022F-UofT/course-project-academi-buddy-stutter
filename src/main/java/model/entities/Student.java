@@ -206,9 +206,7 @@ public class Student extends User{
      * @param course a course
      */
     public void removeCourse(Course course){
-        if(enrolled_course_codes.contains(course.getCourseCode())){
-            enrolled_course_codes.remove(course.getCourseCode());
-        }
+        enrolled_course_codes.remove(course.getCourseCode());
     }
 
     /**

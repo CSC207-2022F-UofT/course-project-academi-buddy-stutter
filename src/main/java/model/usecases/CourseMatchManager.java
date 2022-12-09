@@ -8,7 +8,6 @@ import model.entities.Student;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,24 +42,19 @@ public class CourseMatchManager extends UseCase{
         matchCount = new HashMap<>();
         ArrayList<String> enrolledCourse = student.getEnrolledCourseCodes();
         for(String course: enrolledCourse){
-            try {
-                ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
+            ArrayList<String> studentIDs = cb.getCourse(course, "LEC").getEnrolledIDList();
 
-                for(String id : studentIDs){
-                    if(!id.equals(student.getUserID())){
-                        if(matchCount.containsKey(id)){
-                            int currentCount = matchCount.get(id);
-                            currentCount ++;
-                            matchCount.put(id, currentCount);
-                        }else{
-                            matchCount.put(id, 1);
-                        }
+            for(String id : studentIDs){
+                if(!id.equals(student.getUserID())){
+                    if(matchCount.containsKey(id)){
+                        int currentCount = matchCount.get(id);
+                        currentCount ++;
+                        matchCount.put(id, currentCount);
+                    }else{
+                        matchCount.put(id, 1);
                     }
-
                 }
-            } catch (IOException e) {
-                System.out.println("CourseMatchManager.java getSameSessionList error probably related to cb.getLecCourse()");
-                throw new RuntimeException(e);
+
             }
         }
     }
@@ -69,6 +63,7 @@ public class CourseMatchManager extends UseCase{
      * return a ArrayList of matched ids
      * @return ArrayList of matched ids
      */
+    @SuppressWarnings("unchecked")
     private ArrayList<String>[] getMatchedArray(){
         String[] keys = this.matchCount.keySet().toArray(new String[0]);
 
@@ -113,20 +108,20 @@ public class CourseMatchManager extends UseCase{
      * @param minNumOfCommon the minimum number of common courses.
      * @return Array list of students that are matched to the student parameter, in descending order by number of common.
      */
-    private ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) throws IOException {
+    private ArrayList<Student> getTopSameSessionStudents(Student student, int minNumOfCommon) {
 
         updateMatchCount(student);
         ArrayList<String>[] matchedList = this.getMatchedArray();
         int maxCommonCount = maxCommon(matchedList);
 
-        ArrayList<String>[] targetMatchedList = Arrays.copyOfRange(matchedList, minNumOfCommon + 1, maxCommonCount + 1);
+        ArrayList<String>[] targetMatchedList = Arrays.copyOfRange(matchedList, minNumOfCommon, maxCommonCount + 1);
         ArrayUtils.reverse(targetMatchedList);
 
         ArrayList<String> ids = new ArrayList<>();
-        for(int i = 0; i<targetMatchedList.length; i++){
-            for(int j = 0; j < targetMatchedList[i].size(); j++){
-                if(!targetMatchedList[i].get(j).isEmpty()){
-                    ids.add(targetMatchedList[i].get(j));
+        for (ArrayList<String> strings : targetMatchedList) {
+            for (String string : strings) {
+                if (!string.isEmpty()) {
+                    ids.add(string);
                 }
 
             }
@@ -181,9 +176,8 @@ public class CourseMatchManager extends UseCase{
      * @param studentID id of current student
      * @param min_numCommon minimum number of common sessions
      * @return a list of matched students
-     * @throws IOException fails to find matching students
      */
-    private ArrayList<Student> getMatches(String studentID, int min_numCommon) throws IOException {
+    private ArrayList<Student> getMatches(String studentID, int min_numCommon) {
         Student stu = (Student) this.getUserByID(studentID);
         ArrayList<Student> matches = this.getTopSameSessionStudents(stu, min_numCommon);
         return matches;
@@ -197,7 +191,7 @@ public class CourseMatchManager extends UseCase{
      */
     private ArrayList<Student> getLabeledMatches(ArrayList<Student> allMatches, String label){
 
-        if(!(allMatches.size() == 0)){
+        if(!(allMatches.isEmpty())){
             return this.filterByLabel(allMatches, label);
         }else{
             return new ArrayList<>();
@@ -211,7 +205,7 @@ public class CourseMatchManager extends UseCase{
      * @param numCommon the minimum number of matched courses
      * @return a Jlist model that can be used to up-dated the match results
      */
-    public DefaultListModel<String> createModelByLabel(String studentID, String label, int numCommon) throws IOException {
+    public DefaultListModel<String> createModelByLabel(String studentID, String label, int numCommon) {
         DefaultListModel<String> matchedStu = new DefaultListModel<>();
         ArrayList<Student> currMatches;
         if(label.equals("None")){

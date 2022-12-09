@@ -187,9 +187,9 @@ We created student objects outside and pass each student into course.
 
 We used builder design pattern to create our local testing data. These data needs to be built in order and has fair amount of complexity since we need to add courses and students, and their friend request in right way.
 
-**Facade Design Pattern: FrameNavigator**
+**Façade Design Pattern: FrameNavigator**
 
-Each frame has a presenter and associated usecase. At first, to navigate a frame, we just initialized the frame presenter and created a frame. Then we found we could implement a Facade design pattern. FrameNavigator is created to initialize all UIPresenters, and implemented "facade methods" to initialize frames.
+Each frame has a presenter and associated usecase. At first, to navigate a frame, we just initialized the frame presenter and created a frame. Then we found we could implement a Facade design pattern. FrameNavigator is created to initialize all UIPresenters, and implemented "façade methods" to initialize frames.
 
 Before:
 

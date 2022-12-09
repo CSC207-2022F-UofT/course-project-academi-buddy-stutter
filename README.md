@@ -1,6 +1,6 @@
 # CSC207 Group-106 "STUDY BUDDY FINDER"
 
-"STUDY BUDDY FINDER" is a program that allows similar interest users to connect with each other, based
+"ACADEMI BUDDY" is a program that allows similar interest users to connect with each other, based
 on each individual's course schedule.
 
 The user navigates through the program's UI, by the end, the program returns other students for the user to connect
@@ -172,3 +172,21 @@ We made sure all classes that implement an interface override all of the interfa
 **Interface Segregation Principle**
 
 Since the use cases have to depend on the database, we made an interface for the database classes to implement and made the use case classes depend on the interface instead. There are many examples of this beyond the database, for example, our Calendarinterpreter depends on an external library, so we made a ClaendarInterface and made a BiweeklyAPI to implement it and let CalendarInterpreter depend on the interface.
+
+##Design Patterns
+
+**Iterator Design Pattern: write,read counter**
+
+We made write counter and read counter to record on firebase To increase efficeincy and runtime. In each counter there is integer count, whenever read or count occurs, they call the method call addCount method. Whenever we need to get count, we just call getCount.
+
+**Dependency Injection Design Pattern: course class**
+
+We created student objects outside and pass each student into course.
+
+**Builder Design Pattern: LocalTempDataBuilder**
+
+We used builder design pattern to create our local testing data. These data needs to be built in order and has fair amount of complexity since we need to add courses and students, and their friend request in right way.
+
+**Facade Design Pattern: FrameNavigator**
+
+Each frame has a presenter and associated usecase. At first, to navigate a frame, we just initialized the frame presenter and created a frame. Then we found we could implement a Facade design pattern. FrameNavigator is created to initialize all UIPresenters, and implemented "facade methods" to initialize frames.

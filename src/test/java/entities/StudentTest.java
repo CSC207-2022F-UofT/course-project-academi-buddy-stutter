@@ -1,9 +1,6 @@
 package entities;
 
-import database.local.LocalCourseData;
-import database.local.LocalTagData;
 import database.local.LocalTempDataBuilder;
-import database.local.LocalUserData;
 import model.entities.InterestTag;
 import model.entities.Label;
 import org.junit.jupiter.api.Assertions;

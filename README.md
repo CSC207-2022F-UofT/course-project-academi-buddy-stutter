@@ -156,15 +156,19 @@ user.
 ## SOLID Principle
 
 **Single Responsibility Principle**
+
 We left some unused variables in Course and Student classes and adapted our databases to them for future feature expansion.
 Each use cases have its own presenter, frame, and manager, and if we need to use some feature or method across multiple use cases, we make a separate use case.
 
 **Open-Closed Principle**
+
 The project can be extended in many ways. For example, we used multiple interfaces throughout the project. If we decide to use another cloud service instead of Google’s firebase, say AWS, we can write an AmazonAPI and replace the FirebaseAPI, without having to change anything else. We can do the same for the local database in the same fashion.
 Since we have different types of accounts, we made a user class. And made student and admin its child class, we made sure to call user instead of specific user type through our program whenever possible. And whenever we need to cast the user to a specific user type, we made sure to use a try-catch clause.
 
 **Liskov Substitution Principle**
+
 We made sure all classes that implement an interface override all of the interface methods.
 
 **Interface Segregation Principle**
+
 Since the use cases have to depend on the database, we made an interface for the database classes to implement and made the use case classes depend on the interface instead. There are many examples of this beyond the database, for example, our Calendarinterpreter depends on an external library, so we made a ClaendarInterface and made a BiweeklyAPI to implement it and let CalendarInterpreter depend on the interface.

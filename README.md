@@ -150,7 +150,9 @@ user.
 - Dependency Matrix. Inner layer classes has no dependency on outer layer classes, or through an interface when an dependency is necessary. Note that the left most column represents the test package, not Launcher.
 
 ![image](images/Class_Dependency_Matrix.png)
+
 -Flow of control. Frames play the role of controller and view here. All interactions between frames and models, inputs and outputs, are routeed through the presenters.
+
 ![image](images/Class_Dependency_Diagram.png)
 
 - Softawre architecture is structured in a way that code encapsulates the user logic but keeps it separate from the delivery mechanism.

@@ -141,8 +141,16 @@ user.
 
 ## Program Workflow
 
-![image](images/ClassDependencyDiagram.png)
+![image](images/Class_workflow.png)
 
 - This is how each class is organized and their relationships with each other
+
+
+## Clean Architecture
+
+![image](images/Class_Dependency_Matrix.png)
+![image](images/Class_Dependency_Diagram.png)
+
+- Softawre architecture is structured in a way that code encapsulates the user logic but keeps it separate from the delivery mechanism.
 
 

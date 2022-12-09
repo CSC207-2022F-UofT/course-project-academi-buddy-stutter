@@ -151,7 +151,7 @@ user.
 
 ![image](images/Class_Dependency_Matrix.png)
 
--Flow of control. Frames play the role of controller and view here. All interactions between frames and models, inputs and outputs, are routeed through the presenters.
+-Flow of control. The frames play the role of both controllers and views here. All interactions between frames and models, input or output, are routed through the presenters(In other words, presenter is the io port of use case classes).
 
 ![image](images/Class_Dependency_Diagram.png)
 

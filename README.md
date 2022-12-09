@@ -147,6 +147,7 @@ user.
 
 
 ## Clean Architecture
+- Dependency Matrix. Inner layer classes has no dependency on outer layer classes, or through an interface when an dependency is necessary. Note that the left most column represents the test package, not Launcher.
 
 ![image](images/Class_Dependency_Matrix.png)
 ![image](images/Class_Dependency_Diagram.png)

@@ -173,7 +173,7 @@ We made sure all classes that implement an interface override all of the interfa
 
 Since the use cases have to depend on the database, we made an interface for the database classes to implement and made the use case classes depend on the interface instead. There are many examples of this beyond the database, for example, our Calendarinterpreter depends on an external library, so we made a ClaendarInterface and made a BiweeklyAPI to implement it and let CalendarInterpreter depend on the interface.
 
-##Design Patterns
+## Design Patterns
 
 **Iterator Design Pattern: write,read counter**
 
@@ -190,3 +190,13 @@ We used builder design pattern to create our local testing data. These data need
 **Facade Design Pattern: FrameNavigator**
 
 Each frame has a presenter and associated usecase. At first, to navigate a frame, we just initialized the frame presenter and created a frame. Then we found we could implement a Facade design pattern. FrameNavigator is created to initialize all UIPresenters, and implemented "facade methods" to initialize frames.
+
+Before:
+
+`HomeUIPresenter homeUIPresenter = new HomeUIPresenter(database)`
+
+`HomeFrame homeFrame = new HomeFrame(HomeUIPresenter)`
+
+After:
+
+`frameNavigator.toHome()`

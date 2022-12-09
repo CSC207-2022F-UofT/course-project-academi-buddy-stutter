@@ -141,8 +141,14 @@ user.
 
 ## Program Workflow
 
-![image](images/ClassDependencyDiagram.png)
+![image](images/Class_Dependency_Diagram.png)
 
 - This is how each class is organized and their relationships with each other
+
+
+## Clean Architecture
+
+![image](images/Class_Dependency_Diagram.png)
+![image](images/Class_Dependency_Diagram.png)
 
 
